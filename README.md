@@ -28,7 +28,7 @@ Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu baş
 
 ## Yenen dayaklar, atılan goller
 
-<p align="center"><img src="assets/scoreboard-tr.svg" alt="Yenen dayaklar ve atılan goller: aylık bulut faturası ~4.400 TL'den ~1.300 TL'ye; veritabanı günde 6,5 CU-saatten ~2,1'e; harita API'si 1.500 TL'den 0'a; web isteklerinin %41'ini alan kazıyıcıya karşı bot kapısı ilk günde 6.654 isteği reddetti; 30 gün fark edilmeyen kredi bitişine karşı 4 dakikada alarm; en az 21 gün sessiz hata dönen webhook'a karşı her bağımlılığa sahip, eşik ve kanal; build hakkı bitince bir hafta bekleyen düzeltmeye karşı ay sonuna 3 hak; testin canlıya yazdığı 44 sahte kayda karşı canlıya dokunamayan test ortamı." width="100%"></p>
+<p align="center"><img src="assets/scoreboard-tr.svg" alt="Yenen dayaklar ve atılan goller: Eylül'ün aylık bulut faturası ~3.900–4.400 TL, 8 Ekim'deki aylık tahmin ~1.300 TL; veritabanı günde 6,5 CU-saatten ~2,1'e; harita API'si 1.500 TL'den 0'a; web isteklerinin %41'ini alan kazıyıcıya karşı bot kapısı ilk günde 6.654 isteği reddetti; 30 gün fark edilmeyen kredi bitişine karşı 4 dakikada alarm; en az 21 gün sessiz hata dönen webhook'a karşı her bağımlılığa sahip, eşik ve kanal; build hakkı bitince bir hafta bekleyen düzeltmeye karşı ay sonuna 3 hak; testin canlıya yazdığı 44 sahte kayda karşı canlıya dokunamayan test ortamı." width="100%"></p>
 
 ## İki yol
 
@@ -38,7 +38,7 @@ Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu baş
 | **Varsayılanlar** | Hazır servis hesabı, kotasız API anahtarı, canlıya bağlı yerel ayar, alarmsız servis. | Ayrı faturalama ve bütçe alarmı, uyuyabilen veritabanı, bot kapısı, denenmiş alarmlar, doğrulanan yedek. |
 | **Sorunu kim haber verir** | Fatura ya da tesadüf. | Alarm; ilk gün denenmiş olarak. |
 | **Harcama** | Fatura gelince görülür. | Bütçe alarmı haber verir; durduran sınır servis başına ayrıdır. |
-| **Bizim faturamız** | Eylül'de ayda **~₺3.900–4.400** | Düzeltmelerden sonra ayda **~₺1.300** |
+| **Bizim faturamız** | Eylül'de ayda **~₺3.900–4.400** | Düzeltmelerden sonra ayda **~₺1.300** (8 Ekim tahmini) |
 
 Bütçe alarmı harcamayı durdurmaz, yalnız haber verir. Durduran sınır her serviste ayrıdır ve her serviste yoktur: Cloud Run'ın harcama tavanı, Neon Free'nin kotası, ücretli API'de sağlayıcının kotası gibi. Rehber her servis için hangisinin olduğunu ve kesin durdurmanın olmadığı yerleri ayrı ayrı yazar.
 
