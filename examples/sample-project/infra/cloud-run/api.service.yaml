@@ -1,0 +1,52 @@
+# Prod API servis tanımı (Gün 0 adım 8; K-004, K-011).
+# Konsoldan ayar yok; değişiklik gcloud run services update ile
+# yapılır ve aynı gün buraya commit'lenir. Prod'da
+# "gcloud run services replace" kullanılmaz.
+# İmaj digest'ini yalnız hat yazar. Sır değeri yazılmaz; yalnız
+# Secret Manager referansı (K-009 bekliyor).
+# Depo düzeni (K-028) gelince API deposuna taşınır.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: kampus-api
+  labels:
+    cloud.googleapis.com/location: europe-west1
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        # K-011: rehber "2–3"; şimdilik alt uç, TODO'da soruldu.
+        autoscaling.knative.dev/maxScale: "2"
+        # CPU yalnız istek sırasında (istek bazlı faturalama).
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/startup-cpu-boost: "true"
+    spec:
+      serviceAccountName: kampus-api-run@PROJECT_ID.iam.gserviceaccount.com
+      containerConcurrency: 80
+      containers:
+        - image: IMAGE_DIGEST
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          env:
+            - name: APP_ENV
+              value: prod
+            # Bellek sınırının ~%85'i; bellek değişirse aynı deploy'da.
+            - name: GOMEMLIMIT
+              value: 435MiB
+            # Sır referansları K-009'dan sonra, örnek biçim:
+            # - name: DATABASE_URL
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: kampus-api-database-url
+            #       key: latest
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 240
+            periodSeconds: 240
+            failureThreshold: 1

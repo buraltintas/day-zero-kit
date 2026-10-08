@@ -140,7 +140,7 @@ Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat
 
 **Erken işaret:** canlı host adıyla DROP geçen komut.
 
-**Gün 0 önlemi:** Ajana yalnız salt okunur rol; canlı yazma adresi ajanın ortamında yok. Neon'da prod dalı korumalı, GitHub'da force push yasak. Ajanın ayar dosyasında tek liste. Deny: gcloud iam *, gcloud projects add-iam-policy-binding *, gcloud secrets versions access *, gcloud * delete *, neonctl branches delete *, git push --force *. Sor: psql, git push. Liste emniyet kemeridir, sınır değildir; aynı program başka biçimde çağrılırsa eşleşmez. Asıl engel kimliğin yetkisidir.
+**Gün 0 önlemi:** Ajana yalnız salt okunur rol; canlı yazma adresi ajanın ortamında yok. Neon'da prod dalı korumalı, GitHub'da force push yasak. Ajanın ayar dosyasında tek liste. Deny: gcloud iam *, gcloud projects add-iam-policy-binding *, gcloud secrets versions access *, gcloud * delete *, neonctl branches delete *, git push --force *, git push -f *. Sor: psql, git push. Liste emniyet kemeridir, sınır değildir; aynı program başka biçimde çağrılırsa eşleşmez. Asıl engel kimliğin yetkisidir.
 
 **Önlemin bedeli:** yarım gün; özel depoda GitHub Team, kişi başı ~$4/ay; Neon Launch'ta 2 korumalı dal.
 

@@ -1,0 +1,29 @@
+# Gizli dosyalar ve anahtarlar (rehber: Yeni depo için kurallar 3).
+# Android upload anahtarı ve App Store Connect anahtarı depoya hiç girmez.
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+
+# Bağımlılıklar, build ve native çıktılar
+node_modules/
+.next/
+out/
+build/
+dist/
+coverage/
+.expo/
+# Expo CNG: native klasörler üretilir, depoya girmez
+ios/
+android/
+
+# Kişisel ajan ayarı ve üçüncü taraf ajan araçları (kural 9)
+.claude/settings.local.json
+.agents/
+
+# İşletim sistemi
+.DS_Store

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Etkinleştirme (her klonda bir kez): git config core.hooksPath .githooks
+exec "$(git rev-parse --show-toplevel)/scripts/check-repo-gate.sh" --staged

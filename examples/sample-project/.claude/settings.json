@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx expo *)"
+    ],
+    "deny": [
+      "Bash(gcloud iam *)",
+      "Bash(gcloud projects add-iam-policy-binding *)",
+      "Bash(gcloud secrets versions access *)",
+      "Bash(gcloud * delete *)",
+      "Bash(neonctl branches delete *)",
+      "Bash(git push --force *)"
+    ],
+    "ask": [
+      "Bash(psql *)",
+      "Bash(git push *)",
+      "Bash(npx *)"
+    ]
+  }
+}

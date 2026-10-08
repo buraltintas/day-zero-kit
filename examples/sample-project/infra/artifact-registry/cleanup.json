@@ -1,0 +1,12 @@
+[
+  {"name": "keep-live-prev", "action": {"type": "Keep"},
+   "condition": {"tagState": "TAGGED", "tagPrefixes": ["live", "prev"]}},
+  {"name": "keep-deployed-30d", "action": {"type": "Keep"},
+   "condition": {"tagState": "TAGGED", "tagPrefixes": ["deployed-"], "newerThan": "30d"}},
+  {"name": "keep-tested-14d", "action": {"type": "Keep"},
+   "condition": {"tagState": "TAGGED", "tagPrefixes": ["tested-"], "newerThan": "14d"}},
+  {"name": "keep-recent-10", "action": {"type": "Keep"},
+   "mostRecentVersions": {"keepCount": 10}},
+  {"name": "delete-rest-after-2d", "action": {"type": "Delete"},
+   "condition": {"tagState": "ANY", "olderThan": "2d"}}
+]

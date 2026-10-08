@@ -108,6 +108,10 @@ Elle kurmak istersen `plugins/day-zero-kit-tr/skills/` altındaki klasörleri ko
 | `alert-audit` | Kurulumda ve her yeni dış bağımlılıkta | Her hata, kredi, kota ve süre dolumunun doğru kişiye, doğru kanaldan ulaştığını doğrular. |
 | `seo-geo-routine` | Haftada ve ayda bir | SEO ve GEO işlerini yürütür; önce botların veritabanını uyandırmadığını kontrol eder. |
 
+## Örnekler
+
+[`examples/`](examples/README.md) iki denemeyi gösterir. Birincisinde `project-setup` skill'i hayali bir üründe Gün 0'ı yürütür; ürettiği dosyalar ve sahibine yazdığı durma mesajları oradadır. İkincisinde sekiz skill zor isteklerle sınanır.
+
 ## Rehberde neler var
 
 - **Başlarken:** İki yol, rehberin kullanımı, verilecek kararlar ve ajanın kurulum planı, en hızlı kurulum yolu, 30 vakalık vaka defteri.

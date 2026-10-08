@@ -110,6 +110,10 @@ For the first setup and for checks and decision support in the months that follo
 | `alert-audit` | At setup and for every new external dependency | Checks that every error, credit, quota and expiry reaches the right person through the right channel. |
 | `seo-geo-routine` | Weekly and monthly | Runs SEO and GEO work; first checks that bots do not wake the database. |
 
+## Examples
+
+[`examples/`](examples/README.md) shows two dry runs: the `project-setup` skill running day 0 on a made-up product, with the files it produced and the stop messages it wrote to the owner; and the eight skills tested with hard requests.
+
 ## What the guide covers
 
 - **Getting started:** Two roads, how to use the guide, the decisions to make and the agent's setup plan, the fastest setup path, a case book of 30 cases.

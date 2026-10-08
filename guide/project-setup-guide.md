@@ -766,7 +766,7 @@ Başlarken
 
 # Verilecek kararlar ve kurulum planı
 
-Bu bölüm ajanın gün 0'dan başlayan iş listesidir: ürün sahibine sorulacak kararlar, kod yazılmadan biten hesap ve sürüm listesi ve altyapının kuruluş sırası. Ekip bu sırada yalnız ürün akışlarına bakar.
+Bu bölüm ajanın gün 0'dan başlayan iş listesidir: ürün sahibine sorulacak kararlar, ürün kodundan önce biten hesap ve sürüm listesi ve altyapının kuruluş sırası. Ekip bu sırada yalnız ürün akışlarına bakar.
 
 **Kural:** Ajan tek başına karar vermez; sorar, kaydeder, sırayla kurar ve DUR yazan yerde bekler.
 
@@ -776,7 +776,7 @@ Kararlar dört zamana ayrılır; ajan yalnız o anın satırlarını sorar. Ür�
 
 Kararlar ve kurulum adımları aynı dört zamana ayrılır. DUR, ürün sahibinin sözünün beklendiği adımdır; ajan orada tek satırlık rapor verir.
 
-### Gün 0: kod yazılmadan
+### Gün 0: ürün kodundan önce
 
 Akışların kodu bu aşama bitince başlar.
 
@@ -784,7 +784,7 @@ Akışların kodu bu aşama bitince başlar.
 
 **15** adım
 
-**11** DUR
+**12** DUR
 
 ### İlk kullanıcıdan önce
 
@@ -822,7 +822,7 @@ Satırlar sorulacakları zamana göre gruplu. Gri yazı seçenekleri ve nedeni v
 
 | No | Karar ve seçenekler | Rehberin varsayılanı, nedeni ve bölümü | Kim, kanıt |
 |---|---|---|---|
-| Gün 0: kod yazılmadan, 17 karar |
+| Gün 0: ürün kodundan önce, 17 karar |
 | 1 | **Ürünün adı, alan adı ve uygulama kimlikleri ne?** Tek alan adı ve alt alan adları ya da yüzey başına ayrı alan adı. Mobil varsa iOS bundle ID, Android paket adı ve uygulama şeması. | Tek alan adı, ilk kullanıcıdan haftalar önce: web, api., auth. ve news. Kategori başvurusu aynı hafta. Mobilde bundle ID ve paket adı alan adının tersidir (ornek.com ise com.ornek.app) ve iki platformda aynıdır; şema kısa ve tektir; universal link ve App Links ana alan adında, ilk build'de, [Mobil kit](#mobilkit) yayın kapısı 14 (öneri). 38 günlük alan adının giriş kodları dört kurumun posta geçidinde bekledi. Bundle ID ve paket adı mağazaya ilk yüklemeden sonra değişmez; ajan bunları uydurmaz, sorar. [Kenar ve DNS](#katman-5) | Ürün sahibi [kanıtlı] |
 | 2 | **Hesaplar kimin adına açılır, kimler yönetir?** Şirket ya da kişi; bir ya da iki yönetici. | Şirket adına, ürünün alan adındaki bir adresle; en az iki yönetici, kök hesaplarda donanım anahtarı ya da passkey. Claude, Google, Cloudflare ve PostHog'un kredi programları kişisel adresi kabul etmiyor. [Krediler](#krediler) | Ürün sahibi [öneri] |
 | 3 | **Ürüne ayrı faturalama hesabı ve Neon org'u açılacak mı?** Ayrı hesap ya da var olan hesabı paylaşmak. | Ayrı, aynı ödeme profilinin altında. Ücretsiz kotayı artırmak için tek ürün birden çok hesaba bölünmez. Aynı hesaptaki iki ürün Eylül'de ₺187 build ve ₺78 Cloud Run ücreti ödedi. [Ücretsiz katmanlar](#ucretsiz) | Ürün sahibi [ölçüldü] |
@@ -833,7 +833,7 @@ Satırlar sorulacakları zamana göre gruplu. Gri yazı seçenekleri ve nedeni v
 | 8 | **Ajan neyi onaysız yapar, ücretli işte eşik ne?** Commit, test'e push, migration, deploy, mağaza; her ücretli çağrı ya da bir eşiğin üstü. | Dalda commit ve test'e çıkış onaysız; main, prod migration, build, gönderim ve herkese açma onaylı. Günde 1 dolar üstü ücretli iş sorulur. GCP için ayda 1 dolar tahmin edilmişti; Ağustos'ta faturalama hesabının toplamı ₺2.087 geldi. [Proje hafızası](#hafiza) | Ürün sahibi [öneri] |
 | 9 | **Gizli bilgiler nerede durur, kim erişir?** Secret Manager, .env dosyası ya da CI değişkeni. | Secret Manager; her servis kendi hesabıyla yalnız kendi sırrına, adlar .env.example'da. JSON anahtar yok, CI için WIF (öneri). Editor yetkili hazır hesap bir açıkla birleşince proje ele geçirilebilir oldu; aynı gün kapatıldı. [Güvenlik](#katman-8) | Ürün sahibi ve ajan [kanıtlı] |
 | 10 | **Test ortamı olacak mı, verisi nereden gelir?** Ayrı ortam ya da yalnız yerel; canlının kopyası ya da temsili veri. | Prod'un şeklinde: '-test' servisleri, ayrı Neon, hesap ve sırlar, temsili veri. Canlı veri teste inmez, test canlıya yazmaz. Bir test canlıya 44 sahte hesaplama yazdı; herkese açık listede göründü. [CI/CD](#katman-7) | Ürün sahibi [kanıtlı] |
-| 11 | **Bütçe eşikleri ne, en fazla kaç sunucu açılır?** Aylık bütçe tutarı; servis başına max instances; prod'a harcama tavanı ya da yok. | Bütçe %50, %80 ve %100'de, küçük üründe ~₺150; kredileri hariç ikinci bütçe. API max 2–3, web max 3, ikisi de min 0. Prod'a harcama tavanı ürün sahibinin kararıdır; konursa kredi düşülmeden önceki brüt maliyetin ~10 katında ve en az ~$100 olur, kaldırma adımı cost-check.md'de yazılıdır. Bütçe uyarısı harcamayı durdurmaz. Max sınırı yalnız Cloud Run'ın CPU ve bellek faturasını sınırlar; internet çıkışına, loga, build'e ve dış API'ye çıkış alarmı ve API kotası bakar. Tavan dolunca o projede Cloud Run ay sonuna kadar yeni istek almaz; tavan elle kaldırılır, toparlanma bir saati bulabilir ([Gün 0 önlemleri 7](#onlem-7)). Max ve min değerleri bizde canlıda. [Ücretsiz katmanlar](#ucretsiz) | Ürün sahibi ve ajan [öneri] |
+| 11 | **Bütçe eşikleri ne, en fazla kaç sunucu açılır?** Aylık bütçe tutarı; servis başına max instances; prod'a harcama tavanı ya da yok. | Bütçe %50, %80 ve %100'de, küçük üründe ~₺150; kredileri hariç ikinci bütçe. API max 2, web max 3, ikisi de min 0; trafik gelince tavan 30 günlük zirvenin bir fazlasına çekilir. Prod'a harcama tavanı ürün sahibinin kararıdır; konursa kredi düşülmeden önceki brüt maliyetin ~10 katında ve en az ~$100 olur; tavanın nasıl konduğu ve kaldırıldığı docs/runbooks/cost-check.md'ye yazılır. Bütçe uyarısı harcamayı durdurmaz. Max sınırı yalnız Cloud Run'ın CPU ve bellek faturasını sınırlar; internet çıkışına, loga, build'e ve dış API'ye çıkış alarmı ve API kotası bakar. Tavan dolunca o projede Cloud Run ay sonuna kadar yeni istek almaz; tavan elle kaldırılır, toparlanma bir saati bulabilir ([Gün 0 önlemleri 7](#onlem-7)). Max ve min değerleri bizde canlıda. [Ücretsiz katmanlar](#ucretsiz) | Ürün sahibi ve ajan [öneri] |
 | 12 | **Belgelerin dili, iş panosu ve sahip oturum ne?** Türkçe ya da İngilizce; depoda TODO ya da dış pano. | İçerik Türkçe, dosya adları geleneksel. Depo başına bir sahip oturum, adı STATUS'ta. İş panosu docs/TODO.md (öneri). Aynı depoda iki oturum main'e aldı, push reddedildi. [Proje hafızası](#hafiza) | Ürün sahibi [kanıtlı] |
 | 13 | **Mobil build EAS'te mi, kendi hattımızda mı?** EAS Free, EAS Starter, yerel build ya da kendi hat. | EAS Free ve ilk günden prova edilmiş yerel yol; kendi hat ancak EAS faturası üç ay üst üste $50'ı geçerse. Preview'lar yerelde alınınca platform başına ayda 15 hak yetiyor. [Mobil dağıtım](#dagitim) | Ürün sahibi ve ajan [ölçüldü] |
 | 14 | **Tasarımın tek kaynağı ne, koyu tema olacak mı?** Token dosyası ya da elle kopya; iki mod ya da yalnız açık tema. | tokens/tokens.json'dan CSS ve mobil tema üretilir. Koyu tema ya iki modla tasarlanır ya 'yalnız açık' kilitlenir; DESIGN.md gün 0'da. Ürün A'nın ana marka rengi 5 depoda 17 dosyada sabit yazılı. [Tasarım sistemi](#tasarim) | Ürün sahibi [öneri] |
@@ -861,7 +861,7 @@ Satırlar sorulacakları zamana göre gruplu. Gri yazı seçenekleri ve nedeni v
 
 ## Gün 0: hesaplar ve sürümler
 
-İki liste de kod yazılmadan biter. Hesapları ürün sahibi açar, ajan listeyi tutar; sürüm tabanını ajan kurar ve STATUS'a yazar.
+İki liste de ürün kodundan önce biter. Hesapları ürün sahibi açar, ajan listeyi tutar; sürüm tabanını ajan kurar ve STATUS'a yazar.
 
 ### Hesaplar
 
@@ -993,7 +993,7 @@ Sürümler ve destek tarihleri 8 Ekim 2026'da bu sayfalardan okundu.
 
 **Prod'a dokunan komut:** Projede bir şey kuran ya da yetki veren her komut (IAM, servis hesabı, servis, tetikleyici, bütçe, alarm, sır değeri) ve prod Neon rolleri ajanın yazdığı betikte toplanır. Ürün sahibi betiği okur, kendi kimliğiyle çalıştırır ve çıktıyı ajana verir. Ajanın kendi kimliği projede yalnız okur, IAM komutları onda engellidir ([Gün 0 önlemleri](#onlemler) 5 ve 6). Test ve prod aynı projede durduğu için proje düzeyinde verilen yazma rolü ikisini birden açar. Ajan test ortamına test dalına push ederek çıkar. [öneri]
 
-### Gün 0: kod yazılmadan
+### Gün 0: ürün kodundan önce
 
 Akışların kodu bu aşama bitince başlar.
 
@@ -1001,7 +1001,7 @@ Akışların kodu bu aşama bitince başlar.
 
 [Proje hafızası](#hafiza)
 
-**Üretir:** docs/DECISIONS.md, K-001'den. Cevapsız satır AGENTS.md'de 'KARAR BEKLİYOR' ve TODO'nun karar bekleyen bölümünde.
+**Üretir:** docs/DECISIONS.md, K-001'den. Gün 0 satırlarıyla birlikte iki soru daha sorulur: ürünün özellikleri (kullanıcı içeriği, yapay zekâ, abonelik, ödeme, ticari ileti, konum; gün 0 önlemlerinden hangilerinin geçerli olduğunu belirler) ve depo düzeni (servis başına ayrı depo ya da tek depo). Cevapsız karar DECISIONS.md'de sorulma sırasıyla numaralanmış bir taslak blok olur; AGENTS.md'de 'KARAR BEKLİYOR', TODO'nun karar bekleyen bölümünde bağlantısıyla durur.
 
 **Doğrular:** Her gün 0 kararının ya K numarası ya TODO satırı var.
 
@@ -1011,7 +1011,7 @@ Akışların kodu bu aşama bitince başlar.
 
 [Proje hafızası](#hafiza)
 
-**Üretir:** AGENTS.md (deploy kuralı en üstte), CLAUDE.md'de yalnız @AGENTS.md, CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/runbooks/.gitkeep, docs/handoff/.gitkeep, .gitignore, .env.example (yalnız adlar). Sonraki adımların dosyaları bu adlarla açılır: docs/ACCOUNTS.md (3), docs/ALERTS.md (yenileme tablosu 3'te, uyarı listesi 16'da), sürüm tabanı docs/STATUS.md'nin Sürümler bölümünde (6), docs/KVKK.md (12), PRODUCT.md, DESIGN.md ve tokens/tokens.json (14).
+**Üretir:** AGENTS.md (deploy kuralı en üstte), CLAUDE.md'de yalnız @AGENTS.md, CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/runbooks/.gitkeep, docs/handoff/.gitkeep, .gitignore, .env.example (yalnız adlar). Sonraki adımların dosyaları bu adlarla açılır: docs/ACCOUNTS.md (3), docs/ALERTS.md (yenileme tablosu 3'te, uyarı listesi 16'da), sürüm tabanı docs/STATUS.md'nin Sürümler bölümünde (6), docs/KVKK.md (12), PRODUCT.md, DESIGN.md ve tokens/tokens.json (14). Hafızanın dili ve sahibi (12. satır) cevapsızsa dosyalar rehberin varsayılan biçimiyle açılır, karar gelince düzeltilir.
 
 **Doğrular:** `git ls-files` hepsini listeler; Claude Code'un /memory listesinde AGENTS.md var.
 
@@ -1053,6 +1053,8 @@ Akışların kodu bu aşama bitince başlar.
 
 **Doğrular:** Sahte anahtarlı ya da 2 MB'lık commit reddedilir; main'e force push ve main'i silme reddedilir, test'ten main'e fast-forward push geçer; desteğine 6 aydan az kalan sürüm yok.
 
+**DUR:** GitHub organizasyonunu ürün sahibi açar. Bir uygulamaya (Renovate gibi) depo erişimi vermek, özel depoda dal kuralları için ücretli plan ve push protection'ın ücreti onun onayıyla olur.
+
 [öneri] GitHub'da main'e PR şartı konmaz. GitHub'ın birleştirmesi yeni commit üretir; main test'le eşit kalmaz ve main tetikleyicisi test'in `$COMMIT_SHA` etiketli imajını bulamaz.
 
 ### 7. Neon
@@ -1069,11 +1071,11 @@ Akışların kodu bu aşama bitince başlar.
 
 [CI/CD](#katman-7)
 
-**Üretir:** API ve web europe-west1'de min 0, max 2–3 ve 3, CPU boost, Next'e 1 GiB, service.yaml; tek Docker deposu, bölgesel tetikleyici, temizlik kuralı; test digest üretir, main onayla terfi eder. Tetikleyiciler baştan kendi build hesabıyla kurulur. Bu hesap roles/run.admin, roles/artifactregistry.writer ve roles/logging.logWriter taşır. roles/iam.serviceAccountUser proje genelinde verilmez, yalnız deploy ettiği çalışma hesaplarının üstünde verilir. Build dosyasında `options: logging: CLOUD_LOGGING_ONLY` bulunur; kendi hesabıyla koşan build bu satır olmadan başlamaz.
+**Üretir:** API ve web europe-west1'de min 0, API max 2, web max 3, CPU boost, Next'e 1 GiB, service.yaml; tek Docker deposu, bölgesel tetikleyici, temizlik kuralı; test digest üretir, main onayla terfi eder. Tetikleyiciler baştan kendi build hesabıyla kurulur; test ve main'in hesabı ayrıdır ve hiçbir build hesabı projede Cloud Run rolü taşımaz. Test hesabı yalnız '-test' servis ve job'larında roles/run.developer, main hesabı aynı rolü yalnız prod kaynaklarında alır; ikisi depoda roles/artifactregistry.writer (yalnız terfi eden main'e reader yeter), projede roles/logging.logWriter; roles/iam.serviceAccountUser yalnız kendi çalışma hesaplarının üstünde verilir. Bizde test hattı proje genelinde roles/run.admin ile koştu; çalıştı ama gereğinden geniştir. Gün 0'da service.yaml dosyaları yazılır; servis ve job'lar ilk test build'iyle açılır. Build dosyasında `options: logging: CLOUD_LOGGING_ONLY` bulunur; kendi hesabıyla koşan build bu satır olmadan başlamaz.
 
-**Doğrular:** Depo tanımında cleanupPolicyDryRun yok ya da false; test push'unun build'i kendi build hesabıyla SUCCESS.
+**Doğrular:** Depo tanımında cleanupPolicyDryRun yok ya da false; test push'unun build'i kendi build hesabıyla SUCCESS; test build hesabıyla prod servisine deploy denemesi yetki hatası alır.
 
-**DUR:** Servisler, tetikleyiciler ve Docker deposu betikle, ürün sahibinin kimliğiyle kurulur.
+**DUR:** Tetikleyiciler, build hesapları, roller ve Docker deposu betikle, ürün sahibinin kimliğiyle kurulur.
 
 [öneri] Canlıya çıkış sırası şöyledir. Ajan test'te doğrular ve tek satır rapor verir. Ürün sahibi "deploy" der. Ajan `git push origin test:main` ile main'i ileri sarar. main tetikleyicisi onay bekler. Onayı ürün sahibi verir. roles/cloudbuild.builds.approver rolü yalnız ondadır, ajanın kimliğinde yoktur. Aynı sıra docs/runbooks/deploy.md'de yazılır.
 
@@ -1367,7 +1369,7 @@ Altyapı bu kutular işaretlenince teslim edilmiş sayılır. Bundan sonra ajan 
 
 Yığının en ucuz, en hızlı ve en güvenli hali bu sırayla kurulur.
 
-## Gün 0: kod yazılmadan
+## Gün 0: ürün kodundan önce
 
 1. Ürüne ayrı faturalama hesabı ve Neon org'u; üç eşikli bütçe alarmı, BigQuery fatura dökümü.
 
@@ -3467,7 +3469,7 @@ Ajan ürün günlüğünü Türkçe uydurma bir adla açtı. Ürün sahibi adı 
 
 ## Gün 0: ajan önce ürün sahibine sorar
 
-Ajan gün 0'da [Kararlar](#kararlar) tablosunun gün 0 satırlarını sorar; bu bölüm ayrı soru listesi tutmaz. Proje hafızasıyla ilgili sorular tablonun 7, 8, 9, 10, 12 ve 26. satırlarındadır. Cevabı gelmeyen satır AGENTS.md'de 'KARAR BEKLİYOR' diye kalır ve TODO'nun karar bekleyen bölümüne girer.
+Ajan gün 0'da [Kararlar](#kararlar) tablosunun gün 0 satırlarını sorar; bu bölüm ayrı soru listesi tutmaz. Proje hafızasıyla ilgili gün 0 soruları tablonun 7, 8, 9, 10 ve 12. satırlarındadır; 26. satır mağaza aşamasında sorulur. Cevabı gelmeyen satır AGENTS.md'de 'KARAR BEKLİYOR' diye kalır ve TODO'nun karar bekleyen bölümüne girer.
 
 ## Ajanın gün 0'da açtığı dosyalar
 
@@ -3512,19 +3514,6 @@ Gün 0'da; kural ya da ders eklendikçe. CLAUDE.md içinde yalnız `@AGENTS.md`.
 <!-- CLAUDE.md içinde yalnız: @AGENTS.md -->
 Son doğrulama: 2026-10-08
 
-## Ürün
-Ne: <tek cümle>. Kim kullanır: <tek cümle>.
-Bu depo: <api | web | mobil | admin>.
-Kardeş depolar: <x-api, x-web, x-mobile>.
-Dokunmadan önce onların AGENTS.md'sini oku.
-
-## Çalıştır ve doğrula
-Yerel: make dev | npm run dev
-  (yalnız yerel ya da test veritabanı)
-Doğrula: make test vet
-  | npm run typecheck && npm test && npm run lint
-Temiz değilse iş bitmedi.
-
 ## Dallar ve deploy (karar: ürün sahibi)
 test'e push: test ortamı. Hat test eder,
   imajı bir kez kurar, digest'i yazar.
@@ -3539,6 +3528,20 @@ Migration yalnız ekler. Onu okuyan kod
   sonraki deploy'da çıkar.
 Build, mağazaya gönderim ve sürüm numarası
   ürün sahibinin kararı.
+
+## Ürün
+Ne: <tek cümle>. Kim kullanır: <tek cümle>.
+Bu depo: <api | web | mobile | admin>.
+Kardeş depolar: <x-api, x-web, x-mobile>.
+Dokunmadan önce onların AGENTS.md'sini oku.
+
+## Çalıştır ve doğrula
+Yerel: make dev | npm run dev
+  (yalnız yerel ya da test veritabanı)
+Doğrula: make test vet
+  | npm run typecheck && npm test && npm run lint
+Temiz değilse iş bitmedi. Komutlar iskelet gelene
+  kadar 'henüz yok' yazar.
 
 ## Asla
 - Onaysız main push.
@@ -12391,7 +12394,7 @@ Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat
 
 **Erken işaret:** canlı host adıyla DROP geçen komut.
 
-**Gün 0 önlemi:** Ajana yalnız salt okunur rol; canlı yazma adresi ajanın ortamında yok. Neon'da prod dalı korumalı, GitHub'da force push yasak. Ajanın ayar dosyasında tek liste. Deny: gcloud iam *, gcloud projects add-iam-policy-binding *, gcloud secrets versions access *, gcloud * delete *, neonctl branches delete *, git push --force *. Sor: psql, git push. Liste emniyet kemeridir, sınır değildir; aynı program başka biçimde çağrılırsa eşleşmez. Asıl engel kimliğin yetkisidir.
+**Gün 0 önlemi:** Ajana yalnız salt okunur rol; canlı yazma adresi ajanın ortamında yok. Neon'da prod dalı korumalı, GitHub'da force push yasak. Ajanın ayar dosyasında tek liste. Deny: gcloud iam *, gcloud projects add-iam-policy-binding *, gcloud secrets versions access *, gcloud * delete *, neonctl branches delete *, git push --force *, git push -f *. Sor: psql, git push. Liste emniyet kemeridir, sınır değildir; aynı program başka biçimde çağrılırsa eşleşmez. Asıl engel kimliğin yetkisidir.
 
 **Önlemin bedeli:** yarım gün; özel depoda GitHub Team, kişi başı ~$4/ay; Neon Launch'ta 2 korumalı dal.
 

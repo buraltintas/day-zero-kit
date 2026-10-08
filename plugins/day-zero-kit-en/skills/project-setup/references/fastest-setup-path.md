@@ -8,7 +8,7 @@
 
 Yığının en ucuz, en hızlı ve en güvenli hali bu sırayla kurulur.
 
-## Gün 0: kod yazılmadan
+## Gün 0: ürün kodundan önce
 
 1. Ürüne ayrı faturalama hesabı ve Neon org'u; üç eşikli bütçe alarmı, BigQuery fatura dökümü.
 

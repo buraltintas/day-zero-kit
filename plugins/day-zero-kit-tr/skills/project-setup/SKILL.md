@@ -41,6 +41,7 @@ Bunlara gelince dur ve sor; asla kendin yapma: hesap açmak, ödeme ve kart, şa
 - Botların gezdiği herkese açık sayfa ve listeler (katalog, detay, site haritası) veritabanına gitmez: bellekten ya da ISR'dan sunulur, değişiklik işaretiyle tazelenir. Arama, filtre ve sık değişen içerik gibi önbelleğe sığmayan okumalar veritabanına gidebilir; o zaman bot erişimi sınırlanır ve veritabanı uyanışı ölçülür.
 - Test ortamı ve test verisi canlıya asla dokunmaz; yerel varsayılan her zaman test ortamıdır.
 - Ücretli bir dış API, alternatifleri ve en kötü günün faturası yazılmadan açılmaz.
+- Rehberde tarihli bir yasal yükümlülük (yürürlük ya da bildirim tarihi) 60 günden yakınsa onu beklemeden, öncelikli olarak sahibine söyle ve TODO'ya P1 yaz.
 - Bir istek rehberle çelişiyorsa önce çelişkiyi söyle, sonra sahibin kararını uygula ve `DECISIONS.md`'ye yaz.
 - Sohbete kart numarası, parola ya da gizli anahtar yapıştırılırsa onu kullanma, tekrar yazma ve hiçbir dosyaya koyma; sahibine bunu ilgili konsolda kendisinin girmesini söyle, gerekiyorsa değiştirmesini öner.
 - Maliyet ya da risk taşıyan bir istekte "önemli değil" demek, rakam söylenmeden onay sayılmaz: günlük ve aylık rakamı söyle, onayı al, `DECISIONS.md`'ye yaz.

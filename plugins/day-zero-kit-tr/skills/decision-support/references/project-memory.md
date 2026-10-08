@@ -176,7 +176,7 @@ Ajan ürün günlüğünü Türkçe uydurma bir adla açtı. Ürün sahibi adı 
 
 ## Gün 0: ajan önce ürün sahibine sorar
 
-Ajan gün 0'da [Kararlar](#kararlar) tablosunun gün 0 satırlarını sorar; bu bölüm ayrı soru listesi tutmaz. Proje hafızasıyla ilgili sorular tablonun 7, 8, 9, 10, 12 ve 26. satırlarındadır. Cevabı gelmeyen satır AGENTS.md'de 'KARAR BEKLİYOR' diye kalır ve TODO'nun karar bekleyen bölümüne girer.
+Ajan gün 0'da [Kararlar](#kararlar) tablosunun gün 0 satırlarını sorar; bu bölüm ayrı soru listesi tutmaz. Proje hafızasıyla ilgili gün 0 soruları tablonun 7, 8, 9, 10 ve 12. satırlarındadır; 26. satır mağaza aşamasında sorulur. Cevabı gelmeyen satır AGENTS.md'de 'KARAR BEKLİYOR' diye kalır ve TODO'nun karar bekleyen bölümüne girer.
 
 ## Ajanın gün 0'da açtığı dosyalar
 
@@ -221,19 +221,6 @@ Gün 0'da; kural ya da ders eklendikçe. CLAUDE.md içinde yalnız `@AGENTS.md`.
 <!-- CLAUDE.md içinde yalnız: @AGENTS.md -->
 Son doğrulama: 2026-10-08
 
-## Ürün
-Ne: <tek cümle>. Kim kullanır: <tek cümle>.
-Bu depo: <api | web | mobil | admin>.
-Kardeş depolar: <x-api, x-web, x-mobile>.
-Dokunmadan önce onların AGENTS.md'sini oku.
-
-## Çalıştır ve doğrula
-Yerel: make dev | npm run dev
-  (yalnız yerel ya da test veritabanı)
-Doğrula: make test vet
-  | npm run typecheck && npm test && npm run lint
-Temiz değilse iş bitmedi.
-
 ## Dallar ve deploy (karar: ürün sahibi)
 test'e push: test ortamı. Hat test eder,
   imajı bir kez kurar, digest'i yazar.
@@ -248,6 +235,20 @@ Migration yalnız ekler. Onu okuyan kod
   sonraki deploy'da çıkar.
 Build, mağazaya gönderim ve sürüm numarası
   ürün sahibinin kararı.
+
+## Ürün
+Ne: <tek cümle>. Kim kullanır: <tek cümle>.
+Bu depo: <api | web | mobile | admin>.
+Kardeş depolar: <x-api, x-web, x-mobile>.
+Dokunmadan önce onların AGENTS.md'sini oku.
+
+## Çalıştır ve doğrula
+Yerel: make dev | npm run dev
+  (yalnız yerel ya da test veritabanı)
+Doğrula: make test vet
+  | npm run typecheck && npm test && npm run lint
+Temiz değilse iş bitmedi. Komutlar iskelet gelene
+  kadar 'henüz yok' yazar.
 
 ## Asla
 - Onaysız main push.

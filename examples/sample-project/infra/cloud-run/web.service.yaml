@@ -1,0 +1,38 @@
+# Prod web (Next.js) servis tanımı (Gün 0 adım 8; K-004, K-011).
+# Kurallar api.service.yaml'daki gibi. Next'in herkese açık
+# değerleri çalışma anında okunur; test'te doğrulanan imaj prod'a
+# aynen terfi eder.
+# Depo düzeni (K-028) gelince web deposuna taşınır.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: kampus-web
+  labels:
+    cloud.googleapis.com/location: europe-west1
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "3"
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/startup-cpu-boost: "true"
+    spec:
+      serviceAccountName: kampus-web-run@PROJECT_ID.iam.gserviceaccount.com
+      containerConcurrency: 80
+      containers:
+        - image: IMAGE_DIGEST
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          env:
+            - name: APP_ENV
+              value: prod
+            - name: SITE_URL
+              value: https://kampus.example
+            - name: API_URL
+              value: https://api.kampus.example
+            # EDGE_KEY Secret Manager referansıyla, K-009'dan sonra.
