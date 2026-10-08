@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="analitik"></a>
 
@@ -15,10 +15,15 @@ Olay kaydı ve yönetim yüzeyi mobil kit gibi ilk sürümle kurulur. Sonradan e
 Dört ürünümüzün hiçbirinde kurulum ve paywall olayı yok; 'kaç kişi indirip kaçı ödedi' sorusunun cevabı bugün de yok. Admin tarafında okuma ekranları erken geldi; bayrak, güncelleme politikası ve iş durumu ekranları gelmedi. Mobil kitin bayrak, güncelleme politikası ve duyuru parçaları bu bölümdeki admin uçlarından beslenir: [Mobil uzaktan kontrol kiti](#mobilkit).
 
 **~1 hafta** Ürün A'nın ilk analitik haftası (26 Ağu–2 Eyl 2026) yazılmadı. API her olaya 500 döndü, uygulama hatayı göstermedi. Cihaz kuyruklarından yalnız bir kısmı sonra geldi.
+
 **21 gün** Aynı jsonb hatası ve bir NOT NULL hatasıyla ödeme webhook'u 2–23 Eyl 2026 arası her teslimde 500 döndü; 23 Eyl öncesindeki ödeme olayları kayıp.
+
 **139 / 211** 28 Eyl 2026'da 28 günlük sayım iOS'ta 211 telefonun 139'unu eski sürümde gösterdi. Gelir aracının 7 günlük aktif müşteri sayımında gerçek 308'de 22'ydi.
+
 **553 ile 228** 28 Eyl 2026'da aynı dakikada rapor e-postası ve gelir aracının paneli 'yeni müşteri' için bu iki rakamı verdi. E-posta aracın eski bir ucunu okuyordu.
+
 **en az 14** 19 Eyl–8 Eki 2026 arasında güncelleme politikası (9) ve bayrak (5) için elle açılan revizyon. Admin ekranı yoktu.
+
 **~₺255/ay** Gece raporu gelmedi sanıldı, API konsoldan sürekli açık bırakıldı (7 Eyl–2 Eki 2026). Rapor gelmişti; bunu gösteren bir yer yoktu.
 
 ## Kimsenin görmediği sorunlar
@@ -119,13 +124,17 @@ Olay sunucuya, kendi veritabanımıza gider. Üçüncü taraf araç ancak veri y
 5. Reklam neden gösterilmedi?
 
 [kanıtlı]
-** Olayda kişiyi gösteren hiçbir şey olmaz**: kullanıcı kimliği, ad, e-posta, telefon, serbest metin, kesin konum. Kurulum kimliği sunucu anahtarıyla HMAC'lenir; anahtar ortam başına ayrıdır.
+
+**Olayda kişiyi gösteren hiçbir şey olmaz**: kullanıcı kimliği, ad, e-posta, telefon, serbest metin, kesin konum. Kurulum kimliği sunucu anahtarıyla HMAC'lenir; anahtar ortam başına ayrıdır.
+
 [ölçüldü]
-** Olay ilk sürümde gelir**. Sonradan eklenen olayın geçmişi yoktur ve mobilde her yeni olay bir mağaza sürümünü bekler. Bizde paylaşım sayımı ve PDF sonucu ayrı birer mağaza sürümünü bekledi.
+
+**Olay ilk sürümde gelir**. Sonradan eklenen olayın geçmişi yoktur ve mobilde her yeni olay bir mağaza sürümünü bekler. Bizde paylaşım sayımı ve PDF sonucu ayrı birer mağaza sürümünü bekledi.
 
 ### Olay adları
 
 [öneri]
+
 Ad küçük harf, İngilizce, alt çizgili; önce nesne, sonra eylem; en çok 40 karakter (GA4 sınırı): `app_open`, `signup_complete`, `paywall_view`, `purchase_result`, `ad_result`, `share_tap`, `error_shown`. Sonuç aynı olayın `outcome` alanına yazılır ve sabit bir listeden gelir (bizde Premium'suz PDF için 10 değer). Bir ad bir kez kullanılır, anlamı değişirse yeni ad açılır. Bütün ad ve değerler tek bir sözlük dosyasındadır; istemci ve sunucu testleri bu dosyayı okur.
 
 ### Her olayda
@@ -133,39 +142,51 @@ Ad küçük harf, İngilizce, alt çizgili; önce nesne, sonra eylem; en çok 40
 Zarf alanları; olayın kendi alanları props içinde.
 
 event_id [kanıtlı]
+
 İstemcinin ürettiği UUID; sunucuda tekil, yeniden gönderilen olay bir kez yazılır.
 
 name, outcome [öneri]
+
 Sözlükteki ad ve sonuç değeri.
 
 occurred_at [kanıtlı]
+
 Cihaz saati; 7 gün geriye, 10 dk ileriye kadar kabul. Raporlar bunu sayar.
 
 received_at [kanıtlı]
+
 Sunucu saati; saklama ve silme bunu kullanır.
 
 install_id [kanıtlı]
+
 İlk açılışta üretilen rastgele kimlik, güvenli depoda. Sunucuda yalnız HMAC'i durur. iOS'ta güvenli depo (Keychain) uygulama silinip yeniden kurulunca çoğu zaman kalır, Android'de silinir; Expo buna güvenilmemesini söyler. [öneri] Yeni kurulum kararı ve `app_open`'daki `first=true` bu kimliğe bakılarak verilmez; uygulamanın kendi deposundaki bayraktan okunur.
 
 session_id [öneri]
+
 Her açılışta yeni rastgele kimlik; huni sırası için.
 
 platform, app_version, build [kanıtlı] build [öneri]
+
 Her olayda. Bizde platform ve sürüm her olayda var; build olayda yok, yalnız iOS isteklerinin kullanıcı ajanında.
 
 env [öneri]
+
 prod ya da test; canlı API prod olmayan olayı reddeder.
 
 tier [kanıtlı]
+
 premium, free ya da guest; sunucu oturumdan belirler.
 
 segment [kanıtlı]
+
 Kaba kullanıcı tipi (uzman ya da son kullanıcı); kimlik taşımaz.
 
 consent [öneri]
+
 Üçüncü taraf ölçüm ve reklam kişiselleştirme kararı: kabul, ret, sorulmadı.
 
 props [kanıtlı]
+
 Olay başına izin listesindeki birkaç alan; yayınlanacak tutarlar bantlanır.
 
 ### Tablo
@@ -215,11 +236,16 @@ CREATE TABLE events_daily (
 ```
 
 [öneri]
-** Ad ve outcome CHECK yerine uygulamadaki sözlükle doğrulanır**. Yeni değer migration beklemez; sözlüğe ve teste girmeden de kabul edilmez.
+
+**Ad ve outcome CHECK yerine uygulamadaki sözlükle doğrulanır**. Yeni değer migration beklemez; sözlüğe ve teste girmeden de kabul edilmez.
+
 [kanıtlı]
-** Olay tablosunda hesap bağı yoktur**; başka bir tabloda varsa hesap silinince NULL olur (ON DELETE SET NULL), olay sayı olarak kalır.
+
+**Olay tablosunda hesap bağı yoktur**; başka bir tabloda varsa hesap silinince NULL olur (ON DELETE SET NULL), olay sayı olarak kalır.
+
 [öneri]
-** Özette boş sonuç `''` olarak durur**. Birincil anahtardaki sütun NULL alamaz; özet işi `coalesce(outcome, '')` ile yazar. ON CONFLICT (day, name, outcome, platform, app_version) DO UPDATE aynı günü yeniden hesaplar, iş iki kez çalışsa da sayı ikilenmez.
+
+**Özette boş sonuç `''` olarak durur**. Birincil anahtardaki sütun NULL alamaz; özet işi `coalesce(outcome, '')` ile yazar. ON CONFLICT (day, name, outcome, platform, app_version) DO UPDATE aynı günü yeniden hesaplar, iş iki kez çalışsa da sayı ikilenmez.
 
 ### On zorunlu olay
 
@@ -241,42 +267,72 @@ CREATE TABLE events_daily (
 ### Olay ucu
 
 [öneri]
-** Tek uç**: `POST /v1/events`, en çok 50 olaylık toplu gövde. Bilinmeyen alan, ad ya da değer 400 döner ve sayılır; sessizce 'diğer'e düşmez.
+
+**Tek uç**: `POST /v1/events`, en çok 50 olaylık toplu gövde. Bilinmeyen alan, ad ya da değer 400 döner ve sayılır; sessizce 'diğer'e düşmez.
+
 [öneri]
-** Olay ucu veritabanını kendisi uyandırmaz**. Her olay için tek log satırı yazar. Havuzda açık bağlantı varsa, yani veritabanı zaten uyanıksa, aynı istekte tabloya da yazar. Uyurken ne token ne de günlük sınır veritabanında aranır; bu durumda tier istemcinin bildirdiğidir, kurulum başına 500 sınırı sabah job'ında uygulanır. Kalan olayları sürüm telemetrisini okuyan sabah job'ı Logging API'den alır ve event_id ile tekil yazar. Olay bellekte biriktirilmez; bellekte biriken sayaç bizde kapanışta sayı kaybetti. Admin'deki bugünkü sayı ve 24 saat alarmı log metriğinden okunur; tablo ertesi sabah tamamlanır. Bizde uç bugün her olayı tabloya yazıyor ve sınır için tabloyu sayıyor.
+
+**Olay ucu veritabanını kendisi uyandırmaz**. Her olay için tek log satırı yazar. Havuzda açık bağlantı varsa, yani veritabanı zaten uyanıksa, aynı istekte tabloya da yazar. Uyurken ne token ne de günlük sınır veritabanında aranır; bu durumda tier istemcinin bildirdiğidir, kurulum başına 500 sınırı sabah job'ında uygulanır. Kalan olayları sürüm telemetrisini okuyan sabah job'ı Logging API'den alır ve event_id ile tekil yazar. Olay bellekte biriktirilmez; bellekte biriken sayaç bizde kapanışta sayı kaybetti. Admin'deki bugünkü sayı ve 24 saat alarmı log metriğinden okunur; tablo ertesi sabah tamamlanır. Bizde uç bugün her olayı tabloya yazıyor ve sınır için tabloyu sayıyor.
+
 [kanıtlı]
-** İstemci olayı kuyrukta tutar** (bizde 100) ve aynı event_id ile yeniden dener; arayüz hiç beklemez. Sınırlar: olay başına 4 KiB, kurulum başına günde 500 olay, adres başına saatte 300 istek.
+
+**İstemci olayı kuyrukta tutar** (bizde 100) ve aynı event_id ile yeniden dener; arayüz hiç beklemez. Sınırlar: olay başına 4 KiB, kurulum başına günde 500 olay, adres başına saatte 300 istek.
+
 [kanıtlı]
-** Geçersiz token olayı guest yapar ve 204 döner**; analitik çağrısı kimseyi oturumdan düşürmez.
+
+**Geçersiz token olayı guest yapar ve 204 döner**; analitik çağrısı kimseyi oturumdan düşürmez.
+
 [kanıtlı]
-** Uç, API'nin bağlantı moduyla gerçek Postgres'e karşı test edilir**. İki sessiz kaybımızda da aynı hata vardı. Basit sorgu modunda bayt dizisi bytea olarak gidiyor, jsonb kolonu bunu reddediyordu; testler bu modla koşmadığı için görülmedi.
+
+**Uç, API'nin bağlantı moduyla gerçek Postgres'e karşı test edilir**. İki sessiz kaybımızda da aynı hata vardı. Basit sorgu modunda bayt dizisi bytea olarak gidiyor, jsonb kolonu bunu reddediyordu; testler bu modla koşmadığı için görülmedi.
+
 [öneri]
-** Son olay 24 saattir gelmediyse alarm çalar.** 5xx alarmı [Gözlem ve alarmlar](#katman-10) katmanında.
+
+**Son olay 24 saattir gelmediyse alarm çalar.** 5xx alarmı [Gözlem ve alarmlar](#katman-10) katmanında.
+
 [kanıtlı]
-** Ham olay 180 gün**; silme veritabanı zaten uyanıkken çalışır.
+
+**Ham olay 180 gün**; silme veritabanı zaten uyanıkken çalışır.
+
 [öneri]
-** Özet tablo daha uzun kalır** (ör. 2 yıl); işin son çalışması kaydedilir.
+
+**Özet tablo daha uzun kalır** (ör. 2 yıl); işin son çalışması kaydedilir.
+
 [kanıtlı]
-** Herkese açık özet k-anonim eşikten geçer**. Her grup en az 10 farklı kurulumdan gelir.
+
+**Herkese açık özet k-anonim eşikten geçer**. Her grup en az 10 farklı kurulumdan gelir.
 
 ### Gizlilik
 
 İşleyen listesi, m.9 bildirimi ve cezası [KVKK ve veri yeri](#kvkk) bölümünde.
 
 [kanıtlı]
-** Veri yeri doğru yazılır**: veritabanımız AB'de (Frankfurt). Ne gidip ne gitmediği gizlilik metninde ve uygulamanın ayarlar ekranında anlatılır.
+
+**Veri yeri doğru yazılır**: veritabanımız AB'de (Frankfurt). Ne gidip ne gitmediği gizlilik metninde ve uygulamanın ayarlar ekranında anlatılır.
+
 [kanıtlı]
-** Üçüncü taraf ölçüm onaydan önce hiç istek atmaz**; kabul ve ret eşit görünür, kişisel alanlar maskelenir; oturumlu, yönetim ve form sayfalarında ve test ortamında yüklenmez.
+
+**Üçüncü taraf ölçüm onaydan önce hiç istek atmaz**; kabul ve ret eşit görünür, kişisel alanlar maskelenir; oturumlu, yönetim ve form sayfalarında ve test ortamında yüklenmez.
+
 [kanıtlı]
-** Alanlara başka kişilerin adı, telefonu ya da kimlik numarası yazılabiliyorsa otomatik yakalama ve oturum kaydı kapalıdır**. Bir ürün analitiği aracını bu yüzden beklettik.
+
+**Alanlara başka kişilerin adı, telefonu ya da kimlik numarası yazılabiliyorsa otomatik yakalama ve oturum kaydı kapalıdır**. Bir ürün analitiği aracını bu yüzden beklettik.
+
 [kanıtlı]
-** App Store gizlilik etiketi ve Play Data safety, SDK'ların topladığı dahil, olaylarla aynı gün güncellenir**.
+
+**App Store gizlilik etiketi ve Play Data safety, SDK'ların topladığı dahil, olaylarla aynı gün güncellenir**.
+
 [öneri]
-** ATT yalnız izleme varsa sorulur**; birinci taraf takma kimlikli analitik için gerekmez.
+
+**ATT yalnız izleme varsa sorulur**; birinci taraf takma kimlikli analitik için gerekmez.
+
 [kanıtlı]
-** Gizlilik metnindeki her saklama süresi çalışan bir işe bağlıdır**. Bir üründe metin süre yazıyordu, süpürme işi hiç çalışmamıştı.
+
+**Gizlilik metnindeki her saklama süresi çalışan bir işe bağlıdır**. Bir üründe metin süre yazıyordu, süpürme işi hiç çalışmamıştı.
+
 [öneri]
-** Kişinin kendi verisi için başvurusu** (KVKK m.11) en geç 30 günde cevaplanır (m.13); admin'deki döküm ucu bunu dakikalara indirir.
+
+**Kişinin kendi verisi için başvurusu** (KVKK m.11) en geç 30 günde cevaplanır (m.13); admin'deki döküm ucu bunu dakikalara indirir.
 
 ### Araç seçimi
 
@@ -293,22 +349,33 @@ CREATE TABLE events_daily (
 ### Nasıl okunur
 
 [kanıtlı]
-** Günlük rapor e-postası**: günün ve toplamın rakamları, gelir aracının rakamları, deneme hunisi. Bizde hafta içi 18:00 ve her gün 23:59; panel açmaya gerek kalmıyor.
+
+**Günlük rapor e-postası**: günün ve toplamın rakamları, gelir aracının rakamları, deneme hunisi. Bizde hafta içi 18:00 ve her gün 23:59; panel açmaya gerek kalmıyor.
+
 [öneri]
-** Haftada 30 dakika, her hafta aynı sırayla.**
+
+**Haftada 30 dakika, her hafta aynı sırayla.**
+
 1. Huni: kurulum, ilk anahtar eylem, paywall görüntüleme, satın alma; platform ve sürüm kırılımıyla.
+
 2. Son 7 günün sürüm dağılımı.
+
 3. Gelir aracının paneliyle karşılaştırma.
+
 4. 400 alan olay sayısı.
+
 5. Hiç gelmeyen olay adları.
+
 [kanıtlı]
-** Aynı metrik iki kaynaktan geliyorsa ikisi yan yana gösterilir, fark gizlenmez**; yaklaşık rakam etiketlenir.
+
+**Aynı metrik iki kaynaktan geliyorsa ikisi yan yana gösterilir, fark gizlenmez**; yaklaşık rakam etiketlenir.
 
 ## Sürüm payı nereden okunur
 
 28 Eyl 2026, aynı soru: iOS'ta kaç telefon hâlâ eski sürümde. Uzun pencerede güncelleyen kurulum iki sürümde birden sayıldı; 55 kimlik hem eski hem yeni sürümde görünüyordu.
 
 Yanlış pencereDoğru kaynak: gelir aracı, app_version süzgecieski sürümdeki pay
+
 _Grafik: Eski sürümdeki pay, 28 Eyl 2026: iOS, 28 gün, telefon başına %66 (139/211); iOS, 7 gün, aktif müşteri %7 (22/308); Android, 7 gün, aktif müşteri %3 (3/88)_
 [ölçüldü] Sürüm dağılımı 7 günlük pencereyle, platform ve build başına tekil kurulum olarak sayılır; zorunlu güncellemeden önce ikinci bir kaynakla karşılaştırılır. Telemetri [mobil kitin](#mobilkit) onuncu parçası.
 
@@ -319,7 +386,8 @@ Gün 0
 Admin ilk sürümle gelir ve okumayla başlar. Ürün A'nın ilk admin sürümü (28 Ağu 2026) tamamen salt okunurdu. Yeni projede yazma uçları sonra gelir ve her biri denetim satırı yazar.
 
 [öneri]
-** Ürünü build ve deploy olmadan yöneten her ayar** (bayrak, kill switch, güncelleme politikası, duyuru) veritabanında durur ve admin'den değişir; ortam değişkeni yalnız acil yedektir.
+
+**Ürünü build ve deploy olmadan yöneten her ayar** (bayrak, kill switch, güncelleme politikası, duyuru) veritabanında durur ve admin'den değişir; ortam değişkeni yalnız acil yedektir.
 
 ### Yirmi iki uç
 
@@ -360,25 +428,44 @@ Yol kalıpları ilk gün yazılır, ekranlar sonra gelebilir. Risk: giriş, okum
 Genel kurallar [Güvenlik ve botlar](#katman-8) katmanında.
 
 [kanıtlı]
-** Admin'i e-posta izin listesi belirler**; liste boşsa panel kapanır.
+
+**Admin'i e-posta izin listesi belirler**; liste boşsa panel kapanır.
+
 [öneri]
-** Yanında üç rol olur** (sahip, operatör, salt okuyucu); rol her yazmada veritabanından okunur.
+
+**Yanında üç rol olur** (sahip, operatör, salt okuyucu); rol her yazmada veritabanından okunur.
+
 [kanıtlı]
-** Giriş e-posta koduyla, kendi ucundan**. Kod 10–30 dk yaşar, 5 deneme hakkı var, adres ve IP başına saatlik sınır konur, cevap herkese aynıdır. Bir ürünün formu üye ucunu çağırıp her adrese kod yolluyordu; ayrı uca alındı.
+
+**Giriş e-posta koduyla, kendi ucundan**. Kod 10–30 dk yaşar, 5 deneme hakkı var, adres ve IP başına saatlik sınır konur, cevap herkese aynıdır. Bir ürünün formu üye ucunu çağırıp her adrese kod yolluyordu; ayrı uca alındı.
+
 [kanıtlı]
-** Admin oturumu ayrı tabloda, ayrı önekli token'la**; veritabanında yalnız özeti durur. Üye token'ı ve mobil uygulamadaki hiçbir anahtar admin'i açamaz.
+
+**Admin oturumu ayrı tabloda, ayrı önekli token'la**; veritabanında yalnız özeti durur. Üye token'ı ve mobil uygulamadaki hiçbir anahtar admin'i açamaz.
+
 [kanıtlı]
-** Boşta 30 dk kayan süre, 12 saat tavan**; 8 saatlik boşta süre denendi, güvenlik için geri alındı. Token sunucuda iptal edilir; bir üründe süresizdi, 7 güne indi.
+
+**Boşta 30 dk kayan süre, 12 saat tavan**; 8 saatlik boşta süre denendi, güvenlik için geri alındı. Token sunucuda iptal edilir; bir üründe süresizdi, 7 güne indi.
+
 [öneri]
-** Bitmeden 2 dk önce uyarı ve tek tıkla uzatma**; okuma sırasında da oturum düşmez.
+
+**Bitmeden 2 dk önce uyarı ve tek tıkla uzatma**; okuma sırasında da oturum düşmez.
+
 [öneri]
-** Tehlikeli eylemde son 5 dk içinde yeni kod ve sebep istenir**: herkese duyuru, silme ve veri dökümü, kill switch, zorunlu güncelleme, rol değişikliği.
+
+**Tehlikeli eylemde son 5 dk içinde yeni kod ve sebep istenir**: herkese duyuru, silme ve veri dökümü, kill switch, zorunlu güncelleme, rol değişikliği.
+
 [kanıtlı]
-** Token yalnız httpOnly çerezde durur**. Yetkisiz isteğe 404; admin uçlarına ayrı hız sınırı (bir üründe dakikada 120).
+
+**Token yalnız httpOnly çerezde durur**. Yetkisiz isteğe 404; admin uçlarına ayrı hız sınırı (bir üründe dakikada 120).
+
 [kanıtlı]
-** Panel noindex ve CSP'li, kullanıcı metnini kaçışlı gösterir**; yardımcı uçlar da admin ister. Bir üründe ham HTML gösterimiyle başlayan zincir bulunduğu gün kapatıldı.
+
+**Panel noindex ve CSP'li, kullanıcı metnini kaçışlı gösterir**; yardımcı uçlar da admin ister. Bir üründe ham HTML gösterimiyle başlayan zincir bulunduğu gün kapatıldı.
+
 [öneri]
-** Açılışta zorunlu ayarlar doğrulanır**; yönetici listesi boşsa loga uyarı yazılır. IP izin listesi ya da IAP isteğe bağlı ikinci kapıdır.
+
+**Açılışta zorunlu ayarlar doğrulanır**; yönetici listesi boşsa loga uyarı yazılır. IP izin listesi ya da IAP isteğe bağlı ikinci kapıdır.
 
 ### Denetim kaydı
 
@@ -405,33 +492,42 @@ CREATE INDEX ON admin_audit (target_type, target_id, at DESC);
 ```
 
 [kanıtlı]
-** Satır değişiklikle aynı işlemde** (transaction) yazılır; değişiklik geri alınırsa satır da geri alınır.
+
+**Satır değişiklikle aynı işlemde** (transaction) yazılır; değişiklik geri alınırsa satır da geri alınır.
+
 [öneri]
-** Uygulamanın veritabanı rolü bu tabloya yalnız INSERT ve SELECT yapabilir**; UPDATE ve DELETE yok.
+
+**Uygulamanın veritabanı rolü bu tabloya yalnız INSERT ve SELECT yapabilir**; UPDATE ve DELETE yok.
+
 [öneri]
-** Her yazan admin ucunun 'tam bir denetim satırı yazdı' testi vardır**; eylem ve hedef türü kısıtlı bir listeyse yeni tür migration'la eklenir.
+
+**Her yazan admin ucunun 'tam bir denetim satırı yazdı' testi vardır**; eylem ve hedef türü kısıtlı bir listeyse yeni tür migration'la eklenir.
+
 [öneri]
-** Admin'den başlayan her toplu işlem sonucunu sayıyla yazar**: kaç cihaza gitti, kaç satır yazıldı, kaç hata.
+
+**Admin'den başlayan her toplu işlem sonucunu sayıyla yazar**: kaç cihaza gitti, kaç satır yazıldı, kaç hata.
+
 [öneri]
-** Saklama süresi yazılır** (ör. 2 yıl) ve bir işe bağlanır. Ortam değişkeniyle yapılan acil değişiklik de sonradan bu tabloya sebebiyle elle yazılır.
+
+**Saklama süresi yazılır** (ör. 2 yıl) ve bir işe bağlanır. Ortam değişkeniyle yapılan acil değişiklik de sonradan bu tabloya sebebiyle elle yazılır.
 
 ### Admin'de asla
 
 **Admin yolunu kimlik ara katmanının dışında kaydetmek.** Router'daki her /v1/admin yolu token'sız çağrılınca reddedilir; bunu bütün yolları gezen bir test denetler. [öneri]
 
-** Paylaşılan admin hesabı.** Herkes kendi e-postasıyla girer; denetim kaydı kişiyi gösterir. [öneri]
+**Paylaşılan admin hesabı.** Herkes kendi e-postasıyla girer; denetim kaydı kişiyi gösterir. [öneri]
 
-** Canlıya test verisi yazmak.** Canlıda deneme duyurusunu herkese göndermek ve canlı sayaçları doğrulama için çağırmak da buna girer; bir doğrulama 92 istekten sonra 429 aldı. [kanıtlı]
+**Canlıya test verisi yazmak.** Canlıda deneme duyurusunu herkese göndermek ve canlı sayaçları doğrulama için çağırmak da buna girer; bir doğrulama 92 istekten sonra 429 aldı. [kanıtlı]
 
-** Canlı veritabanında elle SQL ile moderasyon ya da düzeltme.** Gerekiyorsa denetim kaydı yazan bir admin ucu ya da kayıtlı bir betik. [öneri]
+**Canlı veritabanında elle SQL ile moderasyon ya da düzeltme.** Gerekiyorsa denetim kaydı yazan bir admin ucu ya da kayıtlı bir betik. [öneri]
 
-** Mobil uygulamadaki bir anahtarla ya da üye token'ıyla admin'i açmak.** Süresiz admin token'ı da buna girer. [kanıtlı]
+**Mobil uygulamadaki bir anahtarla ya da üye token'ıyla admin'i açmak.** Süresiz admin token'ı da buna girer. [kanıtlı]
 
-** Listelerde maskesiz kişisel veri.** Ad baş harfle, telefonun ortası yıldızlı; tam veri yalnız ayrıntıda ve denetim kaydıyla. [kanıtlı]
+**Listelerde maskesiz kişisel veri.** Ad baş harfle, telefonun ortası yıldızlı; tam veri yalnız ayrıntıda ve denetim kaydıyla. [kanıtlı]
 
-** Sessiz başarı.** Tanınmayan süzgeç değeri, kırpılmış dışa aktarım, boş alıcı listesi 'başarılı' dönmez. Ürün B'de 126 satırın 50'si indi, dosya eksiksiz göründü. [öneri]
+**Sessiz başarı.** Tanınmayan süzgeç değeri, kırpılmış dışa aktarım, boş alıcı listesi 'başarılı' dönmez. Ürün B'de 126 satırın 50'si indi, dosya eksiksiz göründü. [öneri]
 
-** Admin'i arama motorlarına açık bırakmak.** noindex ve robots ilk gün. [kanıtlı]
+**Admin'i arama motorlarına açık bırakmak.** noindex ve robots ilk gün. [kanıtlı]
 
 ## Bizdekinden iyisi
 
@@ -457,30 +553,39 @@ CREATE INDEX ON admin_audit (target_type, target_id, at DESC);
 - [ ] Ürün sahibinin beş sorusu yazıldı; olay sözlüğü bu sorulardan çıkarıldı.
 
 [öneri]
+
 - [ ] Tek olay ucu; ilk build'de on zorunlu olay, her olayda platform, sürüm ve build gidiyor.
 
 [öneri]
+
 - [ ] Olay uçları API'nin bağlantı moduyla gerçek Postgres'e karşı test edildi; testlerde ağ kapalı.
 
 [kanıtlı]
+
 - [ ] Alarmlar kuruldu ve bir kez çaldırıldı: 5xx oranı, webhook son teslim yaşı, son olay yaşı, işin son başarısı.
 
 [öneri]
+
 - [ ] Gelir aracının webhook'u belgelenen başarı kodunu dönüyor; sağlayıcının panelinde bir teslim başarılı göründü.
 
 [öneri]
+
 - [ ] Günlük rapor e-postası gidiyor; 'bugün' ürünün saat diliminde, her rakamın kaynağı ve penceresi yanında.
 
 [kanıtlı]
+
 - [ ] Admin: ayrı giriş ucu, izin listesi, ayrı oturum tablosu, 30 dk kayan süre ve 12 saat tavan, noindex; denetim satırı değişiklikle aynı işlemde yazılıyor.
 
 [kanıtlı]
+
 - [ ] Bayrak, kill switch, güncelleme politikası ve duyuru veritabanında, admin'den değişiyor; işler ve webhook'lar ekranı, kullanıcı arama, askıya alma, silme ve veri dökümü uçları var.
 
 [öneri]
+
 - [ ] Roller tanımlı, tehlikeli eylemde yeniden doğrulama var; admin yollarını token'sız çağıran ve her yazan ucun denetim satırına bakan testler yeşil. Canlı API test ortamının olayını reddediyor.
 
 [öneri]
+
 - [ ] Gizlilik metni, ayarlar kartı ve iki mağaza beyanı olaylarla aynı gün yazıldı; her saklama süresi bir işe bağlı.
 
 [kanıtlı]
@@ -518,20 +623,37 @@ Mağaza tarafındaki hata ve çökme sayıları; App Store Connect ve Play Conso
 8 Ekim 2026'da okundu. Bizim rakamlarımız depolardan, değişiklik kayıtlarından ve faturalardan.
 
 **PostHog fiyatları**https://posthog.com/pricing
+
 **PostHog ürün analitiği fiyatı**https://posthog.com/docs/product-analytics/pricing
+
 **PostHog veri yeri (AB bulutu Frankfurt)**https://posthog.com/docs/privacy/data-storage
+
 **GA4 veri saklama**https://support.google.com/analytics/answer/7667196
+
 **GA4 ve Firebase toplama sınırları**https://support.google.com/firebase/answer/9237506
+
 **Google Analytics for Firebase**https://firebase.google.com/docs/analytics
+
 **Microsoft Clarity SSS**https://learn.microsoft.com/en-us/clarity/faq
+
 **RevenueCat fiyatları**https://www.revenuecat.com/pricing/
+
 **RevenueCat webhook'ları**https://www.revenuecat.com/docs/integrations/webhooks
+
 **Apple App Tracking Transparency**https://developer.apple.com/documentation/apptrackingtransparency
+
 **Apple kullanıcı gizliliği ve veri kullanımı**https://developer.apple.com/app-store/user-privacy-and-data-use/
+
 **Apple App Privacy details**https://developer.apple.com/app-store/app-privacy-details/
+
 **Google Play Data safety**https://support.google.com/googleplay/android-developer/answer/10787469
+
 **KVKK standart sözleşme bildirim duyurusu**https://www.kvkk.gov.tr/Icerik/8043/Standart-Sozlesme-Bildirim-Modulu-Hakkinda-Kamuoyu-Duyurusu
+
 **6698 sayılı KVKK metni (m.11, m.13)**https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf
+
 **Google Cloud Observability fiyatları**https://cloud.google.com/stackdriver/pricing
+
 **Neon fiyatları**https://neon.com/pricing
+
 **Expo SecureStore**https://docs.expo.dev/versions/latest/sdk/securestore/

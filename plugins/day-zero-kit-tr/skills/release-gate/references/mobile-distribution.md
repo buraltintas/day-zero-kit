@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="dagitim"></a>
 
@@ -11,10 +11,15 @@ Mobil uygulamayı derleyip mağazaya ve testçiye ulaştırmanın iki yolu var: 
 Ürün sahibinin görüşü şu: kendi dağıtım hattımızı kurarsak Expo'nun ücretsiz sınırlarına hiç takılmayız. Kendi kullanımımıza baktık. Kotayı en çok iki şey yiyor: preview build'leri ve aynı hesaptaki ikinci uygulama. İkisi bütçeye bağlanınca platform başına 15 hak yetiyor. Bizim hacmimizde Starter ayda ~$24 tutuyor; bu, kendi hattın kurulum ve bakım emeğinden ucuz. Kendi hattımız ancak EAS faturası üç ay üst üste ayda $50'ı geçerse ya da EAS'in karşılayamadığı bir ihtiyaç çıkarsa kurulur.
 
 **15 + 15** Hesap başına aylık iOS ve Android build hakkı. Hesaptaki bütün uygulamalar paylaşır; kullanılmayan hak devretmez.
+
 **33 build** Eylül'de: 17 iOS (6'sı preview), 16 Android (5'i preview). Haziran 33, Temmuz 11, Ağustos 28.
+
 **22 Eylül** iOS kotasının dolduğu gün. 24 Eylül'de istenen iOS build'i reddedildi ve Ekim'e kaldı.
+
 **7 / 15 ve 6 / 15** Ekim'in ilk 8 gününde hesapta kullanılan iOS ve Android hakkı; iki uygulama aynı hesapta.
+
 **132 dk** En uzun Android kuyruğu; medyan bekleme 6 sn, 44 build'in 4'ü 16 dakikadan fazla bekledi. Medyan build iOS 5, Android 9 dk.
+
 **11 / 19** 19 Eylül–7 Ekim'de çıkan mağaza build'lerinden yalnız JS olanlar: iOS'ta 9'da 4, Android'de 10'da 7. OTA olsaydı mağazaya gitmeden çıkabilirdi.
 
 ## Preview'lar buluttan çıkınca kota yetiyor
@@ -22,6 +27,7 @@ Mobil uygulamayı derleyip mağazaya ve testçiye ulaştırmanın iki yolu var: 
 Eylül 2026, platform başına build. Kesikli çizgi ücretsiz hak. Preview'lar test için bulutta alındı.
 
 production profilipreview profilibuild, ölçek gerçek
+
 _Grafik: Eylül build'leri ve ücretsiz hak_
 
 ## OTA olsaydı mağazaya gitmeyecek build'ler
@@ -29,6 +35,7 @@ _Grafik: Eylül build'leri ve ücretsiz hak_
 19 Eylül–7 Ekim 2026'da çıkan mağaza build'leri. Native değişiklik: widget, SKAdNetwork, Associated Domains, yeni native modül, sesli komut kodu.
 
 native değişiklik vardıyalnız JSbuild, ölçek gerçek
+
 _Grafik: Mağaza build'lerinde native ve yalnız JS payı_
 
 ## Karar tablosu

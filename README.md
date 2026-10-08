@@ -43,7 +43,7 @@ Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu baş
 
 ### 1. Rehberi ajana ver
 
-Yeni ürünün deposunu aç, `guide/project-setup-guide.md` dosyasını ekle ve şu mesajı yapıştır:
+İki yoldan birini seç: eklentiyi kur (aşağıda; `project-setup` skill'i tam rehberi yanında taşır) ya da `guide/project-setup-guide.md` dosyasını yeni ürünün deposuna, örneğin `docs/` altına kopyala. Sonra ajana şu mesajı yapıştır:
 
 ```
 Yeni bir ürün kuruyoruz: <ürün tek cümleyle; kim kullanır>.
@@ -67,7 +67,7 @@ Ajan önce kararları tek tek sorar, cevapları `docs/DECISIONS.md`'ye yazar, pr
 
 Claude Code içinde:
 
-```bash
+```text
 /plugin marketplace add buraltintas/day-zero-kit
 /plugin install day-zero-kit-tr@day-zero-kit
 ```
@@ -124,4 +124,4 @@ Her yığın için birebir tarif değildir. Rehber bu yığın için yazıldı: 
 
 ## Lisans
 
-Rehber metni (`guide/` ve skill'lerin `references/` klasörlerindeki bölümler) [CC BY 4.0](guide/LICENSE) ile paylaşılır: kaynak gösterilerek kullanılabilir, uyarlanabilir ve dağıtılabilir. Skill'ler, betikler ve diğer her şey [MIT](LICENSE) lisanslıdır.
+Rehber metni (`guide/` ve skill'lerin `references/` klasörlerindeki bölümler) [CC BY 4.0](guide/LICENSE) ile paylaşılır: kaynak gösterilerek kullanılabilir, uyarlanabilir ve dağıtılabilir. Skill'ler ve depodaki diğer her şey [MIT](LICENSE) lisanslıdır.

@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="mobilkit"></a>
 
@@ -9,6 +9,7 @@ Mobil
 Mağazadaki bir build'e yeni build olmadan ancak ona baştan konmuş kanallarla ulaşılır. Kit ilk mağaza sürümünde eksiksiz bulunur; sonradan eklenen parça o güne kadarki kurulumlara hiç ulaşmaz.
 
 **Kural:** Bu kit olmadan uygulama mağazaya çıkmaz.
+
 Zorunlu güncelleme, yeni build'siz özel bildirim, sunucudan duyuru ve ekran içi uyarı, bayrak ve kill switch kurulmadan ilk mağaza build'i gönderilmez; bakım modu, push ve sürüm telemetrisi bunların taşıyıcısıdır. Her parça release build'de ve gerçek telefonda denenir; kanıtı sürüm notuna yazılır, kanıtı olmayan parça kurulmamış sayılır. OTA kanalı (8) kuralın parçası değildir, önerilir: küçük düzeltmeyi mağaza build'i harcamadan gönderir.
 
 1Sürüm başlıkları2Politika ucu3Zorunlu güncelleme4Yumuşak uyarı5Duyuru alanı6Bayrak ve kill switch7Bakım modu8OTA (öneri)9Push kaydı10Sürüm telemetrisi11Mağaza izleyicisi
@@ -277,7 +278,7 @@ GET /v1/app/update-policy. Değerler örnektir, gerçek bir uygulamanın değerl
   },
   "notices": [
     {
-      "id": "akis-v2-2026-10",
+      "id": "flow-v2-2026-10",
       "screen": "inbox",
       "severity": "warning",
       "platforms": ["ios", "android"],
@@ -294,7 +295,7 @@ GET /v1/app/update-policy. Değerler örnektir, gerçek bir uygulamanın değerl
       "dismissible": true
     },
     {
-      "id": "gecikme-2026-10-08",
+      "id": "delay-2026-10-08",
       "screen": "home",
       "severity": "info",
       "platforms": ["ios", "android"],
@@ -304,7 +305,7 @@ GET /v1/app/update-policy. Değerler örnektir, gerçek bir uygulamanın değerl
       "endsAt": "2026-10-09T06:00:00Z",
       "title": {"tr": "Veriler bugün geç güncellenecek"},
       "body": {"tr": "Uygulamanın geri kalanı etkilenmez."},
-      "cta": {"action": "deeplink", "link": "uygulama://ana-sayfa", "label": {"tr": "Aç"}},
+      "cta": {"action": "deeplink", "link": "app://home", "label": {"tr": "Aç"}},
       "dismissible": true
     }
   ],

@@ -1,8 +1,21 @@
 {
   "name": "day-zero-kit-en",
   "description": "English skill set built on the Proje Kurulum Rehberi (Project Setup Guide): day-0 setup, decision support, release gate, cost, security, project memory, alerts and SEO/GEO for products on Neon Postgres, Go, Next.js and Expo.",
-  "author": { "name": "Burak Altıntaş", "url": "https://burak-altintas.com" },
+  "author": {
+    "name": "Burak Altıntaş",
+    "url": "https://github.com/buraltintas"
+  },
   "homepage": "https://github.com/buraltintas/day-zero-kit",
   "repository": "https://github.com/buraltintas/day-zero-kit",
-  "keywords": ["neon", "postgres", "golang", "nextjs", "expo", "cloud-run", "ai-agents", "day-zero"]
+  "keywords": [
+    "neon",
+    "postgres",
+    "golang",
+    "nextjs",
+    "expo",
+    "cloud-run",
+    "ai-agents",
+    "day-zero"
+  ],
+  "license": "MIT"
 }

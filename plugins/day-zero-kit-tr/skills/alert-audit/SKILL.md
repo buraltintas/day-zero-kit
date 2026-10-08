@@ -16,14 +16,14 @@ Kimsenin görmediği uyarı uyarı değildir. Bizde arızaların çoğu sinyal v
 ## Okunacaklar
 
 - `references/alerts.md`: kaynaklar, seviyeler (acil, bugün, haftalık), "Ne, ne zaman, kime" tablosu, mesaj yazım kuralları, notify() ve log süzgeci, hazır servis mi kendi altyapımız mı.
-- `references/layer-10-observability.md`, `references/backup-and-restore.md`, `references/analytics-and-admin.md`, `references/content-automation.md`.
+- `references/layer-10-observability.md`, `references/backup-and-restore.md`, `references/analytics-and-admin.md`, `references/content-automation.md` ve bu kuralların arkasındaki olaylar için `references/case-book.md`.
 
 ## Akış
 
 1. Envanter çıkar: her dış API, ödeme ve mağaza webhook'u, zamanlanmış iş, yedek, token, kota, bütçe ve alan adı ya da sertifika süresi.
 2. Her biri için sor: hata sinyali ne, eşik ne, seviye ne, hangi kanal, kim ilgilenir, en az iki alıcı var mı, alarm kendisi bozulan sisteme mi bağlı.
 3. Eksikleri tabloya yaz ve rehberdeki tabloyla tamamla.
-4. Her alarmı bir kez sahte bir hatayla uçtan uca dene; alıcının gerçekten aldığını doğrula. Yokluk alarmlarında Cloud Monitoring'in en çok 23,5 saat beklediğini hesaba kat.
+4. Her alarmı bir kez sahte bir hatayla uçtan uca dene: test ortamında ya da test bayrağıyla, canlı veriye dokunmadan. Alıcının gerçekten aldığını doğrula. Alarm politikası ya da canlı ayar değişikliği ürün sahibinin onayıyla ve kayıtlı betikle yapılır. Yokluk alarmlarında Cloud Monitoring'in en çok 23,5 saat beklediğini hesaba kat.
 5. Mesajların ürün sahibinin dilinde olduğunu kontrol et: ne oldu, kullanıcıya etkisi, ne yapılmalı, bağlantı. Yığın izi ürün sahibine gitmez.
 
 ## Rapor biçimi

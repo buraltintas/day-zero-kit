@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="uyarilar"></a>
 
@@ -15,7 +15,9 @@ Her uyarı için beş şey yazılır: sinyal, eşik, seviye, kanal ve harekete g
 Dört ürünümüzde sessiz kalan arızaların çoğunda sinyal vardı: bir özet e-postasında bir satır, sağlayıcının panelinde başarısız teslimlerin listesi, faturada bir kalem. Eksik olan, sinyalin eşik aşıldığı anda, doğru kanaldan, doğru kişiye gitmesiydi. Teknik alarmların eşikleri [Gözlem ve alarmlar](#katman-10) katmanında; bu bölüm onları ürün sahibine taşıyan yolu kurar.
 
 **5 / 0 / 0 / 0** Alarm politikası: Ürün A, B, C ve D, 8 Eki 2026. Ürün A'nın beşi erişim, 5xx, yedek, yedek zamanlayıcısı ve açılışta veritabanı içindir.
+
 **2 e-posta** Ürün A'daki beş alarmın gittiği iki kutu. Telefona giden kanal yok; postanın kutuya düştüğünü iki alıcıdan biri doğruladı.
+
 **0** Dört üründe dış API hatası, kota, token süresi ve hiç çalışmayan iş için kurulu alarm.
 
 ## Ne kadar sonra, nereden öğrenildi
@@ -23,6 +25,7 @@ Dört ürünümüzde sessiz kalan arızaların çoğunda sinyal vardı: bir öze
 Arızanın başladığı andan fark edildiği ana. Ölçek gerçek; aynı çalışma ve 1 saat bu ölçekte ancak bir çizgi.
 
 Bir kontrol ya da alarm yakaladıKullanıcı, fatura ya da tesadüf gösterdi
+
 _Grafik: Arızanın başlangıcından fark edilmesine geçen süre ve nasıl öğrenildiği: Ürün A: ilk yedek 7 bayt: aynı çalışmada, boyut karşılaştırması; Ürün B: site haritası kısaldı: 1 saat içinde, haftalık kontrol; Ürün C: Instagram token'ı doldu: ~21 saat, paylaşım düşünce; Ürün A: iOS build kotası doldu: 2 gün, build reddedilince; Ürün C: X kredisi bitti: 30 gün, ürün sahibi sorunca_
 Kontrolü olan iki olay aynı çalışmada ya da bir saat içinde görüldü. Kontrolü olmayan üç olay ~21 saatte, 2 günde ve 30 günde fark edildi. Ödeme webhook'u (en az 21 gün), boşta çalışan API sunucusu (25 gün) ve yazılmayan analitik olayları (~7 gün) [Analitik ve admin](#analitik) bölümünün grafiğinde; paylaşım hattı [İçerik otomasyonu](#icerik) bölümünde.
 
@@ -65,41 +68,49 @@ Her satır bir uyarıdır; etiketsiz satırlar öneridir. Mesaj sütunu ilk sat�
 Ürün sahibi uyarıyı telefonda, bir bakışta okur. Önce kurallar, sonra iki örnek.
 
 1. [öneri]
+
 Konu tek satırdır: seviye ve ne olduğu, düz Türkçe.
 
 Ürün A'nın beş alarmında kendi konu satırı yok; konuyu Google üretiyor. Google konu için 255 karakter ve en çok 3 bağlantı veriyor.
 
 2. [öneri]
+
 İkinci satır kullanıcıya etkisini söyler; etkisi yoksa onu yazar.
 
 Webhook olayında ürün sahibinin işine yarayan, etkiyi söyleyen kısa cümleydi: 'ödemeler etkilenmedi'.
 
 3. [öneri]
+
 Üçüncü satır tek iş ve sorumlusu, dördüncü satır bağlantıdır.
 
 Yığın izi, istek gövdesi, token ve kişisel veri mesaja girmez; ayrıntı admin'deki kayıttadır. Ağ hatasında istemci kütüphanesi tam adresi hata metnine koyar; adreste token varsa mesaja da düşer.
 
 4. [öneri]
+
 Aynı arıza bir kez bildirilir, sonra günde bir hatırlatılır.
 
 Anahtar kaynak, tür ve hedeftir; açık uyarıda yeni olay yalnız sayacı artırır. Kapanmamış arıza her sabah yeniden gelir. Susturmak bir düğmedir ve sebebiyle kayda geçer.
 
 5. [öneri]
+
 Telefona yalnız acil uyarı gider; acilin sessiz saati yoktur.
 
 Bugün seviyesindekiler sessiz saatte (örnek: 22:00–08:00) bekler, sabah tek e-postada toplanır.
 
 6. [öneri]
+
 Acil uyarının iki alıcısı vardır; ikisine aynı anda gider.
 
 Bekleyip ikinci kişiye geçen bir zamanlayıcı kurulmaz. Cloud Run min 0'da arka plan döngüsü yok. Birkaç dakikada bir çalışan bir kontrol Neon'u uyanık tutar, API çökünce de çalışmaz. Google bir politikadaki bütün kanallara aynı anda gönderir. Uyarı kutusundaki 'gördüm' kimin baktığını kayda geçirir, öteki kişi aynı işe başlamaz. Google'da 'gördüm' demek tekrar bildirimi durdurmaz; durduran kapatmaktır.
 
 7. [öneri]
+
 Haftalık özet boş haftada da gelir ve 'N kontrol geçti' yazar.
 
 Ürün A'da gece raporu geldiği halde gelmedi sanıldı; o korkuyla açılan bir ayar API sunucusunu 25 gün boşta çalıştırdı (ayda ~₺255). Her hafta aynı saatte gelen ve 'N kontrol geçti' yazan özet bu tahmine yer bırakmaz.
 
 8. [kanıtlı]
+
 Her uyarı türü bir kez sahte bir hatayla uçtan uca denenir; konuda TEST yazar.
 
 Ürün A'nın yedek alarmı böyle denendi: hata 16:57, alarm 17:01, kapanış 17:11. Politikanın adına geçici olarak TEST eklenir; kapanış postası da bu adı taşıdığı için ad, alarm kapandıktan sonra eski haline döner.
@@ -129,6 +140,7 @@ Altı parça, hepsi mevcut yığının içinde: Go API, Postgres, Cloud Run, Clo
 ### 1. notify() ve uyarı tablosu
 
 [öneri]
+
 API'deki tek giriş noktası. Uyarıyı tabloya yazar; aynı anahtar açıkken yeni satır açmaz, sayacı artırır. Yeni açılan ya da günü dönen uyarı için tek bir yapılandırılmış log satırı yazar.
 
 **Nerede:** API içinde; tablo ürünün kendi Postgres'inde.
@@ -146,12 +158,12 @@ CREATE TABLE alerts (
   id        bigserial PRIMARY KEY,
   key       text NOT NULL,  -- kaynak:tür:hedef
   level     text NOT NULL CHECK
-    (level IN ('acil','bugun','haftalik')),
+    (level IN ('urgent','today','weekly')),
   title     text NOT NULL,  -- tek satır
   effect    text NOT NULL,  -- kullanıcıya etkisi
   action    text NOT NULL,  -- yapılacak iş
   link      text,
-  owner     text NOT NULL,  -- urun | gelistirici
+  owner     text NOT NULL,  -- product | developer
   count     integer NOT NULL DEFAULT 1,
   first_at  timestamptz NOT NULL DEFAULT now(),
   last_at   timestamptz NOT NULL DEFAULT now(),
@@ -183,7 +195,7 @@ slog.Error("alert",
 ```
 resource.type="cloud_run_revision"
 jsonPayload.message="alert"
-jsonPayload.alert_level="acil"
+jsonPayload.alert_level="urgent"
 
 labelExtractors:
   alert_key: EXTRACT(jsonPayload.alert_key)
@@ -194,6 +206,7 @@ labelExtractors:
 ### 2. Google'ın log alarmı
 
 [öneri]
+
 İki politika: acil satır telefona ve e-postaya, bugün olan e-postaya. Politika alert_key etiketini çıkarır; her uyarı kendi zaman çizgisini alır. Bildirim aralığı 1 saat, kendiliğinden kapanma 1 gün.
 
 **Nerede:** Cloud Monitoring. Bizde iki e-posta kutusuna kurulu, hiç tetiklenmedi; iki politika ve mobil kanal denenmedi.
@@ -205,6 +218,7 @@ labelExtractors:
 ### 3. Admin'deki uyarı kutusu
 
 [öneri]
+
 Açık uyarılar seviyeye göre sıralı; 'gördüm' ve 'kapat' düğmeleri, ikisi de denetim kaydına. Kapanan uyarı silinmez: bulut logları 30 günde gider, tablo kalır.
 
 **Nerede:** Admin ekranı; okuma ucu tabloyu okur.
@@ -216,6 +230,7 @@ Açık uyarılar seviyeye göre sıralı; 'gördüm' ve 'kapat' düğmeleri, iki
 ### 4. Bütçe ve Pub/Sub
 
 [öneri]
+
 Her faturalama hesabında bütçe: %50, %80, %100, e-postayla. Aynı bütçe bir Pub/Sub konusuna bağlanır; Google günde birkaç kez tutarı, bütçeyi ve aşılan eşiği yollar. Küçük bir uç mesajdaki alertThresholdExceeded değerini GCS'teki küçük bir dosyada tutulan son eşikle karşılaştırır; dosya dönem başına (costIntervalStart) göre tutulur, yeni ayda sıfırdan başlar. Değer saklanandan büyük değilse veritabanına hiç gitmez; büyükse notify() çağırır ve dosyayı günceller. Pub/Sub aynı mesajı birden çok kez ve sırasız getirebilir; 'büyükse' kuralı bunu da karşılar. Günde birkaç mesaj böylece veritabanını uyandırmaz.
 
 **Nerede:** Cloud Billing ve Pub/Sub; uç API içinde.
@@ -227,6 +242,7 @@ Her faturalama hesabında bütçe: %50, %80, %100, e-postayla. Aynı bütçe bir
 ### 5. Denetim işi
 
 [öneri]
+
 Günde iki kez: sağlayıcı bakiyeleri ya da kendi sayaçlarımız, kotalar, token bitişleri, yenileme tablosundaki tarihler ve her zamanlanmış işin son başarısı (günlük işte 26 saat). Bulduğunu notify()'a verir. Sabah çalışması veritabanı penceresine girer, tablolara ve sayaçlara bakar. Akşam çalışması veritabanına dokunmaz: yalnız logları ve sağlayıcı API'lerini okur, bir şey bulursa notify()'a verir.
 
 **Nerede:** Dağıtıcı job'ın kod takviminde, sabah ve akşam. Ayrı Scheduler işi açılmaz. Diğer işlerin hatası onu durdurmaz. İş yine de API'de bir uç olarak kalacaksa token'ı API kendisi doğrular: OIDC token'ının hedef adresi (audience) ve servis hesabı kontrol edilir. API mobil istemciler için ağda açık olduğundan bu kontrolü Cloud Run yapmaz.
@@ -238,6 +254,7 @@ Günde iki kez: sağlayıcı bakiyeleri ya da kendi sayaçlarımız, kotalar, to
 ### 6. Haftalık özet
 
 [öneri]
+
 Pazartesi sabahı: hafta içinde açılan ve kapanan uyarılar, eşiğe yaklaşan sayaçlar, 30 gün içinde dolacak süreler, OOM ve 5xx sayıları.
 
 **Nerede:** Zamanlanmış iş; ürünün kendi e-posta sağlayıcısıyla gider.
@@ -264,31 +281,37 @@ Sunucuda hazır servis gerekmez; notify() altyapısı ve Google'ın ücretsiz Er
 ### Yeni üründe
 
 1. [kanıtlı]
+
 Sunucu ve iş hataları Monitoring alarmına bağlanır; ikinci bir log servisi eklenmez.
 
 Ürün A'da beş alarm ücretsiz kurulu; yedek alarmı denemede 4 dk'da çaldı. 5xx ve log alarmları hiç çalmadı.
 
 2. [öneri]
+
 notify(), uyarı tablosu ve Error Reporting ilk sürümde kurulur.
 
 Yığın stack_trace alanına yazılır, sahte bir panikle grubun açıldığı görülür. Ayrı fatura yok; bedeli log.
 
 3. [öneri]
+
 Mobilde ilk mağaza sürümünden önce bir çökme aracı kurulur.
 
 Build'e girmeyen araç o build'in native çökmesini görmez; kurulana kadar mobil hata error_shown olayıyla API'ye gelir. Araç AB bölgeli Sentry, [KVKK](#kvkk) adımlarından sonra; veri yerinin seçilememesi kabul edilirse Crashlytics.
 
 4. [öneri]
+
 Kişisel veri hata yüküne girmez.
 
 sendDefaultPii false; beforeSend e-posta, token ve gövdeyi siler; hesap kimliği yerine kurulum kimliğinin HMAC'i.
 
 5. [öneri]
+
 Hata fırtınası fatura çıkaramaz.
 
 Sentry'de ani artış koruması (spike protection) açık, kullandıkça öde bütçesi $0; kota bitince olay düşer. Error Reporting'in bedeli log; aylık log 25 GiB'ı (ücretsiz 50 GiB'ın yarısı) geçince alarm çalar.
 
 6. [öneri]
+
 Ürün sahibine yalnız kullanıcıyı etkileyen kısım gider, o da notify()'dan.
 
 Yeni sürümdeki çökme artışı, ödeme ve girişteki hata. Error Reporting'in webhook kanalı notify()'a bağlanır.
@@ -430,21 +453,39 @@ Sessiz saat, 14 günlük bakiye eşiği ve giriş kodu oranının eşiği bizde 
 Resmi sayfalar 8 Ekim 2026'da okundu. Bizim rakamlarımız alarm listelerinden, vaka kayıtlarından ve faturalardan.
 
 **Cloud Monitoring bildirim kanalları ve yedek kanal**https://docs.cloud.google.com/monitoring/support/notification-options
+
 **Alarm belgesi: konu satırı ve bağlantılar**https://docs.cloud.google.com/monitoring/alerts/doc-variables
+
 **Log tabanlı alarm: bildirim aralığı, kapanma**https://docs.cloud.google.com/logging/docs/alerting/log-based-alerts
+
 **Log alarmında etiket ve günlük olay sınırı**https://docs.cloud.google.com/logging/docs/alerting/monitoring-logs
+
 **Metrik yokluğu alarmı: en çok 23,5 saat**https://docs.cloud.google.com/monitoring/alerts/metric-absence
+
 **Olaylar, 'gördüm' ve tekrar bildirim**https://docs.cloud.google.com/monitoring/alerts/incidents-events
+
 **Cloud Billing bütçeleri**https://docs.cloud.google.com/billing/docs/how-to/budgets
+
 **Bütçe bildirimini Pub/Sub ile almak**https://docs.cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
+
 **Logging, Monitoring, Error Reporting fiyatları**https://cloud.google.com/products/observability/pricing
+
 **Resend kota ve sınırları**https://resend.com/docs/knowledge-base/account-quotas-and-limits
+
 **Expo fiyatları, build hakkı**https://expo.dev/pricing
+
 **X API yanıt kodları**https://docs.x.com/x-api/fundamentals/response-codes-and-errors
+
 **Meta uzun ömürlü token**https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived
+
 **Meta sistem kullanıcısı token'ı**https://developers.facebook.com/docs/business-management-apis/system-users/install-apps-and-generate-tokens
+
 **Error Reporting: yığın alanları**https://docs.cloud.google.com/error-reporting/docs/formatting-error-messages
+
 **Error Reporting: bildirim ve saatlik sınır**https://docs.cloud.google.com/error-reporting/docs/notifications
+
 **Sentry fiyatları ve kotalar**https://sentry.io/pricing/
+
 **Sentry veri bölgesi**https://docs.sentry.io/organization/data-storage-location/
+
 **Crashlytics verisi, yeri ve süresi**https://firebase.google.com/support/privacy

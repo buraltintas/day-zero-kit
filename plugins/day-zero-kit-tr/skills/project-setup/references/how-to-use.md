@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="kullanim"></a>
 
@@ -23,15 +23,19 @@ Aynı içerik iki biçimde: PDF ekip için, Markdown kopyası ajan için. Markdo
 PDF'i okur, ürün sahibiyle kararları verir, ajanın raporlarına bakar.
 
 [İki yol](#iki-yol)
+
 Önlemsiz yolun bize bedeli; ilk aylarda ne olur.
 
 [Vaka defteri](#vakalar)
+
 30 olay: bedeli, çözümü ve kuralı.
 
 [En hızlı kurulum yolu](#hizli)
+
 Gün 0'dan ilk mağaza sürümüne 24 adım, sırasıyla.
 
 [Kontrol listesi](#kontrol)
+
 Dört aşamada 29 kutu; ajanın raporu buna göre okunur.
 
 ### Yapay zekâ ajanı
@@ -39,15 +43,19 @@ Dört aşamada 29 kutu; ajanın raporu buna göre okunur.
 Markdown kopyasını okur; sorar, kurar, kaydeder.
 
 Markdown kopyası
+
 Baştan sona, bölüm bölüm. Grafikler orada tek satırdır, kimi yalnız başlıktır.
 
 [Verilecek kararlar](#kararlar)
+
 Ürün sahibine tek tek sorulur; cevaplar DECISIONS.md'ye.
 
 [Ajanın kurulum planı](#kurulum-plani)
+
 Aşama aşama; her aşamanın kontrolü koşulur.
 
 [Katmanlar](#katman-1)
+
 Kurulan katmanın bölümü o sırada yeniden açılır.
 
 İki yol kararlarda buluşur; ajan sorar, ürün sahibi cevaplar (küçük ekipte bu kişi ekip lideri de olabilir). Cevabı gelmeyen satır "KARAR BEKLİYOR" diye kalır.
@@ -73,6 +81,7 @@ Ekteki project-setup-guide.md bu işin rehberi.
 ```
 
 [öneri]
+
 Metin bütün olarak bizde denenmedi. Maddeleri depolarımızın ajan dosyalarındaki deploy ve yasak kurallarından, [Proje hafızası](#hafiza) bölümünün gün 0 dosyalarından ve [Verilecek kararlar](#kararlar) bölümünden geliyor.
 
 ## Kim ne yapar
@@ -137,6 +146,7 @@ Kurallar, sıralar, dosya şablonları ve bazı kod iskeletleri (örneğin bot k
 ### Ürün A
 
 Finans hesaplama ürünü
+
 Mobil uygulama, bilgi sitesi, statik portal, pazar yeri sitesi ve Go API.
 
 **Veritabanında:** Kullanıcılar ve oturumlar, hesaplama olayları, abonelik olayları, pazar yeri talepleri ve mesajları, bildirimler ve cihazlar.
@@ -144,12 +154,15 @@ Mobil uygulama, bilgi sitesi, statik portal, pazar yeri sitesi ve Go API.
 Her gün giriş yapan kullanıcıları ve her sabah çalışan veri çekme, rapor ve yedek işleri var.
 
 **5** depo
+
 **~265.000** satır kod
+
 **~₺610** aylık bulut
 
 ### Ürün B
 
 Mağaza keşif uygulaması
+
 Web ve Go API; mobil uygulama deposu erken aşamada.
 
 **Veritabanında:** Mağaza ve marka kataloğu, değerlendirmeler ve moderasyon, arama ve tıklama kayıtları, kullanıcılar ve oturumlar.
@@ -157,12 +170,15 @@ Web ve Go API; mobil uygulama deposu erken aşamada.
 Herkese açık ~18 bin sayfalık katalog; tek bir bulut kazıyıcısı web isteklerinin %41'ini aldı.
 
 **3** depo
+
 **~70.000** satır kod
+
 **~₺510** aylık bulut
 
 ### Ürün C
 
 İçerik uygulaması
+
 Web, ayrı admin paneli, mobil uygulama ve Go API.
 
 **Veritabanında:** İçerik kayıtları ve çevirileri, kategoriler, kullanıcılar ve roller, yorumlar, günlük bakılma sayaçları, paylaşım kayıtları.
@@ -170,12 +186,15 @@ Web, ayrı admin paneli, mobil uygulama ve Go API.
 Günlük, haftalık ve aylık içeriğini sosyal hesaplara kendisi paylaşır.
 
 **4** depo
+
 **~151.000** satır kod
+
 **~₺220** aylık bulut
 
 ### Ürün D
 
 Küçük içerik sitesi
+
 Web ve Go API.
 
 **Veritabanında:** İçerikler, yorumlar ve içerik bildirimleri; IP adresi ham tutulmaz, yalnız hash'i durur.
@@ -183,6 +202,9 @@ Web ve Go API.
 Gerçek kullanıcısı az; veritabanı Neon Free'de, admin paneli yok.
 
 **2** depo
+
 **~12.500** satır kod
+
 **~₺5** aylık bulut
+
 Ürün C'nin kodu Ürün B'nin iki katından fazla, aylık tutarı yarısından az (~₺220 ve ~₺510). Fark veritabanının uyanık kaldığı saatlerden, Ürün B'deki bot trafiğinden ve build dakikalarından geliyor.

@@ -3,7 +3,7 @@
   "description": "Yeni bir ürünü ilk günden ucuz, güvenli ve kullanıcıyı kırmadan kurmak için Proje Kurulum Rehberi'ne dayanan skill seti: kurulum, karar desteği, yayın kapısı, maliyet, güvenlik, proje hafızası, uyarılar ve SEO/GEO.",
   "author": {
     "name": "Burak Altıntaş",
-    "url": "https://burak-altintas.com"
+    "url": "https://github.com/buraltintas"
   },
   "homepage": "https://github.com/buraltintas/day-zero-kit",
   "repository": "https://github.com/buraltintas/day-zero-kit",
@@ -16,5 +16,6 @@
     "cloud-run",
     "ai-agents",
     "day-zero"
-  ]
+  ],
+  "license": "MIT"
 }

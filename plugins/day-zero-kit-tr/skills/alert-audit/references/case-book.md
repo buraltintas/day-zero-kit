@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="vakalar"></a>
 
@@ -35,7 +35,9 @@ Aynı ders birden çok olayda çıktı. Numaralar aşağıdaki vakalara gider.
 ## Düzeltmelerin toplamı
 
 **Ölçülmüş düzeltmelerin aylık etkisi:** ~₺2.580–2.700/ay
+
 **Eylül'de ~₺3.900–4.400 olan dört ürünün bulut faturası:** ~₺1.300/ay, 8 Eki
+
 Altı düzeltmenin tasarrufu ayrı ayrı ölçüldü ve toplandı; küçük projeler Neon Free'ye taşınınca ~₺2.672–2.791. Fatura ~₺2.600–3.100 düştü. İki hesap birbirini tutuyor.
 
 | Kalem | Ürün | Vaka | Aylık etki | Nasıl hesaplandı |
@@ -118,7 +120,9 @@ Alanlar etkiye göre sıralı. Tarihler 2026. Başlık vakanın kartına gider.
 ### 1. Tahmin 1 dolar, fatura ₺2.087
 
 Dört ürün, Ağu–Eyl 2026 [ölçüldü]
+
 **₺2.087** Ürün A ve B'nin Ağustos Google faturası; tahmin 1 dolardı
+
 **Belirti:** Google Cloud maliyeti depo boyutlarına bakılarak ayda yaklaşık 1 dolar tahmin edildi. Ağustos faturası ₺2.087 geldi; bunun ₺2.081'i tek bir ürüne (Ürün B) aitti, Ürün A'nın payı ₺6'ydı.
 
 **Kök neden:** Tahmin depo boyutuna dayanıyordu, fatura okunmamıştı; Google tarafında para bir harita API'sine ve imaj deposu trafiğine gidiyordu. Ayrı faturalanan Neon da altı projede ayda ~$55 tutuyordu; bunun %99,7'si hiç uyumayan veritabanlarının compute'uydu, depolama $0,02'ydi.
@@ -136,7 +140,9 @@ Maliyet tahminle konuşulmaz; fatura proje ve SKU bazında, veritabanı tüketim
 ### 2. Konsoldan açılan min instance ayda ₺255
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **~₺255/ay** boşta bekleyen tek API sunucusu
+
 **Belirti:** Eylül faturasında Ürün A'nın Google payı Ağustos'taki ₺6'dan ₺394'e çıktı; bunun ₺203'ü API'nin boşta duran sunucusuydu.
 
 **Kök neden:** 7 Eyl'de gece raporunun gelmediği sanılıp loglardaki 'terminated' satırlarından korkulunca konsoldan servis düzeyinde minScale 1 açıldı; rapor aslında gelmişti. Ayar şablonda 0 görünüyor, yalnız servisin meta verisinde 1 yazıyordu, bu yüzden haftalarca fark edilmedi.
@@ -154,7 +160,9 @@ Servis ayarı depodaki servis tanımından gelir, konsoldan değiştirilmez. Log
 ### 3. Her build 428 MB imajı kıtalar arası taşıdı
 
 Ürün B, Eyl–Eki 2026 [ölçüldü]
+
 **₺282** Eylül'de 73 GiB kıtalar arası çıkış
+
 **Belirti:** Eylül faturasında imaj deposu için 73 GiB kıtalar arası çıkış ₺282 tuttu; projede kimse imaj indirmiyordu.
 
 **Kök neden:** Web sitesinin global bölgedeki buildpack tetikleyicisi imajı yayınladıktan sonra bir de docker pull ve push adımı çalıştırıyordu; 428 MB'lık imaj her build'de europe-west1'den ABD'deki build işçisine inip geri gidiyordu. Eylül'de 194 site build'i oldu.
@@ -174,7 +182,9 @@ Tetikleyici, imaj deposu ve Cloud Run aynı bölgede durur; Next imajı Dockerfi
 ### 4. Veritabanı 7/24 uyanık kaldı
 
 Ürün A, Eyl 2026 [ölçüldü]
+
 **~₺475/ay** günde ~3 CU-saat fazla tüketim
+
 **Belirti:** Prod veritabanı 18–23 Eyl arasında 33,41 CU-saat harcadı: günde ~6,2, yani 0,25 CU'da tam gün uyanık. İstek sayısı ve sunucu sayısı normal görünüyordu.
 
 **Kök neden:** E-posta, özet ve makbuz işleri 30 sn ile 1 gün arası zamanlayıcılarla veritabanına soruyordu; Neon ise ancak 5 dakika hiç bağlantı olmazsa uyur. Herkese açık uçlar Cache-Control yazıyordu ama önlerinde bu başlığı uygulayan bir katman yoktu; gece tarayıcıları her cevabı Postgres'ten yeniden kurduruyordu.
@@ -192,7 +202,9 @@ Veritabanına zamanlayıcıyla soran kod yazılmaz; iş onu doğuran istekle ya 
 ### 5. Ayar yetmedi, okuma yolu belleğe taşındı
 
 Ürün B ve C, Eyl–Eki 2026 [ölçüldü]
+
 **~₺1.080/ay** Ürün B'nin Neon payı (~$22); Ürün C ~$8
+
 **Belirti:** Ürün B ve Ürün C'nin veritabanları da hiç uyumuyordu: Ürün B günde 6–8 CU-saat yazıyordu. Ürün C'de bir günde 363 istek veritabanını 69 kez uyandırdı, veritabanı günde ~15 saat uyanıktı.
 
 **Kök neden:** Önce ayar bulundu: Ürün B'de havuz tabanı 2 bağlantı ve saniyede bir soran e-posta kuyruğu, Ürün C'de yanlışlıkla boşta bağlantı ayarına bağlanmış 5 bağlantılık taban. 21 Eyl'de ayarlar düzelince asıl sebep göründü: botların gezdiği, sunucuda çizilen sayfalar her istekte veritabanına gidiyordu. Ürün B'de günün 288 beş dakikalık penceresinin hepsinde trafik vardı; Google ve Bing dışındaki botlar çıkarılınca bile veritabanı zamanın %68'inde uyanıktı.
@@ -210,7 +222,9 @@ Havuz tabanı 0 ve boştaki bağlantı 90 sn ile başlanır. Asıl kaldıraç o
 ### 6. Yeni sayfa veritabanını günde 74 kez uyandırdı
 
 Ürün C, Eki 2026 [ölçüldü]
+
 **~₺190/ay** sürseydi; kaçak ~1 gün sürdü
+
 **Belirti:** 5 Eki'de yayına çıkan kategori sayfalarından sonra Neon tüketimi günde 1,3'ten 2,5 CU-saate çıktı.
 
 **Kök neden:** Kategori sayfaları, site haritası ve llms.txt kategori listesini beş dakikada bir yeniden okuyordu; bu uç herkese açık okumalar içinde her seferinde veritabanına giden tek uçtu. Botlar bu sayfaları gezdikçe veritabanı uyanıyordu: 6 Eki 15:30'a kadarki 51 uyanışın 44'ü bu uçtandı.
@@ -230,7 +244,9 @@ Veritabanına giden her yenileme ya saatler aralıkla ya da yalnız değişiklik
 ### 7. Bulut kazıyıcısı site baytlarının %44'ünü aldı
 
 Ürün B, Eyl–Eki 2026 [ölçüldü]
+
 **540 kez** 7 günde bellek aşımı; bot çıkışı ~₺240/ay
+
 **Belirti:** 2 Eki'de 512 MiB'lik site gece bot yoğunluğunda 192 kez bellek sınırını aştı; o anda işlenen istekler, gerçek kullanıcılarınki dahil, 503 aldı. Bunu alarm yerine maliyet analizi buldu.
 
 **Kök neden:** Alibaba Cloud'un ABD aralığından (en yoğunu 47.79.0.0/16) Chrome kılığında gelen bir kazıyıcı robots.txt'yi hiç okumadan günde ~25.700 istek atıyordu: web isteklerinin %41'i, site baytlarının %44'ü. Çizilen her sayfa API'ye ortalama 1,73 istek daha yaptığı için yük ikiye katlanıyordu.
@@ -248,7 +264,9 @@ Robots.txt'yi dinlemeyen bulut kazıyıcısı ağ olarak yalnız içerik sayfala
 ### 8. Gölgesiz açılan kural bülten linklerini reddetti
 
 Birkaç ürün, Eki 2026 [kanıtlı]
+
 **Ölçülmedi** bülten linklerinin taraması ilk gün 403 aldı
+
 **Belirti:** Kullanıcı ajanı boş içerik isteklerini reddeden kural gölgede denenmeden açıldı ve ilk gün bir e-posta güvenlik tarayıcısına 403 verdi.
 
 **Kök neden:** Kuralın gerekçesi gerçekti: bir sitede Azure'daki 15 adresin 6 günde attığı 6.222 boş ajanlı isteğin hepsi webshell aramasıydı. Ama Microsoft'un e-posta link tarayıcısı da (134.149.116.0/24) bültendeki linkleri hiç ajan göndermeden düz bir GET ile açıyor.
@@ -266,7 +284,9 @@ Her yeni bot kuralı önce gölgede 'reddederdim' yazar ve en az 7 gün (kurumsa
 ### 9. Önyüklemeler ve kazıyıcı ziyaretçi sayıldı
 
 Birkaç ürün, Eyl–Eki 2026 [ölçüldü]
+
 **92 satır** yanlış 'reddederdim'
+
 **Belirti:** Kapının gölgedeki hız kuralı tek bir Türk adresinden gelen 400 isteği sayfa saydı ve 92 yanlış 'reddederdim' satırı yazdı. SEO ölçümünde ChatGPT oturumları 12–24 sayfa geziyor göründü; Ürün A'da 'Google'dan gelen' ~120 girişin ~105'i gerçek değildi.
 
 **Kök neden:** Next, middleware çalışmadan önce RSC, Next-Router-Prefetch ve _rsc işaretlerini siliyor (15.5, 16.2 ve 16.3'te aynı). Link önyüklemeleri bu yüzden sayfa açılışı gibi görünüyordu; birim testleri başlıkları kendileri kurduğu için geçiyordu. Google referanslı girişlerin çoğu Alibaba bulutundan Chrome kılığında gelen bir kazıyıcıydı.
@@ -284,7 +304,9 @@ Kapı ve ölçüm kuralları gerçek Next sunucusundan geçen istekle sınanır;
 ### 10. Veri JSON yan kapısından çıkıyordu
 
 Birkaç ürün, Eki 2026 [kanıtlı]
+
 **Ölçülmedi** bütün katalog 3 çağrıda alınabiliyordu
+
 **Belirti:** Sayfalar kapının arkasına alınırken Ürün B sitesinin kendi /api aktarma ucu dışarıda kalmıştı: tek çağrıda 5.000 mağaza dönüyordu, bütün katalog 3 çağrıda alınabiliyordu.
 
 **Kök neden:** Aktarma ucu her /v1 yolunu web sunucusunun sırrıyla API'ye iletiyordu; tarayıcının hiç çağırmadığı toplu liste uçları da açıktı. HTML'i korumak veriyi korumuyordu. Kapıyı /api'ye genişletmenin yan etkisi incelemede çıktı: Next, middleware'in gördüğü POST gövdelerini belleğe alıp 10 MB'ta kesiyor.
@@ -302,7 +324,9 @@ Kapı kurulurken önce JSON uçlarına bakılır; aktarma ucu tarayıcının ça
 ### 11. Bütün site tek bir istemci sayıldı
 
 Ürün B, Eyl 2026 [kanıtlı]
+
 **21 / 21** giriş kodu tek istemci sayıldı
+
 **Belirti:** 28 Eyl'de canlı veritabanında o güne kadar verilen 21 giriş kodunun hepsinin, altı farklı e-posta adresine gitmiş olsalar da, aynı istemci IP özetini taşıdığı görüldü.
 
 **Kök neden:** Web'den gelen her istek API'ye web sunucusunun adresinden ulaşıyordu ve API bağlantının adresini okuduğu için bütün site tek bir istemciydi. Varsayılan sınır saatte 10 koddu: herhangi biri 10 istek atınca saat dönene kadar kimseye giriş kodu gidemezdi.
@@ -320,7 +344,9 @@ Kapı kurulurken önce JSON uçlarına bakılır; aktarma ucu tarayıcının ça
 ### 12. Bilinen bir Next açığı yetkili hesapla birleşti
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **Ölçülmedi** zincir bulunduğu gün kapandı
+
 **Belirti:** 22 Eyl'de beş depo ve bulut projesi tarandı; kullanıcıların yüklediği belgelerin herkese açık medya kovasında durması bulgulardan biriydi. Bir gün sonraki üçüncü taramada daha ağır bir zincir bulundu.
 
 **Kök neden:** Web siteleri Next.js 14'ün bilinen bir SSRF açığını taşıyordu ve proje genelinde Editor rolü olan varsayılan compute hesabıyla çalışıyordu; ikisi birlikte projenin ele geçirilmesine yol açabilirdi. Bir gün önce 'Next kapandı' denmişti, ama yalnız görsel iyileştirici açığına bakılmıştı.
@@ -340,7 +366,9 @@ Her servis kendi rolsüz hesabıyla çalışır; 'kapandı' demeden sürümün b
 ### 13. Güvenlik politikası canlıda logoları kırdı
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **1 gece** kurum logoları canlıda görünmedi
+
 **Belirti:** 22 Eyl'de üç web yüzeyine içerik güvenlik politikası (CSP) eklendi; o gece canlıda kurum logoları görünmedi.
 
 **Kök neden:** Logolar API'den geliyordu ve img-src API'nin adresini içermiyordu. Test ortamında o kartlar yoktu, çünkü onları dolduran iş testte kapalıydı; prova kırığı göstermedi ve aynı politikada sabit yazılmış connect-src test portalını da kırmıştı.
@@ -358,7 +386,9 @@ CSP önce report-only ve bir rapor ucuyla çıkar, izinli adresler build'in hede
 ### 14. Uyuyan veritabanı soğuk başlangıcı düşürdü
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **~%1–1,5** soğuk başlangıç 503 alıyordu
+
 **Belirti:** 6 Eyl sabahı zamanlanmış bir iş 503 ile düştü. Soğuk başlangıçların ~%1–1,5'i aynı şekilde uyuyan veritabanına denk geliyordu.
 
 **Kök neden:** API açılışta veritabanına 5 sn ping atıyor, cevap gelmezse kapanıyordu; uykudan uyanan Neon bu sürede yetişmeyince istek 503 aldı. Daha tehlikelisi gizliydi: oturum kontrolü her veritabanı hatasını 401'e çeviriyordu ve uygulama ile portal 401'de oturumu siliyordu.
@@ -376,7 +406,9 @@ CSP önce report-only ve bir rapor ucuyla çıkar, izinli adresler build'in hede
 ### 15. Test ve simülatör canlı veriye yazdı
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **44 satır** sahte veri herkese açık listede
+
 **Belirti:** Yönetim panelinde sürekli aynı imzalı hesaplamalar görünüyordu ve 17–28 Eyl arası 44 satır herkese açık 'popüler hesaplamalar' listesine girdi. Aynı hafta simülatördeki denemelerin de canlı API'ye analitik yazdığı görüldü.
 
 **Kök neden:** Portalın testi jsdom'un gerçek fetch'iyle çalışıyordu ve API adresi verilmeyince canlıya düşüyordu. Mobilde Expo 54, Metro'ya verilen test adresini depodaki .env'in canlı adresiyle eziyordu; paket grep'i test adresini gösterip yanılttı.
@@ -394,7 +426,9 @@ Yerel, test, simülatör ve CI varsayılanı asla prod olmaz; hedef adres çalı
 ### 16. Yazılan yorum bir güne kadar görünmedi
 
 Ürün B, Eyl–Eki 2026 [ölçüldü]
+
 **24 saat** yazılan yorum geç görünebiliyordu
+
 **Belirti:** Mobil uygulamadan yazılan bir yorum mağaza sayfasında bir güne kadar görünmeyebiliyordu; silinen bir yorum da önbellek süresi dolana kadar sayfada kaldı (23 Eyl). Dizüstünden yapılan katalog değişiklikleri 6 saate kadar geç görünüyordu.
 
 **Kök neden:** Mağaza sayfaları her web sunucusunun kendi önbelleğinde 24 saat duruyordu ve yalnız sitenin, aynı sunucuya düşen kendi yazması önbelleği düşürüyordu. Mobilden ya da komut satırından gelen yazma siteye hiç ulaşmıyordu.
@@ -412,7 +446,9 @@ Kişi yazdığını hemen görür: değiştirilebilen her sayfa yazma anında b�
 ### 17. AI asistan kullanıcıyı çıkmaza soktu
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **2 kullanıcı** günlük hak gitti, cevap yok
+
 **Belirti:** 30 Eyl'de açılan asistanı ürün sahibi denedi ve 'aşırı kötü' buldu. 2 Eki'de iki gerçek kullanıcı çıkmaza girdi: biri konu içi ama rakamsız bir mesaja 'bilgim yok' cevabı alıp günlük hakkını harcadı, öbürünün '70000 ay' diye okunan mesajı hata verdi ve sonraki her mesaj aynı hatayı aldı.
 
 **Kök neden:** İlk sürümde dört cevabın dördünü kurallar vermişti, model hiç çağrılmamıştı. Sonraki sürümde aralık dışı bir sayı bütün isteğin reddedilmesine yol açıyor ve hata sohbete yapışıyordu; konu içi ama eksik istekler 'kapsam dışı' sayılıyordu.
@@ -432,7 +468,9 @@ Kullanıcının yazdığı hiçbir değer akışı kilitlemez, konu içi ama eks
 ### 18. Eski sürümlere söyleyecek kanal yoktu
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **3 build** uyarıyı hiç gösteremeyecek
+
 **Belirti:** 18–19 Eyl'de güncelleme uyarısının Android'de üç build'de hiç çıkmadığı, iOS'ta ise önceki ana sürümün ara sürümleri çıkarken kimseye gösterilmediği bulundu. Ekim'de yeni eşleştirme akışı, eski sürümdeki kurumsal kullanıcılara anlatılamadığı için bekletildi.
 
 **Kök neden:** Uygulama kurulu build'i app.json'daki sayıdan okuyordu ve bu sayı EAS'ın uzaktan artırdığı gerçek numaradan geride ya da boştu; birim testleri numarayı taklit ediyordu. iOS'ta hedef sürüm değeri elle güncellenmemişti. Eski sürümlerin ekran metinleri de sabitti, sunucudan yazı konacak yer yoktu.
@@ -450,7 +488,9 @@ Güncelleme uyarısı, zorunlu ekran, sunucudan metin alanı ve her istekte sür
 ### 19. Build kotası bitti, iOS sürümü bir hafta kaydı
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **1 hafta** iOS sürümü 1 Eki'ye kaydı
+
 **Belirti:** 24 Eyl'de istenen iOS build'i kota dolduğu için reddedildi. Kaldığı sanılan iki hak Android'indi; iOS kotası 22 Eyl'de dolmuştu.
 
 **Kök neden:** EAS'ın ücretsiz planı ayda 15 iOS ve 15 Android build verir, platform ve hesap başına ayrı sayar ve preview build'leri de düşer. Eylül'de 17 iOS build başlatıldı (6'sı preview); OTA olmadığı için yalnız JS değişen düzeltmeler de mağaza build'i istedi.
@@ -470,7 +510,9 @@ Build kotası platform başına ölçülür, deneme build'i yerelde alınır ve 
 ### 20. İki ürün tek hesapta build kotasını aştı
 
 Ürün A ve B, Eyl–Eki 2026 [ölçüldü]
+
 **₺187** kota aşımı; ayrıca ₺78 Cloud Run
+
 **Belirti:** Eylül'de Ürün A ve Ürün B'nin paylaştığı faturalama hesabında Cloud Build 3.121 dakika tuttu ve ayda 2.500 dakikalık ücretsiz kota aşıldı.
 
 **Kök neden:** Ücretsiz kotalar faturalama hesabı başına verilir ve iki ürün aynı hesaptaydı. Test ve prod da aynı commit'i ayrı ayrı build ediyordu: Ürün A'nın Eylül dakikalarının %32'si (474 dk) test kopyasına gitti ve prod, testte denenenden farklı bir imajı çalıştırdı.
@@ -488,7 +530,9 @@ Her gerçek ürün kendi faturalama hesabında doğar; imaj bir kez build edilir
 ### 21. Temizlik kuralı haftalarca deneme modunda kaldı
 
 Birkaç ürün, Eyl–Eki 2026 [ölçüldü]
+
 **₺117** Ürün B'nin Eylül depolaması
+
 **Belirti:** İmaj deposunda temizlik kuralları listede görünüyordu ama hiçbir şey silinmemişti: Ürün A'nın deposu 1,3 GB ve 68 imaja çıkmıştı, Ürün B'nin depolaması Eylül'de ₺117 tuttu.
 
 **Kök neden:** Kurallar 21 Eyl'e kadar dry-run'daydı. Daha önceki bir not onları canlı sanmıştı, çünkü kural listesine bakılmış, describe çıktısındaki cleanupPolicyDryRun alanına bakılmamıştı.
@@ -506,7 +550,9 @@ Temizliğin gerçekten çalıştığı describe çıktısındaki dry-run alanın
 ### 22. Migration ve kod birlikte çıktı, 11 dakika 500
 
 Ürün B, Eyl 2026 [kanıtlı]
+
 **11 dk** her mağaza sayfası 500 döndü
+
 **Belirti:** 21 Eyl gecesi bir deploy'dan sonra sitedeki bütün mağaza sayfaları 11 dakika boyunca 500 döndü.
 
 **Kök neden:** Yeni bir kolonu okuyan sorgu, o kolonu açan migration'la aynı değişiklikte çıktı. Belgeye göre migration ayrı bir yayın adımıydı, ama yayındaki imajda migration aracı ve dosyaları yoktu; yeni kod kolonu hiç görmemiş bir veritabanına karşı çalıştı ve yorumları okuyan her istek düştü.
@@ -524,7 +570,9 @@ Migration yalnız ekler ve koddan önce, kendi adımında ve bitmesi beklenerek 
 ### 23. Yutulan hata site haritasını kesti, sonra deploy durdu
 
 Ürün B, Eyl 2026 [ölçüldü]
+
 **16 saat** deploy yok; 2.668 sayfa düştü
+
 **Belirti:** 18 Eyl'de yayındaki site haritası 12.589 sayfadan 9.921'e düştü ve iki şehir sayfası bir saat boyunca önbellekten 404 döndü; hiçbir şey hata vermemişti. Ertesi gün düzeltmeden sonra altı build üst üste düştü ve 16 saat hiçbir deploy çıkmadı.
 
 **Kök neden:** Katalog okuması başarısız olunca boş liste dönüyordu; boş liste 'hiç yok' sayılıp site haritası kısaldı, sayfa notFound() verdi ve Next bu 404'ü bir saat önbelleğe aldı. Hata dürüstçe fırlatılınca da site haritası build anında arka uca sorduğu ve build konteyneri arka uca ulaşamadığı için build düştü.
@@ -544,7 +592,9 @@ Arka uç cevap veremezse 5xx döner ve bu boş sonuç sayılmaz; build arka uca 
 ### 24. Harita API'si projenin faturasının %72'si oldu
 
 Ürün B, Ağu–Eyl 2026 [ölçüldü]
+
 **₺1.500** Ağustos'ta harita API'si; Eylül ₺657
+
 **Belirti:** Ağustos faturasında harita API'si ₺1.500 tuttu: fotoğraf ₺924, ayrıntı ₺576. Projenin ₺2.081'lik Google faturasının ~%72'siydi ve ancak fatura gelince görüldü.
 
 **Kök neden:** Listelerdeki her küçük resim sunucumuz üzerinden ayrı, ücretli bir fotoğraf isteğiydi; ücretsiz kotadan sonra 20 resimli bir sayfa ~₺6,6 tutuyordu. Bütün çağıranlar aynı geniş alan maskesini kullandığı için her istek en pahalı SKU'dan kesildi ve beş tek seferlik bakım komutu ~1.500 ayrıntı çağrısı yaptı.
@@ -562,7 +612,9 @@ Arka uç cevap veremezse 5xx döner ve bu boş sonuç sayılmaz; build arka uca 
 ### 25. Ödeme webhook'u en az 21 gün sessizce 500 döndü
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **21+ gün** her webhook teslimi 500 aldı
+
 **Belirti:** Abonelik sağlayıcısının webhook'u en az 2 Eyl'den 23 Eyl akşamına kadar her teslimde 500 aldı. Logda tek satır yoktu ve kimse fark etmedi.
 
 **Kök neden:** İki sebep vardı: havuz simple protocol ile çalıştığı için ham JSON gövdesi jsonb kolonuna bytea olarak gidip reddediliyordu, bazı olay türleri 'aliases' alanı taşımadığı için de NOT NULL kolona NULL yazılıyordu. İşleyici hatayı loglamadan 500 dönüyordu ve yerel entegrasyon testi prod'un bağlantı modunu kullanmıyordu.
@@ -580,7 +632,9 @@ Loglanmamış bir 500 tahmin edilmez: önce log satırı eklenir, deploy edilir,
 ### 26. Sosyal paylaşım hattı bir ay sessizce durdu
 
 Ürün C, Ağu–Eki 2026 [ölçüldü]
+
 **30 / 30** paylaşım denemesi 402 aldı
+
 **Belirti:** Günlük X paylaşımı 27 Ağu'dan sonra hiç çıkmadı ve bir ay fark edilmedi; ürün sahibi 'X çalışmıyor' deyince bakıldı. 28 Eyl sabahı Instagram paylaşımı ve haftalık rapor da düştü.
 
 **Kök neden:** X'in API kredisi bitmişti: hesap okuma ve medya yükleme başarılı, yalnız gönderi oluşturma '402 Payment Required' alıyordu, yani 'token sağlam mı' kontrolü arızayı göstermedi. Instagram'ın 60 günlük token'ı otomatik yayının açılışından ~60 gün sonra sessizce doldu; iki durum da günlük inceleme e-postasında birer satırdı, alarm yoktu.
@@ -600,7 +654,9 @@ Dış platformun 402'si, 401'i ve token bitişi alarm üretir; özet e-postasın
 ### 27. Yeni alan adının kodları kurum geçitlerinde bekledi
 
 Ürün A, Eki 2026 [kanıtlı]
+
 **4 kurum** giriş kodları posta geçidinde bekledi
+
 **Belirti:** Giriş kodu e-postaları, sağlayıcı 'teslim edildi' dediği halde dört büyük kurumun kendi posta geçidinde bekledi; kod gelince süresi dolmuş oluyordu.
 
 **Kök neden:** Alan adı yalnız birkaç haftalıktı ve güvenlik firmalarının bazısı onu 'yeni kayıtlı, yüksek risk' ya da 'denenmemiş' sayıyordu; 'teslim edildi' yalnız geçidin kabul ettiği anlamına geliyordu. Kod 10 dakikada ölüyor ve yeniden istemek öncekini geçersiz kılıyordu.
@@ -620,7 +676,9 @@ Alan adı ilk kullanıcıdan haftalar önce alınıp SPF, DKIM ve DMARC kurulur 
 ### 28. Konum saniyede bir yazıldı
 
 Ürün B, Eki 2026 [ölçüldü]
+
 **~294 istek** 14 dakikada; çoğu 429 aldı
+
 **Belirti:** 4 Eki'de oturum açmış tek bir ziyaretçi 14 dakikada konum güncelleme ucuna ~294 istek gönderdi; 200'den fazlası 429 aldı.
 
 **Kök neden:** Arama sayfası tarayıcının canlı konum izlemesinden gelen her okumayı, birkaç santimetrelik kaymaları da, sunucuya yazıyordu; bu yaklaşık saniyede birdi. Yer arama paneli de canlı konuma bağlı olduğu için her harfte yeniden soruyordu.
@@ -640,7 +698,9 @@ Sensörden gelen sürekli veri sunucuya yalnız anlamlı değişince ve seyrekle
 ### 29. İlk yedek 7 bayttı
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **7 bayt** ilk yedek; döküm 701.738 bayttı
+
 **Belirti:** 23 Eyl'de kurulan günlük veritabanı dökümünün ilk çalışması iki denemede de kovaya 7 baytlık nesne yazdı; döküm 701.738 bayttı.
 
 **Kök neden:** İmajdaki busybox wget ikili dosyayı ilk sıfır baytına kadar gönderiyor.
@@ -660,7 +720,9 @@ Her döküm alındığı anda geri yüklenerek ve boyutu karşılaştırılarak 
 ### 30. Kural ve iş geçici yerde kaldı
 
 Birkaç ürün, Eyl–Eki 2026 [kanıtlı]
+
 **2 build** istenmeden başladı; iş kayboldu
+
 **Belirti:** 20 Eyl'de kod ajanı istenmeden iki prod mobil build başlattı ve sürümü sormadan yama yerine ara sürüm numarasını artırdı. 8 Eki'de bir elektrik kesintisi bilgisayarı yeniden başlattı ve geçici klasördeki dört worktree, deneme veritabanı ve commit'lenmemiş ajan işi silindi.
 
 **Kök neden:** Yayın kararlarının ürün sahibine ait olduğu kuralı yalnız bir ajanın kendi hafızasındaydı; başka araçlar ve oturumlar onu görmüyordu. Uzun işler /private/tmp altındaki oturum klasöründe duruyordu ve bu klasör yeniden başlatmada siliniyor.

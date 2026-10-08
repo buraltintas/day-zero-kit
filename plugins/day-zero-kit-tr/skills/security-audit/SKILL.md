@@ -11,7 +11,7 @@ description: >-
 
 # Güvenlik denetimi
 
-Amaç açıkları bulmak ve kapatma sırasını vermektir. Açık bir zayıflığı herkese açık bir yere (issue, PR açıklaması, paylaşılan belge) ayrıntısıyla yazma; bulguyu sahibine ilet.
+Amaç açıkları bulmak ve kapatma sırasını vermektir. Denetim salt okunurdur; IAM, sır ve canlı ayar değişiklikleri ürün sahibine gider. Açık bir zayıflığı herkese açık bir yere (issue, PR açıklaması, paylaşılan belge) ayrıntısıyla yazma; bulguyu sahibine ilet.
 
 ## Okunacaklar
 
@@ -23,7 +23,7 @@ Amaç açıkları bulmak ve kapatma sırasını vermektir. Açık bir zayıflı�
 
 1. **Kimlik ve yetki:** her servis kendi rolsüz hesabıyla mı çalışıyor; varsayılan Editor'lü hesap kullanılıyor mu; build hesabı ayrı mı; insanlarda iki adımlı doğrulama ve en az iki yönetici var mı.
 2. **Sırlar:** depoda, düz ortam değişkeninde, logda, hata metninde, adres satırında sır var mı; her sırrın tek etkin sürümü ve döndürme sırası yazılı mı.
-3. **Uygulama yetkisi:** her okuma ve yazma, sahibi sunucuda oturumdan kontrol ederek mi yapılıyor; iki hesapla birbirinin kaydını okumayı dene.
+3. **Uygulama yetkisi:** her okuma ve yazma, sahibi sunucuda oturumdan kontrol ederek mi yapılıyor; iki test hesabıyla, yalnız test ortamında, birbirinin kaydını okumayı dene. Canlıda deneme yapma.
 4. **Bağımlılıklar:** kurulum betikleri, yayın yaşı kuralı, kilit dosyası ve CI'da yalnız `npm ci`; çerçeve sürümünde bilinen açık var mı.
 5. **Botlar:** kapı proxy'nin ilk satırında mı; robots.txt ve kapı aynı listeden mi üretiliyor; yeni kural önce gölgede mi çalıştı; tarayıcı adres listeleri aylık yenileniyor mu; herkese açık okumalar veritabanını uyandırıyor mu.
 6. **KVKK:** veri yeri, işleyen listesi, aktarım dayanağı ve ihlalde "kim neyi gördü" kaydı.

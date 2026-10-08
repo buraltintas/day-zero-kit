@@ -18,14 +18,14 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 ## Read
 
 - `references/alerts.md`: sources, levels (urgent, today, weekly), the "what, when, to whom" table, message-writing rules, notify() and the log filter, ready-made service or own setup.
-- `references/layer-10-observability.md`, `references/backup-and-restore.md`, `references/analytics-and-admin.md`, `references/content-automation.md`.
+- `references/layer-10-observability.md`, `references/backup-and-restore.md`, `references/analytics-and-admin.md`, `references/content-automation.md`, and `references/case-book.md` for the incidents behind these rules.
 
 ## Flow
 
 1. Build the inventory: every external API, payment and store webhook, scheduled job, backup, token, quota, budget, and domain or certificate expiry.
 2. For each, ask: what is the failure signal, the threshold, the level, the channel, who acts, are there at least two receivers, does the alarm depend on the very system that failed.
 3. Write the gaps to a table and complete it from the guide's table.
-4. Fire every alarm once end to end with a fake failure and confirm the receiver actually got it. For absence alarms, remember that Cloud Monitoring waits at most 23.5 hours.
+4. Fire every alarm once end to end with a fake failure: in the test environment or behind a test flag, without touching live data. Confirm the receiver actually got it. Alert policy or production changes go through the owner's approval and a recorded script. For absence alarms, remember that Cloud Monitoring waits at most 23.5 hours.
 5. Check that messages speak the owner's language: what happened, the effect on users, what to do, a link. Stack traces do not go to the owner.
 
 ## Report

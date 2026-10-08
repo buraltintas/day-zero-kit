@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="hafiza"></a>
 
@@ -23,10 +23,15 @@ _Grafik: Hangi dosya hangi soruyu cevaplar. Nasıl kurulur: README.md (kurulum v
 8 Ekim 2026 taraması: 14 deponun origin/main dalı (A beş, B üç, C dört, D iki), ajan hafıza klasörleri ve 20 Ağustos–8 Ekim oturum kayıtları. CHANGELOG 10 depoda var (biri boş), ajan talimat dosyası 9 depoda.
 
 **11 / 820** CHANGELOG başlığından tarih taşıyanlar (A'nın beş, B'nin iki günlüğü). Ne zaman çıktığını yalnız git geçmişi söylüyordu.
+
 **36 / 61** a-mobile'de yayında olduğu halde hâlâ 'Unreleased' duran başlık. a-api'de 114'ün 24'ü.
+
 **12 / 15** Paralel dallar birleşirken çıkan çakışmalardan CHANGELOG'u içerenler.
+
 **28 / 74** En büyük ajan hafıza klasöründeki notlardan karar içerenler. Bu kararları yalnız o makinedeki o araç görüyordu.
+
 **4 / 45** Aynı klasörün notlarında geçen ve artık var olmayan dosya yolu. 74 notun 15'i 14 günden eski.
+
 **67 kez** Tek bir oturumun 49 günde sıkıştırılma (compact) sayısı. Her sıkıştırmada araç sohbeti özetler; depoya yazılmamış ayrıntının bir kısmı gider.
 
 ## CHANGELOG boyutu
@@ -34,6 +39,7 @@ _Grafik: Hangi dosya hangi soruyu cevaplar. Nasıl kurulur: README.md (kurulum v
 En büyük dördü son 30 günde günde 2–9 KB büyüdü. b-web'in tamamı 200 bin token'lık bağlamın yarısına yakın.
 
 40 KB üstü40 KB altıKB, ölçek gerçek
+
 _Grafik: CHANGELOG boyutları, KB, sınır 40: b-web 338,8; b-api 308,3; a-mobile 160,3; a-api 158,5; a-web 86,5; a-portal 68,2; c-web (ortak günlük) 58,2; a-market 57,1; c-api 17,6; b-mobile 0,3_
 
 ## Aynı commit'te CHANGELOG'a yazma oranı
@@ -41,6 +47,7 @@ _Grafik: CHANGELOG boyutları, KB, sınır 40: b-web 338,8; b-api 308,3; a-mobil
 8 Eylül–8 Ekim, kod değiştiren commit'ler, commit başına. C'de günlük deploy'dan sonra ayrı commit'te.
 
 Kural ajan dosyasında yazılıYazılı değilGünlük ayrı commit'tekod commit'i, %; ölçek gerçek
+
 _Grafik: Aynı commit'te CHANGELOG oranı. Kural yazılı: b-web %84, b-api %80, a-api %72. Yazılı değil: a-portal %52, a-mobile %51, a-market %36, a-web %33. Ürün C, 4 depo: %1–12._
 
 ## Bizde ne oldu
@@ -304,7 +311,7 @@ ayrıntı (en çok 5 satır). Gizli değer yazılmaz.
 Türler: Eklendi, Değişti, Kalkacak, Kaldırıldı,
 Düzeltildi, Güvenlik.
 40 KB'ı geçince en eski ay
-docs/changelog/YYYY-AA.md'ye taşınır.
+docs/changelog/YYYY-MM.md'ye taşınır.
 
 ## Unreleased
 ### Eklendi
@@ -470,32 +477,51 @@ Kanıtlı kural bizde işliyor. Ölçüldü etiketinde rakam bizim ölçümümü
 ### Değişiklik günlüğü
 
 [kanıtlı]
+
 **CHANGELOG en yeni üstte yazılır**. Ajan dosyayı baştan okur; okuma aracı büyük dosyada yalnız ilk sayfayı döndürse de en yenisi görülür.
+
 [ölçüldü]
+
 **Davranış değiştiren commit günlüğü aynı commit'te günceller, bu kural AGENTS.md'de yazılır**. Yazılı olan üç depoda oran %72–84, olmayan dördünde %33–52.
+
 [ölçüldü]
-**Ana dosya 40 KB'ı** (~12 bin token) geçmez; girdi en çok 2 satır kullanıcı etkisi, 5 satır teknik ayrıntı. Bizde girdi ortancası 0,8–1,7 KB, en uzunu 11,8 KB idi.
+
+**Ana dosya 40 KB'ı** (~12 bin token) geçmez; girdi en çok 2 satır kullanıcı etkisi, 5 satır teknik ayrıntı. Bizde girdi ortancası 0,8–1,7 KB, en uzunu 11,8 KB idi.
+
 [ölçüldü]
+
 **Tek Unreleased bölümü deploy olunca ISO tarih ve canlı revizyon başlığına çevrilir**; girdi commit kısaltması taşır. 820 başlığın 11'inde tarih vardı.
+
 [kanıtlı]
+
 **Yalnız .md ya da docs/ değişen commit canlı build'i tetiklemez**. Belge düzeltmesi deploy korkusuyla beklemez.
 
 ### Ajan dosyası
 
 [kanıtlı]
+
 **Tek kaynak AGENTS.md**; CLAUDE.md'de yalnız `@AGENTS.md` ve gerekirse Claude'a özel birkaç satır. Claude Code, CLAUDE.md varken AGENTS.md'yi bu import olmadan okumaz (kullanıcı ayarı `claude-md-and-agents-md` hariç).
+
 [kanıtlı]
+
 **Deploy kuralı dosyanın en üstünde ve ürünün bütün depolarında aynı cümlelerle durur**. Ayrıntısı [Kullanıcıyı kırmadan değiştirmek](#kirmama) ve [Yeni depo için kurallar](#depo-kurallari) bölümlerinde.
+
 [ölçüldü]
+
 **Zor öğrenilen ders kaça mal olduğuyla bir satır girer, anlatımı docs/lessons.md'ye**. B'nin dosyaları 245 ve 203 satıra çıktı; Claude Code 200 satırın altını öneriyor.
 
 ### Durum, iş ve kararlar
 
 [kanıtlı]
+
 **Ürün düzeyinde tek durum yeri olur**. C'de ürün günlüğünün tepesindeki durum bölümü canlı sürümleri, son migration'ı ve bekleyenleri tek yerde gösteriyor.
+
 [kanıtlı]
+
 **STATUS'taki her canlı satırı doğrulama yöntemini ve tarihini taşır**. Hafıza notu ve eski durum satırı durum kaynağı değildir.
+
 [öneri]
+
 **Kararlar depoya yazılır** (DECISIONS.md ya da numaralı ADR). En büyük hafıza klasöründeki 74 notun 28'i karar içeriyordu ve yalnız o makinede duruyordu.
 
 ## Göreve başlarken
@@ -543,22 +569,39 @@ Kanıtlı kural bizde işliyor. Ölçüldü etiketinde rakam bizim ölçümümü
 Bizde aynı anda birkaç uzun ömürlü oturum, aynı depolarda çalışıyordu. Yayın kuralının hafızadan depoya taşındığı 20 Eylül olayı ve yazılı 'önce test' kuralının üç depoda atlandığı 26 Eylül olayı: [Kullanıcıyı kırmadan değiştirmek](#kirmama), [7.2](#k-7-2) ve [7.1](#k-7-1).
 
 [kanıtlı]
+
 **Bir depo ya da dal, bir sahip oturum**. Sahibin adı STATUS'ta yazılı; diğerleri kendi dalında çalışır ve dalı commit listesiyle sahibe teslim eder.
+
 [kanıtlı]
+
 **İşe başlamadan ve push'tan önce `git fetch`, son 20 commit, CHANGELOG'un tepesi**. 4 Ekim'de bir düzeltmenin sabah başka oturumda yapıldığı böyle bir dakikada görüldü.
+
 [kanıtlı]
-**Her paralel iş kendi dalında ve worktree'sinde**. Worktree kalıcı klasörde durur (`~/Documents/worktrees/<depo>-<dal>` gibi); /tmp açılışta silinir.
+
+**Her paralel iş kendi dalında ve worktree'sinde**. Worktree kalıcı klasörde durur (`~/Documents/worktrees/<repo>-<branch>` gibi); /tmp açılışta silinir.
+
 [kanıtlı]
+
 **Aynı gün birden çok dal girecekse tek entegrasyon dalı kullanılır**: dallar orada sırayla birleşir, test ortamına o dal çıkar, main o commit'e ileri sarılır.
+
 [kanıtlı]
+
 **Oturumlar arası mesaj yalnız ürün sahibinin 'ilet' sözüyle gider**: kanıt, kodda yer, öneri. Raporu yazan oturum koda dokunmaz.
+
 [kanıtlı]
+
 **Uzun iş akışında her ajanın sonucu kalıcı bir günlüğe yazılır**; kesintide iş kaldığı yerden sürer, biten ajan yeniden koşmaz.
+
 [öneri]
+
 **Haftada en az bir devir notu**; büyük iş yeni oturumda, devir notuyla başlar. Uzun oturum bağlamı aşındırır: bir oturum 49 günde 67 kez sıkıştırıldı.
+
 [öneri]
+
 **Oturum değiştirilecek depoda açılır**. Birden çok depo için `--add-dir` ve `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1`. Bizde a-portal'da açılan bir oturumun 29.866 araç çağrısının 10.739'u dört kardeş depoya gitti (en çok a-api, 5.079).
+
 [öneri]
+
 **Geri dönüşü olmayan adımı araç durdurur**: korumalı main, izin listesinde `git push` yok, onay dosyası yoksa main push'unu durduran PreToolUse hook'u. 26 Eylül'de yazılı 'önce test' kuralı üç depoda atlandı.
 
 ## Tazelik kontrolleri
@@ -577,6 +620,8 @@ Güncellemesi birinin hatırlamasına kalan belge bayatlıyor; a-mobile'in TODO.
 | Dal birleşince, kesintiden sonra | **Dal ve worktree.** Birleşen dal ve worktree hemen silinir. A'nın dört deposunda uzakta yalnız main ve test kaldı. | [kanıtlı] |
 |  | **Ölü kayıtlar.** Kesintiden sonra `git worktree prune`. C'de 28 worktree kaydı silinmiş /tmp klasörlerini gösteriyordu. | [öneri] |
 
+<a id="hf-iyisi"></a>
+
 ## Bizdekinden iyisi
 
 Bizde denenmedi; belgelere ve kendi açıklarımıza dayanıyor.
@@ -585,7 +630,7 @@ Bizde denenmedi; belgelere ve kendi açıklarımıza dayanıyor.
 
 ### Değişiklik günlüğü parçaları
 
-Her dal kendi küçük dosyasını yazar (changes/unreleased/<dal>.md), sürüm anında tek komutla birleştirilir; towncrier ve changesets böyle çalışır. `merge=union` da olur, ama sıra elle kontrol edilir.
+Her dal kendi küçük dosyasını yazar (changes/unreleased/<branch>.md), sürüm anında tek komutla birleştirilir; towncrier ve changesets böyle çalışır. `merge=union` da olur, ama sıra elle kontrol edilir.
 
 [öneri]
 
@@ -646,11 +691,19 @@ Aynı commit oranı commit başına; bir özellik birden çok commit'e bölünd�
 ## Kaynaklar
 
 **Claude Code: proje hafızası, @import, auto memory**https://code.claude.com/docs/en/memory
+
 **Claude Code: araç başvurusu, kısmi okuma**https://code.claude.com/docs/en/tools-reference
+
 **OpenAI Codex: AGENTS.md ve 32 KiB sınırı**https://learn.chatgpt.com/docs/agent-configuration/agents-md
+
 **AGENTS.md açık biçimi**https://agents.md/
+
 **Keep a Changelog 1.1.0**https://keepachangelog.com/en/1.1.0/
+
 **git gitattributes: union birleştirme**https://git-scm.com/docs/gitattributes
+
 **towncrier: parça dosyalarla günlük**https://towncrier.readthedocs.io/en/stable/tutorial.html
+
 **Mimari kararların kaydı (ADR), ilk yazı**https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions
+
 **ADR örnekleri ve araçları**https://adr.github.io/

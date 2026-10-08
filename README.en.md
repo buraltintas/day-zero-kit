@@ -24,7 +24,7 @@ I am sharing this sincerely. To me, it is a guide to getting somewhere with fewe
 
 The guide does not write your product's code; it builds everything around it so the work starts organised. The products appear anonymously as Product A, B, C and D (Ürün A–D); the numbers come from their bills, logs and incident records from August to October 2026.
 
-**Language:** the guide (PDF and Markdown) is in Turkish. AI agents read it fine and can answer you in English; the skill set comes in both Turkish and English.
+**Language:** the guide (PDF and Markdown) is in Turkish. AI agents read it fine and can answer you in English. The skill set comes in Turkish and English: in the English set the instructions are English, while the guide sections the skills carry stay Turkish.
 
 ## Knocks taken, goals scored
 
@@ -43,7 +43,7 @@ The guide does not write your product's code; it builds everything around it so 
 
 ### 1. Give the guide to your agent
 
-Open the new product's repository, attach `guide/project-setup-guide.md` and paste:
+Pick one: install the plugin (below; the `project-setup` skill carries the full guide), or copy `guide/project-setup-guide.md` into the new product's repository, for example under `docs/`. Then paste this to your agent:
 
 ```
 We are building a new product: <the product in one sentence; who uses it>.
@@ -67,7 +67,7 @@ The agent first asks the decisions one by one, writes the answers to `docs/DECIS
 
 In Claude Code:
 
-```bash
+```text
 /plugin marketplace add buraltintas/day-zero-kit
 /plugin install day-zero-kit-en@day-zero-kit
 ```
@@ -94,7 +94,7 @@ For the first setup and for checks and decision support in the months that follo
 | `decision-support` | "Should we do this or that?" | For paid APIs, plans, analytics, real-time delivery, OTA, region and more: lays out options with real numbers and records the decision. |
 | `release-gate` | Before a store release or a production deploy | Runs the release gate and recommends ship or no-ship with evidence, counting remaining builds and users on old versions. |
 | `cost-audit` | Monthly, or when the bill rises | Fix list for database wake-ups, instance caps, spend caps, quotas and build minutes. |
-| `security-audit` | Before release and monthly | Findings on permissions, secrets, dependencies, reading other users' records, the bot door and KVKK. |
+| `security-audit` | Before release and monthly | Findings on permissions, secrets, dependencies, reading other users' records, the bot door and KVKK (Turkey's personal data protection law). |
 | `project-memory` | At the end of every task and session | Updates CHANGELOG, STATUS, TODO, DECISIONS and the handoff note so a newcomer starts fast. |
 | `alert-audit` | At setup and for every new external dependency | Checks that every error, credit, quota and expiry reaches the right person through the right channel. |
 | `seo-geo-routine` | Weekly and monthly | Runs SEO and GEO work; first checks that bots do not wake the database. |
@@ -124,4 +124,4 @@ It is not a guide for very high scale or multi-region setups. It is not legal ad
 
 ## License
 
-The guide text (`guide/` and the guide sections in the skills' `references/` folders) is shared under [CC BY 4.0](guide/LICENSE): you may use, adapt and share it with attribution. The skills, scripts and everything else are under the [MIT](LICENSE) license.
+The guide text (`guide/` and the guide sections in the skills' `references/` folders) is shared under [CC BY 4.0](guide/LICENSE): you may use, adapt and share it with attribution. The skills and everything else in the repository are under the [MIT](LICENSE) license.

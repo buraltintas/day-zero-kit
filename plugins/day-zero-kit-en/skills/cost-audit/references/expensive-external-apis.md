@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="pahali-api"></a>
 
@@ -17,12 +17,15 @@ Pahalı bir API'den önce alternatifler eksiksiz değerlendirilir. Açık veri, 
 Ürün B bir mağaza keşif uygulaması. İlk sürümde katalog, arama, konum seçici ve mağaza fotoğrafları Google Places API'ye dayanıyordu. Places Ağustos'ta projenin Google faturasının çoğunu yazdı; kısmi düzeltmeler yetmedi ve API Eylül'de tamamen kapatıldı.
 
 **₺1.500** Ağustos 2026'da Places: fotoğraf 3.786 çağrı ₺924, Enterprise ayrıntı 1.608 çağrı ₺576. Bu projenin ₺2.081'lik Ağustos Google faturasının ~%72'si.
+
 **₺0,33 ve ₺0,95** Ağustos faturamızda ücretsiz kotadan sonra bir fotoğrafın ve bir Enterprise ayrıntı çağrısının bedeli. Bugünkü liste fiyatı 49 TL ile ₺0,34 ve ₺0,98. 20 küçük resimli bir sonuç sayfası ~₺6,6.
+
 **~1.500 çağrı** Üç günde beş tek seferlik bakım komutundan gelen ayrıntı istekleri. Çoğu yalnız tür ya da durum istiyordu; hepsi Enterprise'tan ödendi.
 
 ## Aylık Places faturası
 
 Place Details PhotosPlace Details EnterpriseSKU kırılımı bakılmadıTL, fatura; ölçek gerçek
+
 _Grafik: Aylık Places faturası_
 
 ## Ne oldu

@@ -3,9 +3,10 @@ name: project-setup
 description: >-
   Yeni bir ürünün altyapısını gün 0'dan Proje Kurulum Rehberi'ne göre baştan sona kurar; önce sahibine
   verilmesi gereken kararları sorar, sonra kurulum planını aşama aşama uygular ve her aşamayı
-  doğrular. Yeni proje, yeni ürün, sıfırdan kurulum, "altyapıyı hazırla", "projeye başlıyoruz", Neon +
-  Go + Next.js + Expo yığını, Cloud Run, ilk commit, gün 0 ya da "nereden başlayalım" geçtiğinde,
-  kullanıcı rehberin adını söylemese bile bu skill'i kullan.
+  doğrular. Yeni proje, yeni ürün, sıfırdan kurulum, "altyapıyı hazırla", "projeye başlıyoruz", yeni
+  bir ürün için Neon + Go + Next.js + Expo yığını, gün 0 ya da "nereden başlayalım" geçtiğinde,
+  kullanıcı rehberin adını söylemese bile bu skill'i kullan. Var olan bir projede tek bir ayar ya da
+  servis için kullanma; onun için denetim skill'leri var.
 ---
 
 # Proje kurulumu (gün 0)
@@ -17,7 +18,8 @@ Bu skill ürünün kodunu yazmaz; kodun etrafını kurar: hesaplar, ortamlar, ve
 1. `references/how-to-use.md`: rehberin nasıl kullanıldığı, kimin ne yaptığı.
 2. `references/decisions-and-setup-plan.md`: karar listesi, "Gün 0: hesaplar ve sürümler", ajanın kurulum planı ve "Bitti sayılır".
 3. `references/project-memory.md`: gün 0'da açılacak dosyaların şablonları.
-4. Gerekince `references/full-guide.md` (tam rehber, büyük; bölüm başlığıyla ara, baştan sona okuma).
+4. Kısa yol ve kontroller için `references/fastest-setup-path.md`, `references/checklist.md`, `references/never.md`; henüz yaşanmamış riskler için `references/day-zero-precautions.md`.
+5. Gerekince `references/full-guide.md` (tam rehber, büyük; bölüm başlığıyla ara, baştan sona okuma).
 
 ## Akış
 

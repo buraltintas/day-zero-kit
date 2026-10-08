@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="ucretsiz"></a>
 
@@ -15,8 +15,10 @@ Sınırlar 8 Ekim 2026'da resmi sayfalardan okundu ve ikinci bir geçişte sayfa
 Ücretsiz katman faturalama hesabı başınadır; aynı hesaptaki projeler aynı kotayı paylaşır. Eylül'de hesap 1'deki iki ürün build kotasını birlikte 621 dakika aştı ve faturaya ₺187 yazıldı; ayrı hesaplarda ikisi de kotada kalırdı. Aynı hesaptaki ikinci ürüne ₺78 Cloud Run ücreti yazıldı, oysa kendi kullanımı kotanın altındaydı. Küçük bir ürünün gerçekten kullandığı kotaların değeri ayda ~$22: ~$15'i build dakikası, ~$6'sı Cloud Run.
 
 ücretsiz kotadakotayı aşan, faturalananEylül 2026, build dakikası; ölçek gerçek
+
 _Grafik: Eylül build dakikaları ve ücretsiz kota_
 **Google Cloud Şartları**
+
 Kural, kota için bir ürünü bölmek değildir. Google Cloud Şartları (madde 3.3) tek bir uygulamayı birden çok hesap ya da projeyle taklit ederek ücretten kaçınmayı ve kotayı dolanmayı yasaklıyor; ihlalde Google hizmeti askıya alabilir (madde 4.2). Her gerçek ürün kendi hesabında doğar, tek ürün hesaplara bölünmez. Hesaplar aynı ödeme profilinin altında açılır ve her birine bütçe alarmı kurulur. Ayrı hesap startup kredisinin doğru ürüne gitmesini ve ürünün devrini de kolaylaştırır.
 
 ## Neon Free'ye kim sığar
@@ -24,6 +26,7 @@ Kural, kota için bir ürünü bölmek değildir. Google Cloud Şartları (madde
 Aylık CU-saat, Ekim 2026 temposu (günlük ortalama × 30,4). Free'de proje başına ayda 100 CU-saat ve 5 GB çıkış var.
 
 Free'de ya da sığarLaunch'ta kalmalıCU-saat/ay
+
 _Grafik: Neon Free'ye kim sığar_
 
 ## Ücretsiz sınırlar, servis servis
@@ -132,7 +135,7 @@ _**Sıfırlanma** Her ay_ **Ücretsiz sınır:** Proje başına ayda 50 GiB; _D
 
 **Sınırda kalmak için:** Önce uygulamada gürültü kısılır; gerekirse uptime, /health ve statik 2xx satırları dışlanır. Hata, kapı ve denetim satırı dışlanmaz. Yeni projede log kovası AB'de.
 
-**Kurulum:** [öneri] Organizasyon varsa proje açılmadan önce: `gcloud logging settings update --organization=ORG --storage-location=europe-west1`. Yeni projenin `_Default` ve `_Required` kovaları böylece AB'de doğar. Organizasyon yoksa proje doğarken AB'de bir kova kurulur ve `_Default` yönlendiricisi ona çevrilir: `gcloud logging buckets create ab --location=europe-west1 --retention-days=30 --project PROJE`, sonra `gcloud logging sinks update _Default logging.googleapis.com/projects/PROJE/locations/europe-west1/buckets/ab --project PROJE`. Süzgeç ve dışlamalar yerinde kalır; 30 gün saklama aynı ücretsiz kotadadır. Bu yolda `_Required` kovası (yönetim denetim logları) global kalır ve KVKK belgesinde böyle yazılır. Logu okuyan iş ve log alarmları yeni kovada bir kez denenir; `gcloud logging sinks describe _Default --project PROJE` hedefte europe-west1 gösterir.
+**Kurulum:** [öneri] Organizasyon varsa proje açılmadan önce: `gcloud logging settings update --organization=ORG --storage-location=europe-west1`. Yeni projenin `_Default` ve `_Required` kovaları böylece AB'de doğar. Organizasyon yoksa proje doğarken AB'de bir kova kurulur ve `_Default` yönlendiricisi ona çevrilir: `gcloud logging buckets create ab --location=europe-west1 --retention-days=30 --project PROJECT`, sonra `gcloud logging sinks update _Default logging.googleapis.com/projects/PROJECT/locations/europe-west1/buckets/ab --project PROJECT`. Süzgeç ve dışlamalar yerinde kalır; 30 gün saklama aynı ücretsiz kotadadır. Bu yolda `_Required` kovası (yönetim denetim logları) global kalır ve KVKK belgesinde böyle yazılır. Logu okuyan iş ve log alarmları yeni kovada bir kez denenir; `gcloud logging sinks describe _Default --project PROJECT` hedefte europe-west1 gösterir.
 
 ### Cloud Monitoring
 
@@ -410,7 +413,7 @@ Bütçe ücretsiz, döküm sorguları BigQuery kotasında kalır. Eylül'deki �
 |---|---|---|---|
 | Bütçe alarmı | Her faturalama hesabına bir Cloud Billing bütçesi; %50, %80 ve %100'de e-posta. | Beklenen aylık tutar; küçük ürün için ~₺150. | Sürekli, kurulum ilk gün |
 | SKU bazında günlük maliyet | Faturalama dökümü BigQuery'ye; günlük sorgu tutarı SKU ve projeye göre toplar, önceki haftayla karşılaştırır. | Bir SKU'nun günlük tutarı önceki haftanın 2 katını geçerse. | Günde bir |
-| Cloud Build dakikası | Hesaptaki her projede ay içindeki build süreleri gcloud builds list --project PROJE --region europe-west1 ile ve bir kez de --region global ile toplanır, ay sonu temposu hesaplanır. Bölge verilmezse komut yalnız global build'leri listeler. Bölgesel tetikleyicinin build'leri o zaman sayılmaz ve alarm hiç çalmaz. | Tempo 2.000 dk'yı (%80) geçerse. | Haftada bir |
+| Cloud Build dakikası | Hesaptaki her projede ay içindeki build süreleri gcloud builds list --project PROJECT --region europe-west1 ile ve bir kez de --region global ile toplanır, ay sonu temposu hesaplanır. Bölge verilmezse komut yalnız global build'leri listeler. Bölgesel tetikleyicinin build'leri o zaman sayılmaz ve alarm hiç çalmaz. | Tempo 2.000 dk'yı (%80) geçerse. | Haftada bir |
 | Cloud Run CPU ve istek | billable_instance_time (vCPU ile çarpılır) ve request_count, hesaptaki projeler toplanarak. | Ay sonu temposu 144.000 vCPU-sn ya da 1,6 milyon isteği (%80) geçerse. | Haftada bir |
 | İnternet çıkışı | network/sent_bytes_count, kind=internet, servis bazında ve günlük. | Küçük üründe günde 1 GiB; ani artışın sebebi çoğu zaman bir kazıyıcı. | Günde bir, alarm |
 | Log hacmi | logging billing/bytes_ingested, proje bazında aylık toplam. | Proje başına 25 GiB (%50). | Ayda bir; alarmla sürekli |

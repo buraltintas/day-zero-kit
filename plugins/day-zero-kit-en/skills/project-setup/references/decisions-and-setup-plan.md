@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="kararlar"></a>
 
@@ -21,7 +21,9 @@ Kararlar ve kurulum adımları aynı dört zamana ayrılır. DUR, ürün sahibin
 Akışların kodu bu aşama bitince başlar.
 
 **17** karar
+
 **15** adım
+
 **11** DUR
 
 ### İlk kullanıcıdan önce
@@ -29,7 +31,9 @@ Akışların kodu bu aşama bitince başlar.
 İlk gerçek kullanıcı bu aşama bitince gelir.
 
 **8** karar
+
 **8** adım
+
 **4** DUR
 
 ### İlk mağaza sürümünden önce
@@ -37,7 +41,9 @@ Akışların kodu bu aşama bitince başlar.
 Yalnız mobil varsa.
 
 **4** karar
+
 **5** adım
+
 **3** DUR
 
 ### Sonra
@@ -45,7 +51,9 @@ Yalnız mobil varsa.
 Sürekli; ajan takvimden yürütür.
 
 **3** karar
+
 **5** adım
+
 **2** DUR
 
 ## Kararlar
@@ -122,13 +130,13 @@ Tek sayfa envanter; sağlayıcı listesi kararlara göre uzar. Yenileme tarihler
 ```
 # docs/ACCOUNTS.md: parola, kurtarma kodu ve anahtar buraya yazılmaz
 Sağlayıcı        | sahip        | yönetici | faturalama          | yenileme
-Google Cloud     | şirket       | 2        | ürünün hesabı       | kart <AA/YY>
-Neon             | şirket org'u | 2        | ürünün org'u        | kart <AA/YY>
-Alan adı         | şirket       | 2        | çok yıllık, kilitli | <YYYY-AA-GG>
+Google Cloud     | şirket       | 2        | ürünün hesabı       | kart <MM/YY>
+Neon             | şirket org'u | 2        | ürünün org'u        | kart <MM/YY>
+Alan adı         | şirket       | 2        | çok yıllık, kilitli | <YYYY-MM-DD>
 Cloudflare       | şirket       | 2        | Free                | yok
 E-posta (Resend) | şirket       | 2        | Free                | yok
 GitHub           | şirket org'u | 2        | Free                | yok
-Apple Developer  | şirket       | 2        | yıllık üyelik       | <YYYY-AA-GG>
+Apple Developer  | şirket       | 2        | yıllık üyelik       | <YYYY-MM-DD>
 Google Play      | şirket       | 2        | tek seferlik kayıt  | yok
 ```
 
@@ -168,6 +176,7 @@ STATUS ajanın ilk 5 dakikada okuduğu dosyadır. [öneri]
 ### Desteğin bitmesine kalan süre
 
 6 aydan fazla6 aydan az: yeni projede kullanılmaz
+
 _Grafik: Desteğin bitmesine kalan süre, 8 Ekim 2026: PostgreSQL 18 ~49 ay (14 Kas 2030); Node.js 26 (LTS 28 Eki'de) ~31 ay (30 Nis 2029); Node.js 24 LTS ~19 ay (30 Nis 2028); Next.js 16 ~12 ay (21 Eki 2027); Node.js 22 ~7 ay (30 Nis 2027); PostgreSQL 14 35 gün (12 Kas 2026); Next.js 15 13 gün (21 Eki 2026)_
 Yalnız tarihi yayımlanmış ana sürümler; Go, React, Expo SDK, TypeScript ve pgx tarih yayımlamıyor. Next.js tarihleri destek politikasından hesaplandı (ilk çıkış ve iki yıl).
 
@@ -189,19 +198,34 @@ Desteğine 6 aydan az kalan satır TODO'ya P1 girer.
 Sürümler ve destek tarihleri 8 Ekim 2026'da bu sayfalardan okundu.
 
 **Go sürümleri**https://go.dev/dl/?mode=json
+
 **Go sürüm geçmişi ve destek kuralı**https://go.dev/doc/devel/release
+
 **Node.js sürümleri**https://nodejs.org/dist/index.json
+
 **Node.js sürüm takvimi**https://raw.githubusercontent.com/nodejs/Release/main/schedule.json
+
 **Next.js destek politikası**https://nextjs.org/support-policy
+
 **React sürümleri**https://react.dev/versions
+
 **Expo SDK sürümleri ve istekleri**https://docs.expo.dev/versions/latest/
+
 **TypeScript güncel sürüm**https://www.typescriptlang.org/download
+
 **TypeScript sürüm duyuruları**https://devblogs.microsoft.com/typescript/
+
 **Neon'un desteklediği Postgres sürümleri**https://neon.com/docs/postgresql/postgres-version-policy
+
 **PostgreSQL sürüm politikası**https://www.postgresql.org/support/versioning/
+
 **pgx: desteklenen Go ve Postgres sürümleri**https://github.com/jackc/pgx
+
 **pgx sürümü**https://proxy.golang.org/github.com/jackc/pgx/v5/@latest
+
 **npm sürüm kayıtları: next, expo, typescript, typescript-eslint**https://registry.npmjs.org/
+
+<a id="kurulum-plani"></a>
 
 ## Ajanın kurulum planı
 
@@ -216,6 +240,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 1. Kararları sor ve kaydet
 
 [Proje hafızası](#hafiza)
+
 **Üretir:** docs/DECISIONS.md, K-001'den. Cevapsız satır AGENTS.md'de 'KARAR BEKLİYOR' ve TODO'nun karar bekleyen bölümünde.
 
 **Doğrular:** Her gün 0 kararının ya K numarası ya TODO satırı var.
@@ -225,6 +250,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 2. Proje hafızası
 
 [Proje hafızası](#hafiza)
+
 **Üretir:** AGENTS.md (deploy kuralı en üstte), CLAUDE.md'de yalnız @AGENTS.md, CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/runbooks/.gitkeep, docs/handoff/.gitkeep, .gitignore, .env.example (yalnız adlar). Sonraki adımların dosyaları bu adlarla açılır: docs/ACCOUNTS.md (3), docs/ALERTS.md (yenileme tablosu 3'te, uyarı listesi 16'da), sürüm tabanı docs/STATUS.md'nin Sürümler bölümünde (6), docs/KVKK.md (12), PRODUCT.md, DESIGN.md ve tokens/tokens.json (14).
 
 **Doğrular:** `git ls-files` hepsini listeler; Claude Code'un /memory listesinde AGENTS.md var.
@@ -232,6 +258,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 3. Hesaplar
 
 [Uyarılar](#uyarilar)
+
 **Üretir:** docs/ACCOUNTS.md'de hesap envanteri: sahip, iki yönetici, faturalama, yenileme tarihi; tarihler docs/ALERTS.md'deki yenileme tablosunda.
 
 **Doğrular:** Envanterde boş hücre yok; kök hesaplarda anahtar ürün sahibiyle ekranda görüldü.
@@ -241,24 +268,27 @@ Akışların kodu bu aşama bitince başlar.
 ### 4. Faturalama ve bütçe
 
 [Ücretsiz katmanlar](#ucretsiz)
+
 **Üretir:** Ürünün faturalama hesabı ve Neon org'u; %50, %80, %100 bütçe ve Pub/Sub; kredisiz ikinci bütçe; BigQuery fatura dökümü.
 
-**Doğrular:** `gcloud billing budgets list --billing-account=FATURA_HESABI` ürünün faturalama hesabında iki bütçe ve üç eşik gösterir.
+**Doğrular:** `gcloud billing budgets list --billing-account=BILLING_ACCOUNT` ürünün faturalama hesabında iki bütçe ve üç eşik gösterir.
 
 **DUR:** Faturalama hesabı ve Neon'un ücretli planı ürün sahibinin kartıyla açılır.
 
 ### 5. Alan adı ve DNS
 
 [Kenar ve DNS](#katman-5)
+
 **Üretir:** Cloudflare'de kayıtlar başta gri; web Worker ile run.app'e, api. domain mapping ile; transfer kilidi, çok yıllık yenileme; dört güvenlik firmasına kategori başvurusu.
 
-**Doğrular:** `dig +short NS ALAN` Cloudflare'i, whois clientTransferProhibited'ı gösterir.
+**Doğrular:** `dig +short NS DOMAIN` Cloudflare'i, whois clientTransferProhibited'ı gösterir.
 
 **DUR:** Alan adını ürün sahibi kaydeder.
 
 ### 6. Depolar ve sürümler
 
 [Depo kuralları](#depo-kurallari)
+
 **Üretir:** Özel depolar, test ve main; gitleaks, push protection, 1 MB ve ikili kapısı; tablodaki sürümler, STATUS'taki taban, Renovate.
 
 **Doğrular:** Sahte anahtarlı ya da 2 MB'lık commit reddedilir; main'e force push ve main'i silme reddedilir, test'ten main'e fast-forward push geçer; desteğine 6 aydan az kalan sürüm yok.
@@ -268,6 +298,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 7. Neon
 
 [Postgres](#katman-1)
+
 **Üretir:** Prod Launch'ta Frankfurt'ta, Postgres 18; test Free org'da; üç rol, rol zaman aşımları, geçmiş 7 gün; MinConns=0, MaxConnIdleTime=90s.
 
 **Doğrular:** Pooler üzerinden jsonb, bytea ve dizi testi geçer; son istekten ~6,5 dakika sonra (havuz 90 sn + Neon 5 dk) compute uyur, Neon'un saatlik tüketiminde görülür.
@@ -277,6 +308,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 8. Servisler ve hat
 
 [CI/CD](#katman-7)
+
 **Üretir:** API ve web europe-west1'de min 0, max 2–3 ve 3, CPU boost, Next'e 1 GiB, service.yaml; tek Docker deposu, bölgesel tetikleyici, temizlik kuralı; test digest üretir, main onayla terfi eder. Tetikleyiciler baştan kendi build hesabıyla kurulur. Bu hesap roles/run.admin, roles/artifactregistry.writer ve roles/logging.logWriter taşır. roles/iam.serviceAccountUser proje genelinde verilmez, yalnız deploy ettiği çalışma hesaplarının üstünde verilir. Build dosyasında `options: logging: CLOUD_LOGGING_ONLY` bulunur; kendi hesabıyla koşan build bu satır olmadan başlamaz.
 
 **Doğrular:** Depo tanımında cleanupPolicyDryRun yok ya da false; test push'unun build'i kendi build hesabıyla SUCCESS.
@@ -288,9 +320,10 @@ Akışların kodu bu aşama bitince başlar.
 ### 9. Yetki ve sırlar
 
 [Güvenlik](#katman-8)
+
 **Üretir:** Compute hesabında Editor varsa, tetikleyiciler kendi build hesabına geçtikten sonra kaldırılır. Servisler rolsüz kendi hesabıyla çalışır; sırlar Secret Manager'da, tek etkin sürüm. WIF yalnız GitHub Actions'ta koşan iş için kurulur, Cloud Build'e gerekmez.
 
-**Doğrular:** `gcloud projects get-iam-policy PROJE --flatten='bindings[].members' --filter='bindings.role=roles/editor' --format='value(bindings.members)'` boş döner. Compute, build ve uygulama hesapları bu listede yoktur. Listede Google'ın kendi hizmet aracısı `PROJE_NO@cloudservices.gserviceaccount.com` çıkarsa ona dokunulmaz. Bazı API'ler kullanılınca Google bu hesabı Editor ile kurar ve rolün kalmasını ister.
+**Doğrular:** `gcloud projects get-iam-policy PROJECT --flatten='bindings[].members' --filter='bindings.role=roles/editor' --format='value(bindings.members)'` boş döner. Compute, build ve uygulama hesapları bu listede yoktur. Listede Google'ın kendi hizmet aracısı `PROJECT_NUMBER@cloudservices.gserviceaccount.com` çıkarsa ona dokunulmaz. Bazı API'ler kullanılınca Google bu hesabı Editor ile kurar ve rolün kalmasını ister.
 
 **DUR:** Bu adımın bütün komutları betikle, ürün sahibinin kimliğiyle çalışır. Sır değerini Secret Manager'a ürün sahibi yazar, ajan değeri görmez.
 
@@ -299,6 +332,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 10. Okuma yolu ve kapı
 
 [Mimari](#mimari)
+
 **Üretir:** Herkese açık okumalar API belleğinden, GCS işaretiyle; veritabanısız /health; proxy.ts'in ilk satırında ortak listeli kapı; güvenlik başlıkları, CSP report-only.
 
 **Doğrular:** Herkese açık sayfada 'db wake' satırı yok; /.env 404; veritabanı kapalıyken /health 200.
@@ -306,6 +340,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 11. E-posta
 
 [E-posta](#katman-9)
+
 **Üretir:** Resend AB, auth. ve news.; SPF, DKIM, DMARC; outbox; günlük ortak sayaç: 70'te uyarı, 80'de toplu gönderim durur, kodlar 100'e kadar; web kod formunda Turnstile; API'de App Check doğrulaması, mobil varsa mobil kod ucu token'sız isteği ilk günden reddeder; yedek sağlayıcı SES aynı auth. alt alan adında.
 
 **Doğrular:** Alan adları sağlayıcıda doğrulanmış; test ortamından izinli adrese kod geldi; test ortamında sayaç 100'e çekilince kod SES'ten gerçek bir gelen kutusuna geldi.
@@ -315,6 +350,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 12. KVKK
 
 [KVKK](#kvkk)
+
 **Üretir:** Veri yeri, işleyen listesi ve aktarım dayanağı tek belgede; gizlilik metni taslağı.
 
 **Doğrular:** Kodda ve faturada geçen her sağlayıcı listede.
@@ -324,6 +360,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 13. Ücretli dış API (varsa)
 
 [Pahalı API'ler](#pahali-api)
+
 **Üretir:** 'Her ücretli API'den önce' listesinin cevapları; sağlayıcıda günlük kota. Ürüne özel, kısıtlı anahtar 16. adımın uyarıları denendikten sonra açılır.
 
 **Doğrular:** Kota konsolda görünür; günlük maliyet sorgusu SKU kırılımıyla çalışır.
@@ -333,6 +370,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 14. Tasarım kaynağı
 
 [Tasarım sistemi](#tasarim)
+
 **Üretir:** tokens/tokens.json, ondan üretilen CSS ve mobil tema, DESIGN.md; koyu tema kararı DECISIONS'ta.
 
 **Doğrular:** CI token dışı hex'leri sayar; yeniden üretilen dosyalarda fark yok.
@@ -340,6 +378,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 15. Mobil iskelet (mobil seçildiyse)
 
 [Mobil kit](#mobilkit)
+
 **Üretir:** Expo SDK 57, CNG, New Arch; app.config'te DECISIONS'taki bundle ID, paket adı ve şema; eas.json'da profil ortamları; kit iskeleti: sürüm başlıkları, update-policy, zorunlu güncelleme ekranı, push kaydı. Yerel yol: `eas build --local`, fastlane, ANDROID_HOME. App Check debug sağlayıcısı yalnız test ve yerel build'de; debug token'ları sırdır, depoya yazılmaz.
 
 **Doğrular:** Yerelde preview profiliyle alınan build'in istekleri test API logunda X-App-Build ile görünür. Token'sız kod isteği test API'de reddedilir.
@@ -355,6 +394,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 16. Uyarılar ve alarmlar
 
 [Uyarılar](#uyarilar)
+
 **Üretir:** alerts tablosu, notify(), acil ve bugün log alarmları; uptime 300 sn; 5xx, OOM, ERROR > 0, webhook tek 5xx; denetim işi; pazartesi özeti.
 
 **Doğrular:** Her uyarı türü [TEST] ile uçtan uca denendi; iki alıcı postayı ve telefondaki bildirimi gördüğünü yazdı.
@@ -366,6 +406,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 17. Analitik ve admin
 
 [Analitik ve admin](#analitik)
+
 **Üretir:** POST /v1/events, on zorunlu olay; ayrı admin girişi, izin listesi; admin_audit aynı işlemde; bayrak, politika ve duyuru veritabanında.
 
 **Doğrular:** Token'sız admin çağrısı ve denetim satırı testleri yeşil; olay ucu gerçek Postgres'e karşı test edildi.
@@ -373,6 +414,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 18. Yedek
 
 [Yedek](#yedek)
+
 **Üretir:** Günlük döküm, geçici Postgres'e geri yükleme, boyut karşılaştırması, 'backup ok', iki alarm, haftalık proje dışı kopya, restore-db.md.
 
 **Doğrular:** Bozuk bir çalışmada alarm geldi; bir elle geri yükleme yapıldı, süresi runbook'ta.
@@ -380,6 +422,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 19. Kırmama sözleşmeleri
 
 [Kırmadan değiştirmek](#kirmama)
+
 **Üretir:** 401 ve 503 sözleşme testi, yalnız ekleyen migration denetimi, varsayılan kapalı anahtarlar, deploy.md ve rollback.md.
 
 **Doğrular:** Sözleşme testinde veritabanı havuzu kimsenin dinlemediği bir adrese (127.0.0.1:1) bağlanır; oturumlu uç 503, token'sız ya da bozuk token'lı istek 401 döner. Neon compute'u askıya almak bu durumu üretmez, ilk bağlantı onu uyandırır. Erişilemeyen adresle revizyon açmak da denenmez: API açılışta veritabanını 30 sn bekler, gelmezse kapanır; revizyon hiç açılmaz. Test ortamında önceki revizyona dönüldü.
@@ -387,6 +430,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 20. SEO ve GEO (herkese açık sayfa varsa)
 
 [SEO ve GEO](#seo)
+
 **Üretir:** Search Console DNS TXT ile, Bing; istek anında sitemap, canonical; robots.txt kapıdan; OG kartları; panelde noindex.
 
 **Doğrular:** Her sayfa tipi JavaScript'siz curl ile okunur; sitemap sayısı curl ile eşit; sayfa ve sitemap istekleri 'db wake' yazmaz.
@@ -396,6 +440,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 21. Gerçek zamanlı (akış istiyorsa)
 
 [Gerçek zamanlı](#mesajlasma)
+
 **Üretir:** Seçilen basamak ve nedeni; istemci anahtarlı mesaj tablosu; bildirim, silme, rapor ve engel kuralları.
 
 **Doğrular:** Arka planda ve gizli sekmede yoklama isteği 0, logdan okundu.
@@ -403,6 +448,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 22. Startup kredileri
 
 [Krediler](#krediler)
+
 **Üretir:** Başvuru dosyası: iş e-postası, ürün tanımı, kullanım rakamları; kredi kaydı ve bitişten bir hafta önce hatırlatma.
 
 **Doğrular:** Her kredinin bitişi yenileme tablosunda.
@@ -412,6 +458,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 23. İlk canlı çıkış ve ölçüm
 
 [Kırmadan değiştirmek](#kirmama)
+
 **Üretir:** Test'te doğrulanan digest'in terfisi, candidate duman testi, ertesi sabah kontrolü; performans hedef tablosu.
 
 **Doğrular:** Kural 8.1: build, revizyon, sağlık 200, ilk 30 dakikada 5xx 0; ilk p50 ve p90 STATUS'ta.
@@ -427,6 +474,7 @@ Yalnız mobil varsa.
 ### 24. Kit ve yayın kapısı
 
 [Mobil kit](#mobilkit)
+
 **Üretir:** Kitin OTA dışındaki on parçası; yayın kapısının 19 maddesi kanıtlarıyla sürüm notunda. OTA seçilmediyse 11. madde 'seçilmedi' ve karar numarasıyla (K-NNN) yazılır; seçildiyse 28. adımda kurulur.
 
 **Doğrular:** İki platformun release build'i gerçek telefonda; zorunlu ekran önceki mağaza build'inde görüldü.
@@ -436,6 +484,7 @@ Yalnız mobil varsa.
 ### 25. Mağaza hazırlığı
 
 [Expo mobil](#katman-4)
+
 **Üretir:** Play hesabı şirket adına; hesap kişisel açıldıysa 12 testçili 14 günlük kapalı test ilk sürümden en az 3 hafta önce başlar. Uygulama içi silme, gizlilik formları, inceleme hesabı.
 
 **Doğrular:** Formlar her SDK'yı kapsar; inceleme hesabının her girişi log yazar.
@@ -445,6 +494,7 @@ Yalnız mobil varsa.
 ### 26. Build bütçesi ve gönderim provası
 
 [Mobil dağıtım](#dagitim)
+
 **Üretir:** Platform başına aylık build bütçesi README'de; yerelde alınan build'le `eas submit --path` provası; App Store Connect kaydının kimliği eas.json'da ascAppId olarak.
 
 **Doğrular:** `eas account:usage` kalan hakkı gösterir; yerel build mağazanın iç test kanalına ulaştı. İlk Android gönderimi iç test kanalına gider; mağaza girişi ve formlar bitene kadar uygulamanın Play Console'da taslak kalması prova hatası sayılmaz.
@@ -454,6 +504,7 @@ Yalnız mobil varsa.
 ### 27. Ödeme (satış varsa)
 
 [Expo mobil](#katman-4)
+
 **Üretir:** RevenueCat, 10 dk TTL'li sunucu mutabakatı, ham gövdeyi kaydeden webhook, tek 5xx alarmı.
 
 **Doğrular:** Sağlayıcı panelinde bir teslim başarılı; webhook kapalıyken Premium doğru.
@@ -461,6 +512,7 @@ Yalnız mobil varsa.
 ### 28. OTA (seçildiyse)
 
 [Mobil kit](#mobilkit)
+
 **Üretir:** expo-updates, fingerprint, kanal eşlemesi; ortamı zorlayan yayın betiği.
 
 **Doğrular:** Preview güncellemesi release build'de uygulandı; hatalı güncellemede geri dönüş denendi.
@@ -476,6 +528,7 @@ Sürekli; ajan takvimden yürütür.
 ### 29. Her hafta
 
 [Performans](#performans)
+
 **Üretir:** p50 ve p90, soğuk başlangıç, uyanış ve OOM; pazartesi özeti; 7 günlük sürüm dağılımı.
 
 **Doğrular:** STATUS'ta haftanın satırı.
@@ -483,6 +536,7 @@ Sürekli; ajan takvimden yürütür.
 ### 30. Her ay
 
 [Kontrol listesi](#kontrol)
+
 **Üretir:** Fatura SKU kırılımıyla, Neon tüketimi, yedek, geri dönüş imajı, 60 günün yenilemeleri; güncelleme günü ve destek bitişleri.
 
 **Doğrular:** 'Her ay' kutuları işaretli; 6 aydan az kalan sürüm TODO'da P1.
@@ -492,6 +546,7 @@ Sürekli; ajan takvimden yürütür.
 ### 31. Üç ayda bir
 
 [Yedek](#yedek)
+
 **Üretir:** Son döküm yeni bir Neon dalına tam yüklenir, md5 karşılaştırılır; ücretsiz katman şartları yeniden okunur.
 
 **Doğrular:** Süre runbook'ta; değişen sınır tabloda.
@@ -499,6 +554,7 @@ Sürekli; ajan takvimden yürütür.
 ### 32. Yeni SDK, işleyen ya da platform
 
 [KVKK](#kvkk)
+
 **Üretir:** KVKK listesi, gizlilik metni, App Store etiketi ve Data safety aynı gün güncellenir.
 
 **Doğrular:** Yeni SDK listede ve iki mağaza beyanında.
@@ -506,6 +562,7 @@ Sürekli; ajan takvimden yürütür.
 ### 33. İçerik otomasyonu (seçildiyse)
 
 [İçerik otomasyonu](#icerik)
+
 **Üretir:** Hattın on bir parçası, açılış kapısının 17 maddesi, bir haftalık kuru çalışma.
 
 **Doğrular:** Bozuk token'la alarm geldi; aynı iş iki kez çalışınca ikinci yayın yok.

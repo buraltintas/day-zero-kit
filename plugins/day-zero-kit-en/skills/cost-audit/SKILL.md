@@ -27,7 +27,7 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 1. Read the numbers (read-only; name the project explicitly in every command): the last 30 days' bill by SKU, Neon daily CU-hours and wake-ups, the Cloud Run instance peak and max-instances, build minutes, log volume, image repository size, external API call counts.
 2. Compare each line with the guide's target. Examples: if the database wakes more than a few times a day, find what wakes it (a scheduler, a bot path, a public read); if max-instances is far above the 30-day peak, lower it; if there is no spend cap and no three-threshold budget alarm, add them.
-3. Compute each fix's monthly effect and write its evidence. Re-read the exchange rate that day.
+3. Compute each fix's monthly effect and write its evidence. Default rate: as in the guide (49 TL/$), but re-read that day's rate.
 4. If a fix can affect users (a cap set too low, a free tier that stops when full), state the risk plainly.
 
 ## Report

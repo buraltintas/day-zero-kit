@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="icerik"></a>
 
@@ -13,7 +13,9 @@ E-posta ve paylaşım
 Sunucudan, resmi API'lerle, onaylı ve kayıtlı paylaşım yapan bir hat gerekir: şirkete ait hesaplar ve uygulamalar, token kasası ve süre izleyici, tekilliği olan yayın kuyruğu, platform başına görsel çizici, insan onayı, denetim kaydı, deploy gerektirmeyen kapatma anahtarı ve harcama tavanı. Platform kuralları ve fiyatları sık değişir; X 2026'da fiyat modelini iki kez değiştirdi. Bu yüzden tavan, alarm ve kapatma anahtarı seçenek değil, şarttır.
 
 **30 gün** X kredisi bitmişti; her gün denenen paylaşım 402 aldı ve kimse fark etmedi.
+
 **~13 kat** X'te bağlantılı gönderi bağlantısıza göre: $0,20 ve $0,015.
+
 **60 gün** Meta kullanıcı token'ının ömrü; süresiz system user token'ına geçildi.
 
 ## Bizde ne oldu
@@ -424,38 +426,70 @@ Meta'nın izin geri alma ya da uygulama kaldırma için bildirim (deauthorize ca
 
 System user token'ı üretmek için belgeler API yolunda uygulamanın Ads Management standart erişimi olmasını istiyor; bizde token iş yöneticisi ekranından üretildi ve bu şart sorulmadı.
 
+<a id="icerik-kaynaklar"></a>
+
 ## Kaynaklar
 
 Resmi sayfalar Ekim 2026'da okundu. "Bizde ne oldu" kartları kendi kayıtlarımızdan.
 
 **X API fiyatları**https://docs.x.com/x-api/getting-started/pricing
+
 **X başlangıç kredileri**https://docs.x.com/x-api/getting-started/free-credits
+
 **X API değişiklik günlüğü**https://docs.x.com/changelog
+
 **X hız sınırları**https://docs.x.com/x-api/fundamentals/rate-limits
+
 **X yanıt kodları ve hatalar**https://docs.x.com/x-api/fundamentals/response-codes-and-errors
+
 **X medya yükleme önerileri**https://docs.x.com/x-api/media/quickstart/best-practices
+
 **X OAuth 2.0 yetkilendirme kodu ve PKCE**https://docs.x.com/fundamentals/authentication/oauth-2-0/authorization-code
+
 **X yalnız uygulama token'ı**https://docs.x.com/fundamentals/authentication/oauth-2-0/application-only
+
 **X kimlik doğrulama SSS**https://docs.x.com/fundamentals/authentication/faq
+
 **X geliştirici uygulaması ve izinler**https://docs.x.com/resources/fundamentals/developer-apps
+
 **X geliştirici kuralları**https://docs.x.com/developer-guidelines
+
 **X otomasyon kuralları (yardım sayfası, Cloudflare yüzünden okunamadı)**https://help.x.com/en/rules-and-policies/x-automation
+
 **Instagram platformu genel bakış**https://developers.facebook.com/docs/instagram-platform/overview
+
 **Instagram içerik yayınlama**https://developers.facebook.com/docs/instagram-platform/content-publishing
+
 **Instagram medya ucu, biçim ve boyut**https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media
+
 **Instagram girişli yol**https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/business-login
+
 **Meta erişim seviyeleri**https://developers.facebook.com/docs/graph-api/overview/access-levels
+
 **Meta hız sınırları**https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+
 **Meta hata kodları**https://developers.facebook.com/docs/graph-api/guides/error-handling
+
 **Meta uzun ömürlü token**https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived
+
 **Meta 90 günlük veri erişimi süresi**https://developers.facebook.com/docs/facebook-login/auth-vs-data
+
 **Meta system user token'ı**https://developers.facebook.com/docs/business-management-apis/system-users/install-apps-and-generate-tokens
+
 **Meta system user sayıları**https://developers.facebook.com/docs/marketing-api/system-users/overview
+
 **Facebook Sayfası gönderileri**https://developers.facebook.com/docs/pages-api/posts
+
 **Threads gönderileri**https://developers.facebook.com/docs/threads/posts
+
 **Threads genel bakış ve sınırlar**https://developers.facebook.com/docs/threads/overview
+
 **Threads uzun ömürlü token**https://developers.facebook.com/docs/threads/get-started/long-lived-tokens
+
 **LinkedIn Posts API**https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api
+
 **LinkedIn erişim katmanları**https://learn.microsoft.com/en-us/linkedin/marketing/increasing-access
+
 **LinkedIn Community Management başvurusu**https://learn.microsoft.com/en-us/linkedin/marketing/community-management-app-review
+
 **LinkedIn programatik yenileme token'ı**https://learn.microsoft.com/en-us/linkedin/shared/authentication/programmatic-refresh-tokens

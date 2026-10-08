@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="cevaplar"></a>
 
@@ -8,7 +8,7 @@
 
 ## Kimi engelleriz, kimi engellemeyiz
 
-[aç] hiçbir kural dokunmaz[sınırla] hız kovasından düşer[izle] yalnız logda görünür[engelle] 403 ya da 404
+[aç] hiçbir kural dokunmaz [sınırla] hız kovasından düşer [izle] yalnız logda görünür [engelle] 403 ya da 404
 
 | Alibaba Cloud ve benzeri bulutlardan gelen kazıyıcılar |
 | Tarayıcı kılığında bulut kazıyıcısı | [engelle] | Bulutun bütün ağı (ASN) içerik sayfalarında 403 alır; API, oturum, form ve yasal sayfalar açık kalır. |
@@ -26,11 +26,15 @@
 ## ₺510–690 bizde gerçek mi?
 
 Dört ürünün toplamı
+
 ~₺1.300/ay
+
 Eylül'de ~₺3.900–4.400
+
 **Yalnız günlük kullanıcılı ürün için.** Ürün A bugün ~₺610 tutuyor. Öteki üç ürün ₺5–510 arasında.
 
 Yeni ve az trafikli bir ürünün bulut faturası ayda ~₺55–135 olur.
 
 NeonGoogle CloudTL/ay, 8 Ekim 2026; alan adı ve mağaza (Apple, Google) ücretleri hariç
+
 _Grafik: Ürün başına aylık maliyet_

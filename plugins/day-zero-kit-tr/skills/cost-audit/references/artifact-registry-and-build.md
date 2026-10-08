@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="registry"></a>
 
@@ -11,10 +11,15 @@ Artifact Registry ve Cloud Build
 Dört projede 5 Docker deposu var; toplam 6,9 GB ve 94 imaj tutuyorlar. Temizlik kuralları hepsinde gerçekten çalışıyor, dry-run'da değil. Artifact Registry'nin imaj başına ücretli taraması hiçbir depoda açık değil, bütün tetikleyiciler global bölgede. Bugün kalıcı bir para kaçağı yok: Artifact Registry depolaması ayda ~$0,60 tutuyor. Asıl açık geri dönüş penceresi: dört serviste iki günden kısa.
 
 **6,9 GB** 5 Docker deposunda 94 imaj. Depolama ayda ~$0,60; ilk 0,5 GB ücretsiz.
+
 **3.751 dk** Son 30 günde 807 başarılı build. Ücretsiz kota faturalama hesabı başına ayda 2.500 dk.
+
 **0,9–16,5 gün** Bugünkü geri dönüş penceresi, servise göre. Önerilen kuralla 30 gün.
+
 **~5 kat** Buildpacks ile kurulan Next imajı Dockerfile'lı Next imajından büyük: 420–456 MB ve 77–92 MB.
+
 **%51** Ürün A'nın Ekim build dakikalarında test tetikleyicilerinin payı.
+
 **~$210/ay** Zafiyet taraması build depolarında açık olsaydı tutacak rakam: itilen her digest $0,26.
 
 ## Depolar ve temizlik
@@ -75,59 +80,72 @@ Ortalama süre: Go API 3,5–5,7 dk, bunun 141–275 sn'si önbelleksiz docker b
 ## Bugünkü kurallarımız
 
 Dört proje
+
 Tek AR deposu (cloud-run-source-deploy), europe-west1. 'En yeni 5'i tut, 1 günden eskiyi sil.' Tarama kapalı, tetikleyici global.
 
 Ürün A
+
 main prod'a, test test ortamına deploy eder; main'e yalnız test'ten geçen commit gider. Test ve prod ayrı paketlerde, çünkü NEXT_PUBLIC ve REACT_APP değerleri build anında gömülüyor. Migrate job'ı her API sürümünde yeni imaja çevriliyor. Tarayıcı servisi ve yedek imajı elle bölgesel build'le üretiliyor.
 
 Ürün B
+
 Yalnız main tetikleyicisi. UI buildpacks ile üretiliyor; Pull ve Push adımları 2 Ekim'de kaldırıldı, Ekim'deki 35 UI build'inin hepsi başarılı.
 
 Ürün C
+
 Yalnız main tetikleyicisi. Testler GitHub Actions'ta koşuyor, deploy yapmıyor.
 
 Ürün D
+
 Yalnız main tetikleyicisi. UI buildpacks ile üretiliyor.
 
 ## Ne yanlış gitti, neye para gitti
 
 ₺117
+
 Temizlik kuralları kurulduktan 21 Eylül'e kadar dry-run'da kaldı ve hiçbir şey silinmedi. Ürün A deposu 1,3 GB ve 68 imaja çıktı; Ürün B'nin AR depolaması Eylül'de ₺117 tuttu.
 
 **Ders:** Kural listesine değil, describe çıktısındaki cleanupPolicyDryRun alanına bakılır.
 
 ₺282
+
 Ürün B'de global buildpack tetikleyicisi her build'de 428 MB'lık imajı Avrupa'dan ABD'deki işçiye çekip geri itti: Eylül'de 194 build, 73 GiB kıtalar arası çıkış. Adımlar 2 Ekim'de kaldırıldı. Aynı kalıp ayda ~15 build'de ~$0,50 tutar ve her build iki imaj yazdığı için geri dönüş penceresini yarıya indirir.
 
 **Ders:** Tetikleyici, AR ve Cloud Run aynı bölgede olur; global bir build AR'den imaj çekmez.
 
 2 kez
+
 Migrate job'ı 'en yeni 5'in dışında kalmış bir imaja sabitti. Temizlik onu silince job kırılma noktasına geldi ve elle yeni imaja çevrildi; 21 Eylül ve 7 Ekim'de aynı şey oldu.
 
 **Ders:** Job imajı servis imajıyla aynı build'de güncellenir.
 
 1 gün
+
 Eylül'de API'nin geri dönülecek revizyonunun imajı bir gün sonra silindi. Ondan sonra geri dönüşün tek yolu revert ve yeniden build oldu.
 
 **Ders:** Bir önceki canlı imaj AR'de durmadan yeni deploy yapılmaz; prev etiketi bunu sağlar.
 
 ₺187
+
 İki ürün aynı faturalama hesabını paylaşıyor ve Eylül'de build kotası aşıldı. Ürün A'da test build'leri dakikaların yarısı.
 
 **Ders:** Kotayı birlikte aşan iki ürün ayrı faturalama hesabına alınır; tetikleyicilere includedFiles ve ignoredFiles eklenir.
 
 ## Yeni proje için kurallar
 
-Rehbere hazır kurallar; DEPO, PROJE, SERVIS ve ONCEKI yerine kendi adları yazılır.
+Rehbere hazır kurallar; REPO, PROJECT, SERVICE ve PREVIOUS yerine kendi adları yazılır.
 
+<a id="ar-kural-1"></a>
 1. Bölge tektir.
 
 AR deposu, Cloud Run ve Cloud Build tetikleyicisi aynı bölgede, europe-west1'de olur; tetikleyici global bırakılmaz. Aynı bölge içindeki aktarım ücretsiz, kıtalar arası çıkış $0,08/GiB. Global bir build'de AR'den imaj çekilmez.
 
+<a id="ar-kural-2"></a>
 2. Projede tek Docker deposu, build adımları depoda.
 
 Build adımları depodaki cloudbuild.yaml dosyasında durur. Cloud Run'ın kendi kurduğu satır içi tetikleyici olduğu gibi bırakılmaz, çünkü incelenmez ve sürümlenmez.
 
+<a id="ar-kural-3"></a>
 3. Temizlik: canlı ve önceki imaj süresiz, deploy edilen 30 gün, testte geçen 14 gün, en yeni 10, gerisi 2 gün.
 
 Kural `cleanup.json` dosyasına yazılır ve önce dry-run'la uygulanır. Bir gün sonra aynı komut `--dry-run` olmadan çalıştırılır, ardından describe çıktısında `cleanupPolicyDryRun` alanının olmadığı ya da false olduğu görülür. `live` ve `prev` etiketleri her deploy'da taşınır ve yaş sınırı olmadan tutulur: canlı imaj, geri dönüş imajı ve job'ın sabitlediği imaj hiç silinmez. Yalnız `deployed-*` kuralına güvenmek yetmez, çünkü `newerThan` yükleme anından sayılır: 30 gündür deploy almayan bir servisin canlı imajı 10 yeni test build'inden sonra silinir. 21 Eylül ve 7 Ekim'de migrate job'ı, sabitlendiği imaj sayı kuralıyla silinince kırıldı. Deploy edilmeyen build 2 gün durur, en yeni 10 imaj her zaman kalır. Ürün A'nın deploy hızında 30 günde ~4 GB, ayda ~$0,40.
@@ -148,11 +166,12 @@ Kural `cleanup.json` dosyasına yazılır ve önce dry-run'la uygulanır. Bir g�
 ```
 
 ```
-gcloud artifacts repositories set-cleanup-policies DEPO \
-  --project PROJE --location europe-west1 \
+gcloud artifacts repositories set-cleanup-policies REPO \
+  --project PROJECT --location europe-west1 \
   --policy cleanup.json --dry-run
 ```
 
+<a id="ar-kural-4"></a>
 4. Her build tam SHA'yla etiketlenir, her deploy etiketleri taşır.
 
 Terfinin son adımı eski live'ı prev'e, yeni digest'i live'a taşır ve `deployed-YYYYMMDD-HHMMSS` ekler. Aynı digest yeniden terfi edilirse prev'e dokunulmaz; yoksa prev live'a eşit olur ve önceki imaj korumasız kalır. live ya da prev adımı hata verirse build kırmızı biter ve Cloud Build alarmı çalar; deploy geri alınmaz ama koruma eksik kalmaz. `deployed-*` etiketindeki `|| true` deploy'u yalnız bu etiket yüzünden düşürmemek için. Deploy latest ile yapılmaz; job'lar servisle aynı digest'e aynı build'de çevrilir. Cloud Build'de `$$` kaçışı şart.
@@ -176,18 +195,22 @@ Terfinin son adımı eski live'ı prev'e, yeni digest'i live'a taşır ve `deplo
       $_IMG:deployed-$$(date -u +%Y%m%d-%H%M%S) || true
 ```
 
+<a id="ar-kural-5"></a>
 5. Değiştirilemez etiket build deposunda açılmaz.
 
 Bu ayar açık olan depoda temizlik etiketli imajları silemez; her build SHA etiketi taşıdığı için depo sonsuza kadar büyür.
 
+<a id="ar-kural-6"></a>
 6. Tarama build deposunda kapalı kalır.
 
 Otomatik tarama itilen her yeni digest için $0,26 alır, test build'leri de sayılır. Ekim hızıyla dört ürün ayda ~820 imaj itiyor; tarama açık olsaydı ayda ~$210 (~₺10.000) tutardı, bugünkü bütün GCP faturasının yirmi katından fazla. Yerine build'de ya da haftada bir canlı imajlara karşı Trivy, osv-scanner, govulncheck veya npm audit koşar; maliyeti yalnız build dakikası. AR'nin kendi taraması istenirse yalnız terfi edilen imajların durduğu küçük bir release deposunda açılır, build deposunda `--disable-vulnerability-scanning` uygulanır.
 
+<a id="ar-kural-7"></a>
 7. Temel imajlar sabit sürümle yazılır.
 
 Go için distroless/static nonroot (bizde 20–31 MB). Next için output standalone ve node:24-alpine (bizde Dockerfile'lı Next 77–92 MB). Statik site için nginx alpine (35 MB). Next için buildpacks kullanılmaz: imaj 5 kat büyük ve builder sürümü kayıyor. Etiketler sabit sürümle yazılır (node:24-alpine, golang:1.27-alpine); alpine:latest ya da builder:latest kullanılmaz. golang etiketindeki sürüm go.mod'daki go satırıyla ve sürüm taban dosyasıyla aynıdır; ikisi güncelleme gününde birlikte yükselir. Resmi golang imajı başka araç zinciri indirmez; go satırı imajdan yeniyse build durur. Node 24 LTS 30 Nisan 2028'e kadar destekli, Node 26 28 Ekim 2026'da LTS oluyor. Google'a göre imaj boyutu Cloud Run'da soğuk başlangıcı etkilemiyor; bizim ölçümümüzde büyük imajlı servislerin ilk isteği daha uzun sürdü, ama bu bir ilişki, nedensellik ölçülmedi. Küçük imajın kesin kazancı depolama, tarama yüzeyi ve bölgeler arası çıkış.
 
+<a id="ar-kural-8"></a>
 8. Bir kez build, terfi.
 
 Test dalının ürettiği imaj main'de yeniden build edilmez; main tetikleyicisi onay ister, digest'i `tested-*` etiketinden bulur, migrate job'ını o digest'e çevirip bitmesini bekler, servisi trafiksiz candidate etiketiyle açar, candidate adresinde duman testi yapar, trafiği verir ve etiketleri taşır. Web servislerinde migrate adımı yoktur. Prod'da testte denenen imaj bayt bayt aynı çalışır ve build dakikası yarıya iner.
@@ -197,9 +220,9 @@ Test dalının ürettiği imaj main'de yeniden build edilmez; main tetikleyicisi
 ```
 # cloudbuild.main.yaml: main tetikleyicisi, onay ister, build almaz
 substitutions:
-  _IMG: europe-west1-docker.pkg.dev/PROJE/DEPO/SERVIS
-  _SERVICE: SERVIS
-  _JOB: SERVIS-migrate
+  _IMG: europe-west1-docker.pkg.dev/PROJECT/REPO/SERVICE
+  _SERVICE: SERVICE
+  _JOB: SERVICE-migrate
   _R: europe-west1
 steps:
 - id: digest
@@ -258,7 +281,7 @@ Web servisinde Worker öndeyse (EDGE_KEY tanımlı), kapı kenar anahtarı taş�
 # web için cloudbuild.main.yaml eki
 availableSecrets:
   secretManager:
-  - versionName: projects/PROJE/secrets/web-edge-key/versions/latest
+  - versionName: projects/PROJECT/secrets/web-edge-key/versions/latest
     env: EDGE_KEY
 # smoke adımına eklenir:
   secretEnv: [EDGE_KEY]
@@ -269,6 +292,7 @@ availableSecrets:
 
 Build hesabına yalnız bu sır için secretAccessor rolü verilir. Adımda set -x açılmaz, anahtar loga düşmez. Anahtar ayda bir değiştiğinde versions/latest yeni değeri okur.
 
+<a id="ar-kural-9"></a>
 9. Next'te public ayar build'e gömülmez, çalışma anında okunur.
 
 Terfi ancak imaj ortamdan bağımsızsa çalışır. `NEXT_PUBLIC_` önekli değişken kalmaz; değerler düz adla (`SITE_URL`, `API_ORIGIN`) Cloud Run ortamında durur. Sunucu kodu bunları istek anında okur; ortama göre değişen bir şey okuyan sayfa build'de ön üretilmez (dinamik ya da boş generateStaticParams ile ISR). canonical, og:url ve sitemap istek anında kurulur, CSP origin'leri aynı değişkenlerden türetilir. Tarayıcıya gereken değerler dinamik bir route'tan gelir; istemci bir kez okur ve bellekte tutar. Terfiden sonra prod'da canonical ve bu route curl ile okunur.
@@ -286,25 +310,27 @@ export async function GET() {
 
 [öneri] `export const dynamic` yerine `await connection()` kullanılır. 'use cache' için `cacheComponents` açılırsa dynamic satırı build'i durdurur. Satır silinirse route build'de ön üretilir ve env build'deki değerle donar. `connection()` iki durumda da gerçek isteği bekler. Sayfaya ve sitemap'e konmaz. Onları ISR çalışma anında üretir ve son iyi kopyayı tutar. `connection()` ise her isteği arka uca götürür.
 
+<a id="ar-kural-10"></a>
 10. Geri dönüş her yeni projede bir kez denenir.
 
 Bir önceki canlı imaj AR'de durmadan yeni deploy yapılmaz; prev etiketi bunu sağlar. Geri dönüş tek komuttur (ilk blok). Hemen ardından etiketler trafiğe eşitlenir (ikinci blok): live geri dönülen imaja, prev kötü imaja geçer. Kötü imaj korunur, çünkü migration geri alınmaz ve migrate job'ı hâlâ ona bakar. Bu adım atlanırsa live kötü imajda kalır ve bir sonraki terfi iyi imajı prev'den düşürür.
 
 ```
-gcloud run services update-traffic SERVIS --to-revisions=ONCEKI=100 \
-  --project PROJE --region europe-west1
+gcloud run services update-traffic SERVICE --to-revisions=PREVIOUS=100 \
+  --project PROJECT --region europe-west1
 ```
 
 ```
-IMG=europe-west1-docker.pkg.dev/PROJE/DEPO/SERVIS
-KOTU=$(gcloud artifacts docker images describe $IMG:live \
-  --project PROJE --format='value(image_summary.digest)')
-IYI=$(gcloud run revisions describe ONCEKI --project PROJE \
+IMG=europe-west1-docker.pkg.dev/PROJECT/REPO/SERVICE
+BAD=$(gcloud artifacts docker images describe $IMG:live \
+  --project PROJECT --format='value(image_summary.digest)')
+GOOD=$(gcloud run revisions describe PREVIOUS --project PROJECT \
   --region europe-west1 --format='value(status.imageDigest)')
-gcloud artifacts docker tags add $IMG@$KOTU $IMG:prev --project PROJE
-gcloud artifacts docker tags add $IYI $IMG:live --project PROJE
+gcloud artifacts docker tags add $IMG@$BAD $IMG:prev --project PROJECT
+gcloud artifacts docker tags add $GOOD $IMG:live --project PROJECT
 ```
 
+<a id="ar-kural-11"></a>
 11. Build kotası sayılır.
 
 Varsayılan havuzda e2-standard-2 için faturalama hesabı başına ayda 2.500 dk ücretsiz, sonrası $0,006/dk, saniye bazında. İki ürün kotayı aşıyorsa ayrı faturalama hesabı açılır. Tetikleyiciye includedFiles ve ignoredFiles eklenir, yalnız belge değişen push build almaz. Build kaynak kovasına 30 günlük silme kuralı konur.

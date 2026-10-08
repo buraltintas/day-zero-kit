@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="maliyet"></a>
 
@@ -15,36 +15,51 @@ Az trafikli yeni bir ürünün bulut faturası ayda ~₺55–135 olur: prod Neon
 ## Üç basamak
 
 Yeni başlayan ürün
+
 ~₺55–135/ay
+
 Kim
+
 Yeni açılmış, günde birkaç yüz istek alan, kullanıcısı henüz az olan ürün.
 
 Para nereye gider
+
 Neon Launch günde ~0,3–0,5 CU-saat (~₺50–80); aylık asgari ücret yok, kullanıcı gelmeden neredeyse ₺0. GCP'de para internet çıkışından (ücretsiz pay yok, ₺5–30), Secret Manager'ın 6'yı aşan sürümlerinden ve birkaç liralık GCS'ten gelir; Cloud Run, alarmlar ve tek Scheduler işi ücretsiz.
 
 Varsayımlar
+
 Prod Neon Launch'ta (0,25–1 CU, 7 gün geçmiş), CU-saat başına ~₺5,2; test ve gerçek kullanıcısı olmayan yan projeler Free'de ₺0. Cloud Run min 0'da çalışır, ayda 180.000 vCPU-sn, 360.000 GiB-sn ve 2 milyon istek ücretsizdir. Ürünün kendi faturalama hesabı vardır. Ürün D Launch'tayken günde ~0,45 CU-saatle Neon'a ayda ~₺70 ödüyordu; gerçek kullanıcısı az bir yan proje olduğu için 7 Eki'de Free'ye alındı.
 
 Büyüyen ürün
+
 ~₺220–550/ay
+
 Kim
+
 Herkese açık SSR sayfaları tarayıcılarca gezilen, kullanıcısı gelmeye başlamış ve 7 günlük geçmişe ihtiyacı olan ürün. Bizde Ürün C ve Ürün B.
 
 Para nereye gider
+
 Neon Launch günde ~1–2 CU-saat (~₺160–320): SSR istekleri, tarayıcılar ve yönetim işleri. GCP ₺60–230: bot çıkış trafiği ve build dakikaları; alarmlar bugün ücretsiz.
 
 Varsayımlar
+
 Free'nin sınırları dar gelmiştir: 100 CU-saat/ay, 5 GB çıkış ve kullanıcı verisi için kısa kalan 6 saatlik geçmiş. Herkese açık okumalar API belleğinden verilir, kazıyıcılar kapıda reddedilir. Ürün C bugün ~₺220, Ürün B ~₺470–550 tutuyor.
 
 Günlük kullanıcılı ürün
+
 ~₺510–690/ay
+
 Kim
+
 Her gün giriş yapan kullanıcıları ve her sabah çalışan okuma, rapor ve yedek işleri olan ürün. Bizde Ürün A.
 
 Para nereye gider
+
 Toplamın en az %60'ı Neon Launch compute (~₺436, günde ~2,8 CU-saat). GCP ~₺45–205: Secret Manager ~₺16, GCS ₺15–20, internet çıkışı ₺10–60 ve kota aşılırsa Cloud Run; alarmlar ve tek Scheduler işi ücretsiz. Günde her +1 CU-saat aya +₺158 ekler.
 
 Varsayımlar
+
 Model günde 2,8 CU-saat, ~1 GB veritabanı ve ürünün kendi faturalama hesabıyla kuruldu. Ürün A 4–7 Eki'de günde 2,12–4,03 CU-saat harcadı (ortalama 3,18); bu modele ~₺60 ekler ve sonuç aralığın içinde kalır: Neon ~₺500 + GCP ~₺110 = ~₺610. Her uyanış en az ~6,5 dk faturalanır (90 sn boşta kapanma + 5 dk uyku eşiği).
 
 ## Bizim dört ürünümüz, 8 Ekim 2026
@@ -52,6 +67,7 @@ Model günde 2,8 CU-saat, ~1 GB veritabanı ve ürünün kendi faturalama hesab
 Neon tüketimi 4–7 Ekim ölçümünden, günde sürekli 1 CU-saat ayda ~₺158. Ürün B'nin GCP payı ₺150–230 aralığının ortası.
 
 NeonGoogle CloudTL/ay, 8 Ekim 2026; alan adı ve mağaza (Apple, Google) ücretleri hariç
+
 _Grafik: Ürün başına aylık maliyet_
 
 | Ürün | Neon | GCP | Toplam | Not |
@@ -103,39 +119,55 @@ Maliyet
 Rakam tahminle konuşulmaz; fatura proje ve SKU bazında okunur.
 
 ₺2.087
+
 GCP için '$1/ay' denen ayda, Ağustos 2026'da faturalama hesabının toplamı.
 
 ## Yap
 
 [ölçüldü]
-** Fatura proje ve SKU bazında okunur**; ay başı rakamı yanıltır.
+
+**Fatura proje ve SKU bazında okunur**; ay başı rakamı yanıltır.
+
 [kanıtlı]
-** Ücretli API'de alanlar tek geçişte istenir**; cevaplar önbelleklenir, GCP'de API başına kota tavanı.
+
+**Ücretli API'de alanlar tek geçişte istenir**; cevaplar önbelleklenir, GCP'de API başına kota tavanı.
+
 [ölçüldü]
-** Model işleri kaynakta kısılır**: değişmeyen sayfa gönderilmez, günlük tavan, prompt önbelleği.
+
+**Model işleri kaynakta kısılır**: değişmeyen sayfa gönderilmez, günlük tavan, prompt önbelleği.
+
 [öneri]
-** Cloud Run çıkış trafiği izlenir**; bot baytı Cloudflare önbelleğiyle düşer.
+
+**Cloud Run çıkış trafiği izlenir**; bot baytı Cloudflare önbelleğiyle düşer.
 
 ## Başlangıç ayarları
 
 [ölçüldü]
+
 Neon $0,106/CU-saat; 0,25 CU 7/$2419,1, 1 CU 7/24 ~$76.
+
 [öneri]
+
 europe-west1'den internete çıkışta ücretsiz pay yok, ilk GiB'tan $0,12/GiB; Scheduler'da hesap başına 3 iş ücretsiz, sonra iş başına ayda $0,10.
+
 [ölçüldü]
+
 Instance başı günde 300 model çağrısı: bir instance ~$23/ay, 20 instance ~$470/ay.
 
 ### Kaçın
 
 [kanıtlı]
+
 Tahminden konuşmak; panikle min-instance; kıtalar arası pull/push.
 
 ### Bizdekinden iyisi
 
 [ölçüldü]
+
 Bütçe uyarısı ve kota tavanı yoktu; harita API'si Ağustos'ta ₺1.500 yazdı ve ancak fatura gelince görüldü.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **Ağu** GCP için '$1/ay' tahminine karşı faturalama hesabının toplamı ₺2.087; bunun ₺2.081'i tek projenin faturası.
+
 **6 Eki** dört ürünümüz ~₺1.590/ay tutuyordu; 8 Eki ölçümünde taşımalardan sonra ~₺1.300.

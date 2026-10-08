@@ -28,15 +28,19 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 ## Decision record
 
 ```
-## K-<number> <decision title> (<date>)
-Decision: ...
-Why: ...
-Options: ... (why not chosen)
-Cost: ~... a day, ~... a month, worst day ~...
-Cap and alarm: ...
+## K-<number> <decision title>
+Date: <YYYY-MM-DD>. Status: in force.
+Decided by: product owner.
+Context: <why now>
+Decision: <what>
+Options: <why not chosen>
+Cost: ~... a day, ~... a month, worst day ~...; cap and alarm: ...
+Result: <what changes>
 Revisit: <date or condition>
-Source: <guide section, official page>
+Link: <guide section, official page, commit>
 ```
+
+The format is the guide's `docs/DECISIONS.md` template (`references/project-memory.md`); a changed decision is never deleted, it is linked as "replaced by: K-...".
 
 ## Take care
 

@@ -26,15 +26,19 @@ Kararı sahibi verir; bu skill kararı kolaylaştırır. Görevin, sorulan konuy
 ## Karar kaydı biçimi
 
 ```
-## K-<numara> <karar başlığı> (<tarih>)
-Karar: ...
-Neden: ...
-Seçenekler: ... (neden seçilmedi)
-Maliyet: günde ~..., ayda ~..., en kötü gün ~...
-Tavan ve alarm: ...
-Yeniden bakılacak: <tarih ya da koşul>
-Kaynak: <rehber bölümü, resmi sayfa>
+## K-<numara> <karar başlığı>
+Tarih: <YYYY-MM-DD>. Durum: geçerli.
+Karar veren: ürün sahibi.
+Bağlam: <neden şimdi>
+Karar: <ne>
+Seçenekler: <neden seçilmedi>
+Maliyet: günde ~..., ayda ~..., en kötü gün ~...; tavan ve alarm: ...
+Sonuç: <ne değişir>
+Yeniden bak: <tarih ya da koşul>
+Bağlantı: <rehber bölümü, resmi sayfa, commit>
 ```
+
+Biçim rehberdeki `docs/DECISIONS.md` şablonuyla aynıdır (`references/project-memory.md`); değişen karar silinmez, "yerini aldı: K-..." diye bağlanır.
 
 ## Dikkat
 

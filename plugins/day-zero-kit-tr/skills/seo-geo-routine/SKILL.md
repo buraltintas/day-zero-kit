@@ -25,6 +25,10 @@ description: >-
 3. **Aylık:** cevap motorlarında örnek sorgularla atıf kontrolü, tarihli veri sayfalarının tazelenmesi, tarayıcı adres listelerinin yenilenmesi, dış bağlantı işi.
 4. **AI trafiğini doğru say:** önce prefetch ve botları ayır, sonra gerçek tıklamayı say. İlk kaba sayım yanıltır.
 
+## Yalnız ürün sahibinin yaptıkları
+
+Search Console ve Bing'de alan adı sahipliğini doğrulamak, DNS kaydı eklemek, başka sitelerle bağlantı için iletişime geçmek ve herhangi bir formu göndermek ürün sahibinin işidir; bunlara gelince dur ve sor.
+
 ## Rapor biçimi
 
 ```

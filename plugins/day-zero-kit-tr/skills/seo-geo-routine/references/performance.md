@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="performans"></a>
 
@@ -11,10 +11,15 @@ Hız ve maliyet aynı ayarlardan çıkar. Veritabanını uyutan, okumaları bell
 Rakamlar 1–8 Ekim 2026'da dört projenin Cloud Run istek ve sistem kayıtlarından salt okunur sorgularla alındı; bir kısmı bağımsız ikinci bir sorguyla yeniden doğrulandı. Bütün Cloud Run servisleri europe-west1'de (Belçika), bütün Neon veritabanları Frankfurt'ta.
 
 **2 ms** Bellekten verilen herkese açık okumanın p50'si. Aynı okuma veritabanından 28–80 ms'ydi.
+
 **0,99 sn** Uyuyan Neon'u uyandıran isteğin p50'si; p90 2,25 sn, en çok 5,2 sn.
+
 **0 / 25.409** Açılışta 30 sn bekleyen ve 401 yerine 503 dönen API'de 7 günde 5xx.
+
 **%7** ISR'lı kurum sayfalarında 20 ms'nin altında kalan istek payı; önbellek her sunucunun kendi diskinde.
+
 **6,2 sn** Site ile API aynı anda soğukken ilk isteğin p50'si; yalnız site soğukken 4,6 sn.
+
 **~₺255/ay** Tek bir min-instances 1'in faturadaki tutarı. Yerine uptime kontrolü: ₺0.
 
 ## Uptime kontrolü soğuk başlangıcı keser
@@ -22,6 +27,7 @@ Rakamlar 1–8 Ekim 2026'da dört projenin Cloud Run istek ve sistem kayıtları
 Servis başına günlük otomatik başlatma, 1–8 Ekim 2026. Kontrol 300 sn'de bir, 3 bölgeden, veritabanına dokunmayan sağlık ucuna.
 
 uptime kontrollükontrolsüzbaşlatma/gün; ölçek gerçek
+
 _Grafik: Uptime kontrolü ve günlük soğuk başlangıç_
 
 ## Ölçümler

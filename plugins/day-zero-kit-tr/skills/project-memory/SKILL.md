@@ -25,7 +25,7 @@ Kodun ne yaptığını kod söyler; neden öyle olduğunu, şu an ne durumda old
 | `DESIGN.md` | Tasarım kuralları ve kararları; arayüz işinden önce okunur |
 | Devir notu | Biten, bitmeyen, sıradaki adım, riskler |
 
-Şablonlar `references/project-memory.md`'de, tasarım kararları `references/design-system.md`'de.
+Şablonlar `references/project-memory.md`'de, tasarım kararları `references/design-system.md`'de, yeni depo kuralları `references/repos-and-sizes.md`'de.
 
 ## Akış
 

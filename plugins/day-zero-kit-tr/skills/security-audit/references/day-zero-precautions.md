@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="onlemler"></a>
 
@@ -40,6 +40,8 @@ Kırmızı kenarlı ilk on madde her projede yapılır; 11 ile 26 arası yalnız
 
 3'ün yolları gezen testi akışların ilk ucundan önce depoda olur. 14, 16 ve 17 AI özelliği, 18, 19 ve 23 kullanıcı içeriği, 24 web'den satış açılmadan; 26 ilk mağaza ya da reklam ödemesinden önce yapılır. Ürünün hangi özellikleri olacağı 1. adımda sorulur; geçerli olmayan madde DECISIONS'a 'özellik yok' diye yazılır.
 
+<a id="onlem-1"></a>
+
 ### 1. Bütün hesapların anahtarı tek kişide, kurtarma tek telefonda
 
 Bulut, alan adı kayıt şirketi, kod ve mağaza hesapları tek kişinin adresine ve telefonuna bağlı; biri giderse hepsi gider.
@@ -55,6 +57,8 @@ Bulut, alan adı kayıt şirketi, kod ve mağaza hesapları tek kişinin adresin
 **Rehberde:** kısmen; [İçerik otomasyonu](#icerik) › Hattın on bir parçası › 1 (sosyal hesaplar), [Veritabanı yedeği ve geri yükleme](#yedek) › Katmanlar › Proje dışı kopya.
 
 **Kaynak:** [yubico.com/us/product/security-key-nfc-by-yubico](https://www.yubico.com/us/product/security-key-nfc-by-yubico/), https://docs.cloud.google.com/resource-manager/docs/manage-essential-contacts, https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials, [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari)
+
+<a id="onlem-2"></a>
 
 ### 2. Zararlı bir paket kurulurken diskteki sırları toplar
 
@@ -72,6 +76,8 @@ Ele geçmiş bir npm sürümü, ajanın çalıştırdığı npx ya da modelin uy
 
 **Kaynak:** [cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem](https://www.cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem), https://docs.npmjs.com/cli/v12/using-npm/config, https://github.com/npm/cli/blob/latest/CHANGELOG.md (12.0.0 ve 11.10.0), https://arxiv.org/abs/2406.10279, https://nvd.nist.gov/vuln/detail/CVE-2025-30066
 
+<a id="onlem-3"></a>
+
 ### 3. Başkasının kaydı kimlik değiştirilerek okunur
 
 Uç kaydı /v1/x/{id} ile okur, sahibini sormaz; kullanıcı kimliği değiştirip başkasının verisini görür. Ajanın yazdığı uçta bu kontrol kolayca eksik kalır.
@@ -87,6 +93,8 @@ Uç kaydı /v1/x/{id} ile okur, sahibini sormaz; kullanıcı kimliği değiştir
 **Rehberde:** yok; Admin'de asla'daki yol testi yalnız admin için.
 
 **Kaynak:** https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization
+
+<a id="onlem-4"></a>
 
 ### 4. Sahte webhook isteği ücretli üyelik açar
 
@@ -104,6 +112,8 @@ Abonelik ya da ödeme webhook'u imzası doğrulanmadan kabul edilir. Adresi bula
 
 **Kaynak:** https://docs.stripe.com/webhooks, https://developer.apple.com/documentation/appstoreservernotifications, https://docs.cloud.google.com/pubsub/docs/authenticate-push-subscriptions
 
+<a id="onlem-5"></a>
+
 ### 5. Kodlama ajanı okuduğu metinden komut alır
 
 Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat onu sır göndermeye, IAM'e üye eklemeye ya da push'a götürür.
@@ -119,6 +129,8 @@ Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat
 **Rehberde:** yok.
 
 **Kaynak:** https://aws.amazon.com/security/security-bulletins/AWS-2025-015/, https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c, https://nx.dev/blog/s1ngularity-postmortem, https://genai.owasp.org/llmrisk/llm01-prompt-injection/, https://code.claude.com/docs/en/permissions
+
+<a id="onlem-6"></a>
 
 ### 6. Ajan canlı veritabanında geri dönüşsüz komut çalıştırır
 
@@ -136,6 +148,8 @@ Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat
 
 **Kaynak:** https://code.claude.com/docs/en/permissions, https://neon.com/docs/guides/protected-branches, [eweek.com/news/replit-ai-coding-assistant-failure](https://www.eweek.com/news/replit-ai-coding-assistant-failure/)
 
+<a id="onlem-7"></a>
+
 ### 7. Harcama tavanı yok, bütçe yalnız e-posta atar
 
 Sel ya da istek döngüsü Cloud Run'ı instance tavanına, Neon'u max CU'ya taşır. Bütçe alarmı yalnız haber verir. Herkese açık kovadaki dosyanın çıkışı ve log hacmi hiçbir tavana girmez.
@@ -151,6 +165,8 @@ Sel ya da istek döngüsü Cloud Run'ı instance tavanına, Neon'u max CU'ya ta�
 **Rehberde:** kısmen; [Bulut altyapısı (Cloud Run)](#katman-6) › Başlangıç ayarları, [Postgres (Neon + pgx)](#katman-1) › Yap, [Uyarılar kime, nasıl ulaşır](#uyarilar) › 4, [Pahalı dış API'ler](#pahali-api) › Kurallar, [Ücretsiz katmanları sonuna kadar kullanmak](#ucretsiz) › İzleme (Cloud Run çıkışı ve log alarmı). Yeni olan harcama tavanı, Neon kotası ve kova çıkışı.
 
 **Kaynak:** https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps, https://cloud.google.com/run/pricing, https://neon.com/docs/guides/consumption-limits, https://neon.com/faqs/postgres-services-capping-monthly-spend-autoscaling, https://cloud.google.com/storage/pricing
+
+<a id="onlem-8"></a>
 
 ### 8. E-posta Türkçe İ yüzünden iki hesaba bölünür
 
@@ -168,6 +184,8 @@ Türkçe klavye ilk harfi İ yapar. JavaScript'te 'İnfo@ornek.com'.toLowerCase(
 
 **Kaynak:** [unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt](https://www.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt), https://pkg.go.dev/strings#ToLower, https://reactnative.dev/docs/textinput#autocapitalize
 
+<a id="onlem-9"></a>
+
 ### 9. Veri ihlalinde 72 saat var, "kim neyi gördü" kaydı yok
 
 Admin oturumu çalınır ya da yetki hatası başkasının kaydını gösterir; Kurul kaç kişi ve hangi veri diye sorar, kayıt yoktur.
@@ -183,6 +201,8 @@ Admin oturumu çalınır ya da yetki hatası başkasının kaydını gösterir; 
 **Rehberde:** kısmen; [Analitik ve admin](#analitik) › Denetim kaydı adminin okumasını ve yazmasını kaydediyor; kullanıcı tarafındaki okuma ve kova okuması yok.
 
 **Kaynak:** [kvkk.gov.tr/Icerik/5362/Veri-Ihlali-Bildirimi](https://www.kvkk.gov.tr/Icerik/5362/Veri-Ihlali-Bildirimi), [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari), https://docs.cloud.google.com/storage/docs/audit-logging, https://docs.cloud.google.com/logging/docs/routing/overview
+
+<a id="onlem-10"></a>
 
 ### 10. Destek dışı kalan sürüm, yetişmeyen yama
 
@@ -200,6 +220,8 @@ Sürüm güvenlik desteğinden çıkar; sonraki açığın yaması yalnız yeni 
 
 **Kaynak:** https://nextjs.org/support-policy, https://go.dev/doc/devel/release, https://github.com/nodejs/Release, https://nextjs.org/blog/CVE-2025-66478, https://nvd.nist.gov/vuln/detail/CVE-2025-55182
 
+<a id="onlem-11"></a>
+
 ### 11. Mağazaların yıllık şartı güncellemeyi durdurur
 
 Play her 31 Ağustos'ta hedef API'yi, Apple her nisan Xcode sürümünü yükseltir; eski kütüphaneler yeni araçlarla derlenmez. Expo SDK 55'ten beri yeni mimari zorunlu; eski mimari isteyen kütüphane SDK geçişini durdurur.
@@ -215,6 +237,8 @@ Play her 31 Ağustos'ta hedef API'yi, Apple her nisan Xcode sürümünü yüksel
 **Rehberde:** kısmen; [React Native (Expo) mobil](#katman-4) › Yap (New Arch, hedef API); takvim yok.
 
 **Kaynak:** https://developer.android.com/google/play/requirements/target-sdk, https://developer.apple.com/news/upcoming-requirements/, https://docs.expo.dev/guides/new-architecture/
+
+<a id="onlem-12"></a>
 
 ### 12. Abonelik zammı aboneleri sessizce düşürür
 
@@ -232,6 +256,8 @@ Play'de zam varsayılan olarak onay ister; eski fiyat grubu taşınırsa onay ve
 
 **Kaynak:** https://developer.apple.com/help/app-store-connect/manage-subscriptions/manage-pricing-for-auto-renewable-subscriptions, https://developer.android.com/google/play/billing/price-changes
 
+<a id="onlem-13"></a>
+
 ### 13. Kart düşerse aynı faturalama hesabındaki her şey durur
 
 Kartın süresi biter, limiti dolar ya da kartı veren kuruluş yurt dışı işlemi reddeder. Yedek yöntem yoksa Google faturalama hesabını askıya alır; API, site ve yedek işi birlikte durur.
@@ -247,6 +273,8 @@ Kartın süresi biter, limiti dolar ya da kartı veren kuruluş yurt dışı iş
 **Rehberde:** kısmen; [Gözlem ve alarmlar](#katman-10) › Yap (kart bitiş takvimi), [Veritabanı yedeği ve geri yükleme](#yedek) › Katmanlar › Proje dışı kopya (askıda veri kaybı). Yedek kart ve ikinci faturalama yöneticisi yok.
 
 **Kaynak:** https://docs.cloud.google.com/billing/docs/how-to/payment-methods, https://docs.cloud.google.com/billing/docs/how-to/restart-services
+
+<a id="onlem-14"></a>
 
 ### 14. Model anahtarı: prod ve denemeler aynı havuzda
 
@@ -264,6 +292,8 @@ Kartın süresi biter, limiti dolar ya da kartı veren kuruluş yurt dışı iş
 
 **Kaynak:** https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces-in-the-claude-console, [sysdig.com/blog/llmjacking-stolen-cloud-credentials-used-in-new-ai-attack](https://www.sysdig.com/blog/llmjacking-stolen-cloud-credentials-used-in-new-ai-attack)
 
+<a id="onlem-15"></a>
+
 ### 15. Alan adının süresi dolar ya da eski kaydı devralınır
 
 Yenileme kaçar; yeni sahip MX kurup o adresli hesapların sıfırlama postasını alır. Silinen servise bakan sarkık DNS kaydı da devralınabilir.
@@ -279,6 +309,8 @@ Yenileme kaçar; yeni sahip MX kurup o adresli hesapların sıfırlama postasın
 **Rehberde:** kısmen; [Gözlem ve alarmlar](#katman-10)'da yenileme takvimi; kilit, CAA ve sarkık kayıt yok.
 
 **Kaynak:** https://trufflesecurity.com/blog/millions-at-risk-due-to-google-s-oauth-flaw, https://docs.cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs, https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Subdomain_takeover
+
+<a id="onlem-16"></a>
 
 ### 16. Üründeki AI özelliği kullanıcının metninden komut alır
 
@@ -296,6 +328,8 @@ AI özelliği belge, e-posta ya da web sayfası okur ve araç çağırır. Göm�
 
 **Kaynak:** https://genai.owasp.org/llmrisk/llm01-prompt-injection/, https://nvd.nist.gov/vuln/detail/CVE-2025-32711
 
+<a id="onlem-17"></a>
+
 ### 17. AI özelliğinde açık izin adımı yok
 
 AI özelliği kişisel veriyi üçüncü taraf bir modele gönderir, sağlayıcıyı adıyla söyleyen izin adımı yoktur. Apple 5.1.2(i) üçüncü taraf AI ile paylaşımdan önce açık izin istiyor. Sağlayıcı yurt dışındaysa veri yurt dışına aktarılmış olur (6698 m.9).
@@ -311,6 +345,8 @@ AI özelliği kişisel veriyi üçüncü taraf bir modele gönderir, sağlayıc�
 **Rehberde:** kısmen; [KVKK ve veri yeri](#kvkk) › Veri nerede duruyorsa öyle yazılır (m.9, işleyen listesi); izin ekranı yok.
 
 **Kaynak:** https://developer.apple.com/app-store/review/guidelines/, [mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf), [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari) (2026 tablosu)
+
+<a id="onlem-18"></a>
 
 ### 18. İçeriğin yazarı sorulunca IP ve zaman kaydı yok (5651)
 
@@ -328,6 +364,8 @@ Kullanıcı yorum, ilan ya da mesaj yayımlıyorsa ürün yer sağlayıcı sayı
 
 **Kaynak:** [mevzuat.gov.tr/mevzuatmetin/1.5.5651.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5651.pdf), [mevzuat.gov.tr/mevzuatmetin/1.5.5326.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5326.pdf) (m.17/7)
 
+<a id="onlem-19"></a>
+
 ### 19. Bildir ve engelle her içerikte yok
 
 Kullanıcılar birbirine içerik gösterebiliyorsa Apple 1.2 filtre, bildirme, engelleme ve iletişim bilgisi ister. Play uygulama içi bildir ve engelle ile içerikten önce kullanım şartı onayı ister.
@@ -343,6 +381,8 @@ Kullanıcılar birbirine içerik gösterebiliyorsa Apple 1.2 filtre, bildirme, e
 **Rehberde:** kısmen; [Gerçek zamanlı ve mesajlaşma](#mesajlasma) › Kurallar › Eski sürümler ve kötüye kullanım 4 ve 5, yalnız konuşma için.
 
 **Kaynak:** https://developer.apple.com/app-store/review/guidelines/, https://support.google.com/googleplay/android-developer/answer/9876937?hl=en
+
+<a id="onlem-20"></a>
 
 ### 20. Mağaza hesabı şahısta açılır, sonra devretmek pahalıdır
 
@@ -360,6 +400,8 @@ Apple 5.1.1(ix) finans ve sağlık gibi alanlarda tüzel kişi ister. Sonradan d
 
 **Kaynak:** https://developer.apple.com/app-store/review/guidelines/, https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer/, https://support.google.com/googleplay/android-developer/answer/14151465, https://support.google.com/googleplay/android-developer/answer/6230247 (devir)
 
+<a id="onlem-21"></a>
+
 ### 21. Büyük kesintide kullanıcıya haber verecek ikinci kanal yok
 
 Her şey tek bulutta ve tek CDN'in arkasında, uygulamadaki duyuru da API'den gelir. Sağlayıcı aksarsa kullanıcı yalnız "Tekrar dene" görür.
@@ -375,6 +417,8 @@ Her şey tek bulutta ve tek CDN'in arkasında, uygulamadaki duyuru da API'den ge
 **Rehberde:** kısmen; [Mobil uzaktan kontrol kiti](#mobilkit) › 404 kuralı ve 7. Bakım modu, [Ücretsiz katmanları sonuna kadar kullanmak](#ucretsiz) › Dış uptime. Eksik olan başka sağlayıcı ve başka alan adı.
 
 **Kaynak:** https://status.cloud.google.com/incidents/ow5i3PPK96RduMcb1SsW, https://blog.cloudflare.com/18-november-2025-outage/
+
+<a id="onlem-22"></a>
 
 ### 22. Bülten ve kampanya iletisi İYS'siz gider
 
@@ -392,6 +436,8 @@ Bülten, kampanya e-postası ve SMS ticari iletidir; onay İYS'de yoksa her şik
 
 **Kaynak:** https://iys.org.tr, [mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf) (2026 tutarları: Resmî Gazete 25.12.2025, sayı 33118)
 
+<a id="onlem-23"></a>
+
 ### 23. 15 yaş altına hizmet yasağı (1 Kasım 2026)
 
 7578 sayılı Kanun 1 Kasım 2026'dan itibaren sosyal ağ sağlayıcının 15 yaş altına hizmet vermesini yasaklıyor. 15 yaşını dolduranlara ayrıştırılmış hizmet, yaş doğrulama, ebeveyn araçları ve tedbirlerin sitede yayımlanmasını istiyor. Kullanıcıların sosyal etkileşim için metin, görüntü, ses ya da konum paylaştığı ürün kapsama girebilir; yasakta erişim eşiği yok.
@@ -407,6 +453,8 @@ Bülten, kampanya e-postası ve SMS ticari iletidir; onay İYS'de yoksa her şik
 **Rehberde:** yok.
 
 **Kaynak:** [resmigazete.gov.tr/eskiler/2026/05/20260501-1.htm](https://www.resmigazete.gov.tr/eskiler/2026/05/20260501-1.htm) (RG 1.5.2026, sayı 33240), https://developer.apple.com/documentation/declaredagerange
+
+<a id="onlem-24"></a>
 
 ### 24. Mağaza dışı abonelik satışında tüketici kuralları
 
@@ -424,6 +472,8 @@ Web'den abonelik satılınca mağazanın taşıdığı yük ürüne geçer: ön 
 
 **Kaynak:** [mevzuat.gov.tr/mevzuatmetin/1.5.6502.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6502.pdf) (m.48 ve m.52; Mesafeli Sözleşmeler Yönetmeliği m.15, RG 27.11.2014, sayı 29188; Abonelik Sözleşmeleri Yönetmeliği m.13, m.24 ve m.25, RG 24.01.2015, sayı 29246)
 
+<a id="onlem-25"></a>
+
 ### 25. VERBİS kararı yazılmadan veri işlemeye başlamak
 
 Ekip büyür ya da ana iş özel nitelikli veriye (sağlık, biyometri) kayar; kayıt gerektiği halde yapılmaz, ilk şikâyette ortaya çıkar.
@@ -439,6 +489,8 @@ Ekip büyür ya da ana iş özel nitelikli veriye (sağlık, biyometri) kayar; k
 **Rehberde:** kısmen; [KVKK ve veri yeri](#kvkk) › Veri nerede duruyorsa öyle yazılır (VERBİS sorusu hukukçuya), eşik yok.
 
 **Kaynak:** [kvkk.gov.tr/Icerik/8577/kisisel-verileri-koruma-kurulunun-04-09-2025-tarihli-ve-2025-1572-sayili-kararinin-uygulama-esaslarina-iliskin-kamuoyu-duyurusu](https://www.kvkk.gov.tr/Icerik/8577/kisisel-verileri-koruma-kurulunun-04-09-2025-tarihli-ve-2025-1572-sayili-kararinin-uygulama-esaslarina-iliskin-kamuoyu-duyurusu) (12.01.2026; kararlar 2025/1572 ve 2025/2393), [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari)
+
+<a id="onlem-26"></a>
 
 ### 26. Şahıs olarak alınan mağaza ve reklam geliri (20/B)
 

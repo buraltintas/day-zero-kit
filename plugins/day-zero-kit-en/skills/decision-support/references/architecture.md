@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="mimari"></a>
 
@@ -29,8 +29,10 @@ Google CloudDış servisİstemciistekdeğişiklik işareti, 30 sn'de bir okunur
 | Test ortamı | Prod ile aynı projede '-test' servisleri, ayrı servis hesapları ve sırlar, ayrı Neon (Free), en fazla 1 instance. Web IAP arkasında; API ağda açık, girişi izin listeli ve noindex. | Prod'un şeklini taşır, prod'a ulaşamaz; ücretli anahtarları tavanlıdır. |
 
 [öneri]
-** Kaynak adları gün 0'da bir kez seçilir**. Ajan ad uydurmaz. Aşağıdaki kalıbı DECISIONS'a bir karar olarak yazar. Cloudbuild dosyaları ve runbook'lar yalnız bu adları kullanır. Test kopyası her yerde adın sonuna '-test' alır.
-GCP projesi: 6–30 karakterlik bir kimlik, ör. `<product>-app`; sonradan değişmez. Servisler: api, web, api-test, web-test. Job'lar `<servis>-migrate` kalıbıyla: api-migrate, api-test-migrate. Dağıtıcı: dispatch, dispatch-test. Yedek: backup, yalnız prod'da. Servis hesapları da 6–30 karakter olmalıdır: run-api, run-web, run-api-test, run-web-test, build-test, build-main, run-backup, scheduler. Sırlar `<servis>-<ad>` kalıbıyla, ör. api-database-url ve api-test-database-url. Artifact Registry'de tek depo vardır: app, europe-west1'de. Kova adları dünya çapında tek olduğu için proje kimliğiyle başlar: `<proje>-media`, `<proje>-docs`, `<proje>-backup`, `<proje>-flags`. Test kovaları aynı adın sonuna -test alır, ör. `<proje>-flags-test`. Neon'da iki proje vardır: `<product>-prod` Launch org'unda, `<product>-test` Free org'unda. Roller: app_rw (DML), app_migrate (şema sahibi), app_backup (salt okunur).
+
+**Kaynak adları gün 0'da bir kez seçilir**. Ajan ad uydurmaz. Aşağıdaki kalıbı DECISIONS'a bir karar olarak yazar. Cloudbuild dosyaları ve runbook'lar yalnız bu adları kullanır. Test kopyası her yerde adın sonuna '-test' alır.
+
+GCP projesi: 6–30 karakterlik bir kimlik, ör. `<product>-app`; sonradan değişmez. Servisler: api, web, api-test, web-test. Job'lar `<service>-migrate` kalıbıyla: api-migrate, api-test-migrate. Dağıtıcı: dispatch, dispatch-test. Yedek: backup, yalnız prod'da. Servis hesapları da 6–30 karakter olmalıdır: run-api, run-web, run-api-test, run-web-test, build-test, build-main, run-backup, scheduler. Sırlar `<service>-<name>` kalıbıyla, ör. api-database-url ve api-test-database-url. Artifact Registry'de tek depo vardır: app, europe-west1'de. Kova adları dünya çapında tek olduğu için proje kimliğiyle başlar: `<project>-media`, `<project>-docs`, `<project>-backup`, `<project>-flags`. Test kovaları aynı adın sonuna -test alır, ör. `<project>-flags-test`. Neon'da iki proje vardır: `<product>-prod` Launch org'unda, `<product>-test` Free org'unda. Roller: app_rw (DML), app_migrate (şema sahibi), app_backup (salt okunur).
 
 ## Akışlar
 

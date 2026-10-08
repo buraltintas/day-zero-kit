@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="boyutlar"></a>
 
@@ -11,17 +11,23 @@ Dört ürünümüz 14 aktif depoda duruyor. Sayımlar 8 Ekim 2026'da her deponun
 Toplam ~499.000 satır kod var, bunun ~132.000'i (%26) test. Yanında ~52.000 satır Markdown belge duruyor. Hiçbir .git klasörü 33 MB'ı geçmiyor ve depolardaki ağırlığın çoğu koddan değil görsellerden geliyor. En büyük ürün Ürün A: beş depo, ~265.000 satır, son 30 günde 955 commit.
 
 **14 depo** Ürün A 5, Ürün B 3, Ürün C 4, Ürün D 2. Emekli 6 depo ayrıca sayıldı.
+
 **~499.000 satır** Kod. Yanında ~52.000 satır Markdown belge var.
+
 **%26 test** 131.673 satır test kodu; depoya göre pay %0 ile %38 arası.
+
 **4.341 dosya** Ana dallarda izlenen dosyalar 99,4 MB; bunun 62,5 MB'ı görsel.
+
 **210 MB** On dört .git klasörünün toplamı. En büyüğü 32,8 MB.
+
 **2.368 commit** Bunun 1.711'i son 30 günde. a-web 18 Eylül'de açıldı ve 260 commit aldı.
 
 ## Depo başına kod satırı
 
 Test koduUygulama kodusatır, ana dal, 8 Ekim 2026; ölçek gerçek
+
 _Grafik: Depo başına kod satırı_
-En eski depo portal (ilk commit Kasım 2021), sonra Ürün A mobil (Şubat 2025). Geri kalan on iki depo 2026'da açıldı: Ürün C Şubat'ta, Ürün D Mayıs'ta, Ürün B ve a-api Ağustos'ta, a-web ve a-market Eylül'de.
+En eski depo beş yıllık portal, sonra Ürün A mobil (Şubat 2025). Geri kalan on iki depo 2026'da açıldı: Ürün C Şubat'ta, Ürün D Mayıs'ta, Ürün B ve a-api Ağustos'ta, a-web ve a-market Eylül'de.
 
 ## Proje toplamları
 
@@ -43,23 +49,23 @@ _Grafik: Dillere göre kod satırı_
 | Depo | Kod satırı | Test satırı | Görsel MB | .git MB | Commit | İmaj MB |
 |---|---|---|---|---|---|---|
 | Ürün A |
-| a-apiGo API | 66.212 | 25.232 | 1,7 | 12,4 | 219 | 30,6 |
-| a-portalPortal, React ve Vite | 52.033 | 15.467 | 8,7 | 32,8 | 194 | 34,6 |
-| a-webNext.js bilgi sitesi | 32.528 | 8.733 | 2,8 | 13,0 | 260 | 91,9 |
-| a-marketNext.js pazar yeri | 20.964 | 5.218 | 0,1 | 1,3 | 154 | 88,3 |
-| a-mobileExpo mobil | 93.745 | 25.965 | 0,5 | 18,1 | 278 | – |
+| a-api Go API | 66.212 | 25.232 | 1,7 | 12,4 | 219 | 30,6 |
+| a-portal Portal, React ve Vite | 52.033 | 15.467 | 8,7 | 32,8 | 194 | 34,6 |
+| a-web Next.js bilgi sitesi | 32.528 | 8.733 | 2,8 | 13,0 | 260 | 91,9 |
+| a-market Next.js pazar yeri | 20.964 | 5.218 | 0,1 | 1,3 | 154 | 88,3 |
+| a-mobile Expo mobil | 93.745 | 25.965 | 0,5 | 18,1 | 278 | – |
 | Ürün B |
-| b-apiGo API | 44.599 | 13.293 | 8,2 | 30,4 | 310 | 19,8 |
-| b-webNext.js web | 23.470 | 2.066 | 15,0 | 28,5 | 379 | 455,7 |
-| b-mobileExpo mobil | 1.635 | 0 | 13,0 | 14,1 | 19 | – |
+| b-api Go API | 44.599 | 13.293 | 8,2 | 30,4 | 310 | 19,8 |
+| b-web Next.js web | 23.470 | 2.066 | 15,0 | 28,5 | 379 | 455,7 |
+| b-mobile Expo mobil | 1.635 | 0 | 13,0 | 14,1 | 19 | – |
 | Ürün C |
-| c-apiGo API | 56.580 | 18.980 | 0,6 | 24,6 | 177 | 23,5 |
-| c-webNext.js web | 38.374 | 4.975 | 2,0 | 6,7 | 164 | 77,4 |
-| c-adminNext.js yönetim paneli | 29.140 | 2.216 | 1,8 | 6,4 | 51 | 76,6 |
-| c-mobileExpo mobil | 27.286 | 6.851 | 8,2 | 17,5 | 132 | – |
+| c-api Go API | 56.580 | 18.980 | 0,6 | 24,6 | 177 | 23,5 |
+| c-web Next.js web | 38.374 | 4.975 | 2,0 | 6,7 | 164 | 77,4 |
+| c-admin Next.js yönetim paneli | 29.140 | 2.216 | 1,8 | 6,4 | 51 | 76,6 |
+| c-mobile Expo mobil | 27.286 | 6.851 | 8,2 | 17,5 | 132 | – |
 | Ürün D |
-| d-apiGo API | 4.115 | 886 | 0,0 | 0,6 | 15 | 25,9 |
-| d-webNext.js web | 8.379 | 1.791 | 0,0 | 3,4 | 16 | 419,9 |
+| d-api Go API | 4.115 | 886 | 0,0 | 0,6 | 15 | 25,9 |
+| d-web Next.js web | 8.379 | 1.791 | 0,0 | 3,4 | 16 | 419,9 |
 
 Sayım origin/main dalından yapıldı (c-mobile'te origin/master), çünkü bazı yerel main dalları geride. Kod satırına Go, TypeScript, JavaScript, SQL, CSS, Swift, Kotlin, Objective-C, C#, HTML, Shell ve Python girer. Kilit dosyaları, Markdown, ikili dosyalar, bir depodaki üçüncü taraf ajan becerisi (72.643 satır) ve üretilmiş bir motor dosyası (4.984 satır) sayılmadı. Test satırı kod satırının içindedir. İmaj sütunu Artifact Registry'deki son prod imajıdır; mobil depoların sunucu imajı yok.
 
@@ -110,21 +116,27 @@ Birleşmiş yerel dallar bazı depolarda 6–20'ye çıktı. Yerel main dalları
 İki kapanmış ürünün altı deposu GitHub'da duruyor. Kişisel depolar bu sayıma girmedi.
 
 **e-api**
+
 Go API; 46 dosya, 4.313 satır, 11 commit.
 
 **e-web**
+
 Web arayüzü; 141 KB.
 
-**e-kapanış**
+**e-closing**
+
 Kapanan E ürününün kapanış sayfası deposu.
 
 **f-api**
+
 C# API; 53 dosya, 11.238 satır, 25 commit.
 
 **f-web**
+
 Web arayüzü; 4,9 MB.
 
-**f-kapanış**
+**f-closing**
+
 Kapanan F ürününün kapanış sayfası deposu.
 
 ## Denenebilecekler
@@ -138,6 +150,8 @@ Kapanan F ürününün kapanış sayfası deposu.
 | Ajan aracını depodan çıkarmak | O deponun toplam satır sayısı ~%60 azalır. | Ajan becerisi depo dışından yüklenir. |
 
 Ölçülmeyenler: GitHub'daki disk kullanımı (yerine yerel .git boyutu kullanıldı), mobil ikili boyutları (indirme gerekirdi) ve sıfırdan derlenmiş Go ikilisinin boyutu (yerine imaj boyutu kullanıldı).
+
+<a id="depo-kurallari"></a>
 
 ## Yeni depo için kurallar
 

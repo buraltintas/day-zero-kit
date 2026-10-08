@@ -27,6 +27,10 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 3. **Monthly:** citation checks in answer engines with sample queries, refreshing dated data pages, refreshing crawler IP lists, link building.
 4. **Count AI traffic correctly:** separate prefetches and bots first, then count real clicks. The first rough count misleads.
 
+## Only the product owner does these
+
+Verifying domain ownership in Search Console and Bing, adding DNS records, reaching out to other sites for links and submitting any form are the owner's work; stop and ask when you get there.
+
 ## Report
 
 ```

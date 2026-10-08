@@ -9,36 +9,59 @@ Yeni bir ürünü ilk günden ucuz, güvenli ve kullanıcıyı kırmadan kurmak 
 **Burak Altıntaş**. Bu rehberdeki kurallar, beş yıl boyunca ürün kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı. Samimi olarak paylaşıyorum: bence bu, az dayakla bir noktaya gelebilmenin rehberi.
 
 Veritabanı
+
 Neon Postgres
+
 Frankfurt, uyuyabilen; prod Launch, test Free
+
 API
+
 Go API
+
 Cloud Run min 0; tek yazma noktası, okumalar bellekten
+
 Web
+
 Next.js 16
+
 Cloud Run min 0; SSR ve ISR, bot kapısı ilk satırda
+
 Mobil
+
 Expo
+
 CNG, New Arch, EAS; uzaktan kontrol kiti kurulmadan yayın yok
+
 DNS Cloudflare'de, servisler Google Cloud europe-west1'de, veritabanı Neon'da.
+
 Yeni başlayan ürün
+
 ~₺55–135/ay
+
 Neon Launch kullandığı kadar, asgari ücret yok; Cloud Run ücretsiz kotada.
+
 Günlük kullanıcılı ürün
+
 ~₺510–690/ay
+
 Toplamın en az %60'ı Neon.
+
 **Bizde bugün:** Ürün A ~₺610; diğer üç ürün ₺5–510.
 
 Dört ürünün toplamı ~₺1.300/ay; Eylül'de ~₺3.900–4.400'dü. Alan adı ve mağaza ücretleri zorunlu sabit gider, hesaba katılmadı.
 
 Her maddenin başındaki etiket kanıt düzeyidir; maddenin isteğe bağlı olduğunu söylemez.
+
 [kanıtlı]
+
 Bizim prod'da çalışıyor.
 
 [ölçüldü]
+
 Rakamı kendi ölçümümüz ya da faturamız gösteriyor.
 
 [öneri]
+
 Bizde denenmedi ya da yalnız sağlayıcı belgesine dayanıyor.
 
 **Ekim 2026** Fiyatlar 1 USD = 49 TL ile.
@@ -56,6 +79,7 @@ Aynı ürünü iki ekip kuruyor; ikisi de yalnız ürün akışlarına bakıyor,
 Ekip yalnız ürün akışlarına bakar, ajanın önerdiği her şeyi onaylar. Hazır servis hesabı, kotasız API anahtarı, canlıya bağlı yerel ayar ve alarmsız servisler öyle kalır; mobil kit ve yedek sonraya. Sorunu fatura ya da tesadüf haber verir.
 
 ~₺3.900–4.400/ay
+
 Dört ürünümüzün Eylül 2026 bulut faturası
 
 ### Önlemli yol
@@ -63,23 +87,31 @@ Dört ürünümüzün Eylül 2026 bulut faturası
 Ekip gün 0'da bu rehberi ajana verir. Ajan altyapıyı [kurulum planındaki sırayla](#kurulum-plani) kurar: ayrı faturalama hesabı ve bütçe uyarısı, uyuyabilen veritabanı, bot kapısı, alarmlar, doğrulanan yedek, mobil kit. Kararları ekip verir; sonra o da yalnız ürün akışlarına bakar.
 
 ~₺1.300/ay
+
 Aynı dört ürün, düzeltmelerden sonra; 8 Ekim tahmini
+
 Bunlar boş deneme projeleri değil
+
 Her gün
+
 Ürün A'da giriş yapan kullanıcılar, ödeme yapan aboneler ve iki mağazada yayında bir uygulama.
 
 ~18 bin sayfa
+
 Ürün B'nin herkese açık kataloğu; arama motorları ve kazıyıcılar her gün geziyor.
 
 Her sabah
+
 Ürün C sunucudan otomatik içerik üretip sosyal hesaplarda yayınlıyor.
 
 ~500 bin satır
+
 Aktif 14 depoda kod, %26'sı test; 1–7 Ekim'de 11 servise ~517 bin istek geldi.
 
 ## Aynı ürünler, kurallardan önce ve sonra
 
 ÖnlemsizÖnlemliNeon ölçümü ve fatura; her satır kendi ölçeğinde
+
 _Grafik: Önce ve sonra, her satır kendi ölçeğinde: Ürün A veritabanı ~6,2 → ~3,2; Ürün B veritabanı 6,5 → ~2,1; Ürün B harita API'si ₺1.500 → ₺0_
 
 ## Arıza ne zaman fark edildi
@@ -94,6 +126,7 @@ Gün 0 düzeninde her biri bir alarmdır: 402 ve token süresi, ERROR > 0, webho
 Solda önlemsiz yolun bize bedeli, sağda gün 0'da yapılan ve sonucu. Etiket gün 0 kuralının kanıt düzeyidir; bağlantı kuralın durduğu bölüme gider. Olayların tamamı [Vaka defteri](#vakalar)'nde.
 
 ~₺475/ay
+
 Ürün A'nın 7/24 uyanık veritabanının aylık fazlası
 
 [Postgres](#katman-1)[Mimari](#mimari)
@@ -104,11 +137,12 @@ Veritabanı
 
 **Önlemsiz yolda:** İşler zamanlayıcıyla veritabanına soruyor, gece tarayıcıları her sayfayı yeniden hesaplatıyordu; Ürün A'nın veritabanı 18–23 Eylül'de 7/24 uyanıktı. Ürün C'de yeni bir sayfa kendi veritabanını günde ~74 kez uyandırdı.
 
-**Gün 0'da[ölçüldü]:** Veritabanına zamanlayıcıyla soran kod yok; havuz tabanı 0, boşta 90 sn. Herkese açık okumalar API belleğinden verilir, değişiklik işaretiyle tazelenir. Her uyanış nedeniyle loglanır.
+**Gün 0'da [ölçüldü]:** Veritabanına zamanlayıcıyla soran kod yok; havuz tabanı 0, boşta 90 sn. Herkese açık okumalar API belleğinden verilir, değişiklik işaretiyle tazelenir. Her uyanış nedeniyle loglanır.
 
 **Sonuç** Ürün A günde ~3,2 CU-saate indi. Ürün B'de bellek kopyası 6,5'i 4–7 Ekim ortalamasında ~2,1'e indirdi.
 
 ₺1.500
+
 Ağustos'ta tek bir harita API'sinin faturası
 
 [Pahalı dış API'ler](#pahali-api)
@@ -119,11 +153,12 @@ Dış API
 
 **Önlemsiz yolda:** Ürün B'nin harita API'si bütçe uyarısı ve kota tavanı olmadan açıldı. Projenin Ağustos Google faturasının ~%72'sini yazdı, ancak fatura gelince görüldü. Eylül'de ₺657 daha.
 
-**Gün 0'da[ölçüldü]:** Ücretli API; birim fiyatı, en kötü günü, iki alternatifi ve çıkış yolu yazılmadan açılmaz. Sağlayıcıda sert kota, ürünün kendi hesabında bütçe uyarısı.
+**Gün 0'da [ölçüldü]:** Ücretli API; birim fiyatı, en kötü günü, iki alternatifi ve çıkış yolu yazılmadan açılmaz. Sağlayıcıda sert kota, ürünün kendi hesabında bütçe uyarısı.
 
 **Sonuç** Açık veri, markaların kendi listeleri ve kendi tablomuzla 21 Eylül'den beri ₺0.
 
 %41
+
 Tek bir bulut kazıyıcısının Ürün B'nin sitesindeki web isteği payı
 
 [Botlar](#botlar)
@@ -134,11 +169,12 @@ Botlar
 
 **Önlemsiz yolda:** robots.txt'yi dinlemeyen kazıyıcı günde 275 istekle başladı, ~25.700'e çıktı ve UI baytlarının %44'ünü aldı. Bir ürünün Google faturasının çoğu bot çıkış trafiğiydi.
 
-**Gün 0'da[ölçüldü]:** Bot kapısı proxy'nin ilk satırında. İlk gün yalnız başka sitelerde gölgeden geçmiş kurallar reddeder; arama ve AI cevap motorları açık kalır.
+**Gün 0'da [ölçüldü]:** Bot kapısı proxy'nin ilk satırında. İlk gün yalnız başka sitelerde gölgeden geçmiş kurallar reddeder; arama ve AI cevap motorları açık kalır.
 
 **Sonuç** Kural açıldıktan sonraki 24 saatte 6.654 istek reddedildi. Kapının bedeli istek başına ~4–10 µs; ek ücreti yok.
 
 21 gün
+
 Ödeme webhook'u en az bu süre boyunca log yazmadan 500 döndü
 
 [Gözlem ve alarmlar](#katman-10)
@@ -149,13 +185,14 @@ Gözlem
 
 **Önlemsiz yolda:** Ürün A'nın ödeme webhook'u en geç 2 Eylül'den 23 Eylül'e kadar her teslimde 500 döndü; kullanıcı etkilenmedi, olayların kaydı kayboldu. Ürün B'nin sitesinde bellek taşması günde 192'ye vardı, gerçek kullanıcılar da 503 aldı; alarm yoktu, tesadüfen bir maliyet analizinde bulundu.
 
-**Gün 0'da[kanıtlı]:** Alarmlar ilk kullanıcıdan önce kurulur ve uçtan uca denenir. Bizde canlıda olanlar: erişim, 5xx, yedek, yedek zamanlayıcısı ve açılışta veritabanı. Ödeme durumu üç yoldan beslenir.
+**Gün 0'da [kanıtlı]:** Alarmlar ilk kullanıcıdan önce kurulur ve uçtan uca denenir. Bizde canlıda olanlar: erişim, 5xx, yedek, yedek zamanlayıcısı ve açılışta veritabanı. Ödeme durumu üç yoldan beslenir.
 
 [öneri] ERROR > 0, OOM ve webhook yolunda tek 5xx alarmı da gün 0'da kurulur; bizde yoktu.
 
 **Sonuç** Denemede hatadan alarma 4 dakika.
 
 9 + 10
+
 19 Eylül–7 Ekim'de çıkan iOS ve Android mağaza build'i
 
 [Mobil kit](#mobilkit)[Mobil dağıtım](#dagitim)
@@ -166,11 +203,12 @@ Mobil
 
 **Önlemsiz yolda:** Eski sürümlerin ekran metni sabitti, sunucudan yazı konacak yer yoktu. Yeni bir akış eski sürümdekilere duyurulamadı; o akışı kullananların çoğu güncelleyene kadar 1 Ekim yerine 5 Ekim'e kaldı. Her küçük düzeltme mağaza sürümü oldu; iOS build kotası 22 Eylül'de doldu.
 
-**Gün 0'da[ölçüldü]:** Uzaktan kontrol kiti ilk mağaza sürümünde: zorunlu güncelleme, sunucudan bildirim ve duyuru, bayrak ve kill switch; release build'de, telefonda denenmiş. OTA önerilir.
+**Gün 0'da [ölçüldü]:** Uzaktan kontrol kiti ilk mağaza sürümünde: zorunlu güncelleme, sunucudan bildirim ve duyuru, bayrak ve kill switch; release build'de, telefonda denenmiş. OTA önerilir.
 
 **Rakam** Bu 19 build'in 11'i yalnız JS idi; OTA'yla mağazasız çıkabilirdi.
 
 30 gün
+
 X kredisi bitince günlük paylaşımların sessizce 402 aldığı süre
 
 [İçerik otomasyonu](#icerik)
@@ -181,11 +219,12 @@ Sosyal paylaşım
 
 **Önlemsiz yolda:** Ürün C'nin X kredisi bitti; durum özet e-postasında bir satırdı. 60 günlük Instagram token'ı haber vermeden öldü.
 
-**Gün 0'da[öneri]:** Yayın sunucudan, resmi API'lerle. Her paylaşım tabloda bir satır; 402 ve token süresi alarm olur; harcama tavanı ve kapatma anahtarı vardır.
+**Gün 0'da [öneri]:** Yayın sunucudan, resmi API'lerle. Her paylaşım tabloda bir satır; 402 ve token süresi alarm olur; harcama tavanı ve kapatma anahtarı vardır.
 
 **Bizde** 30 başarısız denemenin hepsi paylaşım tablosunda duruyordu; loglarda ilk 11 gün silinmişti. Instagram süresiz Meta token'ına geçti.
 
 44
+
 Testin canlıya yazıp herkese açık listede gösterdiği sahte hesaplama
 
 [Kullanıcıyı kırmadan](#kirmama)
@@ -196,11 +235,12 @@ Test verisi
 
 **Önlemsiz yolda:** Ürün A'nın portal testi 17–28 Eylül'de canlıya yazdı; satırlar herkese açık 'popüler' listede göründü. Simülatör iki gün canlıya analitik yazdı. Canlıya bağlı bir dizüstü 13 giriş kodundan 9'unu yuttu.
 
-**Gün 0'da[kanıtlı]:** Yerel varsayılan hiçbir zaman prod değildir. Testlerde ağ kapalı; simülatör ve dizüstü test API'sine bağlanır, hedef çalışma anında logdan doğrulanır.
+**Gün 0'da [kanıtlı]:** Yerel varsayılan hiçbir zaman prod değildir. Testlerde ağ kapalı; simülatör ve dizüstü test API'sine bağlanır, hedef çalışma anında logdan doğrulanır.
 
 **Sonuç** 28 Eylül'de portal testlerinde ağ kesildi; öteki testlerden canlıya yazan çıkmadı.
 
 38 gün
+
 Giriş kodları posta geçidinde beklerken alan adının yaşı
 
 [E-posta](#katman-9)
@@ -211,11 +251,12 @@ E-posta
 
 **Önlemsiz yolda:** Kodlar dört kurumun posta geçidinde bekledi; sağlayıcının 'teslim edildi' demesi yalnız geçidin kabulüydü. Kod 10 dakikada öldüğü için geç gelen her kod 'süresi dolmuş' oldu.
 
-**Gün 0'da[kanıtlı]:** Alan adı ilk kullanıcıdan haftalar önce alınır, güvenlik firmalarına kategori başvurusu yapılır. Kodlar ayrı alt alan adından ve outbox'tan gider.
+**Gün 0'da [kanıtlı]:** Alan adı ilk kullanıcıdan haftalar önce alınır, güvenlik firmalarına kategori başvurusu yapılır. Kodlar ayrı alt alan adından ve outbox'tan gider.
 
 **Sonuç** Başvurular aynı akşam döndü; kodun ömrü 30 dakikaya çıktı.
 
 Editor
+
 Web servisinin çalıştığı hazır servis hesabının rolü
 
 [Güvenlik](#katman-8)
@@ -226,11 +267,12 @@ Güvenlik
 
 **Önlemsiz yolda:** Web servisi projenin hazır, Editor yetkili hesabıyla çalışıyordu. Web çatısındaki yamasız bir açıkla birleşince proje ele geçirilebilir hale geldi. 23 Eylül'de bulundu, aynı gün kapatıldı.
 
-**Gün 0'da[kanıtlı]:** Her servis rolsüz, kendi hesabıyla çalışır; önce tetikleyicilere kendi build hesabı verilir, sonra Editor kaldırılır. Sırlar Secret Manager'da, çatı güncel yamada.
+**Gün 0'da [kanıtlı]:** Her servis rolsüz, kendi hesabıyla çalışır; önce tetikleyicilere kendi build hesabı verilir, sonra Editor kaldırılır. Sırlar Secret Manager'da, çatı güncel yamada.
 
 **Sonuç** Siteler rolsüz hesaba geçti; aynı gün projede Editor taşıyan hesap kalmadı.
 
 7 bayt
+
 Ürün A'da ilk günlük dökümün kovaya yazdığı nesne
 
 [Yedek](#yedek)
@@ -241,11 +283,12 @@ Yedek
 
 **Önlemsiz yolda:** Döküm alınıyor, yedek var sanılır. Bizde ilk çalışmada geri yükleme kontrolü geçti ama kovaya 7 baytlık nesne yazıldı; boyut karşılaştırması olmasa Neon dışındaki tek kopya kullanılamazdı. Neon Launch'ta geçmişin varsayılanı 1 gündür.
 
-**Gün 0'da[ölçüldü]:** Her döküm geçici Postgres'e geri yüklenerek ve yükleme sonrası boyutla denetlenir; başarı satırı gelmezse alarm çalar. Geçmiş 7 güne çıkarılır.
+**Gün 0'da [ölçüldü]:** Her döküm geçici Postgres'e geri yüklenerek ve yükleme sonrası boyutla denetlenir; başarı satırı gelmezse alarm çalar. Geçmiş 7 güne çıkarılır.
 
 **Sonuç** 24 Eylül–8 Ekim'de 15 çalışmanın 15'i ilk denemede başarılı.
 
 2 build
+
 Ajanın 20 Eylül'de istenmeden başlattığı prod build
 
 [Proje hafızası](#hafiza)[Kullanıcıyı kırmadan](#kirmama)
@@ -256,7 +299,7 @@ Ajan süreci
 
 **Önlemsiz yolda:** Ajan 20 Eylül'de istenmeden iki prod build başlattı ve sürüm numarasını sormadan seçti; kural yalnız onun hafızasındaydı. 8 Ekim'de bir elektrik kesintisi geçici klasördeki commit'lenmemiş işi sildi.
 
-**Gün 0'da[kanıtlı]:** Deploy, build ve sürüm numarası ürün sahibinin kararıdır, depodaki ajan dosyasında yazılıdır. Uzun iş kalıcı klasörde ve dalda sık commit'lenir; CHANGELOG ve durum dosyası güncel tutulur.
+**Gün 0'da [kanıtlı]:** Deploy, build ve sürüm numarası ürün sahibinin kararıdır, depodaki ajan dosyasında yazılıdır. Uzun iş kalıcı klasörde ve dalda sık commit'lenir; CHANGELOG ve durum dosyası güncel tutulur.
 
 **Sonuç** Yayın kuralı 20 Eylül'de beş deponun ajan dosyasına yazıldı; sonraki build'ler ürün sahibinin açık sözüyle alındı. Uzun işler 8 Ekim'den beri kalıcı klasörde ve dalda.
 
@@ -269,36 +312,47 @@ Soldakiler bizim faturamız ve kayıtlarımız. Sağdakiler bugünkü ölçüm, 
 ### Önlemin bedeli
 
 ~₺2.600–3.100/ay
+
 Dört ürünün Eylül faturasıyla 8 Ekim'deki aylık tahmin arasındaki fark.
 
 ₺0
+
 Bot kapısı; istek başına ~4–10 µs.
 
 ₺2.157
+
 Harita API'sinin Ağustos ve Eylül faturası; Eylül'deki ₺657 üst satırdaki farkın içinde. 21 Eylül'den beri ₺0.
 
 ₺0
+
 Alarmların bugünkü ücreti. Uptime kontrolü kontrol başına ayda ~26.000 çalıştırma, proje kotasının %3'ü; bizdeki üç kontrol ~80.000, %8.
 
 21 ve 30 gün
+
 Kaydı kaybolan ödeme olayları (en az 21 gün) ve X'e atılamayan paylaşımlar (30 gün).
 
 ~₺2,5/ay
+
 Üç katmanlı yedek: 7 gün geçmiş, 14 gün snapshot ve her gün geri yüklenerek doğrulanan döküm; 70 MB'lık veritabanında.
 
 7 gün
+
 Kota bitince bir iOS sürümünün beklediği süre: 24 Eylül'den 1 Ekim'e; ayda $19'luk plan alınmadı.
 
 ~₺2/ay
+
 Bellek kopyasını tazeleyen değişiklik işareti.
 
 3 build
+
 Kullanıcıda kaldıkça güncelleme uyarısını hiç gösteremeyecek Android build'i; uyarı gerçek release build'le telefonda denenmemişti.
 
 24 adım
+
 Hızlı yolun gün 0'dan ilk mağaza sürümüne kadar sırası. Kurulumu ajan yapar, ekibe kalan iş kararlardır.
 
 Sırada
+
 [Bu rehber nasıl kullanılır](#kullanim) ekibe ve ajana neyi nasıl okuyacağını anlatır. Hemen kurmak isteyen [En hızlı kurulum yolu](#hizli) ile başlar; ajanın soracağı kararlar [Verilecek kararlar](#kararlar) bölümünde.
 
 <a id="icindekiler"></a>
@@ -307,136 +361,194 @@ Sırada
 
 Her başlık bir bağlantıdır; tıklanınca bölüme gider.
 
-### Başlarken[İki yol](#iki-yol)
+### Başlarken
+
+[İki yol](#iki-yol)
+
 Aynı ürün, önlemsiz ve önlemli: ilk aylarda ne olur.
 
 [Bu rehber nasıl kullanılır](#kullanim)
+
 Ekip ve yapay zekâ ajanı için; dört ürünümüz.
 
 [Verilecek kararlar](#kararlar)
+
 Ajanın sorması gereken kararlar ve iş sırası.
 
 [En hızlı kurulum yolu](#hizli)
+
 Gün 0'dan ilk mağaza sürümüne adım adım sıra.
 
 [Botlar ve maliyet](#cevaplar)
+
 Önce iki cevap: kimi engelleriz, ne tutar.
 
 [Vaka defteri](#vakalar)
+
 Yaşadığımız sorunlar, bedeli, çözümü ve kuralı.
 
 [Kısaca ve on ilke](#bakis)
+
 Yığının özeti ve her kararın arkasındaki ilke.
 
 [Parçalar ve akışlar](#mimari)
+
 Mimari şeması, bileşenler ve akışlar.
 
-### Kurallar[Kullanıcıyı kırmadan değiştirmek](#kirmama)
+### Kurallar
+
+[Kullanıcıyı kırmadan değiştirmek](#kirmama)
+
 Sekiz başlıkta 76 kural ve izleme takvimi.
 
 [Proje hafızası ve devir](#hafiza)
+
 CHANGELOG, durum, yapılacaklar, kararlar; yeni gelen hızla başlar.
 
-### Katmanlar[1Postgres (Neon + pgx)](#katman-1)
+### Katmanlar
+
+1 [Postgres (Neon + pgx)](#katman-1)
+
 Uyuyabilen veritabanı, pooler ve roller.
 
-[2Go API](#katman-2)
+2 [Go API](#katman-2)
+
 Tek yazma noktası; geçici hata 503, 401 değil.
 
-[3Next.js web](#katman-3)
+3 [Next.js web](#katman-3)
+
 Sunucuda tam HTML, ISR ve değişiklik işareti.
 
-[4React Native (Expo) mobil](#katman-4)
+4 [React Native (Expo) mobil](#katman-4)
+
 CNG, New Arch; kit kurulmadan yayın yok.
 
 [Mobil uzaktan kontrol kiti](#mobilkit)
+
 Mağazaya çıkmadan önce kurulacak 11 parça; OTA dışında hepsi şart.
 
 [Mobil build ve dağıtım](#dagitim)
+
 EAS mi, kendi hattımız mı; kota ve kullanım.
 
-[5Kenar, DNS ve alan adı](#katman-5)
+5 [Kenar, DNS ve alan adı](#katman-5)
+
 Cloudflare DNS ve alan adının bağlanma yolu.
 
-[6Bulut altyapısı (Cloud Run)](#katman-6)
+6 [Bulut altyapısı (Cloud Run)](#katman-6)
+
 min 0, kendi faturalama hesabı, servis tanımı.
 
-[7CI/CD ve ortamlar](#katman-7)
+7 [CI/CD ve ortamlar](#katman-7)
+
 Bir kez build, onay kapılı terfi.
 
-[8Güvenlik ve botlar](#katman-8)
+8 [Güvenlik ve botlar](#katman-8)
+
 En az yetki, Secret Manager, kapı.
 
 [Botlara karşı tutum](#botlar)
+
 Aç, sınırla, izle, engelle; kapının sırası.
 
-[9E-posta](#katman-9)
+9 [E-posta](#katman-9)
+
 Ayrı alt alan adı, outbox ve gönderim bütçesi.
 
 [İçerik otomasyonu](#icerik)
+
 X, Meta ve LinkedIn'e onaylı, kayıtlı ve tavanlı paylaşım hattı.
 
-[10Gözlem ve alarmlar](#katman-10)
+10 [Gözlem ve alarmlar](#katman-10)
+
 İlk kullanıcıdan önce denenmiş alarmlar.
 
 [Uyarılar kime, nasıl ulaşır](#uyarilar)
+
 Dış API hatası, bitmek üzere bütçe ve kota, süre dolumu: ürün sahibine.
 
 [Analitik ve admin](#analitik)
+
 Gün 0'dan olay kaydı ve yönetim uçları.
 
-[11Yedekler](#katman-11)
+11 [Yedekler](#katman-11)
+
 Dört katman; kuralları sonraki bölümde.
 
 [Veritabanı yedeği ve geri yükleme](#yedek)
+
 Katmanlar, tarifler, runbook, tatbikat, KVKK.
 
-### Ürün ve büyüme[Gerçek zamanlı ve mesajlaşma](#mesajlasma)
+### Ürün ve büyüme
+
+[Gerçek zamanlı ve mesajlaşma](#mesajlasma)
+
 Akışa göre push, yoklama, SSE ya da WebSocket; mesaj yapısı.
 
 [Tasarım sistemi ve devir](#tasarim)
+
 Tek token kaynağı, tasarımdan koda devir, karar kaydı.
 
 [SEO ve GEO](#seo)
+
 Ne yaptık, ne çıktı, hangi işler hiç bitmez.
 
-### Para ve hız[Ne tutar?](#maliyet)
+### Para ve hız
+
+[Ne tutar?](#maliyet)
+
 Üç basamak, dört ürünümüz ve kalem kalem model.
 
 [Startup kredileri](#krediler)
+
 Nereye, ne zaman başvurulur.
 
 [Ücretsiz katmanları sonuna kadar kullanmak](#ucretsiz)
+
 28 servisin sınırı, aşınca ne olduğu, izleme.
 
 [Pahalı dış API'ler](#pahali-api)
+
 Places vakası, alternatifler ve açmadan önce liste.
 
 [Performans](#performans)
+
 Ölçümler, sayılı kurallar ve hedefler.
 
-### Ölçüm ve denetim[Projelerimiz ne büyüklükte](#boyutlar)
+### Ölçüm ve denetim
+
+[Projelerimiz ne büyüklükte](#boyutlar)
+
 14 depo: satır, test, görsel, commit.
 
 [Yeni depo için kurallar](#depo-kurallari)
+
 Özel depo, sır taraması, büyük dosya kapısı, dallar.
 
 [Artifact Registry ve build kuralları](#registry)
+
 İmaj, temizlik, geri dönüş, build dakikası.
 
-### Son[KVKK ve veri yeri](#kvkk)
+### Son
+
+[KVKK ve veri yeri](#kvkk)
+
 Veri bölgesi, işleyen listesi, aktarım.
 
 [Kontrol listesi](#kontrol)
+
 Dört aşama, işaretlenecek kutular.
 
 [Asla](#asla)
+
 Gün 0'dan geçerli yasaklar.
 
 [Ek: Gün 0 önlemleri](#onlemler)
+
 Henüz yaşamadığımız ama her yeni projede önceden alınacak 26 önlem.
 
 [Kaynaklar](#kaynaklar)
+
 Sağlayıcı belgeleri, fiyatlar ve şartlar.
 
 <a id="kullanim"></a>
@@ -462,15 +574,19 @@ Aynı içerik iki biçimde: PDF ekip için, Markdown kopyası ajan için. Markdo
 PDF'i okur, ürün sahibiyle kararları verir, ajanın raporlarına bakar.
 
 [İki yol](#iki-yol)
+
 Önlemsiz yolun bize bedeli; ilk aylarda ne olur.
 
 [Vaka defteri](#vakalar)
+
 30 olay: bedeli, çözümü ve kuralı.
 
 [En hızlı kurulum yolu](#hizli)
+
 Gün 0'dan ilk mağaza sürümüne 24 adım, sırasıyla.
 
 [Kontrol listesi](#kontrol)
+
 Dört aşamada 29 kutu; ajanın raporu buna göre okunur.
 
 ### Yapay zekâ ajanı
@@ -478,15 +594,19 @@ Dört aşamada 29 kutu; ajanın raporu buna göre okunur.
 Markdown kopyasını okur; sorar, kurar, kaydeder.
 
 Markdown kopyası
+
 Baştan sona, bölüm bölüm. Grafikler orada tek satırdır, kimi yalnız başlıktır.
 
 [Verilecek kararlar](#kararlar)
+
 Ürün sahibine tek tek sorulur; cevaplar DECISIONS.md'ye.
 
 [Ajanın kurulum planı](#kurulum-plani)
+
 Aşama aşama; her aşamanın kontrolü koşulur.
 
 [Katmanlar](#katman-1)
+
 Kurulan katmanın bölümü o sırada yeniden açılır.
 
 İki yol kararlarda buluşur; ajan sorar, ürün sahibi cevaplar (küçük ekipte bu kişi ekip lideri de olabilir). Cevabı gelmeyen satır "KARAR BEKLİYOR" diye kalır.
@@ -512,6 +632,7 @@ Ekteki project-setup-guide.md bu işin rehberi.
 ```
 
 [öneri]
+
 Metin bütün olarak bizde denenmedi. Maddeleri depolarımızın ajan dosyalarındaki deploy ve yasak kurallarından, [Proje hafızası](#hafiza) bölümünün gün 0 dosyalarından ve [Verilecek kararlar](#kararlar) bölümünden geliyor.
 
 ## Kim ne yapar
@@ -576,6 +697,7 @@ Kurallar, sıralar, dosya şablonları ve bazı kod iskeletleri (örneğin bot k
 ### Ürün A
 
 Finans hesaplama ürünü
+
 Mobil uygulama, bilgi sitesi, statik portal, pazar yeri sitesi ve Go API.
 
 **Veritabanında:** Kullanıcılar ve oturumlar, hesaplama olayları, abonelik olayları, pazar yeri talepleri ve mesajları, bildirimler ve cihazlar.
@@ -583,12 +705,15 @@ Mobil uygulama, bilgi sitesi, statik portal, pazar yeri sitesi ve Go API.
 Her gün giriş yapan kullanıcıları ve her sabah çalışan veri çekme, rapor ve yedek işleri var.
 
 **5** depo
+
 **~265.000** satır kod
+
 **~₺610** aylık bulut
 
 ### Ürün B
 
 Mağaza keşif uygulaması
+
 Web ve Go API; mobil uygulama deposu erken aşamada.
 
 **Veritabanında:** Mağaza ve marka kataloğu, değerlendirmeler ve moderasyon, arama ve tıklama kayıtları, kullanıcılar ve oturumlar.
@@ -596,12 +721,15 @@ Web ve Go API; mobil uygulama deposu erken aşamada.
 Herkese açık ~18 bin sayfalık katalog; tek bir bulut kazıyıcısı web isteklerinin %41'ini aldı.
 
 **3** depo
+
 **~70.000** satır kod
+
 **~₺510** aylık bulut
 
 ### Ürün C
 
 İçerik uygulaması
+
 Web, ayrı admin paneli, mobil uygulama ve Go API.
 
 **Veritabanında:** İçerik kayıtları ve çevirileri, kategoriler, kullanıcılar ve roller, yorumlar, günlük bakılma sayaçları, paylaşım kayıtları.
@@ -609,12 +737,15 @@ Web, ayrı admin paneli, mobil uygulama ve Go API.
 Günlük, haftalık ve aylık içeriğini sosyal hesaplara kendisi paylaşır.
 
 **4** depo
+
 **~151.000** satır kod
+
 **~₺220** aylık bulut
 
 ### Ürün D
 
 Küçük içerik sitesi
+
 Web ve Go API.
 
 **Veritabanında:** İçerikler, yorumlar ve içerik bildirimleri; IP adresi ham tutulmaz, yalnız hash'i durur.
@@ -622,8 +753,11 @@ Web ve Go API.
 Gerçek kullanıcısı az; veritabanı Neon Free'de, admin paneli yok.
 
 **2** depo
+
 **~12.500** satır kod
+
 **~₺5** aylık bulut
+
 Ürün C'nin kodu Ürün B'nin iki katından fazla, aylık tutarı yarısından az (~₺220 ve ~₺510). Fark veritabanının uyanık kaldığı saatlerden, Ürün B'deki bot trafiğinden ve build dakikalarından geliyor.
 
 <a id="kararlar"></a>
@@ -647,7 +781,9 @@ Kararlar ve kurulum adımları aynı dört zamana ayrılır. DUR, ürün sahibin
 Akışların kodu bu aşama bitince başlar.
 
 **17** karar
+
 **15** adım
+
 **11** DUR
 
 ### İlk kullanıcıdan önce
@@ -655,7 +791,9 @@ Akışların kodu bu aşama bitince başlar.
 İlk gerçek kullanıcı bu aşama bitince gelir.
 
 **8** karar
+
 **8** adım
+
 **4** DUR
 
 ### İlk mağaza sürümünden önce
@@ -663,7 +801,9 @@ Akışların kodu bu aşama bitince başlar.
 Yalnız mobil varsa.
 
 **4** karar
+
 **5** adım
+
 **3** DUR
 
 ### Sonra
@@ -671,7 +811,9 @@ Yalnız mobil varsa.
 Sürekli; ajan takvimden yürütür.
 
 **3** karar
+
 **5** adım
+
 **2** DUR
 
 ## Kararlar
@@ -748,13 +890,13 @@ Tek sayfa envanter; sağlayıcı listesi kararlara göre uzar. Yenileme tarihler
 ```
 # docs/ACCOUNTS.md: parola, kurtarma kodu ve anahtar buraya yazılmaz
 Sağlayıcı        | sahip        | yönetici | faturalama          | yenileme
-Google Cloud     | şirket       | 2        | ürünün hesabı       | kart <AA/YY>
-Neon             | şirket org'u | 2        | ürünün org'u        | kart <AA/YY>
-Alan adı         | şirket       | 2        | çok yıllık, kilitli | <YYYY-AA-GG>
+Google Cloud     | şirket       | 2        | ürünün hesabı       | kart <MM/YY>
+Neon             | şirket org'u | 2        | ürünün org'u        | kart <MM/YY>
+Alan adı         | şirket       | 2        | çok yıllık, kilitli | <YYYY-MM-DD>
 Cloudflare       | şirket       | 2        | Free                | yok
 E-posta (Resend) | şirket       | 2        | Free                | yok
 GitHub           | şirket org'u | 2        | Free                | yok
-Apple Developer  | şirket       | 2        | yıllık üyelik       | <YYYY-AA-GG>
+Apple Developer  | şirket       | 2        | yıllık üyelik       | <YYYY-MM-DD>
 Google Play      | şirket       | 2        | tek seferlik kayıt  | yok
 ```
 
@@ -794,6 +936,7 @@ STATUS ajanın ilk 5 dakikada okuduğu dosyadır. [öneri]
 ### Desteğin bitmesine kalan süre
 
 6 aydan fazla6 aydan az: yeni projede kullanılmaz
+
 _Grafik: Desteğin bitmesine kalan süre, 8 Ekim 2026: PostgreSQL 18 ~49 ay (14 Kas 2030); Node.js 26 (LTS 28 Eki'de) ~31 ay (30 Nis 2029); Node.js 24 LTS ~19 ay (30 Nis 2028); Next.js 16 ~12 ay (21 Eki 2027); Node.js 22 ~7 ay (30 Nis 2027); PostgreSQL 14 35 gün (12 Kas 2026); Next.js 15 13 gün (21 Eki 2026)_
 Yalnız tarihi yayımlanmış ana sürümler; Go, React, Expo SDK, TypeScript ve pgx tarih yayımlamıyor. Next.js tarihleri destek politikasından hesaplandı (ilk çıkış ve iki yıl).
 
@@ -815,19 +958,34 @@ Desteğine 6 aydan az kalan satır TODO'ya P1 girer.
 Sürümler ve destek tarihleri 8 Ekim 2026'da bu sayfalardan okundu.
 
 **Go sürümleri**https://go.dev/dl/?mode=json
+
 **Go sürüm geçmişi ve destek kuralı**https://go.dev/doc/devel/release
+
 **Node.js sürümleri**https://nodejs.org/dist/index.json
+
 **Node.js sürüm takvimi**https://raw.githubusercontent.com/nodejs/Release/main/schedule.json
+
 **Next.js destek politikası**https://nextjs.org/support-policy
+
 **React sürümleri**https://react.dev/versions
+
 **Expo SDK sürümleri ve istekleri**https://docs.expo.dev/versions/latest/
+
 **TypeScript güncel sürüm**https://www.typescriptlang.org/download
+
 **TypeScript sürüm duyuruları**https://devblogs.microsoft.com/typescript/
+
 **Neon'un desteklediği Postgres sürümleri**https://neon.com/docs/postgresql/postgres-version-policy
+
 **PostgreSQL sürüm politikası**https://www.postgresql.org/support/versioning/
+
 **pgx: desteklenen Go ve Postgres sürümleri**https://github.com/jackc/pgx
+
 **pgx sürümü**https://proxy.golang.org/github.com/jackc/pgx/v5/@latest
+
 **npm sürüm kayıtları: next, expo, typescript, typescript-eslint**https://registry.npmjs.org/
+
+<a id="kurulum-plani"></a>
 
 ## Ajanın kurulum planı
 
@@ -842,6 +1000,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 1. Kararları sor ve kaydet
 
 [Proje hafızası](#hafiza)
+
 **Üretir:** docs/DECISIONS.md, K-001'den. Cevapsız satır AGENTS.md'de 'KARAR BEKLİYOR' ve TODO'nun karar bekleyen bölümünde.
 
 **Doğrular:** Her gün 0 kararının ya K numarası ya TODO satırı var.
@@ -851,6 +1010,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 2. Proje hafızası
 
 [Proje hafızası](#hafiza)
+
 **Üretir:** AGENTS.md (deploy kuralı en üstte), CLAUDE.md'de yalnız @AGENTS.md, CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/runbooks/.gitkeep, docs/handoff/.gitkeep, .gitignore, .env.example (yalnız adlar). Sonraki adımların dosyaları bu adlarla açılır: docs/ACCOUNTS.md (3), docs/ALERTS.md (yenileme tablosu 3'te, uyarı listesi 16'da), sürüm tabanı docs/STATUS.md'nin Sürümler bölümünde (6), docs/KVKK.md (12), PRODUCT.md, DESIGN.md ve tokens/tokens.json (14).
 
 **Doğrular:** `git ls-files` hepsini listeler; Claude Code'un /memory listesinde AGENTS.md var.
@@ -858,6 +1018,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 3. Hesaplar
 
 [Uyarılar](#uyarilar)
+
 **Üretir:** docs/ACCOUNTS.md'de hesap envanteri: sahip, iki yönetici, faturalama, yenileme tarihi; tarihler docs/ALERTS.md'deki yenileme tablosunda.
 
 **Doğrular:** Envanterde boş hücre yok; kök hesaplarda anahtar ürün sahibiyle ekranda görüldü.
@@ -867,24 +1028,27 @@ Akışların kodu bu aşama bitince başlar.
 ### 4. Faturalama ve bütçe
 
 [Ücretsiz katmanlar](#ucretsiz)
+
 **Üretir:** Ürünün faturalama hesabı ve Neon org'u; %50, %80, %100 bütçe ve Pub/Sub; kredisiz ikinci bütçe; BigQuery fatura dökümü.
 
-**Doğrular:** `gcloud billing budgets list --billing-account=FATURA_HESABI` ürünün faturalama hesabında iki bütçe ve üç eşik gösterir.
+**Doğrular:** `gcloud billing budgets list --billing-account=BILLING_ACCOUNT` ürünün faturalama hesabında iki bütçe ve üç eşik gösterir.
 
 **DUR:** Faturalama hesabı ve Neon'un ücretli planı ürün sahibinin kartıyla açılır.
 
 ### 5. Alan adı ve DNS
 
 [Kenar ve DNS](#katman-5)
+
 **Üretir:** Cloudflare'de kayıtlar başta gri; web Worker ile run.app'e, api. domain mapping ile; transfer kilidi, çok yıllık yenileme; dört güvenlik firmasına kategori başvurusu.
 
-**Doğrular:** `dig +short NS ALAN` Cloudflare'i, whois clientTransferProhibited'ı gösterir.
+**Doğrular:** `dig +short NS DOMAIN` Cloudflare'i, whois clientTransferProhibited'ı gösterir.
 
 **DUR:** Alan adını ürün sahibi kaydeder.
 
 ### 6. Depolar ve sürümler
 
 [Depo kuralları](#depo-kurallari)
+
 **Üretir:** Özel depolar, test ve main; gitleaks, push protection, 1 MB ve ikili kapısı; tablodaki sürümler, STATUS'taki taban, Renovate.
 
 **Doğrular:** Sahte anahtarlı ya da 2 MB'lık commit reddedilir; main'e force push ve main'i silme reddedilir, test'ten main'e fast-forward push geçer; desteğine 6 aydan az kalan sürüm yok.
@@ -894,6 +1058,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 7. Neon
 
 [Postgres](#katman-1)
+
 **Üretir:** Prod Launch'ta Frankfurt'ta, Postgres 18; test Free org'da; üç rol, rol zaman aşımları, geçmiş 7 gün; MinConns=0, MaxConnIdleTime=90s.
 
 **Doğrular:** Pooler üzerinden jsonb, bytea ve dizi testi geçer; son istekten ~6,5 dakika sonra (havuz 90 sn + Neon 5 dk) compute uyur, Neon'un saatlik tüketiminde görülür.
@@ -903,6 +1068,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 8. Servisler ve hat
 
 [CI/CD](#katman-7)
+
 **Üretir:** API ve web europe-west1'de min 0, max 2–3 ve 3, CPU boost, Next'e 1 GiB, service.yaml; tek Docker deposu, bölgesel tetikleyici, temizlik kuralı; test digest üretir, main onayla terfi eder. Tetikleyiciler baştan kendi build hesabıyla kurulur. Bu hesap roles/run.admin, roles/artifactregistry.writer ve roles/logging.logWriter taşır. roles/iam.serviceAccountUser proje genelinde verilmez, yalnız deploy ettiği çalışma hesaplarının üstünde verilir. Build dosyasında `options: logging: CLOUD_LOGGING_ONLY` bulunur; kendi hesabıyla koşan build bu satır olmadan başlamaz.
 
 **Doğrular:** Depo tanımında cleanupPolicyDryRun yok ya da false; test push'unun build'i kendi build hesabıyla SUCCESS.
@@ -914,9 +1080,10 @@ Akışların kodu bu aşama bitince başlar.
 ### 9. Yetki ve sırlar
 
 [Güvenlik](#katman-8)
+
 **Üretir:** Compute hesabında Editor varsa, tetikleyiciler kendi build hesabına geçtikten sonra kaldırılır. Servisler rolsüz kendi hesabıyla çalışır; sırlar Secret Manager'da, tek etkin sürüm. WIF yalnız GitHub Actions'ta koşan iş için kurulur, Cloud Build'e gerekmez.
 
-**Doğrular:** `gcloud projects get-iam-policy PROJE --flatten='bindings[].members' --filter='bindings.role=roles/editor' --format='value(bindings.members)'` boş döner. Compute, build ve uygulama hesapları bu listede yoktur. Listede Google'ın kendi hizmet aracısı `PROJE_NO@cloudservices.gserviceaccount.com` çıkarsa ona dokunulmaz. Bazı API'ler kullanılınca Google bu hesabı Editor ile kurar ve rolün kalmasını ister.
+**Doğrular:** `gcloud projects get-iam-policy PROJECT --flatten='bindings[].members' --filter='bindings.role=roles/editor' --format='value(bindings.members)'` boş döner. Compute, build ve uygulama hesapları bu listede yoktur. Listede Google'ın kendi hizmet aracısı `PROJECT_NUMBER@cloudservices.gserviceaccount.com` çıkarsa ona dokunulmaz. Bazı API'ler kullanılınca Google bu hesabı Editor ile kurar ve rolün kalmasını ister.
 
 **DUR:** Bu adımın bütün komutları betikle, ürün sahibinin kimliğiyle çalışır. Sır değerini Secret Manager'a ürün sahibi yazar, ajan değeri görmez.
 
@@ -925,6 +1092,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 10. Okuma yolu ve kapı
 
 [Mimari](#mimari)
+
 **Üretir:** Herkese açık okumalar API belleğinden, GCS işaretiyle; veritabanısız /health; proxy.ts'in ilk satırında ortak listeli kapı; güvenlik başlıkları, CSP report-only.
 
 **Doğrular:** Herkese açık sayfada 'db wake' satırı yok; /.env 404; veritabanı kapalıyken /health 200.
@@ -932,6 +1100,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 11. E-posta
 
 [E-posta](#katman-9)
+
 **Üretir:** Resend AB, auth. ve news.; SPF, DKIM, DMARC; outbox; günlük ortak sayaç: 70'te uyarı, 80'de toplu gönderim durur, kodlar 100'e kadar; web kod formunda Turnstile; API'de App Check doğrulaması, mobil varsa mobil kod ucu token'sız isteği ilk günden reddeder; yedek sağlayıcı SES aynı auth. alt alan adında.
 
 **Doğrular:** Alan adları sağlayıcıda doğrulanmış; test ortamından izinli adrese kod geldi; test ortamında sayaç 100'e çekilince kod SES'ten gerçek bir gelen kutusuna geldi.
@@ -941,6 +1110,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 12. KVKK
 
 [KVKK](#kvkk)
+
 **Üretir:** Veri yeri, işleyen listesi ve aktarım dayanağı tek belgede; gizlilik metni taslağı.
 
 **Doğrular:** Kodda ve faturada geçen her sağlayıcı listede.
@@ -950,6 +1120,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 13. Ücretli dış API (varsa)
 
 [Pahalı API'ler](#pahali-api)
+
 **Üretir:** 'Her ücretli API'den önce' listesinin cevapları; sağlayıcıda günlük kota. Ürüne özel, kısıtlı anahtar 16. adımın uyarıları denendikten sonra açılır.
 
 **Doğrular:** Kota konsolda görünür; günlük maliyet sorgusu SKU kırılımıyla çalışır.
@@ -959,6 +1130,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 14. Tasarım kaynağı
 
 [Tasarım sistemi](#tasarim)
+
 **Üretir:** tokens/tokens.json, ondan üretilen CSS ve mobil tema, DESIGN.md; koyu tema kararı DECISIONS'ta.
 
 **Doğrular:** CI token dışı hex'leri sayar; yeniden üretilen dosyalarda fark yok.
@@ -966,6 +1138,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 15. Mobil iskelet (mobil seçildiyse)
 
 [Mobil kit](#mobilkit)
+
 **Üretir:** Expo SDK 57, CNG, New Arch; app.config'te DECISIONS'taki bundle ID, paket adı ve şema; eas.json'da profil ortamları; kit iskeleti: sürüm başlıkları, update-policy, zorunlu güncelleme ekranı, push kaydı. Yerel yol: `eas build --local`, fastlane, ANDROID_HOME. App Check debug sağlayıcısı yalnız test ve yerel build'de; debug token'ları sırdır, depoya yazılmaz.
 
 **Doğrular:** Yerelde preview profiliyle alınan build'in istekleri test API logunda X-App-Build ile görünür. Token'sız kod isteği test API'de reddedilir.
@@ -981,6 +1154,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 16. Uyarılar ve alarmlar
 
 [Uyarılar](#uyarilar)
+
 **Üretir:** alerts tablosu, notify(), acil ve bugün log alarmları; uptime 300 sn; 5xx, OOM, ERROR > 0, webhook tek 5xx; denetim işi; pazartesi özeti.
 
 **Doğrular:** Her uyarı türü [TEST] ile uçtan uca denendi; iki alıcı postayı ve telefondaki bildirimi gördüğünü yazdı.
@@ -992,6 +1166,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 17. Analitik ve admin
 
 [Analitik ve admin](#analitik)
+
 **Üretir:** POST /v1/events, on zorunlu olay; ayrı admin girişi, izin listesi; admin_audit aynı işlemde; bayrak, politika ve duyuru veritabanında.
 
 **Doğrular:** Token'sız admin çağrısı ve denetim satırı testleri yeşil; olay ucu gerçek Postgres'e karşı test edildi.
@@ -999,6 +1174,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 18. Yedek
 
 [Yedek](#yedek)
+
 **Üretir:** Günlük döküm, geçici Postgres'e geri yükleme, boyut karşılaştırması, 'backup ok', iki alarm, haftalık proje dışı kopya, restore-db.md.
 
 **Doğrular:** Bozuk bir çalışmada alarm geldi; bir elle geri yükleme yapıldı, süresi runbook'ta.
@@ -1006,6 +1182,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 19. Kırmama sözleşmeleri
 
 [Kırmadan değiştirmek](#kirmama)
+
 **Üretir:** 401 ve 503 sözleşme testi, yalnız ekleyen migration denetimi, varsayılan kapalı anahtarlar, deploy.md ve rollback.md.
 
 **Doğrular:** Sözleşme testinde veritabanı havuzu kimsenin dinlemediği bir adrese (127.0.0.1:1) bağlanır; oturumlu uç 503, token'sız ya da bozuk token'lı istek 401 döner. Neon compute'u askıya almak bu durumu üretmez, ilk bağlantı onu uyandırır. Erişilemeyen adresle revizyon açmak da denenmez: API açılışta veritabanını 30 sn bekler, gelmezse kapanır; revizyon hiç açılmaz. Test ortamında önceki revizyona dönüldü.
@@ -1013,6 +1190,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 20. SEO ve GEO (herkese açık sayfa varsa)
 
 [SEO ve GEO](#seo)
+
 **Üretir:** Search Console DNS TXT ile, Bing; istek anında sitemap, canonical; robots.txt kapıdan; OG kartları; panelde noindex.
 
 **Doğrular:** Her sayfa tipi JavaScript'siz curl ile okunur; sitemap sayısı curl ile eşit; sayfa ve sitemap istekleri 'db wake' yazmaz.
@@ -1022,6 +1200,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 21. Gerçek zamanlı (akış istiyorsa)
 
 [Gerçek zamanlı](#mesajlasma)
+
 **Üretir:** Seçilen basamak ve nedeni; istemci anahtarlı mesaj tablosu; bildirim, silme, rapor ve engel kuralları.
 
 **Doğrular:** Arka planda ve gizli sekmede yoklama isteği 0, logdan okundu.
@@ -1029,6 +1208,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 22. Startup kredileri
 
 [Krediler](#krediler)
+
 **Üretir:** Başvuru dosyası: iş e-postası, ürün tanımı, kullanım rakamları; kredi kaydı ve bitişten bir hafta önce hatırlatma.
 
 **Doğrular:** Her kredinin bitişi yenileme tablosunda.
@@ -1038,6 +1218,7 @@ Akışların kodu bu aşama bitince başlar.
 ### 23. İlk canlı çıkış ve ölçüm
 
 [Kırmadan değiştirmek](#kirmama)
+
 **Üretir:** Test'te doğrulanan digest'in terfisi, candidate duman testi, ertesi sabah kontrolü; performans hedef tablosu.
 
 **Doğrular:** Kural 8.1: build, revizyon, sağlık 200, ilk 30 dakikada 5xx 0; ilk p50 ve p90 STATUS'ta.
@@ -1053,6 +1234,7 @@ Yalnız mobil varsa.
 ### 24. Kit ve yayın kapısı
 
 [Mobil kit](#mobilkit)
+
 **Üretir:** Kitin OTA dışındaki on parçası; yayın kapısının 19 maddesi kanıtlarıyla sürüm notunda. OTA seçilmediyse 11. madde 'seçilmedi' ve karar numarasıyla (K-NNN) yazılır; seçildiyse 28. adımda kurulur.
 
 **Doğrular:** İki platformun release build'i gerçek telefonda; zorunlu ekran önceki mağaza build'inde görüldü.
@@ -1062,6 +1244,7 @@ Yalnız mobil varsa.
 ### 25. Mağaza hazırlığı
 
 [Expo mobil](#katman-4)
+
 **Üretir:** Play hesabı şirket adına; hesap kişisel açıldıysa 12 testçili 14 günlük kapalı test ilk sürümden en az 3 hafta önce başlar. Uygulama içi silme, gizlilik formları, inceleme hesabı.
 
 **Doğrular:** Formlar her SDK'yı kapsar; inceleme hesabının her girişi log yazar.
@@ -1071,6 +1254,7 @@ Yalnız mobil varsa.
 ### 26. Build bütçesi ve gönderim provası
 
 [Mobil dağıtım](#dagitim)
+
 **Üretir:** Platform başına aylık build bütçesi README'de; yerelde alınan build'le `eas submit --path` provası; App Store Connect kaydının kimliği eas.json'da ascAppId olarak.
 
 **Doğrular:** `eas account:usage` kalan hakkı gösterir; yerel build mağazanın iç test kanalına ulaştı. İlk Android gönderimi iç test kanalına gider; mağaza girişi ve formlar bitene kadar uygulamanın Play Console'da taslak kalması prova hatası sayılmaz.
@@ -1080,6 +1264,7 @@ Yalnız mobil varsa.
 ### 27. Ödeme (satış varsa)
 
 [Expo mobil](#katman-4)
+
 **Üretir:** RevenueCat, 10 dk TTL'li sunucu mutabakatı, ham gövdeyi kaydeden webhook, tek 5xx alarmı.
 
 **Doğrular:** Sağlayıcı panelinde bir teslim başarılı; webhook kapalıyken Premium doğru.
@@ -1087,6 +1272,7 @@ Yalnız mobil varsa.
 ### 28. OTA (seçildiyse)
 
 [Mobil kit](#mobilkit)
+
 **Üretir:** expo-updates, fingerprint, kanal eşlemesi; ortamı zorlayan yayın betiği.
 
 **Doğrular:** Preview güncellemesi release build'de uygulandı; hatalı güncellemede geri dönüş denendi.
@@ -1102,6 +1288,7 @@ Sürekli; ajan takvimden yürütür.
 ### 29. Her hafta
 
 [Performans](#performans)
+
 **Üretir:** p50 ve p90, soğuk başlangıç, uyanış ve OOM; pazartesi özeti; 7 günlük sürüm dağılımı.
 
 **Doğrular:** STATUS'ta haftanın satırı.
@@ -1109,6 +1296,7 @@ Sürekli; ajan takvimden yürütür.
 ### 30. Her ay
 
 [Kontrol listesi](#kontrol)
+
 **Üretir:** Fatura SKU kırılımıyla, Neon tüketimi, yedek, geri dönüş imajı, 60 günün yenilemeleri; güncelleme günü ve destek bitişleri.
 
 **Doğrular:** 'Her ay' kutuları işaretli; 6 aydan az kalan sürüm TODO'da P1.
@@ -1118,6 +1306,7 @@ Sürekli; ajan takvimden yürütür.
 ### 31. Üç ayda bir
 
 [Yedek](#yedek)
+
 **Üretir:** Son döküm yeni bir Neon dalına tam yüklenir, md5 karşılaştırılır; ücretsiz katman şartları yeniden okunur.
 
 **Doğrular:** Süre runbook'ta; değişen sınır tabloda.
@@ -1125,6 +1314,7 @@ Sürekli; ajan takvimden yürütür.
 ### 32. Yeni SDK, işleyen ya da platform
 
 [KVKK](#kvkk)
+
 **Üretir:** KVKK listesi, gizlilik metni, App Store etiketi ve Data safety aynı gün güncellenir.
 
 **Doğrular:** Yeni SDK listede ve iki mağaza beyanında.
@@ -1132,6 +1322,7 @@ Sürekli; ajan takvimden yürütür.
 ### 33. İçerik otomasyonu (seçildiyse)
 
 [İçerik otomasyonu](#icerik)
+
 **Üretir:** Hattın on bir parçası, açılış kapısının 17 maddesi, bir haftalık kuru çalışma.
 
 **Doğrular:** Bozuk token'la alarm geldi; aynı iş iki kez çalışınca ikinci yayın yok.
@@ -1181,39 +1372,51 @@ Yığının en ucuz, en hızlı ve en güvenli hali bu sırayla kurulur.
 1. Ürüne ayrı faturalama hesabı ve Neon org'u; üç eşikli bütçe alarmı, BigQuery fatura dökümü.
 
 [Ücretsiz katmanlar](#ucretsiz)
+
 2. Alan adı haftalar önce alınır ve kategori başvurusu yapılır; DNS ilk günden Cloudflare'de.
 
 [Kenar ve DNS](#katman-5)
+
 3. Özel depo, gitleaks, push protection, 1 MB ve ikili kapısı, ajan dosyası; test ve main dalı.
 
 [Depo kuralları](#depo-kurallari)
+
 4. Neon Frankfurt'ta: prod Launch (asgari ücret yok), test Free; havuz tabanı 0, boşta 90 sn.
 
 [Postgres](#katman-1)
+
 5. Servisler europe-west1'de min 0, istek bazlı faturalama, CPU boost açık; Next'e 1 GiB.
 
 [Performans](#performans)
+
 6. Tek Docker deposu, bölgesel tetikleyici, live ve prev KEEP'li temizlik; digest terfi eder.
 
 [Artifact Registry](#registry)
+
 7. Herkese açık okumalar API belleğinden, GCS işaretiyle tazelenir; sayfa başına bir API çağrısı.
 
 [Mimari](#mimari)
+
 8. Bot kapısı proxy'nin ilk satırında; gün 0'da yalnız ortak listenin kanıtlı kuralları reddeder.
 
 [Botlar](#botlar)
+
 9. Kod formunda Turnstile, mobil kod ucunda App Check, hazır yedek e-posta sağlayıcısı.
 
 [E-posta](#katman-9)
+
 10. Sırlar Secret Manager'da, her sırrın tek etkin sürümü; her servis en az yetkiyle.
 
 [Güvenlik](#katman-8)
+
 11. Veri yeri, işleyen listesi ve yurt dışı aktarım dayanağı yazılı.
 
 [KVKK](#kvkk)
+
 12. Ücretli dış API, alternatifleri ve en kötü günün faturası yazılmadan açılmaz.
 
 [Pahalı dış API'ler](#pahali-api)
+
 13. Mobilde uzaktan kontrol kiti ilk commit'te: sürüm başlıkları, politika ucu, zorunlu güncelleme, duyuru, push, bayrak; OTA önerilir.
 
 [Mobil kit](#mobilkit)
@@ -1223,21 +1426,27 @@ Yığının en ucuz, en hızlı ve en güvenli hali bu sırayla kurulur.
 14. Web ve API'ye ayrı, veritabanısız sağlık ucu ve uptime kontrolü; alarmlar denenmiş.
 
 [Gözlem](#katman-10)
+
 15. Günlük döküm geri yüklenerek denetlenir, başarı satırı alarmlı; Neon geçmişi 7 gün.
 
 [Yedek](#yedek)
+
 16. Dökümden bir kez tam geri yükleme yapıldı; süresi runbook'ta.
 
 [Yedek](#yedek)
+
 17. E-posta sayacı UTC gününe göre: toplam 80'de toplu gönderim durur, kodlar 100'e kadar.
 
 [E-posta](#katman-9)
+
 18. API yalnız ekleyerek değişir; geçici hata kimseyi oturumdan atmaz; her yayın geri alınabilir.
 
 [Kullanıcı kuralları](#kirmama)
+
 19. Hedef p50 ve p90 yazılı; soğuk başlangıç, uyanış ve OOM haftada bir okunur.
 
 [Performans](#performans)
+
 20. Startup kredisine ayrı hesap ve Neon org'u açıldıktan sonra, ağır kullanımdan önce.
 
 [Krediler](#krediler)
@@ -1247,15 +1456,19 @@ Yığının en ucuz, en hızlı ve en güvenli hali bu sırayla kurulur.
 21. Kitin zorunlu parçaları ve yayın kapısı kanıtlı; OTA önerilir. Kit yoksa sürüm yok.
 
 [Mobil kit](#mobilkit)
+
 22. Play hesabı şirket adına açılır; kişisel açıldıysa 12 testçili 14 günlük kapalı test ilk sürümden en az 3 hafta önce başlar.
 
 [Expo](#katman-4)
+
 23. Zorunlu ekran önceki mağaza build'inde, gerçek telefonda, önizleme listesiyle görüldü.
 
 [Mobil kit](#mobilkit)
+
 24. Build bütçesi: platform başına ayda 15 hak, preview yerelde, ay sonuna 2–3 acil hak.
 
 [Mobil dağıtım](#dagitim)
+
 Sağdaki ad o adımın kurallarının durduğu bölümdür ve bağlantıdır.
 
 <a id="cevaplar"></a>
@@ -1266,7 +1479,7 @@ Sağdaki ad o adımın kurallarının durduğu bölümdür ve bağlantıdır.
 
 ## Kimi engelleriz, kimi engellemeyiz
 
-[aç] hiçbir kural dokunmaz[sınırla] hız kovasından düşer[izle] yalnız logda görünür[engelle] 403 ya da 404
+[aç] hiçbir kural dokunmaz [sınırla] hız kovasından düşer [izle] yalnız logda görünür [engelle] 403 ya da 404
 
 | Alibaba Cloud ve benzeri bulutlardan gelen kazıyıcılar |
 | Tarayıcı kılığında bulut kazıyıcısı | [engelle] | Bulutun bütün ağı (ASN) içerik sayfalarında 403 alır; API, oturum, form ve yasal sayfalar açık kalır. |
@@ -1284,13 +1497,17 @@ Sağdaki ad o adımın kurallarının durduğu bölümdür ve bağlantıdır.
 ## ₺510–690 bizde gerçek mi?
 
 Dört ürünün toplamı
+
 ~₺1.300/ay
+
 Eylül'de ~₺3.900–4.400
+
 **Yalnız günlük kullanıcılı ürün için.** Ürün A bugün ~₺610 tutuyor. Öteki üç ürün ₺5–510 arasında.
 
 Yeni ve az trafikli bir ürünün bulut faturası ayda ~₺55–135 olur.
 
 NeonGoogle CloudTL/ay, 8 Ekim 2026; alan adı ve mağaza (Apple, Google) ücretleri hariç
+
 _Grafik: Ürün başına aylık maliyet_
 
 <a id="vakalar"></a>
@@ -1328,7 +1545,9 @@ Aynı ders birden çok olayda çıktı. Numaralar aşağıdaki vakalara gider.
 ## Düzeltmelerin toplamı
 
 **Ölçülmüş düzeltmelerin aylık etkisi:** ~₺2.580–2.700/ay
+
 **Eylül'de ~₺3.900–4.400 olan dört ürünün bulut faturası:** ~₺1.300/ay, 8 Eki
+
 Altı düzeltmenin tasarrufu ayrı ayrı ölçüldü ve toplandı; küçük projeler Neon Free'ye taşınınca ~₺2.672–2.791. Fatura ~₺2.600–3.100 düştü. İki hesap birbirini tutuyor.
 
 | Kalem | Ürün | Vaka | Aylık etki | Nasıl hesaplandı |
@@ -1411,7 +1630,9 @@ Alanlar etkiye göre sıralı. Tarihler 2026. Başlık vakanın kartına gider.
 ### 1. Tahmin 1 dolar, fatura ₺2.087
 
 Dört ürün, Ağu–Eyl 2026 [ölçüldü]
+
 **₺2.087** Ürün A ve B'nin Ağustos Google faturası; tahmin 1 dolardı
+
 **Belirti:** Google Cloud maliyeti depo boyutlarına bakılarak ayda yaklaşık 1 dolar tahmin edildi. Ağustos faturası ₺2.087 geldi; bunun ₺2.081'i tek bir ürüne (Ürün B) aitti, Ürün A'nın payı ₺6'ydı.
 
 **Kök neden:** Tahmin depo boyutuna dayanıyordu, fatura okunmamıştı; Google tarafında para bir harita API'sine ve imaj deposu trafiğine gidiyordu. Ayrı faturalanan Neon da altı projede ayda ~$55 tutuyordu; bunun %99,7'si hiç uyumayan veritabanlarının compute'uydu, depolama $0,02'ydi.
@@ -1429,7 +1650,9 @@ Maliyet tahminle konuşulmaz; fatura proje ve SKU bazında, veritabanı tüketim
 ### 2. Konsoldan açılan min instance ayda ₺255
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **~₺255/ay** boşta bekleyen tek API sunucusu
+
 **Belirti:** Eylül faturasında Ürün A'nın Google payı Ağustos'taki ₺6'dan ₺394'e çıktı; bunun ₺203'ü API'nin boşta duran sunucusuydu.
 
 **Kök neden:** 7 Eyl'de gece raporunun gelmediği sanılıp loglardaki 'terminated' satırlarından korkulunca konsoldan servis düzeyinde minScale 1 açıldı; rapor aslında gelmişti. Ayar şablonda 0 görünüyor, yalnız servisin meta verisinde 1 yazıyordu, bu yüzden haftalarca fark edilmedi.
@@ -1447,7 +1670,9 @@ Servis ayarı depodaki servis tanımından gelir, konsoldan değiştirilmez. Log
 ### 3. Her build 428 MB imajı kıtalar arası taşıdı
 
 Ürün B, Eyl–Eki 2026 [ölçüldü]
+
 **₺282** Eylül'de 73 GiB kıtalar arası çıkış
+
 **Belirti:** Eylül faturasında imaj deposu için 73 GiB kıtalar arası çıkış ₺282 tuttu; projede kimse imaj indirmiyordu.
 
 **Kök neden:** Web sitesinin global bölgedeki buildpack tetikleyicisi imajı yayınladıktan sonra bir de docker pull ve push adımı çalıştırıyordu; 428 MB'lık imaj her build'de europe-west1'den ABD'deki build işçisine inip geri gidiyordu. Eylül'de 194 site build'i oldu.
@@ -1467,7 +1692,9 @@ Tetikleyici, imaj deposu ve Cloud Run aynı bölgede durur; Next imajı Dockerfi
 ### 4. Veritabanı 7/24 uyanık kaldı
 
 Ürün A, Eyl 2026 [ölçüldü]
+
 **~₺475/ay** günde ~3 CU-saat fazla tüketim
+
 **Belirti:** Prod veritabanı 18–23 Eyl arasında 33,41 CU-saat harcadı: günde ~6,2, yani 0,25 CU'da tam gün uyanık. İstek sayısı ve sunucu sayısı normal görünüyordu.
 
 **Kök neden:** E-posta, özet ve makbuz işleri 30 sn ile 1 gün arası zamanlayıcılarla veritabanına soruyordu; Neon ise ancak 5 dakika hiç bağlantı olmazsa uyur. Herkese açık uçlar Cache-Control yazıyordu ama önlerinde bu başlığı uygulayan bir katman yoktu; gece tarayıcıları her cevabı Postgres'ten yeniden kurduruyordu.
@@ -1485,7 +1712,9 @@ Veritabanına zamanlayıcıyla soran kod yazılmaz; iş onu doğuran istekle ya 
 ### 5. Ayar yetmedi, okuma yolu belleğe taşındı
 
 Ürün B ve C, Eyl–Eki 2026 [ölçüldü]
+
 **~₺1.080/ay** Ürün B'nin Neon payı (~$22); Ürün C ~$8
+
 **Belirti:** Ürün B ve Ürün C'nin veritabanları da hiç uyumuyordu: Ürün B günde 6–8 CU-saat yazıyordu. Ürün C'de bir günde 363 istek veritabanını 69 kez uyandırdı, veritabanı günde ~15 saat uyanıktı.
 
 **Kök neden:** Önce ayar bulundu: Ürün B'de havuz tabanı 2 bağlantı ve saniyede bir soran e-posta kuyruğu, Ürün C'de yanlışlıkla boşta bağlantı ayarına bağlanmış 5 bağlantılık taban. 21 Eyl'de ayarlar düzelince asıl sebep göründü: botların gezdiği, sunucuda çizilen sayfalar her istekte veritabanına gidiyordu. Ürün B'de günün 288 beş dakikalık penceresinin hepsinde trafik vardı; Google ve Bing dışındaki botlar çıkarılınca bile veritabanı zamanın %68'inde uyanıktı.
@@ -1503,7 +1732,9 @@ Havuz tabanı 0 ve boştaki bağlantı 90 sn ile başlanır. Asıl kaldıraç o
 ### 6. Yeni sayfa veritabanını günde 74 kez uyandırdı
 
 Ürün C, Eki 2026 [ölçüldü]
+
 **~₺190/ay** sürseydi; kaçak ~1 gün sürdü
+
 **Belirti:** 5 Eki'de yayına çıkan kategori sayfalarından sonra Neon tüketimi günde 1,3'ten 2,5 CU-saate çıktı.
 
 **Kök neden:** Kategori sayfaları, site haritası ve llms.txt kategori listesini beş dakikada bir yeniden okuyordu; bu uç herkese açık okumalar içinde her seferinde veritabanına giden tek uçtu. Botlar bu sayfaları gezdikçe veritabanı uyanıyordu: 6 Eki 15:30'a kadarki 51 uyanışın 44'ü bu uçtandı.
@@ -1523,7 +1754,9 @@ Veritabanına giden her yenileme ya saatler aralıkla ya da yalnız değişiklik
 ### 7. Bulut kazıyıcısı site baytlarının %44'ünü aldı
 
 Ürün B, Eyl–Eki 2026 [ölçüldü]
+
 **540 kez** 7 günde bellek aşımı; bot çıkışı ~₺240/ay
+
 **Belirti:** 2 Eki'de 512 MiB'lik site gece bot yoğunluğunda 192 kez bellek sınırını aştı; o anda işlenen istekler, gerçek kullanıcılarınki dahil, 503 aldı. Bunu alarm yerine maliyet analizi buldu.
 
 **Kök neden:** Alibaba Cloud'un ABD aralığından (en yoğunu 47.79.0.0/16) Chrome kılığında gelen bir kazıyıcı robots.txt'yi hiç okumadan günde ~25.700 istek atıyordu: web isteklerinin %41'i, site baytlarının %44'ü. Çizilen her sayfa API'ye ortalama 1,73 istek daha yaptığı için yük ikiye katlanıyordu.
@@ -1541,7 +1774,9 @@ Robots.txt'yi dinlemeyen bulut kazıyıcısı ağ olarak yalnız içerik sayfala
 ### 8. Gölgesiz açılan kural bülten linklerini reddetti
 
 Birkaç ürün, Eki 2026 [kanıtlı]
+
 **Ölçülmedi** bülten linklerinin taraması ilk gün 403 aldı
+
 **Belirti:** Kullanıcı ajanı boş içerik isteklerini reddeden kural gölgede denenmeden açıldı ve ilk gün bir e-posta güvenlik tarayıcısına 403 verdi.
 
 **Kök neden:** Kuralın gerekçesi gerçekti: bir sitede Azure'daki 15 adresin 6 günde attığı 6.222 boş ajanlı isteğin hepsi webshell aramasıydı. Ama Microsoft'un e-posta link tarayıcısı da (134.149.116.0/24) bültendeki linkleri hiç ajan göndermeden düz bir GET ile açıyor.
@@ -1559,7 +1794,9 @@ Her yeni bot kuralı önce gölgede 'reddederdim' yazar ve en az 7 gün (kurumsa
 ### 9. Önyüklemeler ve kazıyıcı ziyaretçi sayıldı
 
 Birkaç ürün, Eyl–Eki 2026 [ölçüldü]
+
 **92 satır** yanlış 'reddederdim'
+
 **Belirti:** Kapının gölgedeki hız kuralı tek bir Türk adresinden gelen 400 isteği sayfa saydı ve 92 yanlış 'reddederdim' satırı yazdı. SEO ölçümünde ChatGPT oturumları 12–24 sayfa geziyor göründü; Ürün A'da 'Google'dan gelen' ~120 girişin ~105'i gerçek değildi.
 
 **Kök neden:** Next, middleware çalışmadan önce RSC, Next-Router-Prefetch ve _rsc işaretlerini siliyor (15.5, 16.2 ve 16.3'te aynı). Link önyüklemeleri bu yüzden sayfa açılışı gibi görünüyordu; birim testleri başlıkları kendileri kurduğu için geçiyordu. Google referanslı girişlerin çoğu Alibaba bulutundan Chrome kılığında gelen bir kazıyıcıydı.
@@ -1577,7 +1814,9 @@ Kapı ve ölçüm kuralları gerçek Next sunucusundan geçen istekle sınanır;
 ### 10. Veri JSON yan kapısından çıkıyordu
 
 Birkaç ürün, Eki 2026 [kanıtlı]
+
 **Ölçülmedi** bütün katalog 3 çağrıda alınabiliyordu
+
 **Belirti:** Sayfalar kapının arkasına alınırken Ürün B sitesinin kendi /api aktarma ucu dışarıda kalmıştı: tek çağrıda 5.000 mağaza dönüyordu, bütün katalog 3 çağrıda alınabiliyordu.
 
 **Kök neden:** Aktarma ucu her /v1 yolunu web sunucusunun sırrıyla API'ye iletiyordu; tarayıcının hiç çağırmadığı toplu liste uçları da açıktı. HTML'i korumak veriyi korumuyordu. Kapıyı /api'ye genişletmenin yan etkisi incelemede çıktı: Next, middleware'in gördüğü POST gövdelerini belleğe alıp 10 MB'ta kesiyor.
@@ -1595,7 +1834,9 @@ Kapı kurulurken önce JSON uçlarına bakılır; aktarma ucu tarayıcının ça
 ### 11. Bütün site tek bir istemci sayıldı
 
 Ürün B, Eyl 2026 [kanıtlı]
+
 **21 / 21** giriş kodu tek istemci sayıldı
+
 **Belirti:** 28 Eyl'de canlı veritabanında o güne kadar verilen 21 giriş kodunun hepsinin, altı farklı e-posta adresine gitmiş olsalar da, aynı istemci IP özetini taşıdığı görüldü.
 
 **Kök neden:** Web'den gelen her istek API'ye web sunucusunun adresinden ulaşıyordu ve API bağlantının adresini okuduğu için bütün site tek bir istemciydi. Varsayılan sınır saatte 10 koddu: herhangi biri 10 istek atınca saat dönene kadar kimseye giriş kodu gidemezdi.
@@ -1613,7 +1854,9 @@ Kapı kurulurken önce JSON uçlarına bakılır; aktarma ucu tarayıcının ça
 ### 12. Bilinen bir Next açığı yetkili hesapla birleşti
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **Ölçülmedi** zincir bulunduğu gün kapandı
+
 **Belirti:** 22 Eyl'de beş depo ve bulut projesi tarandı; kullanıcıların yüklediği belgelerin herkese açık medya kovasında durması bulgulardan biriydi. Bir gün sonraki üçüncü taramada daha ağır bir zincir bulundu.
 
 **Kök neden:** Web siteleri Next.js 14'ün bilinen bir SSRF açığını taşıyordu ve proje genelinde Editor rolü olan varsayılan compute hesabıyla çalışıyordu; ikisi birlikte projenin ele geçirilmesine yol açabilirdi. Bir gün önce 'Next kapandı' denmişti, ama yalnız görsel iyileştirici açığına bakılmıştı.
@@ -1633,7 +1876,9 @@ Her servis kendi rolsüz hesabıyla çalışır; 'kapandı' demeden sürümün b
 ### 13. Güvenlik politikası canlıda logoları kırdı
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **1 gece** kurum logoları canlıda görünmedi
+
 **Belirti:** 22 Eyl'de üç web yüzeyine içerik güvenlik politikası (CSP) eklendi; o gece canlıda kurum logoları görünmedi.
 
 **Kök neden:** Logolar API'den geliyordu ve img-src API'nin adresini içermiyordu. Test ortamında o kartlar yoktu, çünkü onları dolduran iş testte kapalıydı; prova kırığı göstermedi ve aynı politikada sabit yazılmış connect-src test portalını da kırmıştı.
@@ -1651,7 +1896,9 @@ CSP önce report-only ve bir rapor ucuyla çıkar, izinli adresler build'in hede
 ### 14. Uyuyan veritabanı soğuk başlangıcı düşürdü
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **~%1–1,5** soğuk başlangıç 503 alıyordu
+
 **Belirti:** 6 Eyl sabahı zamanlanmış bir iş 503 ile düştü. Soğuk başlangıçların ~%1–1,5'i aynı şekilde uyuyan veritabanına denk geliyordu.
 
 **Kök neden:** API açılışta veritabanına 5 sn ping atıyor, cevap gelmezse kapanıyordu; uykudan uyanan Neon bu sürede yetişmeyince istek 503 aldı. Daha tehlikelisi gizliydi: oturum kontrolü her veritabanı hatasını 401'e çeviriyordu ve uygulama ile portal 401'de oturumu siliyordu.
@@ -1669,7 +1916,9 @@ CSP önce report-only ve bir rapor ucuyla çıkar, izinli adresler build'in hede
 ### 15. Test ve simülatör canlı veriye yazdı
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **44 satır** sahte veri herkese açık listede
+
 **Belirti:** Yönetim panelinde sürekli aynı imzalı hesaplamalar görünüyordu ve 17–28 Eyl arası 44 satır herkese açık 'popüler hesaplamalar' listesine girdi. Aynı hafta simülatördeki denemelerin de canlı API'ye analitik yazdığı görüldü.
 
 **Kök neden:** Portalın testi jsdom'un gerçek fetch'iyle çalışıyordu ve API adresi verilmeyince canlıya düşüyordu. Mobilde Expo 54, Metro'ya verilen test adresini depodaki .env'in canlı adresiyle eziyordu; paket grep'i test adresini gösterip yanılttı.
@@ -1687,7 +1936,9 @@ Yerel, test, simülatör ve CI varsayılanı asla prod olmaz; hedef adres çalı
 ### 16. Yazılan yorum bir güne kadar görünmedi
 
 Ürün B, Eyl–Eki 2026 [ölçüldü]
+
 **24 saat** yazılan yorum geç görünebiliyordu
+
 **Belirti:** Mobil uygulamadan yazılan bir yorum mağaza sayfasında bir güne kadar görünmeyebiliyordu; silinen bir yorum da önbellek süresi dolana kadar sayfada kaldı (23 Eyl). Dizüstünden yapılan katalog değişiklikleri 6 saate kadar geç görünüyordu.
 
 **Kök neden:** Mağaza sayfaları her web sunucusunun kendi önbelleğinde 24 saat duruyordu ve yalnız sitenin, aynı sunucuya düşen kendi yazması önbelleği düşürüyordu. Mobilden ya da komut satırından gelen yazma siteye hiç ulaşmıyordu.
@@ -1705,7 +1956,9 @@ Kişi yazdığını hemen görür: değiştirilebilen her sayfa yazma anında b�
 ### 17. AI asistan kullanıcıyı çıkmaza soktu
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **2 kullanıcı** günlük hak gitti, cevap yok
+
 **Belirti:** 30 Eyl'de açılan asistanı ürün sahibi denedi ve 'aşırı kötü' buldu. 2 Eki'de iki gerçek kullanıcı çıkmaza girdi: biri konu içi ama rakamsız bir mesaja 'bilgim yok' cevabı alıp günlük hakkını harcadı, öbürünün '70000 ay' diye okunan mesajı hata verdi ve sonraki her mesaj aynı hatayı aldı.
 
 **Kök neden:** İlk sürümde dört cevabın dördünü kurallar vermişti, model hiç çağrılmamıştı. Sonraki sürümde aralık dışı bir sayı bütün isteğin reddedilmesine yol açıyor ve hata sohbete yapışıyordu; konu içi ama eksik istekler 'kapsam dışı' sayılıyordu.
@@ -1725,7 +1978,9 @@ Kullanıcının yazdığı hiçbir değer akışı kilitlemez, konu içi ama eks
 ### 18. Eski sürümlere söyleyecek kanal yoktu
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **3 build** uyarıyı hiç gösteremeyecek
+
 **Belirti:** 18–19 Eyl'de güncelleme uyarısının Android'de üç build'de hiç çıkmadığı, iOS'ta ise önceki ana sürümün ara sürümleri çıkarken kimseye gösterilmediği bulundu. Ekim'de yeni eşleştirme akışı, eski sürümdeki kurumsal kullanıcılara anlatılamadığı için bekletildi.
 
 **Kök neden:** Uygulama kurulu build'i app.json'daki sayıdan okuyordu ve bu sayı EAS'ın uzaktan artırdığı gerçek numaradan geride ya da boştu; birim testleri numarayı taklit ediyordu. iOS'ta hedef sürüm değeri elle güncellenmemişti. Eski sürümlerin ekran metinleri de sabitti, sunucudan yazı konacak yer yoktu.
@@ -1743,7 +1998,9 @@ Güncelleme uyarısı, zorunlu ekran, sunucudan metin alanı ve her istekte sür
 ### 19. Build kotası bitti, iOS sürümü bir hafta kaydı
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **1 hafta** iOS sürümü 1 Eki'ye kaydı
+
 **Belirti:** 24 Eyl'de istenen iOS build'i kota dolduğu için reddedildi. Kaldığı sanılan iki hak Android'indi; iOS kotası 22 Eyl'de dolmuştu.
 
 **Kök neden:** EAS'ın ücretsiz planı ayda 15 iOS ve 15 Android build verir, platform ve hesap başına ayrı sayar ve preview build'leri de düşer. Eylül'de 17 iOS build başlatıldı (6'sı preview); OTA olmadığı için yalnız JS değişen düzeltmeler de mağaza build'i istedi.
@@ -1763,7 +2020,9 @@ Build kotası platform başına ölçülür, deneme build'i yerelde alınır ve 
 ### 20. İki ürün tek hesapta build kotasını aştı
 
 Ürün A ve B, Eyl–Eki 2026 [ölçüldü]
+
 **₺187** kota aşımı; ayrıca ₺78 Cloud Run
+
 **Belirti:** Eylül'de Ürün A ve Ürün B'nin paylaştığı faturalama hesabında Cloud Build 3.121 dakika tuttu ve ayda 2.500 dakikalık ücretsiz kota aşıldı.
 
 **Kök neden:** Ücretsiz kotalar faturalama hesabı başına verilir ve iki ürün aynı hesaptaydı. Test ve prod da aynı commit'i ayrı ayrı build ediyordu: Ürün A'nın Eylül dakikalarının %32'si (474 dk) test kopyasına gitti ve prod, testte denenenden farklı bir imajı çalıştırdı.
@@ -1781,7 +2040,9 @@ Her gerçek ürün kendi faturalama hesabında doğar; imaj bir kez build edilir
 ### 21. Temizlik kuralı haftalarca deneme modunda kaldı
 
 Birkaç ürün, Eyl–Eki 2026 [ölçüldü]
+
 **₺117** Ürün B'nin Eylül depolaması
+
 **Belirti:** İmaj deposunda temizlik kuralları listede görünüyordu ama hiçbir şey silinmemişti: Ürün A'nın deposu 1,3 GB ve 68 imaja çıkmıştı, Ürün B'nin depolaması Eylül'de ₺117 tuttu.
 
 **Kök neden:** Kurallar 21 Eyl'e kadar dry-run'daydı. Daha önceki bir not onları canlı sanmıştı, çünkü kural listesine bakılmış, describe çıktısındaki cleanupPolicyDryRun alanına bakılmamıştı.
@@ -1799,7 +2060,9 @@ Temizliğin gerçekten çalıştığı describe çıktısındaki dry-run alanın
 ### 22. Migration ve kod birlikte çıktı, 11 dakika 500
 
 Ürün B, Eyl 2026 [kanıtlı]
+
 **11 dk** her mağaza sayfası 500 döndü
+
 **Belirti:** 21 Eyl gecesi bir deploy'dan sonra sitedeki bütün mağaza sayfaları 11 dakika boyunca 500 döndü.
 
 **Kök neden:** Yeni bir kolonu okuyan sorgu, o kolonu açan migration'la aynı değişiklikte çıktı. Belgeye göre migration ayrı bir yayın adımıydı, ama yayındaki imajda migration aracı ve dosyaları yoktu; yeni kod kolonu hiç görmemiş bir veritabanına karşı çalıştı ve yorumları okuyan her istek düştü.
@@ -1817,7 +2080,9 @@ Migration yalnız ekler ve koddan önce, kendi adımında ve bitmesi beklenerek 
 ### 23. Yutulan hata site haritasını kesti, sonra deploy durdu
 
 Ürün B, Eyl 2026 [ölçüldü]
+
 **16 saat** deploy yok; 2.668 sayfa düştü
+
 **Belirti:** 18 Eyl'de yayındaki site haritası 12.589 sayfadan 9.921'e düştü ve iki şehir sayfası bir saat boyunca önbellekten 404 döndü; hiçbir şey hata vermemişti. Ertesi gün düzeltmeden sonra altı build üst üste düştü ve 16 saat hiçbir deploy çıkmadı.
 
 **Kök neden:** Katalog okuması başarısız olunca boş liste dönüyordu; boş liste 'hiç yok' sayılıp site haritası kısaldı, sayfa notFound() verdi ve Next bu 404'ü bir saat önbelleğe aldı. Hata dürüstçe fırlatılınca da site haritası build anında arka uca sorduğu ve build konteyneri arka uca ulaşamadığı için build düştü.
@@ -1837,7 +2102,9 @@ Arka uç cevap veremezse 5xx döner ve bu boş sonuç sayılmaz; build arka uca 
 ### 24. Harita API'si projenin faturasının %72'si oldu
 
 Ürün B, Ağu–Eyl 2026 [ölçüldü]
+
 **₺1.500** Ağustos'ta harita API'si; Eylül ₺657
+
 **Belirti:** Ağustos faturasında harita API'si ₺1.500 tuttu: fotoğraf ₺924, ayrıntı ₺576. Projenin ₺2.081'lik Google faturasının ~%72'siydi ve ancak fatura gelince görüldü.
 
 **Kök neden:** Listelerdeki her küçük resim sunucumuz üzerinden ayrı, ücretli bir fotoğraf isteğiydi; ücretsiz kotadan sonra 20 resimli bir sayfa ~₺6,6 tutuyordu. Bütün çağıranlar aynı geniş alan maskesini kullandığı için her istek en pahalı SKU'dan kesildi ve beş tek seferlik bakım komutu ~1.500 ayrıntı çağrısı yaptı.
@@ -1855,7 +2122,9 @@ Arka uç cevap veremezse 5xx döner ve bu boş sonuç sayılmaz; build arka uca 
 ### 25. Ödeme webhook'u en az 21 gün sessizce 500 döndü
 
 Ürün A, Eyl 2026 [kanıtlı]
+
 **21+ gün** her webhook teslimi 500 aldı
+
 **Belirti:** Abonelik sağlayıcısının webhook'u en az 2 Eyl'den 23 Eyl akşamına kadar her teslimde 500 aldı. Logda tek satır yoktu ve kimse fark etmedi.
 
 **Kök neden:** İki sebep vardı: havuz simple protocol ile çalıştığı için ham JSON gövdesi jsonb kolonuna bytea olarak gidip reddediliyordu, bazı olay türleri 'aliases' alanı taşımadığı için de NOT NULL kolona NULL yazılıyordu. İşleyici hatayı loglamadan 500 dönüyordu ve yerel entegrasyon testi prod'un bağlantı modunu kullanmıyordu.
@@ -1873,7 +2142,9 @@ Loglanmamış bir 500 tahmin edilmez: önce log satırı eklenir, deploy edilir,
 ### 26. Sosyal paylaşım hattı bir ay sessizce durdu
 
 Ürün C, Ağu–Eki 2026 [ölçüldü]
+
 **30 / 30** paylaşım denemesi 402 aldı
+
 **Belirti:** Günlük X paylaşımı 27 Ağu'dan sonra hiç çıkmadı ve bir ay fark edilmedi; ürün sahibi 'X çalışmıyor' deyince bakıldı. 28 Eyl sabahı Instagram paylaşımı ve haftalık rapor da düştü.
 
 **Kök neden:** X'in API kredisi bitmişti: hesap okuma ve medya yükleme başarılı, yalnız gönderi oluşturma '402 Payment Required' alıyordu, yani 'token sağlam mı' kontrolü arızayı göstermedi. Instagram'ın 60 günlük token'ı otomatik yayının açılışından ~60 gün sonra sessizce doldu; iki durum da günlük inceleme e-postasında birer satırdı, alarm yoktu.
@@ -1893,7 +2164,9 @@ Dış platformun 402'si, 401'i ve token bitişi alarm üretir; özet e-postasın
 ### 27. Yeni alan adının kodları kurum geçitlerinde bekledi
 
 Ürün A, Eki 2026 [kanıtlı]
+
 **4 kurum** giriş kodları posta geçidinde bekledi
+
 **Belirti:** Giriş kodu e-postaları, sağlayıcı 'teslim edildi' dediği halde dört büyük kurumun kendi posta geçidinde bekledi; kod gelince süresi dolmuş oluyordu.
 
 **Kök neden:** Alan adı yalnız birkaç haftalıktı ve güvenlik firmalarının bazısı onu 'yeni kayıtlı, yüksek risk' ya da 'denenmemiş' sayıyordu; 'teslim edildi' yalnız geçidin kabul ettiği anlamına geliyordu. Kod 10 dakikada ölüyor ve yeniden istemek öncekini geçersiz kılıyordu.
@@ -1913,7 +2186,9 @@ Alan adı ilk kullanıcıdan haftalar önce alınıp SPF, DKIM ve DMARC kurulur 
 ### 28. Konum saniyede bir yazıldı
 
 Ürün B, Eki 2026 [ölçüldü]
+
 **~294 istek** 14 dakikada; çoğu 429 aldı
+
 **Belirti:** 4 Eki'de oturum açmış tek bir ziyaretçi 14 dakikada konum güncelleme ucuna ~294 istek gönderdi; 200'den fazlası 429 aldı.
 
 **Kök neden:** Arama sayfası tarayıcının canlı konum izlemesinden gelen her okumayı, birkaç santimetrelik kaymaları da, sunucuya yazıyordu; bu yaklaşık saniyede birdi. Yer arama paneli de canlı konuma bağlı olduğu için her harfte yeniden soruyordu.
@@ -1933,7 +2208,9 @@ Sensörden gelen sürekli veri sunucuya yalnız anlamlı değişince ve seyrekle
 ### 29. İlk yedek 7 bayttı
 
 Ürün A, Eyl–Eki 2026 [ölçüldü]
+
 **7 bayt** ilk yedek; döküm 701.738 bayttı
+
 **Belirti:** 23 Eyl'de kurulan günlük veritabanı dökümünün ilk çalışması iki denemede de kovaya 7 baytlık nesne yazdı; döküm 701.738 bayttı.
 
 **Kök neden:** İmajdaki busybox wget ikili dosyayı ilk sıfır baytına kadar gönderiyor.
@@ -1953,7 +2230,9 @@ Her döküm alındığı anda geri yüklenerek ve boyutu karşılaştırılarak 
 ### 30. Kural ve iş geçici yerde kaldı
 
 Birkaç ürün, Eyl–Eki 2026 [kanıtlı]
+
 **2 build** istenmeden başladı; iş kayboldu
+
 **Belirti:** 20 Eyl'de kod ajanı istenmeden iki prod mobil build başlattı ve sürümü sormadan yama yerine ara sürüm numarasını artırdı. 8 Eki'de bir elektrik kesintisi bilgisayarı yeniden başlattı ve geçici klasördeki dört worktree, deneme veritabanı ve commit'lenmemiş ajan işi silindi.
 
 **Kök neden:** Yayın kararlarının ürün sahibine ait olduğu kuralı yalnız bir ajanın kendi hafızasındaydı; başka araçlar ve oturumlar onu görmüyordu. Uzun işler /private/tmp altındaki oturum klasöründe duruyordu ve bu klasör yeniden başlatmada siliniyor.
@@ -2067,8 +2346,10 @@ Google CloudDış servisİstemciistekdeğişiklik işareti, 30 sn'de bir okunur
 | Test ortamı | Prod ile aynı projede '-test' servisleri, ayrı servis hesapları ve sırlar, ayrı Neon (Free), en fazla 1 instance. Web IAP arkasında; API ağda açık, girişi izin listeli ve noindex. | Prod'un şeklini taşır, prod'a ulaşamaz; ücretli anahtarları tavanlıdır. |
 
 [öneri]
-** Kaynak adları gün 0'da bir kez seçilir**. Ajan ad uydurmaz. Aşağıdaki kalıbı DECISIONS'a bir karar olarak yazar. Cloudbuild dosyaları ve runbook'lar yalnız bu adları kullanır. Test kopyası her yerde adın sonuna '-test' alır.
-GCP projesi: 6–30 karakterlik bir kimlik, ör. `<product>-app`; sonradan değişmez. Servisler: api, web, api-test, web-test. Job'lar `<servis>-migrate` kalıbıyla: api-migrate, api-test-migrate. Dağıtıcı: dispatch, dispatch-test. Yedek: backup, yalnız prod'da. Servis hesapları da 6–30 karakter olmalıdır: run-api, run-web, run-api-test, run-web-test, build-test, build-main, run-backup, scheduler. Sırlar `<servis>-<ad>` kalıbıyla, ör. api-database-url ve api-test-database-url. Artifact Registry'de tek depo vardır: app, europe-west1'de. Kova adları dünya çapında tek olduğu için proje kimliğiyle başlar: `<proje>-media`, `<proje>-docs`, `<proje>-backup`, `<proje>-flags`. Test kovaları aynı adın sonuna -test alır, ör. `<proje>-flags-test`. Neon'da iki proje vardır: `<product>-prod` Launch org'unda, `<product>-test` Free org'unda. Roller: app_rw (DML), app_migrate (şema sahibi), app_backup (salt okunur).
+
+**Kaynak adları gün 0'da bir kez seçilir**. Ajan ad uydurmaz. Aşağıdaki kalıbı DECISIONS'a bir karar olarak yazar. Cloudbuild dosyaları ve runbook'lar yalnız bu adları kullanır. Test kopyası her yerde adın sonuna '-test' alır.
+
+GCP projesi: 6–30 karakterlik bir kimlik, ör. `<product>-app`; sonradan değişmez. Servisler: api, web, api-test, web-test. Job'lar `<service>-migrate` kalıbıyla: api-migrate, api-test-migrate. Dağıtıcı: dispatch, dispatch-test. Yedek: backup, yalnız prod'da. Servis hesapları da 6–30 karakter olmalıdır: run-api, run-web, run-api-test, run-web-test, build-test, build-main, run-backup, scheduler. Sırlar `<service>-<name>` kalıbıyla, ör. api-database-url ve api-test-database-url. Artifact Registry'de tek depo vardır: app, europe-west1'de. Kova adları dünya çapında tek olduğu için proje kimliğiyle başlar: `<project>-media`, `<project>-docs`, `<project>-backup`, `<project>-flags`. Test kovaları aynı adın sonuna -test alır, ör. `<project>-flags-test`. Neon'da iki proje vardır: `<product>-prod` Launch org'unda, `<product>-test` Free org'unda. Roller: app_rw (DML), app_migrate (şema sahibi), app_backup (salt okunur).
 
 ## Akışlar
 
@@ -2097,571 +2378,891 @@ Canlı bir ürünü değiştirirken kullanıcının yaptığı hiçbir şey bozu
 Aşağıdaki kurallar Ağustos ile Ekim 2026 arasında dört ürünümüzde yaşanan olaylardan ve ölçümlerden çıktı. Her kuralda nedeni (olay, tarih, rakam) ve nasıl kontrol edileceği yazılı. Sekiz başlıkta 76 kural var.
 
 1. API ve veri uyumluluğu
+
 9 kural: 9 kanıtlı
+
 2. Mobil sürümler
+
 13 kural: 8 kanıtlı, 2 ölçüldü, 3 öneri
+
 3. Web
+
 12 kural: 10 kanıtlı, 1 ölçüldü, 1 öneri
+
 4. Giriş ve oturum
+
 8 kural: 6 kanıtlı, 2 öneri
+
 5. E-posta ve bildirim
+
 10 kural: 8 kanıtlı, 1 ölçüldü, 1 öneri
+
 6. Botlar ve sınırlar
+
 6 kural: 5 kanıtlı, 1 ölçüldü
+
 7. Yayın disiplini
+
 11 kural: 11 kanıtlı
+
 8. Hiçbir şeyin kırılmadığını ölçmek
+
 7 kural: 5 kanıtlı, 1 ölçüldü, 1 öneri
+
 Etiketler kapaktaki anlamla kullanılır. Bu bölümde öneri, bizde denenmemiş ya da henüz tam uygulanmamış kural demektir.
 
 ## 1. API ve veri uyumluluğu9 kural
 
+<a id="k-1-1"></a>
 1.1
 
-****API sahadaki en eski desteklenen uygulamaya göre yazılır**. Değişiklik yalnız ekler: yeni tablo, yeni uç, NULL kabul eden ya da DEFAULT'lu yeni kolon, yanıtta yeni alan. Var olan kolon silinmez, adı ve tipi değişmez; var olan ucun isteği ve yanıtı değişmez.** [kanıtlı]
+**API sahadaki en eski desteklenen uygulamaya göre yazılır**. Değişiklik yalnız ekler: yeni tablo, yeni uç, NULL kabul eden ya da DEFAULT'lu yeni kolon, yanıtta yeni alan. Var olan kolon silinmez, adı ve tipi değişmez; var olan ucun isteği ve yanıtı değişmez.
+
+[kanıtlı]
+
 **Neden:** Mağaza sürümü bir gecede herkese ulaşmıyor: 28 Eyl 2026'da son 7 günde iOS'taki 308 aktif kullanıcının 22'si hâlâ 3.x sürümündeydi. Bizde API main'e push'ta onaysız deploy oluyor, bu yüzden kırıcı bir değişiklik doğrudan bu kullanıcılara gider. Önerilen onay kapısı uyumu denetlemez; bu kural onunla da geçerlidir.
 
 **Nasıl kontrol edilir:** Migration farkında yalnız ekleme var. Değişen ucun yanıtı sahadaki en eski sürümün koduyla okunur. Test ortamında güncellenmemiş istemci senaryosu koşar; bir projemizde yeni akış açılmadan önce bu senaryo 11/11 geçti.
 
+<a id="k-1-2"></a>
 1.2
 
-****Alan, anahtar ve tür adları bir kez kullanılır**. Anlamı değişecekse eski ad bırakılır, yeni adla yeni alan açılır; eski ad başka bir anlamla geri gelmez. Kaldırılan bir değer API'de kabul edilmeye devam eder. Sıralı değer listelerinin adı ve sırası sabittir.** [kanıtlı]
+**Alan, anahtar ve tür adları bir kez kullanılır**. Anlamı değişecekse eski ad bırakılır, yeni adla yeni alan açılır; eski ad başka bir anlamla geri gelmez. Kaldırılan bir değer API'de kabul edilmeye devam eder. Sıralı değer listelerinin adı ve sırası sabittir.
+
+[kanıtlı]
+
 **Neden:** 30 Eyl 2026'da AI asistanın yeni sürümü yeni bir anahtarla açıldı; eski anahtar kalıcı olarak kapalı tutuldu ve eski uygulamalar yeni cevap biçimini hiç görmedi. 17 Eyl'de iki ürün tipi tek seçeneğe indiğinde eski değer API'de kabul edilmeye devam etti, o değeri taşıyan eski bağlantılar birleşik seçeneğe indi.
 
 **Nasıl kontrol edilir:** İncelemede silinen ya da anlamı değişen alan adı aranır. Enum değerleri ve sıraları testle sabitlenir.
 
+<a id="k-1-3"></a>
 1.3
 
-****Eski istemcinin tanımadığı veri ona eski biçimde gider ya da hiç gitmez**; eski ekranda kırık kart, boş alan ya da çözülemeyen tür görünmez. İstemci sürümünü ve build'ini her istekte bir başlıkla bildirir, sunucu süzgeci buna bakar.** [kanıtlı]
+**Eski istemcinin tanımadığı veri ona eski biçimde gider ya da hiç gitmez**; eski ekranda kırık kart, boş alan ya da çözülemeyen tür görünmez. İstemci sürümünü ve build'ini her istekte bir başlıkla bildirir, sunucu süzgeci buna bakar.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde talep havuzunun yeni iletişim akışı 5 Eki 2026'da açıldı. Sürüm başlığı göndermeyen istemciye havuz yalnız eski akışın taleplerini döndü; düzenlenen talebin gelen kutusu satırı eski türüyle yazıldı ki eski sürümler onu saysın; bilinmeyen bildirim türü eski uygulamada yalnız uygulamayı açıyor. Android istekleri build numarası taşımadığı için süzgeç uygulamanın kendi başlığına dayanıyor.
 
 **Nasıl kontrol edilir:** Yeni tür, durum ya da bildirim eklenince test ortamında sahadaki en eski build'le liste, ayrıntı ve bildirim açılır.
 
+<a id="k-1-4"></a>
 1.4
 
-****Şema değişikliği genişlet ve daralt sırasıyla gider**. Önce yalnız ekleyen migration kendi adımında uygulanır, sonra onu kullanan kod çıkar. Eski kolon ancak hiçbir yayındaki sürüm onu okumadığında, ayrı bir sürümde kalkar. Uygulanmış migration dosyası değiştirilmez.** [kanıtlı]
+**Şema değişikliği genişlet ve daralt sırasıyla gider**. Önce yalnız ekleyen migration kendi adımında uygulanır, sonra onu kullanan kod çıkar. Eski kolon ancak hiçbir yayındaki sürüm onu okumadığında, ayrı bir sürümde kalkar. Uygulanmış migration dosyası değiştirilmez.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde 21 Eyl 2026'da yeni kolonu okuyan kod, kolonu açan migration'la aynı değişiklikte yayına çıktı. O serviste migration deploy'un parçası değildi; bütün mağaza sayfaları 11 dakika 500 döndü.
 
 **Nasıl kontrol edilir:** Deploy'dan önce migration kaydında yeni dosya görünür. Migration işi yeni imajla ve bitmesi beklenerek çalışır; kod deploy'u ondan sonra gelir.
 
+<a id="k-1-5"></a>
 1.5
 
-****Durum kodu bir sözleşmedir**. 401 yalnız kesin yetki reddidir: token yok, tanınmıyor, süresi dolmuş, çıkış yapılmış ya da devralınmış. Veritabanı ve dış servis hatası 503 ve Retry-After ile döner. Yeni bir ret sebebi yeni durum kodu olarak değil, aynı kodun gövdesinde yeni bir makine okunur alan olarak gelir.** [kanıtlı]
+**Durum kodu bir sözleşmedir**. 401 yalnız kesin yetki reddidir: token yok, tanınmıyor, süresi dolmuş, çıkış yapılmış ya da devralınmış. Veritabanı ve dış servis hatası 503 ve Retry-After ile döner. Yeni bir ret sebebi yeni durum kodu olarak değil, aynı kodun gövdesinde yeni bir makine okunur alan olarak gelir.
+
+[kanıtlı]
+
 **Neden:** İki projede her veritabanı hatası 401'e çevriliyordu ve istemciler 401'de oturumu siliyordu; olay yaşanmadan 2–4 Eki 2026'da kapatıldı. 20 Eyl'de devralınan oturuma sebep eklenirken durum kodu 401 kaldı, gövdeye yeni kod kondu: eski uygulama eskisi gibi çıkış yaptı, yeni uygulama sebebi gösterdi.
 
 **Nasıl kontrol edilir:** Sözleşme testi: veritabanı kapalıyken oturumlu uç 503 döner. Deploy sonrası saatlik 401 sayısı önceki günle karşılaştırılır.
 
+<a id="k-1-6"></a>
 1.6
 
-****API önce, istemci sonra**. Sunucuya dayanan yeni bir istemci özelliği, bağlı olduğu API prod'da trafik almadan mağazaya gönderilmez.** [kanıtlı]
+**API önce, istemci sonra**. Sunucuya dayanan yeni bir istemci özelliği, bağlı olduğu API prod'da trafik almadan mağazaya gönderilmez.
+
+[kanıtlı]
+
 **Neden:** 4.0.9'un 'kodu tekrar gönder' düğmesi, geç gelen ilk kodun da geçmesini sağlayan 2 Eki 2026 API sürümüne dayanıyordu; sürüm notuna 'bu build o API prod'dayken çıkmalı' yazıldı. Yeni uçlar bilinmeyen alanı reddettiği için ters sıra 400 üretir.
 
 **Nasıl kontrol edilir:** Sürüm notunda bağlı API sürümü satırı bulunur. Gönderimden önce o revizyonun trafikte olduğu servis tanımından okunur.
 
+<a id="k-1-7"></a>
 1.7
 
-****Eski istemcinin sabit yazdığı bir sayı ya da metin sunucuda değiştirilmeden önce, o değeri sunucudan okuyan sürüm yayılır**. Sunucudan yönetilen bir uyarı alanı her yeni ekrana baştan konur.** [kanıtlı]
+**Eski istemcinin sabit yazdığı bir sayı ya da metin sunucuda değiştirilmeden önce, o değeri sunucudan okuyan sürüm yayılır**. Sunucudan yönetilen bir uyarı alanı her yeni ekrana baştan konur.
+
+[kanıtlı]
+
 **Neden:** 30 Eyl 2026'da AI asistanın günlük hakkı 20'den 10'a inecekti; uygulamanın kilit ekranı '20' sayısını sabit yazıyordu, önce ekran sunucudan okur hale getirildi. Talep havuzunun eski ekranına sunucudan metin konamadığı için eski sürümdeki kurumsal kullanıcıya değişiklik anlatılamadı; yeni sürüme sunucu kontrollü uyarı alanı eklendi.
 
 **Nasıl kontrol edilir:** Değişecek değer eski sürümlerin metin dosyalarında aranır.
 
+<a id="k-1-8"></a>
 1.8
 
-****Kullanıcının yazdığı hiçbir değer akışı kilitlemez**. Anlaşılmayan ya da aralık dışı değer düşürülür ve kullanıcıya söylenir; bir hatalı mesaj sonraki mesajları reddettirmez. Konu içi ama eksik bir istek 'kapsam dışı' cevabı almaz, eksik olan sorulur.** [kanıtlı]
+**Kullanıcının yazdığı hiçbir değer akışı kilitlemez**. Anlaşılmayan ya da aralık dışı değer düşürülür ve kullanıcıya söylenir; bir hatalı mesaj sonraki mesajları reddettirmez. Konu içi ama eksik bir istek 'kapsam dışı' cevabı almaz, eksik olan sorulur.
+
+[kanıtlı]
+
 **Neden:** 2 Eki 2026'da AI sohbetinde '70000' gibi aralık dışı bir sayı yazan kullanıcının sohbeti geçersiz değer hatasına düştü ve sonraki her mesaj aynı hatayı aldı; bir başka kullanıcı 'kapsam dışı' cevabıyla hakkını harcayıp çıktı. Düzeltmeden sonra canlı değerlendirme 11/11 ve 6/6 geçti.
 
 **Nasıl kontrol edilir:** Uç senaryo seti (yazım hatası, ASCII Türkçe, aralık dışı sayı, üçüncü şahıs anlatım) her kural ya da model değişikliğinde koşar.
 
+<a id="k-1-9"></a>
 1.9
 
-****Ödeme ve Premium durumu üç yoldan beslenir**: istemci SDK'sı, kısa TTL'li sunucu mutabakatı ve webhook. Biri ölürse kullanıcı fark etmez. Geçici sağlayıcı hatası Premium'u kapatmaz, oturumu silmez, Premium kullanıcıya yeniden satın alma önermez.** [kanıtlı]
+**Ödeme ve Premium durumu üç yoldan beslenir**: istemci SDK'sı, kısa TTL'li sunucu mutabakatı ve webhook. Biri ölürse kullanıcı fark etmez. Geçici sağlayıcı hatası Premium'u kapatmaz, oturumu silmez, Premium kullanıcıya yeniden satın alma önermez.
+
+[kanıtlı]
+
 **Neden:** Ödeme webhook'u 2–23 Eyl 2026 arası her teslimde log yazmadan 500 döndü. Premium öteki iki yoldan çalıştığı için hiçbir kullanıcı etkilenmedi; kaybolan, olayların kaydı ve anında yansımasıydı.
 
 **Nasıl kontrol edilir:** Webhook ucunda tek 5xx alarmı. Sağlayıcı panelindeki teslim listesi haftada bir okunur.
 
 ## 2. Mobil sürümler13 kural
 
+<a id="k-2-1"></a>
 2.1
 
-****Güncelleme uyarısı ile zorunlu güncelleme ayrı anahtarlardır**. Kapatılabilir 'yeni sürüm hazır' sayfasının hedef sürümü ancak mağaza o sürümü gerçekten sunarken yükseltilir. Zorunlu güncelleme, kurulu tabanın büyük kısmı zorunlu ekranı doğru çizebilen build'lere geçene kadar kapalı kalır. Politika okunamazsa uygulama açılmaya devam eder.** [kanıtlı]
+**Güncelleme uyarısı ile zorunlu güncelleme ayrı anahtarlardır**. Kapatılabilir 'yeni sürüm hazır' sayfasının hedef sürümü ancak mağaza o sürümü gerçekten sunarken yükseltilir. Zorunlu güncelleme, kurulu tabanın büyük kısmı zorunlu ekranı doğru çizebilen build'lere geçene kadar kapalı kalır. Politika okunamazsa uygulama açılmaya devam eder.
+
+[kanıtlı]
+
 **Neden:** 18 Eyl 2026'da üç Android build'inin kendi numarasını okuyamadığı ve uyarıyı hiç gösteremeyeceği bulundu; iOS'ta eski zorunlu ekran telefonu içeriksiz kilitliyordu. Zorunlu güncelleme bu yüzden hiç açılmadı. Mağazanın herkese açık sayfası yeni sürümü gösterirken arama API'si saatlerce eski sürümü dönebiliyor (1 Eki).
 
 **Nasıl kontrol edilir:** Hedef sürüm değeri mağaza sayfasında sürüm göründükten sonra değişir. 'En son sürüm' değerini yükseltmenin zorlamayı açmadığı ayrıca söylenir. Politika isteği 5 sn'de son bilinen değere düşer.
 
+<a id="k-2-2"></a>
 2.2
 
-****Güncelleme ekranları ve release build gerçek telefonda kanıtlanmadan 'çalışıyor' denmez**. Hedef sürüm kurulu build'in üstüne çekilir, uygulama yeniden açılır, sayfa açılır ve 'Şimdi güncelle' mağazaya gider; sonra değer geri alınır. Aynı build'de açılış, hesaplama, paywall, PDF ve bildirim bir kez denenir.** [kanıtlı]
+**Güncelleme ekranları ve release build gerçek telefonda kanıtlanmadan 'çalışıyor' denmez**. Hedef sürüm kurulu build'in üstüne çekilir, uygulama yeniden açılır, sayfa açılır ve 'Şimdi güncelle' mağazaya gider; sonra değer geri alınır. Aynı build'de açılış, hesaplama, paywall, PDF ve bildirim bir kez denenir.
+
+[kanıtlı]
+
 **Neden:** Birim testleri kurulu build numarasını taklit ediyordu; kontroller yalnız sunucu tarafındaydı ve uyarı üç build boyunca hiç çıkmadı. 19 Eyl 2026'da emülatörde release build'le dört senaryo kanıtlandı. TestFlight'ı atlayan bir sesli komut özelliği 2–3 Eki'de iki ek build harcattı.
 
 **Nasıl kontrol edilir:** Mağaza gönderiminden önce bu liste telefonda ya da emülatörde, ekran görüntüsüyle tamamlanır.
 
+<a id="k-2-3"></a>
 2.3
 
-****Eski build'ler API'yi aylarca kullanır**. Kimin hangi sürümde olduğu 7 günlük pencereyle ve tekil kullanıcıyla sayılır; karar bu sayıya göre verilir.** [ölçüldü]
+**Eski build'ler API'yi aylarca kullanır**. Kimin hangi sürümde olduğu 7 günlük pencereyle ve tekil kullanıcıyla sayılır; karar bu sayıya göre verilir.
+
+[ölçüldü]
+
 **Neden:** 28 Eyl 2026'da 28 günlük 'telefon başına son sürüm' sayımı iOS'ta 211 telefonun 139'unu 3.x gösterdi ve rapor geri alındı; ödeme sağlayıcısının 7 günlük sürüm süzgeci 308 aktif kullanıcının 22'sini 3.x buldu. Uzun pencerede güncelleyen kişi iki grupta birden sayılıyor.
 
 **Nasıl kontrol edilir:** Ödeme sağlayıcısının sürüm süzgeci, 7 gün. iOS istek kaydındaki build. Android için uygulamanın kendi başlığı.
 
+<a id="k-2-4"></a>
 2.4
 
-****Eski sürümde çalışmayacak bir özellik, onu gerçekten kullananlar yeni build'e geçmeden açılmaz**. Açılış hafta içi mesai başında yapılır.** [kanıtlı]
+**Eski sürümde çalışmayacak bir özellik, onu gerçekten kullananlar yeni build'e geçmeden açılmaz**. Açılış hafta içi mesai başında yapılır.
+
+[kanıtlı]
+
 **Neden:** Talep havuzunun yeni akışında eski sürümdeki kurumsal kullanıcı yeni talepleri göremiyordu ve son 90 günün 7 talebinin 5'i yeni akıştan gelecekti. 30 Eyl 2026'da son 30 günde havuzu kullanan 6 kurumsal kullanıcının güncellemesi beklendi; 5 Eki'de 6'nın 5'i yeni build'deyken açıldı.
 
 **Nasıl kontrol edilir:** Push cihaz tablosundaki build dağılımı her gün okunur. Build numaraları anahtardan önce sunucuya yazılır.
 
+<a id="k-2-5"></a>
 2.5
 
-****Eski sürümdeki kullanıcı ürkütülmez**. Zorla kilit, toplu uyarı ya da korkutucu metin yok; olağan 'yeni sürüm var' sayfası ve gerekiyorsa yalnız yayındaki build'in altındaki cihazlara giden bir güncelleme bildirimi yeter. Eski sürümde özelliği gizlemek de kullanıcıya bozukluk gibi görünür.** [kanıtlı]
+**Eski sürümdeki kullanıcı ürkütülmez**. Zorla kilit, toplu uyarı ya da korkutucu metin yok; olağan 'yeni sürüm var' sayfası ve gerekiyorsa yalnız yayındaki build'in altındaki cihazlara giden bir güncelleme bildirimi yeter. Eski sürümde özelliği gizlemek de kullanıcıya bozukluk gibi görünür.
+
+[kanıtlı]
+
 **Neden:** 28–30 Eyl 2026 kararı: eski sürümdeki kurumsal kullanıcıya otomatik bildirim gitmez, uygulamayı açınca uyarılır; havuzu eski sürümde gizlemek 'kullanıcılar için kötü görünür' diye reddedildi. 19 Eyl'den beri güncelleme bildirimi yayındaki build'i çalıştıran cihaza gitmiyor.
 
 **Nasıl kontrol edilir:** Duyurunun kitlesi build'e göre süzülür; göndermeden önce hedef cihaz sayısı okunur.
 
+<a id="k-2-6"></a>
 2.6
 
-****Güncelleme var olan kurulumun oturumunu, Premium'unu ve dilini olduğu gibi bırakır**. İlk açılış akışı yalnız yeni kuruluma gösterilir; kurulumun yeni mi eski mi olduğu anlaşılamazsa eski sayılır.** [kanıtlı]
+**Güncelleme var olan kurulumun oturumunu, Premium'unu ve dilini olduğu gibi bırakır**. İlk açılış akışı yalnız yeni kuruluma gösterilir; kurulumun yeni mi eski mi olduğu anlaşılamazsa eski sayılır.
+
+[kanıtlı]
+
 **Neden:** 17 Eyl 2026 denetiminde depolama taraması hata verince kullanıcının yeni kurulum sayıldığı (tam ilk açılış, İngilizce telefonda dil değişimi) ve bir anahtar önekinin taramaya hiç girmediği bulundu; 24 test eklendi. 4.0.0–4.0.2'de herkese gösterilen açılış ekranı mevcut kullanıcıların akışını da değiştirdi; geçiş reklamının gösterilme oranı %50'den %22–32'ye indi.
 
 **Nasıl kontrol edilir:** Eski sürümlerin yazdığı depolama anahtarlarının tam listesi testte sabit; yeni anahtar o listeye eklenir. Release öncesi eski build kurulu ve girişli bir cihaza yeni build üstten kurulur.
 
+<a id="k-2-7"></a>
 2.7
 
-****Mağaza ayarı ve sunucu anahtarı, onları anlatan sürümle aynı anda açılır**. Eski sürüm söylemediği bir şeyi göstermez; incelemeye giden özellik inceleme sırasında prod'da açıktır.** [kanıtlı]
+**Mağaza ayarı ve sunucu anahtarı, onları anlatan sürümle aynı anda açılır**. Eski sürüm söylemediği bir şeyi göstermez; incelemeye giden özellik inceleme sırasında prod'da açıktır.
+
+[kanıtlı]
+
 **Neden:** 24 Eyl 2026 notu: mağazadaki deneme süresi erken açılırsa eski sürümler satın alma penceresinde paywall'ın hiç söylemediği bir denemeyi gösterecekti. Sesli komut özellikli build incelemeye gitmeden önce anahtar prod'da açık olmasaydı inceleyici 'şu an kapalı' cevabını duyacaktı; anahtar 1 Eki'de açıldı.
 
 **Nasıl kontrol edilir:** Sürüm notunda 'mağazada ve sunucuda neyi, ne zaman aç' satırı bulunur.
 
+<a id="k-2-8"></a>
 2.8
 
-****Mağaza onayı ile yayın ayrı tutulur**. API ile aynı gün açılması gereken sürüm manuel yayınla gönderilir; yayın tarihi dışarıya gün olarak söylenmez.** [öneri]
+**Mağaza onayı ile yayın ayrı tutulur**. API ile aynı gün açılması gereken sürüm manuel yayınla gönderilir; yayın tarihi dışarıya gün olarak söylenmez.
+
+[öneri]
+
 **Neden:** Play bir sürümü ~1,5 saatte onayladı; iOS'ta gönderimden yayına yarım gün kadar geçti (Eki 2026); bir uygulamamızda Play üretim erişimini bir kez düşük kapalı test kullanımı yüzünden reddetti. Bu yüzden dışarıya 'Ekim' dendi, gün verilmedi.
 
 **Nasıl kontrol edilir:** App Store'da 'Manually release', Play'de 'Managed publishing' gönderim anında seçilir.
 
+<a id="k-2-9"></a>
 2.9
 
-****Binary kademeli açılır**: App Store'da 7 günlük aşamalı yayın, Play'de yüzdeli yayın. Sorun görülünce yayın durdurulur.** [öneri]
+**Binary kademeli açılır**: App Store'da 7 günlük aşamalı yayın, Play'de yüzdeli yayın. Sorun görülünce yayın durdurulur.
+
+[öneri]
+
 **Neden:** Kademeli yayın kullanmadık; bir sesli komut hatası ve hiç çıkmayan güncelleme uyarısı herkese aynı anda ulaştı.
 
 **Nasıl kontrol edilir:** İlk gün sürüm başına istek ve hata oranı okunur; durdurma adımı önceden bilinir.
 
+<a id="k-2-10"></a>
 2.10
 
-****OTA ilk mağaza build'inden kurulur**: runtime sürümü fingerprint politikasıyla, yalnız JS hata düzeltmeleri, önce küçük bir yüzde, hazır geri alma. Her OTA mağaza sürümü gibi ürün sahibinin kararıdır.** [öneri]
+**OTA ilk mağaza build'inden kurulur**: runtime sürümü fingerprint politikasıyla, yalnız JS hata düzeltmeleri, önce küçük bir yüzde, hazır geri alma. Her OTA mağaza sürümü gibi ürün sahibinin kararıdır.
+
+[öneri]
+
 **Neden:** Uygulamalarımızda OTA yok. Bir uygulama 19 Eylül–7 Ekim'de 19 mağaza build'i çıkardı (iOS 9, Android 10), 11'i yalnız JS idi; iOS build kotası 22 Eylül'de doldu; sesli komut özelliğindeki bir tutar hatası ancak yeni build'le düzelebildi.
 
 **Nasıl kontrol edilir:** Geri alma provası test kanalında yapılır.
 
+<a id="k-2-11"></a>
 2.11
 
-****Build kotası ve build numarası ölçülür, varsayılmaz**. Kota platform başına ayrı sayılır; 3 dakikadan sonra düşen build de hak yer, daha erken düşen ayda 10'a kadar sayılmaz; build numarası depodan değil build servisinin listesinden okunur.** [ölçüldü]
+**Build kotası ve build numarası ölçülür, varsayılmaz**. Kota platform başına ayrı sayılır; 3 dakikadan sonra düşen build de hak yer, daha erken düşen ayda 10'a kadar sayılmaz; build numarası depodan değil build servisinin listesinden okunur.
+
+[ölçüldü]
+
 **Neden:** Eylül 2026'da iOS'ta 17 build başlatıldı, 2'si hata verdi; iOS kotası 22 Eyl'de doldu, 24 Eyl'de istenen build reddedildi ve iOS sürümü bir hafta kaydı. Ay 03:00'te (TR saati) dönüyor; reddedilen bir deneme bile Android numarasını artırdı, 35'ten sonra 37 geldi. 4.0.2 depoda 28, mağazada 31 numaralıydı; güncelleme uyarısının hedefi bu sayıdan kurulur.
 
 **Nasıl kontrol edilir:** Build önermeden önce ayın build sayısı platform başına okunur; hedef sürüm değeri build listesinden alınır.
 
+<a id="k-2-12"></a>
 2.12
 
-****Yeni yetenek (entitlement) ya da yerel SDK eklenmeden önce, bir sonraki iOS build'in etkileşimli giriş isteyeceği ve mağaza politikasının (izinler, gizlilik etiketi, kütüphane hizalaması) değişeceği söylenir**.** [kanıtlı]
+**Yeni yetenek (entitlement) ya da yerel SDK eklenmeden önce, bir sonraki iOS build'in etkileşimli giriş isteyeceği ve mağaza politikasının (izinler, gizlilik etiketi, kütüphane hizalaması) değişeceği söylenir**.
+
+[kanıtlı]
+
 **Neden:** 1 Eki 2026'da eklenen bir yetenek yüzünden etkileşimsiz iOS build'i hata verdi ve bir build hakkı yedi. 4–5 Eki'de Play bir uygulamamızı 4 KB hizalı kütüphaneler ve reklam kimliği izni yüzünden reddetti.
 
 **Nasıl kontrol edilir:** Yetenek ve izin farkı değişiklikte işaretlenir; Play için 16 KB hizalama kontrol edilir.
 
+<a id="k-2-13"></a>
 2.13
 
-****Ücretli kapı kullanıcıyı bekletmez**: reklam belirli sürede açılmazsa kullanıcı yoluna devam eder. Her kapının nasıl bittiği kayıt altına alınır.** [kanıtlı]
+**Ücretli kapı kullanıcıyı bekletmez**: reklam belirli sürede açılmazsa kullanıcı yoluna devam eder. Her kapının nasıl bittiği kayıt altına alınır.
+
+[kanıtlı]
+
 **Neden:** PDF için ödüllü reklam ~115 istekte 0 gösterim aldı ve kayıt olmadığı için sebep ayrılamadı (6 Eki 2026). Yeni sürümde reklam 8 sn'de açılmazsa vazgeçiliyor ve PDF basışının 10 ayrı sonucu kaydediliyor.
 
 **Nasıl kontrol edilir:** Yeni sürümden sonraki ilk hafta yönetim panelindeki sonuç tablosu okunur.
 
 ## 3. Web12 kural
 
+<a id="k-3-1"></a>
 3.1
 
-****Yayındaki adres değişmez**. Değişmesi gerekiyorsa eski adres tek adımda 308 ile yenisine gider ve bu yönlendirme kalıcıdır: öteki dilin yazımı, büyük harf, eski yol, eski host kopyası, eski slug. Kaldırılan sayfa da 404 değil, en yakın sayfaya 308 olur.** [kanıtlı]
+**Yayındaki adres değişmez**. Değişmesi gerekiyorsa eski adres tek adımda 308 ile yenisine gider ve bu yönlendirme kalıcıdır: öteki dilin yazımı, büyük harf, eski yol, eski host kopyası, eski slug. Kaldırılan sayfa da 404 değil, en yakın sayfaya 308 olur.
+
+[kanıtlı]
+
 **Neden:** 23 Eyl 2026'da yasal sayfalar yeni siteye taşınınca eski adresler yönlendirildi; mağaza politika denetleyicisi bu sayfaları 6 günde 123 kez açtı. Emekli edilen bir ürünün sayfaları ana sayfaya 308 ile gidiyor. Bir başka projede kaydın slug'ı değişince eski slug bir tabloyla tanınmaya devam ediyor (3 Eki).
 
 **Nasıl kontrol edilir:** Eski sitemap'teki ve bilinen eski adreslerdeki her URL curl ile 200 ya da tek adımlı 308 döner; zincir ve döngü yok.
 
+<a id="k-3-2"></a>
 3.2
 
-****Dil ya da tercih pazarlığı yapan yönlendirme geçicidir (307) ve Vary taşır**.** [kanıtlı]
+**Dil ya da tercih pazarlığı yapan yönlendirme geçicidir (307) ve Vary taşır**.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde dil öneki kalıcı yönlendirmeyle düşürülünce tarayıcı yönlendirmeyi kendi önbelleğinden cevapladı ve kullanıcının seçtiği dil kayboldu; 10 Eyl 2026'da geçiciye çevrildi.
 
 **Nasıl kontrol edilir:** Kök ve dil yönlendirmelerinde durum 307, başlıkta 'Vary: Accept-Language, Cookie'.
 
+<a id="k-3-3"></a>
 3.3
 
-****Canlı alan adı bağlantısı silinip yeniden kurulmaz**. Zorunluysa apex ve www sırayla taşınır, biri hep ayakta kalır. Alan adı değişikliği yalnız kalıcı yönlendirmeyle yapılır.** [ölçüldü]
+**Canlı alan adı bağlantısı silinip yeniden kurulmaz**. Zorunluysa apex ve www sırayla taşınır, biri hep ayakta kalır. Alan adı değişikliği yalnız kalıcı yönlendirmeyle yapılır.
+
+[ölçüldü]
+
 **Neden:** 18 Eyl 2026 geçişinde ~20 dakika HTTPS kopukluğu oldu: ~5 dk eski sertifika, ~12 dk yeni sertifikanın çıkması, ~8 dk yayılma.
 
 **Nasıl kontrol edilir:** Taşıma sırasında iki host için dakikada bir HTTPS denetimi yapılır.
 
+<a id="k-3-4"></a>
 3.4
 
-****Kaldırmak yerine girişi kapat**. Emekli olan özelliğin yalnız kullanıcıya görünen girişleri kalkar; uç, tablo, yönetim ekranı ve eski bildirimleri karşılayan yönlendirme kalır. Dizindeki bir sayfadan içerik ya da bağlantı kalkacaksa ne kaybedildiği aynı anda söylenir. Aynı içerik iki alan adındaysa sayfa silinmez, canonical öteki siteye çevrilir.** [kanıtlı]
+**Kaldırmak yerine girişi kapat**. Emekli olan özelliğin yalnız kullanıcıya görünen girişleri kalkar; uç, tablo, yönetim ekranı ve eski bildirimleri karşılayan yönlendirme kalır. Dizindeki bir sayfadan içerik ya da bağlantı kalkacaksa ne kaybedildiği aynı anda söylenir. Aynı içerik iki alan adındaysa sayfa silinmez, canonical öteki siteye çevrilir.
+
+[kanıtlı]
+
 **Neden:** 23 Eyl 2026'da topluluk akışı bütün kullanıcı arayüzlerinden kalktı, arka ucu bilerek bırakıldı; eski uygulamalardaki bildirimler kırık ekrana düşmedi. Bir başka projede ana sayfadan kaldırılan bir blok mağaza sayfalarına giden iç bağlantıları da götürüyordu (29 Ağu kuralı). 6 Eki'de iki sitedeki aynı oran sayfasından biri ziyaretçi için kaldı, canonical öbürüne çevrildi.
 
 **Nasıl kontrol edilir:** Kaldırma değişikliğinde 'kaybolan bağlantı ve metin' satırı bulunur; eski bildirim türleri eski build'de açılır.
 
+<a id="k-3-5"></a>
 3.5
 
-****404 yalnız arka uç 'yok' dediğinde döner**. Arka uç cevap veremediyse hata fırlatılır (5xx); önbellekteki sağlam kopya kalır, arama motoru tekrar dener.** [kanıtlı]
+**404 yalnız arka uç 'yok' dediğinde döner**. Arka uç cevap veremediyse hata fırlatılır (5xx); önbellekteki sağlam kopya kalır, arama motoru tekrar dener.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde 18 ve 28 Eyl 2026'da, deploy'dan dakikalar sonra, kategori sayfaları önbellekten 404 döndü: başarısız okuma boş liste sayılmış, Next 404'ü bir saat önbelleğe almış, Google sayfayı gitmiş okumuştu. 6 Eki'de kurum sayfaları aynı kurala geçti.
 
 **Nasıl kontrol edilir:** Yerelde arka uç kapalıyken sayfa 5xx döner, 404 dönmez. Haftalık zamanlanmış kontrol sitemap'teki adresleri tarar.
 
+<a id="k-3-6"></a>
 3.6
 
-****Build arka uca, dış font sunucusuna ya da eksik olabilecek bir ortam değerine bağlı olmaz**. Bağlıysa ya sessizce boş içerik basar ya da deploy'u durdurur; ikisi de kullanıcıya bayat site demektir.** [kanıtlı]
+**Build arka uca, dış font sunucusuna ya da eksik olabilecek bir ortam değerine bağlı olmaz**. Bağlıysa ya sessizce boş içerik basar ya da deploy'u durdurur; ikisi de kullanıcıya bayat site demektir.
+
+[kanıtlı]
+
 **Neden:** 18–19 Eyl 2026'da yutulan bir okuma hatası site haritasını 12.589 sayfadan 9.921'e kesti, düzeltmesi build'i kırınca 16 saat hiçbir deploy çıkmadı. 29 Eyl–7 Eki arası 68 web build'inin 7'si dış font indirmesinde düştü. 18 Eyl'de eksik ortam değeri yüzünden yasal sayfalar kendi sitesine döngüye girdi. API okuyan ve önceden render edilen bir sayfa yedek içeriğini kalıcı olarak gösterdi.
 
 **Nasıl kontrol edilir:** API okuyan sayfa ve sitemap çalışma anında render edilir; fontlar yerelden gelir; zorunlu değer eksikse build durur, yedek değer yok. Build arka uca erişimi olmayan bir ortamda yerelde denenir.
 
+<a id="k-3-7"></a>
 3.7
 
-****Kişi yazdığını hemen görür**. Kullanıcının değiştirebildiği her şey ya önbelleksiz okunur ya da yazma anında o sayfanın önbelleği bütün adresleriyle düşürülür. Yazan her yol (betik, job ve yönetim paneli dahil) değişiklik işaretini aynı yazma kodundan günceller.** [kanıtlı]
+**Kişi yazdığını hemen görür**. Kullanıcının değiştirebildiği her şey ya önbelleksiz okunur ya da yazma anında o sayfanın önbelleği bütün adresleriyle düşürülür. Yazan her yol (betik, job ve yönetim paneli dahil) değişiklik işaretini aynı yazma kodundan günceller.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde silinen yorum önbellek süresi dolana kadar mağaza sayfasında kaldı (23 Eyl 2026). Dizüstünden yapılan katalog değişiklikleri 6 saate kadar geç görünüyordu; ürün sahibi bunu 'çok kötü' buldu ve 4 Eki'de gecikme ~30 sn'ye indi. Başvuru sitesinde kampanya sayfaları 60–120 sn önbellekliydi; yanlışı ilk fark eden kampanyayı yayınlayan kişi olacaktı (17 Eyl).
 
 **Nasıl kontrol edilir:** Yazdıktan sonraki ilk istekte yeni içerik görünür, ikinci istekte önbellek HIT. Her yazma yolu için bir test vardır.
 
 **Yeni projede:** [öneri] Olay anında elle SQL yapıldıysa son adım işareti güncelleyen kayıtlı komuttur.
 
+<a id="k-3-8"></a>
 3.8
 
-****Dil adresten okunur**. Dil çerezi yalnız kullanıcı seçince yazılır. Aynı alan adındaki yüzeyler dili aynı yerde tutar; giriş yapmış kullanıcının dili hesabına aittir. Dil değişince sunucunun o dilde yazdığı içerik yeniden istenir. Sayı biçimi de dile göre değişir (%3,63 ve 3.63%).** [kanıtlı]
+**Dil adresten okunur**. Dil çerezi yalnız kullanıcı seçince yazılır. Aynı alan adındaki yüzeyler dili aynı yerde tutar; giriş yapmış kullanıcının dili hesabına aittir. Dil değişince sunucunun o dilde yazdığı içerik yeniden istenir. Sayı biçimi de dile göre değişir (%3,63 ve 3.63%).
+
+[kanıtlı]
+
 **Neden:** Bir projemizde bilgi sitesi dili çerezde, portal tarayıcı deposunda tuttuğu için giriş ile ana sayfa arasında gidip gelen kullanıcının dili her dönüşte değişti (21 Eyl 2026). Bir başka projede her isteğe dil başlığı yazan proxy bütün sayfaları dinamik yaptı (12 Eyl); dil değişince sunucunun yazdığı cevap eski dilde kaldı ve 'çevrilmemiş' diye üç kez bildirildi (10 Eyl). Mobilde dil 19 Eyl'de hesaba bağlandı; güncellenen kurulum Türkçe kalır.
 
 **Nasıl kontrol edilir:** Çerezsiz, çerezli ve İngilizce tarayıcıyla giriş ve ana sayfa arasında dört gidiş dönüş yapılır; her adımda dil aynı kalır.
 
+<a id="k-3-9"></a>
 3.9
 
-****İçerik güvenlik politikası (CSP) önce report-only ve raporların yazıldığı bir uçla çıkar**. İzinli adresler build'in hedeflediği API'den türetilir, elle yazılmaz. Zorlamadan önce canlı veri gösteren her sayfa tipi açılıp ihlaller sayılır.** [kanıtlı]
+**İçerik güvenlik politikası (CSP) önce report-only ve raporların yazıldığı bir uçla çıkar**. İzinli adresler build'in hedeflediği API'den türetilir, elle yazılmaz. Zorlamadan önce canlı veri gösteren her sayfa tipi açılıp ihlaller sayılır.
+
+[kanıtlı]
+
 **Neden:** 22–23 Eyl 2026'da doğrudan zorlanan politika API adresini görsel kaynağı saymadığı için kurum logoları bir gece kırık kaldı; test ortamında kurum kartı olmadığı için prova bunu göstermedi. Bir başka projede report-only bir gün çalıştı ve tek bulguyu, giriş düğmesinin stil dosyasını, yalnız biri konsolu açık tuttuğu için verdi; rapor ucu eklendikten sonra 29 Eyl'de zorlandı.
 
 **Nasıl kontrol edilir:** Rapor ucunun logunda ihlal yoktur; canlı veriyle açılan sayfada konsolda 'violates' geçmez.
 
+<a id="k-3-10"></a>
 3.10
 
-****Her sayfa üç genişlikte (1280, 900 ve 375 px) ve WebKit'te ölçülür**; göz kararı yetmez. Telefona özgü bir bildirim telefonda ya da gerçek Mobile Safari çalıştıran simülatörde yeniden üretilir.** [kanıtlı]
+**Her sayfa üç genişlikte (1280, 900 ve 375 px) ve WebKit'te ölçülür**; göz kararı yetmez. Telefona özgü bir bildirim telefonda ya da gerçek Mobile Safari çalıştıran simülatörde yeniden üretilir.
+
+[kanıtlı]
+
 **Neden:** 23 Eyl 2026'da Safari'nin select ve tarih alanlarını farklı çizdiği formlar canlıya çıktı; bütün kontroller Chrome'daydı. Bir başka projede sonuç listesi geniş ekranlarda iki hafta bozuk kaldı, her kontrol telefon genişliğinde yapılmıştı (19 Eyl). Konum düğmesi beş kez bozuk bildirildi ve beş kez çalışır ölçüldü: hata yalnız izin diyaloğu açılan tarayıcıdaydı.
 
 **Nasıl kontrol edilir:** Beş ölçü: başlığı tekrar eden üst etiket, başlıktan önceki boşluk, aynı satırdaki kartların son düğmesi ±2 px içinde, 375 px'te taşan öğe, iç içe kapsayıcı. Gerçek kart genişlikleri 320, 327 ve 344 px.
 
+<a id="k-3-11"></a>
 3.11
 
-****Arayüz kullanıcıyı sessizce durdurmaz**. Henüz kullanılamayan düğme basılabilir kalır ve eksik olanı söyler; üstte açılan diyalog belgeye bağlanır, bir formun içinde açılmaz.** [kanıtlı]
+**Arayüz kullanıcıyı sessizce durdurmaz**. Henüz kullanılamayan düğme basılabilir kalır ve eksik olanı söyler; üstte açılan diyalog belgeye bağlanır, bir formun içinde açılmaz.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde '.don' ile biten adres üç formda kabul edilmedi ama gönder düğmesi gri olduğu için açıklama hiç görünmedi, basmak hiçbir şey yapmadı (27 Eyl 2026). Form içinde açılan giriş diyaloğu sayfayı yeniden yükledi; o sayfadan e-postayla kimse giriş yapamadı (28 Eyl).
 
 **Nasıl kontrol edilir:** Formlu her sayfada giriş ve gönderim uçtan uca denenir; diyaloglar belgenin köküne portal ile bağlanır.
 
+<a id="k-3-12"></a>
 3.12
 
-****Ölçüm aracı onaydan önce hiçbir istek atmaz**; kabul ve ret eşit görünür; kişisel alanlar maskelenir; oturumlu, yönetim ve talep sayfalarında hiç yüklenmez; adresteki kişisel değerler silinir; test ortamında yüklenmez.** [öneri]
+**Ölçüm aracı onaydan önce hiçbir istek atmaz**; kabul ve ret eşit görünür; kişisel alanlar maskelenir; oturumlu, yönetim ve talep sayfalarında hiç yüklenmez; adresteki kişisel değerler silinir; test ortamında yüklenmez.
+
+[öneri]
+
 **Neden:** 1 Eki 2026'da üçüncü taraf analitik bekletildi, çünkü kullanıcılar serbest alanlara başka kişilerin adını, telefonunu ve kimlik numarasını yazıyor. 6 Eki'de oturum kaydı bu kurallarla yayına alındı, araç kimliği boş, açılmayı bekliyor.
 
 **Nasıl kontrol edilir:** Onaydan önce ağ sekmesinde üçüncü taraf istek sayısı 0; portal ve talep sayfalarında betik yok.
 
 ## 4. Giriş ve oturum8 kural
 
+<a id="k-4-1"></a>
 4.1
 
-****Altyapı hatası kimseyi oturumdan atmaz**. İstemci oturumu yalnız kesin 401'de siler; 503, ağ hatası, zaman aşımı ve ödeme sağlayıcısı hatası oturuma dokunmaz. Portal 'bağlantı kurulamadı, tekrar dene' kartını gösterir ve token'ı tutar.** [kanıtlı]
+**Altyapı hatası kimseyi oturumdan atmaz**. İstemci oturumu yalnız kesin 401'de siler; 503, ağ hatası, zaman aşımı ve ödeme sağlayıcısı hatası oturuma dokunmaz. Portal 'bağlantı kurulamadı, tekrar dene' kartını gösterir ve token'ı tutar.
+
+[kanıtlı]
+
 **Neden:** 2 Eki 2026'da 3.1.0'dan güncel sürüme kadar her uygulama sürümünün yalnız 401'de çıkış yaptığı kontrol edildi; bu sayede sunucuda 401 yerine 503 dönmek eski sürümleri de korudu. Bu kural olmasa uyuyan bir veritabanı herkesi bir anda dışarı atabilirdi.
 
 **Nasıl kontrol edilir:** Test ortamında veritabanı kapatılır; uygulama ve portal açık kalır, oturum durur.
 
+<a id="k-4-2"></a>
 4.2
 
-****Açılan sunucu uyuyan veritabanını bekler, ilk isteği düşürmez**. Uzun süren iş kendi yanıt süresini uzatır ki iş biterken istemci 503 görmesin.** [kanıtlı]
+**Açılan sunucu uyuyan veritabanını bekler, ilk isteği düşürmez**. Uzun süren iş kendi yanıt süresini uzatır ki iş biterken istemci 503 görmesin.
+
+[kanıtlı]
+
 **Neden:** 6 Eyl 2026'da soğuk başlangıç uyuyan veritabanına denk gelip 503 verdi; soğuk başlangıçların ~%1–1,5'i böyleydi. Açılış artık ~30 sn ikiye katlanan aralarla bekliyor; sonraki 17 açılışta sorun çıkmadı, minimum instance 0'a indikten sonraki ilk gece 5xx 0 oldu (3 Eki). 10 sn yazma süresini aşan bir okuma işi bitti ama istemciye 503 döndü (18 Eyl).
 
 **Nasıl kontrol edilir:** 'Açılışta veritabanına bağlanamadı' log alarmı kuruludur; uptime denetimi API'yi sıcak tutar.
 
+<a id="k-4-3"></a>
 4.3
 
-****Oturum kuralı değişince var olan oturumlara dokunulmaz**; yeni kural sonraki girişlerde işler. Yüzeyini ya da sürümünü bildirmeyen eski istemci yeni kuralın dışında kalır. Kullanılan oturumun süresi kendiliğinden uzar.** [kanıtlı]
+**Oturum kuralı değişince var olan oturumlara dokunulmaz**; yeni kural sonraki girişlerde işler. Yüzeyini ya da sürümünü bildirmeyen eski istemci yeni kuralın dışında kalır. Kullanılan oturumun süresi kendiliğinden uzar.
+
+[kanıtlı]
+
 **Neden:** 20 Eyl 2026'da 'her yüzeyde tek oturum' kuralı yayına girerken hiçbir oturum kapanmadı; adsız istemciler tek kovaya konsaydı birbirlerinin cihazından atılacaklardı. Bir hesapta 14 canlı oturum vardı. Sabit 90 günlük süre, her gün kullanan birini yılda iki kez sebepsiz çıkış yaptırıyordu; artık 90 gün dokunulmayan oturum düşüyor.
 
 **Nasıl kontrol edilir:** Deploy sonrası saatlik 401 ve yeni giriş sayısı önceki günle karşılaştırılır.
 
+<a id="k-4-4"></a>
 4.4
 
-****Giriş kodu kurum posta geçidinde gecikse de çalışır**. Kod 30 dk geçerlidir; saatlik tavan kadar, yani en yeni 8 canlı kod kabul edilir; 'tekrar gönder' öncekini öldürmez, 60 sn geri sayım vardır, tekrar gönderirken yazılmış kod silinmez. Eski uygulamanın tek tekrar yolu da çalışmaya devam eder.** [öneri]
+**Giriş kodu kurum posta geçidinde gecikse de çalışır**. Kod 30 dk geçerlidir; saatlik tavan kadar, yani en yeni 8 canlı kod kabul edilir; 'tekrar gönder' öncekini öldürmez, 60 sn geri sayım vardır, tekrar gönderirken yazılmış kod silinmez. Eski uygulamanın tek tekrar yolu da çalışmaya devam eder.
+
+[öneri]
+
 **Neden:** 2 Eki 2026'da yeni alan adından giden kodlar kurum geçitlerinde bekledi. Kod 10 dakikada ölüyor ve yeniden istemek öncekini geçersiz kılıyordu: geç gelen her e-postadaki kod 'hatalı ya da süresi dolmuş' oluyordu. Bugün en yeni 3 kod geçiyor; ilk kod gecikirken üç kez 'tekrar gönder'e basan kişinin ilk kodu geldiğinde yine reddedilir, sayı bu yüzden saatlik tavana çıkar. Eski sürümlerin tek yolu (adresi değiştir, gönder) artık ilk kodu canlı bırakıyor.
 
 **Nasıl kontrol edilir:** Kurum adreslerine deneme kodu gönderilir; deploy sonrası doğrulama hatalarının oranı okunur.
 
+<a id="k-4-5"></a>
 4.5
 
-****Sınırlar operatör NAT'ını ve kurum proxy'sini hesaba katar**. Adres başına (saatte 8) ve IP başına (saatte 40) kod sınırı veritabanında sayılır. İstemci IP'si X-Forwarded-For'un en sağ elemanından ya da yalnız doğrulanmış BFF'nin bildirdiği adresten okunur; web sunucusunun kendi adresi kimsenin IP'si değildir.** [kanıtlı]
+**Sınırlar operatör NAT'ını ve kurum proxy'sini hesaba katar**. Adres başına (saatte 8) ve IP başına (saatte 40) kod sınırı veritabanında sayılır. İstemci IP'si X-Forwarded-For'un en sağ elemanından ya da yalnız doğrulanmış BFF'nin bildirdiği adresten okunur; web sunucusunun kendi adresi kimsenin IP'si değildir.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde web'den gelen bütün istekler web sunucusunun adresinden göründüğü için 21 kodun hepsi tek IP hash'indeydi ve saatte 10 kod sınırı bütün site için tekti: on istek herkesi girişten kesebiliyordu (28 Eyl 2026). Operatör NAT'ında tek IPv4 adresinin arkasında 6 cihaz görüldü; bir kurumun genel müdürlüğü yüzlerce kişiyi tek adresten çıkarır.
 
 **Nasıl kontrol edilir:** Logdaki farklı istemci IP sayısı okunur; kurum ağlarından gelen gerçek girişlerde 429 sayısı 0 kalır. Önde Cloudflare Worker varsa en sağ eleman Cloudflare'in adresidir; adresin yalnız kenar anahtarı eşleşen X-Client-IP'den okunduğu doğrulanır (tablo: [Kenar, DNS ve alan adı](#katman-5)).
 
+<a id="k-4-6"></a>
 4.6
 
-****Kod isteği eşzamanlı isteklere karşı kilitlenir ki sınır gerçek sınır olsun**. 429 ve 503 Retry-After taşır; uygulama 429 için ayrı ve anlaşılır bir mesaj gösterir.** [öneri]
+**Kod isteği eşzamanlı isteklere karşı kilitlenir ki sınır gerçek sınır olsun**. 429 ve 503 Retry-After taşır; uygulama 429 için ayrı ve anlaşılır bir mesaj gösterir.
+
+[öneri]
+
 **Neden:** Sayacı okumak ile kodu yazmak arasında kilit yoksa paralel istekler aynı sayacı okur ve sınırı birlikte aşar. Uygulama 429'u ayrı mesajla gösterir.
 
 **Nasıl kontrol edilir:** Paralel istek testi koşar; yanıt başlıklarında Retry-After görünür.
 
+<a id="k-4-7"></a>
 4.7
 
-****Yönetim girişi ayrı bir uçtadır ve her adrese aynı cevabı verir**. Listede olmayan adrese hiçbir şey gönderilmez, o kişinin kendi kodlarına dokunulmaz.** [kanıtlı]
+**Yönetim girişi ayrı bir uçtadır ve her adrese aynı cevabı verir**. Listede olmayan adrese hiçbir şey gönderilmez, o kişinin kendi kodlarına dokunulmaz.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde herkese açık yönetim girişi olağan kod ucunu çağırıyordu ve adresi yazılan herkese gerçek bir kod gidiyordu; 23 Eyl 2026'da ayrıldı.
 
 **Nasıl kontrol edilir:** Listede olmayan adresle istek 202 döner, gönderim kuyruğuna satır düşmez.
 
+<a id="k-4-8"></a>
 4.8
 
-****Veri bir hesaba yalnız doğrulanmış adresle bağlanır**. E-postayla bırakılan bir talep, adres doğrulanmadan o adresin hesabına düşmez.** [kanıtlı]
+**Veri bir hesaba yalnız doğrulanmış adresle bağlanır**. E-postayla bırakılan bir talep, adres doğrulanmadan o adresin hesabına düşmez.
+
+[kanıtlı]
+
 **Neden:** 28 Eyl 2026'da başkasının adresiyle bırakılan bir talebin o kişinin hesabına düşebileceği bulundu ve aynı gün kapandı.
 
 **Nasıl kontrol edilir:** Doğrulanmamış adresle talep bırakma testi koşar.
 
 ## 5. E-posta ve bildirim10 kural
 
+<a id="k-5-1"></a>
 5.1
 
-****Alan adı ilk kullanıcıdan haftalar önce alınır**; SPF, DKIM, DMARC ve BIMI kurulur; güvenlik firmalarına (FortiGuard, Trend Micro, Talos, Broadcom) kategori başvurusu yapılır.** [kanıtlı]
+**Alan adı ilk kullanıcıdan haftalar önce alınır**; SPF, DKIM, DMARC ve BIMI kurulur; güvenlik firmalarına (FortiGuard, Trend Micro, Talos, Broadcom) kategori başvurusu yapılır.
+
+[kanıtlı]
+
 **Neden:** 2 Eki 2026'da 38 günlük alan adının kod e-postaları dört kurumun posta geçidinde bekledi; sağlayıcının 'teslim edildi' demesi yalnız geçidin kabul ettiği anlamına geliyordu. Bir firma alan adını 'yeni kayıtlı, yüksek risk', bir başkası 'denenmemiş' sayıyordu; başvurular aynı akşam 'Finans' olarak döndü.
 
 **Nasıl kontrol edilir:** Dört firmanın kategori sorgusu yapılır; kurum adreslerine deneme kodu gönderilir.
 
+<a id="k-5-2"></a>
 5.2
 
-****Kod e-postası bağlantısız, uzak görselsiz ve gizli önizleme metni olmadan gider**; logo e-postanın içine gömülür; açılma ve tıklama takibi kapalıdır.** [kanıtlı]
+**Kod e-postası bağlantısız, uzak görselsiz ve gizli önizleme metni olmadan gider**; logo e-postanın içine gömülür; açılma ve tıklama takibi kapalıdır.
+
+[kanıtlı]
+
 **Neden:** Kuruma giden kod çoğu zaman o geçidin bizden gördüğü ilk e-posta; yeni bir alan adındaki bağlantı ve uzak görsel bekletme sebebi olabiliyor (2 Eki 2026).
 
 **Nasıl kontrol edilir:** MIME testi gövdede bağlantı, uzak görsel ve gizli metin bulunmadığını kilitler; sağlayıcıdaki takip ayarı API'den okunur.
 
+<a id="k-5-3"></a>
 5.3
 
-****Konu ve ilk satır kodu, onu adlandıran sözden hemen sonra verir ('… kodunuz: 482915'), ki telefon klavyesi kodu önerebilsin**.** [öneri]
+**Konu ve ilk satır kodu, onu adlandıran sözden hemen sonra verir ('… kodunuz: 482915'), ki telefon klavyesi kodu önerebilsin**.
+
+[öneri]
+
 **Neden:** 5 Eki 2026'da bir başka uygulamamızın kodu iPhone klavyesinde önerilirken bu ürününki önerilmiyordu; fark e-postanın kalıbıydı. İngilizce kalıp doğrulandı, Türkçe kalıp telefonda henüz doğrulanmadı.
 
 **Nasıl kontrol edilir:** Gerçek bir iPhone'da e-posta uygulamasıyla denenir.
 
+<a id="k-5-4"></a>
 5.4
 
-****Giriş kodu ile toplu e-posta aynı günlük kotayı paylaşıyorsa sayaç ortaktır ve UTC gününe göre sayılır**: günün toplamı 80'e varınca toplu gönderim durur, giriş kodları 100'e kadar gider, 70'te uyarı gelir. Kodlar ve bülten ayrı alt alan adlarından gider.** [ölçüldü]
+**Giriş kodu ile toplu e-posta aynı günlük kotayı paylaşıyorsa sayaç ortaktır ve UTC gününe göre sayılır**: günün toplamı 80'e varınca toplu gönderim durur, giriş kodları 100'e kadar gider, 70'te uyarı gelir. Kodlar ve bülten ayrı alt alan adlarından gider.
+
+[ölçüldü]
+
 **Neden:** Sağlayıcının ücretsiz planı günde 100 e-posta veriyor ve aşımda 429 döner. Toplu gönderim yalnız kendi sayısını 80'le sınırlarsa aynı gün gelen 21 kodla toplam 101 olur ve son kod gitmez; tavan bu yüzden günün toplamına konur.
 
 **Nasıl kontrol edilir:** Günlük gönderim sayısı UTC gününe göre okunur; 70'te uyarı, 80'de toplu gönderimin durduğu test ortamında denenir.
 
+<a id="k-5-5"></a>
 5.5
 
-****Toplu e-posta yalnız çift onaylı adreslere gider ve RFC 8058 List-Unsubscribe taşır**. Abonelikten çıkış bağlantısına yapılan GET hiçbir şeyi değiştirmez; değişiklik POST ile olur. Sonucu belirsiz gönderim 'beklemede' kalır.** [kanıtlı]
+**Toplu e-posta yalnız çift onaylı adreslere gider ve RFC 8058 List-Unsubscribe taşır**. Abonelikten çıkış bağlantısına yapılan GET hiçbir şeyi değiştirmez; değişiklik POST ile olur. Sonucu belirsiz gönderim 'beklemede' kalır.
+
+[kanıtlı]
+
 **Neden:** E-posta güvenlik tarayıcıları bağlantıları kullanıcıdan önce açıyor; Microsoft'un tarayıcısı 6–7 Eki 2026'da bültendeki bağlantıları kullanıcı ajanı olmadan düz GET ile açtı. GET ile çıkış, kişinin haberi olmadan abonelik iptali demek.
 
 **Nasıl kontrol edilir:** Çıkış bağlantısına GET yalnız onay sayfasını döner; POST çıkışı yapar.
 
+<a id="k-5-6"></a>
 5.6
 
-****Sıklık kullanıcının gününe göre seçilir**. Bülten haftada bir gün sabah gider; anlık bildirim gece çaldırmaz; aynı kaynaktan okunmamış bir bildirim varken yenisi gitmez; hak sahibi olmayan kullanıcıya olay başına değil, günlük tek özet gider.** [kanıtlı]
+**Sıklık kullanıcının gününe göre seçilir**. Bülten haftada bir gün sabah gider; anlık bildirim gece çaldırmaz; aynı kaynaktan okunmamış bir bildirim varken yenisi gitmez; hak sahibi olmayan kullanıcıya olay başına değil, günlük tek özet gider.
+
+[kanıtlı]
+
 **Neden:** 26 Eyl 2026'da günlük 09:00 gönderimi reddedildi: hafta sonu abone olan kişi iki günde iki e-posta alacaktı; pazartesi 09:00 seçildi. 30 Eyl'de havuz bildirimleri 21:00–08:00 arası susturuldu, Premium olmayan kurumsal kullanıcılara talep başına push yerine hafta içi tek özet gönderilmeye başlandı.
 
 **Nasıl kontrol edilir:** Gönderim saatleri İstanbul saatiyle logdan okunur; 21:00–08:00 arası push sayısı 0.
 
+<a id="k-5-7"></a>
 5.7
 
-****Yeniden deneme yalnız iki kez çalışmaya dayanıklı işte açılır**; e-posta atan rapor ve özet işlerinde açılmaz.** [kanıtlı]
+**Yeniden deneme yalnız iki kez çalışmaya dayanıklı işte açılır**; e-posta atan rapor ve özet işlerinde açılmaz.
+
+[kanıtlı]
+
 **Neden:** 23 Eyl 2026'da 11,9 sn süren rapor e-postayı gönderdi ama zamanlayıcıya 503 döndü; yeniden deneme açık olsaydı çift e-posta gidecekti. 2 Eki'de yeniden deneme yalnız dört idempotent işte açıldı.
 
 **Nasıl kontrol edilir:** Her zamanlanmış işin (iş, dönem) idempotency anahtarı ve yeniden deneme ayarı listelenir.
 
+<a id="k-5-8"></a>
 5.8
 
-****Push yükünde içerik yoktur**: yorum metni, e-posta ve hassas veri konmaz. Güncelleme bildirimi yalnız eski build'lere gider. E-posta gönderim hatası girişi ya da satın almayı bozmaz.** [kanıtlı]
+**Push yükünde içerik yoktur**: yorum metni, e-posta ve hassas veri konmaz. Güncelleme bildirimi yalnız eski build'lere gider. E-posta gönderim hatası girişi ya da satın almayı bozmaz.
+
+[kanıtlı]
+
 **Neden:** Depodaki değiştirilemez ürün kuralları: hoş geldin e-postasının hatası giriş sonucunu değiştirmez, e-postalar tekilleştirme anahtarıyla bir kez gider. 19 Eyl 2026'dan beri güncelleme bildirimi yayındaki build'i çalıştıran cihaza gitmiyor.
 
 **Nasıl kontrol edilir:** Push yükü ve outbox tekilleştirmesi testle kilitli.
 
+<a id="k-5-9"></a>
 5.9
 
-****Test ortamının bütün e-postaları tek bir izin listesine gider**; test hiçbir gerçek kişiye ulaşmaz. Prod verisi test ortamına kopyalanmaz.** [kanıtlı]
+**Test ortamının bütün e-postaları tek bir izin listesine gider**; test hiçbir gerçek kişiye ulaşmaz. Prod verisi test ortamına kopyalanmaz.
+
+[kanıtlı]
+
 **Neden:** 26 Eyl 2026'dan beri test ortamının e-postaları tek listeye gidiyor; test ortamı kurulurken gerçek adres taşıyan veri oraya girerse provalar gerçek kişilere kod gönderebilirdi.
 
 **Nasıl kontrol edilir:** Test ortamının e-posta ayarında izin listesi doludur; config bu liste olmadan açılmaz.
 
+<a id="k-5-10"></a>
 5.10
 
-****Kullanıcıdan izin ve puan sınırlı istenir**: sistem bildirim izni bir kez, mağaza puan isteği kurulum başına en çok iki kez ve ilk gün değil.** [kanıtlı]
+**Kullanıcıdan izin ve puan sınırlı istenir**: sistem bildirim izni bir kez, mağaza puan isteği kurulum başına en çok iki kez ve ilk gün değil.
+
+[kanıtlı]
+
 **Neden:** Mağazalar değerlendirmenin yazıldığını söylemiyor; yazana bir daha sormamanın tek yolu herkese iki denemeden sonra susmak. Bildirim izni cevapsız kalsa da sonraki açılışlarda tekrar çıkmıyor (19 Eyl 2026'dan beri).
 
 **Nasıl kontrol edilir:** Sayaçlar cihaz deposunda testle kilitli.
 
 ## 6. Botlar ve sınırlar6 kural
 
+<a id="k-6-1"></a>
 6.1
 
-****Her yeni bot ya da hız kuralı önce gölgede çalışır**: reddetmez, 'reddederdim' satırı yazar. Zorlama en az 7 günlük temiz logla, kurumsal kullanıcılı üründe 14 günle verilir. Kural testi gerçek Next sunucusundan geçen istekle yapılır.** [kanıtlı]
+**Her yeni bot ya da hız kuralı önce gölgede çalışır**: reddetmez, 'reddederdim' satırı yazar. Zorlama en az 7 günlük temiz logla, kurumsal kullanıcılı üründe 14 günle verilir. Kural testi gerçek Next sunucusundan geçen istekle yapılır.
+
+[kanıtlı]
+
 **Neden:** 6–7 Eki 2026'da gölgesiz açılan boş ajan kuralı ilk gün bir e-posta bağlantı tarayıcısına 403 verdi. Gölgedeki hız kuralı Next'in önyüklemelerini sayfa sandı: tek bir adresten gelen 400 önyükleme 92 yanlış 'reddederdim' satırı yazdı; zorlansaydı insanları kesecekti. Birim testleri başlıkları kendisi kurduğu için geçiyordu.
 
 **Nasıl kontrol edilir:** 'Reddederdim' satırları her gün gruplanır; aynı adresten JavaScript kanıtı gelen her satır yanlış pozitiftir ve kural aynı gün düzeltilir.
 
+<a id="k-6-2"></a>
 6.2
 
-****Hiçbir kural şunları reddetmez**: mobil uygulamanın konuştuğu API, oturum ve portal, paylaşım ve talep bağlantıları, formlar, yasal sayfalar, robots.txt, sitemap, llms.txt, /.well-known, mağaza denetleyicileri, e-posta ve güvenlik firmalarının bağlantı tarayıcıları, bağlantı önizleyicileri. API alan adı hiçbir zaman challenge sayfası gösteren bir katmanın arkasına konmaz.** [kanıtlı]
+**Hiçbir kural şunları reddetmez**: mobil uygulamanın konuştuğu API, oturum ve portal, paylaşım ve talep bağlantıları, formlar, yasal sayfalar, robots.txt, sitemap, llms.txt, /.well-known, mağaza denetleyicileri, e-posta ve güvenlik firmalarının bağlantı tarayıcıları, bağlantı önizleyicileri. API alan adı hiçbir zaman challenge sayfası gösteren bir katmanın arkasına konmaz.
+
+[kanıtlı]
+
 **Neden:** Mağaza politika denetleyicisi yasal sayfaları 6 günde 123 kez açtı. Müşteriye gönderilen bağlantıyı önce önizleyici açıyor. 517.285 istekte engelli bulut aralıklarından tek uygulama isteği gelmedi, ama toplu bir VPN dalgası bunu bir günde değiştirebilir.
 
 **Nasıl kontrol edilir:** Bu yollarda 403 ve 429 sayısı her gün 0; API'nin 429 sayısı kapıdan sonra değişmez.
 
+<a id="k-6-3"></a>
 6.3
 
-****Bütün bir bulut ağını (ASN) reddetmek yalnız içerik sayfalarında yapılır**. Ağ listesinden kiralanmış ve başka şirketlerin kendi rotasıyla duyurduğu bloklar çıkarılır; liste ayda bir yenilenir.** [kanıtlı]
+**Bütün bir bulut ağını (ASN) reddetmek yalnız içerik sayfalarında yapılır**. Ağ listesinden kiralanmış ve başka şirketlerin kendi rotasıyla duyurduğu bloklar çıkarılır; liste ayda bir yenilenir.
+
+[kanıtlı]
+
 **Neden:** 7 Eki 2026'da iki büyük bulutun öneklerinde başka şirketlerin kullandığı alanlar çıktı; üç ASN'den 9 blok listeden kesildi. Bu bulutlar bilgi sitesinde yalnız gölgede tutuldu: VPN arkasındaki bir kurumsal kullanıcıyı reddetmek hiçbir zaman değmez.
 
 **Nasıl kontrol edilir:** Yenileme betiği her önek için rota kökenini sorar; 45 günden eski liste uyarı satırı yazar.
 
+<a id="k-6-4"></a>
 6.4
 
-****Adres başına hız sınırı yüksek tutulur ve yalnız tek adresten gelen seli durdurmak için kullanılır**.** [ölçüldü]
+**Adres başına hız sınırı yüksek tutulur ve yalnız tek adresten gelen seli durdurmak için kullanılır**.
+
+[ölçüldü]
+
 **Neden:** Tek IPv4 arkasında 6 cihaz görüldü. En yoğun gerçek adres 10 saniyede 24, günde 129 sayfa açtı; varsayılan sınır her pencerede bunun en az 5 katı. Dağıtık kazıyıcılar adres başına 1–3 istek attığı için insanlara güvenli hiçbir adres sınırı onları görmüyor.
 
 **Nasıl kontrol edilir:** Gerçek kullanıcı ajanlı ve JavaScript kanıtlı adreslerde 429 sayısı 0.
 
+<a id="k-6-5"></a>
 6.5
 
-****Ziyaretçi getiren arama, önizleme ve AI tarayıcıları açık kalır**. Bot kimliği kullanıcı ajanından değil yayıncının adres aralığından doğrulanır. robots.txt ve kapı aynı ad listesinden üretilir.** [kanıtlı]
+**Ziyaretçi getiren arama, önizleme ve AI tarayıcıları açık kalır**. Bot kimliği kullanıcı ajanından değil yayıncının adres aralığından doğrulanır. robots.txt ve kapı aynı ad listesinden üretilir.
+
+[kanıtlı]
+
 **Neden:** Bir sitede robots.txt herkese izin verirken kapı 13 adı reddediyordu ve listedeki kısaltılmış adlar gerçek ajanları yakalamıyordu. ChatGPT-User iddialarının 35'inden 2'si gerçekti. 7 Eki 2026'da her arama, AI ve önizleme tarayıcısının geçtiği sentetik tarama ve 30 günlük log tekrarıyla doğrulandı.
 
 **Nasıl kontrol edilir:** Search Console tarama istatistiğinde host durumu (429, 5xx) kapıdan sonra yükselmez; listedeki her ad logdaki gerçek ajan dizesiyle sınanır.
 
+<a id="k-6-6"></a>
 6.6
 
-****Kapı hata verirse isteği geçirir**. Reddedilen gerçek kişinin bir çıkışı vardır: yeniden dene bağlantısı, iletişim adresi ve ret sayfasının bir işaret pikseli.** [kanıtlı]
+**Kapı hata verirse isteği geçirir**. Reddedilen gerçek kişinin bir çıkışı vardır: yeniden dene bağlantısı, iletişim adresi ve ret sayfasının bir işaret pikseli.
+
+[kanıtlı]
+
 **Neden:** Kapıdaki bir hatanın bedeli en fazla bir botun geçmesi olmalı, bir kullanıcının kesilmesi değil. İşaret satırı reddedilmiş gerçek bir tarayıcıyı loglarda görünür kılıyor.
 
 **Nasıl kontrol edilir:** 'Görüldü' satırları ağ etiketi ve son bir dakikada vuran kuralla birlikte okunur.
 
 ## 7. Yayın disiplini11 kural
 
+<a id="k-7-1"></a>
 7.1
 
-****Önce test, sonra main**. main yalnız test'te görülmüş commit'e fast-forward edilir; iki dal her zaman eşittir.** [kanıtlı]
+**Önce test, sonra main**. main yalnız test'te görülmüş commit'e fast-forward edilir; iki dal her zaman eşittir.
+
+[kanıtlı]
+
 **Neden:** 26 Eyl 2026'da günün son düzeltmeleri test'i atlayıp üç depoda doğrudan main'e gitti ve test geride kaldı.
 
 **Nasıl kontrol edilir:** test ve main aynı commit'i gösterir; eşit değilse bu tek satırla söylenir ve ancak ürün sahibinin sözüyle düzeltilir.
 
+<a id="k-7-2"></a>
 7.2
 
-****Deploy, build, mağaza gönderimi ve sürüm numarası ürün sahibinin kararıdır ve depodaki ajan dosyalarında (CLAUDE.md, AGENTS.md) yazılıdır**. Sıra her zaman aynıdır: kod biter, commit, tek satırlık rapor, karar beklenir.** [kanıtlı]
+**Deploy, build, mağaza gönderimi ve sürüm numarası ürün sahibinin kararıdır ve depodaki ajan dosyalarında (CLAUDE.md, AGENTS.md) yazılıdır**. Sıra her zaman aynıdır: kod biter, commit, tek satırlık rapor, karar beklenir.
+
+[kanıtlı]
+
 **Neden:** 20 Eyl 2026'da istenmeden iki prod build başlatıldı ve sürüm sorulmadan 4.0.1'den 4.1.0'a çıkarıldı; 4.0.2 olmalıydı. Hafızadaki bir not başka araçlarca görülmediği için kural depoya yazıldı.
 
 **Nasıl kontrol edilir:** Her depoda ajan dosyası vardır; main tetikleyicisinde onay kapısı önerilir.
 
+<a id="k-7-3"></a>
 7.3
 
-****Commit'ler birikir, iş bitince tek deploy yapılır**. Canlı kırık bunun istisnasıdır: sebep, düzeltme, canlı veriyle doğrulama, commit, ve ilk satırda tek cümleyle onay isteği; araya başka iş girmez.** [kanıtlı]
+**Commit'ler birikir, iş bitince tek deploy yapılır**. Canlı kırık bunun istisnasıdır: sebep, düzeltme, canlı veriyle doğrulama, commit, ve ilk satırda tek cümleyle onay isteği; araya başka iş girmez.
+
+[kanıtlı]
+
 **Neden:** 22 Eyl 2026'da aynı oturumda site üç kez deploy edildi; her biri bir build, yeni revizyon, soğuk önbellek ve arama motoru bildirimi demekti. 23 Eyl'de kırık logoların düzeltmesi hazırken onay isteği uzun bir raporun içinde kaldı; onay gelince logolar 6 dakikada canlıdaydı.
 
 **Nasıl kontrol edilir:** Deploy sayısı oturum başına bir; canlı kırık raporunun ilk satırı onay sorusudur.
 
+<a id="k-7-4"></a>
 7.4
 
-****İncelenen iş onaylanmadan commit'lenmez**; sorulan soru önce cevaplanır.** [kanıtlı]
+**İncelenen iş onaylanmadan commit'lenmez**; sorulan soru önce cevaplanır.
+
+[kanıtlı]
+
 **Neden:** 26 Eyl 2026'da bir tasarım ürün sahibi hâlâ inceleyip soru sorarken iki kez commit'lendi ve geri alındı.
 
 **Nasıl kontrol edilir:** İnceleme sürerken değişiklikler commit'siz durur.
 
+<a id="k-7-5"></a>
 7.5
 
-****Yeni yüzey sunucu anahtarı arkasında, varsayılan kapalı gider**. Açma, kapama ve geri dönüş yeni build istemez; bizde ortam değişkeniyle yapıldı. Anahtar, onu okuyan web build'inden önce açılır ki önbellek kapalı hali saklamasın.** [kanıtlı]
+**Yeni yüzey sunucu anahtarı arkasında, varsayılan kapalı gider**. Açma, kapama ve geri dönüş yeni build istemez; bizde ortam değişkeniyle yapıldı. Anahtar, onu okuyan web build'inden önce açılır ki önbellek kapalı hali saklamasın.
+
+[kanıtlı]
+
 **Neden:** 30 Eyl 2026'da kullanıcı denemesinde kötü bulunan AI asistan tek bir env değişikliğiyle dakikalar içinde kapandı. Sesli komut, haftalık e-posta, yeni değer tablosu ve havuzun yeni akışı kapalı çıktı ve ayrı günlerde açıldı. 28 Eyl'de anahtar web build'inden önce açıldığı için sayfalar ilk istekte doğru çizildi. Bedeli: her env değişikliği canlıda yeni revizyon ve canlıya yetkili bir insan istedi; 19 Eyl–8 Eki 2026'da güncelleme politikası ve bayrak için en az 14 elle revizyon açıldı.
 
 **Nasıl kontrol edilir:** update-policy çıktısında anahtarlar okunur; anahtar test servisinde açık, prod'da kapalıyken prova yapılır.
 
 **Yeni projede:** [öneri] Anahtar admin'deki bayrak tablosunda durur ve yeni revizyon istemez. Ortam değişkeni yalnız acil kapatma yedeğidir; tablodaki açık değeri kapatabilir, kapalı değeri açamaz. Ayrıntısı [Analitik ve admin](#analitik) bölümünde ve [Mobil uzaktan kontrol kitinin](#mobilkit) 6. parçasında.
 
+<a id="k-7-6"></a>
 7.6
 
-****Veri taşıyan bir değişiklikten sonra geri dönüş eski revizyona değil anahtara yapılır**. Her değişikliğin notunda geri dönüşte ne olacağı yazılır.** [kanıtlı]
+**Veri taşıyan bir değişiklikten sonra geri dönüş eski revizyona değil anahtara yapılır**. Her değişikliğin notunda geri dönüşte ne olacağı yazılır.
+
+[kanıtlı]
+
 **Neden:** Talep havuzunun yeni akışı açıldıktan sonra eski API kodu yeni akışın taleplerini süzmeden telefon numarasını gösterecekti; geri dönüş yalnız anahtarı kapatmak olarak yazıldı (5 Eki 2026). Bir başka projede not: 'bu sürümden geri dönülürse eski kod park edilen dosyaları eklemez, dosyalar kaybolmaz' (2 Eki).
 
 **Nasıl kontrol edilir:** CHANGELOG girişinde geri dönüş satırı bulunur; anahtarla kapatma test ortamında denenir.
 
+<a id="k-7-7"></a>
 7.7
 
-****Geri dönüş penceresi gerçek imaj listesinden hesaplanır**. İmaj temizliği geri dönülecek imajı ve job'ların sabitlediği imajları silmez; migration job'ı her sürümde serving imaja çevrilir.** [kanıtlı]
+**Geri dönüş penceresi gerçek imaj listesinden hesaplanır**. İmaj temizliği geri dönülecek imajı ve job'ların sabitlediği imajları silmez; migration job'ı her sürümde serving imaja çevrilir.
+
+[kanıtlı]
+
 **Neden:** 'En yeni 5 imajı tut' kuralı sık deploy eden serviste 1–2 günlük pencere demek. 24 Eyl 2026'da bir geri dönüş revizyonunun imajı bir gün içinde silindi; geri dönüşün tek yolu revert ve yeniden build oldu. Elle sabitlenmiş migration job'ı 21 Eyl ve 7 Eki'de silinmiş imaja bakıyordu.
 
 **Nasıl kontrol edilir:** Deploy sonrası önceki revizyonun imajı depoda var mı bakılır; job imajı serving imajla eşittir. Canlı ve önceki imaj her deploy'da taşınan `live` ve `prev` etiketleriyle süresiz, deploy edilen imaj `deployed-*` etiketiyle 30 gün tutulur.
 
+<a id="k-7-8"></a>
 7.8
 
-****Deploy komutu ortamı ekler, silmez**: --update-env-vars kullanılır, --set-env-vars kullanılmaz. Düz bir değişkeni sır referansına çevirmek tek komutta yapılır.** [kanıtlı]
+**Deploy komutu ortamı ekler, silmez**: --update-env-vars kullanılır, --set-env-vars kullanılmaz. Düz bir değişkeni sır referansına çevirmek tek komutta yapılır.
+
+[kanıtlı]
+
 **Neden:** Bir sitenin build tanımı --set kullanıyordu ve her deploy elle konmuş değişkenleri siliyordu (6 Eki 2026'da düzeldi). Düz değişkeni sırra çevirirken komut ikiye bölünürse arada değerlerin boş olduğu bir revizyon doğuyor (22 Eyl).
 
 **Nasıl kontrol edilir:** Deploy sonrası servis tanımındaki ortam listesi önceki revizyonla karşılaştırılır.
 
+<a id="k-7-9"></a>
 7.9
 
-****'Deploy çıktı' demeden önce o commit için build'in başarıyla bittiği görülür**. Kırık build dışarıdan görünmez: site eski imajda kalır, yeni iş 'hâlâ bozuk' sanılır.** [kanıtlı]
+**'Deploy çıktı' demeden önce o commit için build'in başarıyla bittiği görülür**. Kırık build dışarıdan görünmez: site eski imajda kalır, yeni iş 'hâlâ bozuk' sanılır.
+
+[kanıtlı]
+
 **Neden:** Bir projemizde 18–19 Eyl 2026'da altı build üst üste düştü ve dört bitmiş iş 'hâlâ bozuk' diye bildirildi. 22 Eyl'de 1.000 yeşil test, portalın derlenmeyen bir dosyasını yakalamadı. 21 Eyl'de üç depodan birinin tetikleyicisi yoktu ve push hiçbir şey yapmadı.
 
 **Nasıl kontrol edilir:** Build listesinde commit'in kısa SHA'sı SUCCESS görünür; Dockerfile'ın koştuğu build yerelde de koşar; başarısız build bildirimi açıktır.
 
+<a id="k-7-10"></a>
 7.10
 
-****Testler, simülatör ve denemeler canlıya dokunmaz**; yerel varsayılan hiçbir zaman prod değildir. Herkese açık rakamlar gerçek kullanıcıyı anlatır.** [kanıtlı]
+**Testler, simülatör ve denemeler canlıya dokunmaz**; yerel varsayılan hiçbir zaman prod değildir. Herkese açık rakamlar gerçek kullanıcıyı anlatır.
+
+[kanıtlı]
+
 **Neden:** Bir portal testi 17–28 Eyl 2026 arası prod'a 44 sahte hesaplama yazdı ve bunlar herkese açık 'popüler hesaplamalar' listesinde göründü. Simülatör 24 ve 26 Eyl'de prod'a analitik yazdı.
 
 **Nasıl kontrol edilir:** Testlerde ağ kapalı; prod'a dokunan komutun adında 'prod' geçer; simülatörün hedef API'si çalışma anında, test servisinin logunda doğrulanır.
 
+<a id="k-7-11"></a>
 7.11
 
-****Yeni okuma yolu önce gölgede çalışır**: eski yolla aynı cevabı verip vermediğini loga yazar. Fark bir gün boyunca 0 olunca açılır.** [kanıtlı]
+**Yeni okuma yolu önce gölgede çalışır**: eski yolla aynı cevabı verip vermediğini loga yazar. Fark bir gün boyunca 0 olunca açılır.
+
+[kanıtlı]
+
 **Neden:** 2 Eki 2026'da gölge mod, açılmadan önce bir sıralama farkını yakaladı; düzeltilip ertesi gün fark 0 görülünce açıldı ve veritabanı tüketimi günde 6,5'ten 1,3 CU-saate indi.
 
 **Nasıl kontrol edilir:** Fark logu açılıştan önceki 24 saatte 0.
 
 ## 8. Hiçbir şeyin kırılmadığını ölçmek7 kural
 
+<a id="k-8-1"></a>
 8.1
 
-****Her deploy'dan hemen sonra**: build başarılı, yeni revizyon trafikte, sağlık ucu 200, ilk 30 dakikada 5xx 0, saatlik 401 sayısı önceki saatle aynı, update-policy beklenen anahtarları dönüyor, web'de arama motoru bildirimi 200, değişen sayfa canlı veriyle açılıyor ve konsolda CSP ihlali yok.** [kanıtlı]
+**Her deploy'dan hemen sonra**: build başarılı, yeni revizyon trafikte, sağlık ucu 200, ilk 30 dakikada 5xx 0, saatlik 401 sayısı önceki saatle aynı, update-policy beklenen anahtarları dönüyor, web'de arama motoru bildirimi 200, değişen sayfa canlı veriyle açılıyor ve konsolda CSP ihlali yok.
+
+[kanıtlı]
+
 **Neden:** 7 Eki 2026'da bir API sürümü bu kontrollerle 0 adet 5xx ile doğrulandı. 23 Eyl'deki CSP kırığı canlı verisi olmayan test ortamında görünmemişti.
 
 **Nasıl kontrol edilir:** Bu liste deploy raporunun son satırıdır.
 
+<a id="k-8-2"></a>
 8.2
 
-****Ertesi sabah tek seferlik bir kontrol çalışır**: zamanlanmış işler 2xx, gece 5xx ve bellek taşması 0, ERROR satırları, veritabanının saatlik tüketimi, gölge fark logu, kapı satırları. Gözetimsiz kontrol bulutta çalışır.** [kanıtlı]
+**Ertesi sabah tek seferlik bir kontrol çalışır**: zamanlanmış işler 2xx, gece 5xx ve bellek taşması 0, ERROR satırları, veritabanının saatlik tüketimi, gölge fark logu, kapı satırları. Gözetimsiz kontrol bulutta çalışır.
+
+[kanıtlı]
+
 **Neden:** Minimum instance 0'a indikten sonraki ilk gece böyle bir kontrolle temiz bulundu (3 Eki 2026). Bir projede zamanlanmış haftalık kontrol, deploy'dan dakikalar sonra önbellekteki 404'ü kendiliğinden yakaladı. Yerelde kurulan iki tek seferlik kontrol izin beklerken takıldı.
 
 **Nasıl kontrol edilir:** Kontrolün sonucu ertesi gün okunur; çalışmadıysa elle yapılır.
 
+<a id="k-8-3"></a>
 8.3
 
-****Sessiz hata yoktur**. Başarısız iş 2xx dönmez; her 5xx sebebiyle ve severity alanıyla loglanır; az trafikli kritik uçta tek 5xx alarm üretir. Loglanmamış bir 500 tahmin edilmez: önce log satırı eklenir, deploy edilir, sonraki olay okunur.** [kanıtlı]
+**Sessiz hata yoktur**. Başarısız iş 2xx dönmez; her 5xx sebebiyle ve severity alanıyla loglanır; az trafikli kritik uçta tek 5xx alarm üretir. Loglanmamış bir 500 tahmin edilmez: önce log satırı eklenir, deploy edilir, sonraki olay okunur.
+
+[kanıtlı]
+
 **Neden:** Ödeme webhook'u 21 gün log yazmadan 500 döndü. Dış bir siteyi okuyan günlük iş beş gün boyunca her sabah düştü ama 204 döndü. 14 günde 18 ERROR satırının severity alanı boştu.
 
 **Nasıl kontrol edilir:** Log tabanlı alarm ERROR > 0; webhook yolunda tek 5xx alarmı.
 
+<a id="k-8-4"></a>
 8.4
 
-****Alarmlar ilk kullanıcıdan önce kurulur ve konusu '[TEST]' olan sahte bir hatayla uçtan uca denenir**; durum izleme API'sinden okunur. En az: uptime (300 sn, 3 bölge), servis başına 5 dakikada 3'ten fazla 5xx, açılışta veritabanı yok, zamanlanmış iş hatası, yedek hatası, bellek taşması, build hatası.** [kanıtlı]
+**Alarmlar ilk kullanıcıdan önce kurulur ve konusu '[TEST]' olan sahte bir hatayla uçtan uca denenir**; durum izleme API'sinden okunur. En az: uptime (300 sn, 3 bölge), servis başına 5 dakikada 3'ten fazla 5xx, açılışta veritabanı yok, zamanlanmış iş hatası, yedek hatası, bellek taşması, build hatası.
+
+[kanıtlı]
+
 **Neden:** 23 Eyl 2026 denemesinde hata 16:57'de üretildi, alarm 17:01'de açıldı, 17:11'de kapandı. 2 Eki'de alarmsız bir serviste tek günde 192 bellek taşması bir maliyet analizinde tesadüfen bulundu.
 
 **Nasıl kontrol edilir:** Her yeni projede alarm listesi ve son deneme tarihi yazılıdır.
 
+<a id="k-8-5"></a>
 8.5
 
-****Kullanıcı davranışına dokunan deneme yeni build harcamadan, uzak bir anahtarla ve kullanıcıların yarısında yapılır**; iki hafta izlenir. Kontrol grubu olmadan sebep söylenmez.** [öneri]
+**Kullanıcı davranışına dokunan deneme yeni build harcamadan, uzak bir anahtarla ve kullanıcıların yarısında yapılır**; iki hafta izlenir. Kontrol grubu olmadan sebep söylenmez.
+
+[öneri]
+
 **Neden:** Eylül 2026'da iOS'ta reklam geliri bir sürümle aynı haftalarda düştü ama kontrol grubu olmadığı için sebep kanıtlanamadı. 6 Eki'de alt banner denemesi için ayrı build alınmadı; anahtar bir sonraki sürüme eklenecek.
 
 **Nasıl kontrol edilir:** Deneme anahtarı update-policy'de; iki grubun rakamları aynı pencerede okunur.
 
+<a id="k-8-6"></a>
 8.6
 
-****Arama tarafındaki etki 2–4 hafta izlenir ve logdan sayılırken önce kendi adreslerimiz, bulut aralıkları ve önyüklemeler çıkarılır**.** [ölçüldü]
+**Arama tarafındaki etki 2–4 hafta izlenir ve logdan sayılırken önce kendi adreslerimiz, bulut aralıkları ve önyüklemeler çıkarılır**.
+
+[ölçüldü]
+
 **Neden:** 30 Eyl 2026 ölçümünde 'Google'dan gelen' ~120 girişin ~105'i Chrome gibi görünen bir bulut kazıyıcısıydı. 6 Eki'de AI asistanından gelen oturumlardaki '12–24 sayfa' Next önyüklemesi çıktı; gerçek ziyaretçilerin hiçbiri ikinci sayfaya geçmemişti.
 
 **Nasıl kontrol edilir:** Search Console'da host durumu ve dizin; yönlendirilen adreslerin dizin durumu; aynı sayım 2–4 hafta sonra tekrarlanır.
 
+<a id="k-8-7"></a>
 8.7
 
-****Kullanıcı bir sorun bildirdiğinde yalnız bildirilen şey ölçülmez**; aynı sınıftaki her şey ve aynı sayfanın tamamı taranır. Kontrol önce eski canlı sayfada kanıtlanır ki temiz sonuç bir şey anlatsın.** [kanıtlı]
+**Kullanıcı bir sorun bildirdiğinde yalnız bildirilen şey ölçülmez**; aynı sınıftaki her şey ve aynı sayfanın tamamı taranır. Kontrol önce eski canlı sayfada kanıtlanır ki temiz sonuç bir şey anlatsın.
+
+[kanıtlı]
+
 **Neden:** 24 Eyl 2026'da bildirilen tek başlık düzeltilirken kullanıcı aynı sayfada üç sorun daha buldu. Bir başka projede bir hata bildiriminde geçen iki firma, aynı sınıfta on yedi kayıt çıktı.
 
 **Nasıl kontrol edilir:** Raporda taramanın bulduğu ve kullanıcının önce bulduğu ayrı ayrı yazılır.
@@ -2713,10 +3314,15 @@ _Grafik: Hangi dosya hangi soruyu cevaplar. Nasıl kurulur: README.md (kurulum v
 8 Ekim 2026 taraması: 14 deponun origin/main dalı (A beş, B üç, C dört, D iki), ajan hafıza klasörleri ve 20 Ağustos–8 Ekim oturum kayıtları. CHANGELOG 10 depoda var (biri boş), ajan talimat dosyası 9 depoda.
 
 **11 / 820** CHANGELOG başlığından tarih taşıyanlar (A'nın beş, B'nin iki günlüğü). Ne zaman çıktığını yalnız git geçmişi söylüyordu.
+
 **36 / 61** a-mobile'de yayında olduğu halde hâlâ 'Unreleased' duran başlık. a-api'de 114'ün 24'ü.
+
 **12 / 15** Paralel dallar birleşirken çıkan çakışmalardan CHANGELOG'u içerenler.
+
 **28 / 74** En büyük ajan hafıza klasöründeki notlardan karar içerenler. Bu kararları yalnız o makinedeki o araç görüyordu.
+
 **4 / 45** Aynı klasörün notlarında geçen ve artık var olmayan dosya yolu. 74 notun 15'i 14 günden eski.
+
 **67 kez** Tek bir oturumun 49 günde sıkıştırılma (compact) sayısı. Her sıkıştırmada araç sohbeti özetler; depoya yazılmamış ayrıntının bir kısmı gider.
 
 ## CHANGELOG boyutu
@@ -2724,6 +3330,7 @@ _Grafik: Hangi dosya hangi soruyu cevaplar. Nasıl kurulur: README.md (kurulum v
 En büyük dördü son 30 günde günde 2–9 KB büyüdü. b-web'in tamamı 200 bin token'lık bağlamın yarısına yakın.
 
 40 KB üstü40 KB altıKB, ölçek gerçek
+
 _Grafik: CHANGELOG boyutları, KB, sınır 40: b-web 338,8; b-api 308,3; a-mobile 160,3; a-api 158,5; a-web 86,5; a-portal 68,2; c-web (ortak günlük) 58,2; a-market 57,1; c-api 17,6; b-mobile 0,3_
 
 ## Aynı commit'te CHANGELOG'a yazma oranı
@@ -2731,6 +3338,7 @@ _Grafik: CHANGELOG boyutları, KB, sınır 40: b-web 338,8; b-api 308,3; a-mobil
 8 Eylül–8 Ekim, kod değiştiren commit'ler, commit başına. C'de günlük deploy'dan sonra ayrı commit'te.
 
 Kural ajan dosyasında yazılıYazılı değilGünlük ayrı commit'tekod commit'i, %; ölçek gerçek
+
 _Grafik: Aynı commit'te CHANGELOG oranı. Kural yazılı: b-web %84, b-api %80, a-api %72. Yazılı değil: a-portal %52, a-mobile %51, a-market %36, a-web %33. Ürün C, 4 depo: %1–12._
 
 ## Bizde ne oldu
@@ -2994,7 +3602,7 @@ ayrıntı (en çok 5 satır). Gizli değer yazılmaz.
 Türler: Eklendi, Değişti, Kalkacak, Kaldırıldı,
 Düzeltildi, Güvenlik.
 40 KB'ı geçince en eski ay
-docs/changelog/YYYY-AA.md'ye taşınır.
+docs/changelog/YYYY-MM.md'ye taşınır.
 
 ## Unreleased
 ### Eklendi
@@ -3160,32 +3768,51 @@ Kanıtlı kural bizde işliyor. Ölçüldü etiketinde rakam bizim ölçümümü
 ### Değişiklik günlüğü
 
 [kanıtlı]
+
 **CHANGELOG en yeni üstte yazılır**. Ajan dosyayı baştan okur; okuma aracı büyük dosyada yalnız ilk sayfayı döndürse de en yenisi görülür.
+
 [ölçüldü]
+
 **Davranış değiştiren commit günlüğü aynı commit'te günceller, bu kural AGENTS.md'de yazılır**. Yazılı olan üç depoda oran %72–84, olmayan dördünde %33–52.
+
 [ölçüldü]
-**Ana dosya 40 KB'ı** (~12 bin token) geçmez; girdi en çok 2 satır kullanıcı etkisi, 5 satır teknik ayrıntı. Bizde girdi ortancası 0,8–1,7 KB, en uzunu 11,8 KB idi.
+
+**Ana dosya 40 KB'ı** (~12 bin token) geçmez; girdi en çok 2 satır kullanıcı etkisi, 5 satır teknik ayrıntı. Bizde girdi ortancası 0,8–1,7 KB, en uzunu 11,8 KB idi.
+
 [ölçüldü]
+
 **Tek Unreleased bölümü deploy olunca ISO tarih ve canlı revizyon başlığına çevrilir**; girdi commit kısaltması taşır. 820 başlığın 11'inde tarih vardı.
+
 [kanıtlı]
+
 **Yalnız .md ya da docs/ değişen commit canlı build'i tetiklemez**. Belge düzeltmesi deploy korkusuyla beklemez.
 
 ### Ajan dosyası
 
 [kanıtlı]
+
 **Tek kaynak AGENTS.md**; CLAUDE.md'de yalnız `@AGENTS.md` ve gerekirse Claude'a özel birkaç satır. Claude Code, CLAUDE.md varken AGENTS.md'yi bu import olmadan okumaz (kullanıcı ayarı `claude-md-and-agents-md` hariç).
+
 [kanıtlı]
+
 **Deploy kuralı dosyanın en üstünde ve ürünün bütün depolarında aynı cümlelerle durur**. Ayrıntısı [Kullanıcıyı kırmadan değiştirmek](#kirmama) ve [Yeni depo için kurallar](#depo-kurallari) bölümlerinde.
+
 [ölçüldü]
+
 **Zor öğrenilen ders kaça mal olduğuyla bir satır girer, anlatımı docs/lessons.md'ye**. B'nin dosyaları 245 ve 203 satıra çıktı; Claude Code 200 satırın altını öneriyor.
 
 ### Durum, iş ve kararlar
 
 [kanıtlı]
+
 **Ürün düzeyinde tek durum yeri olur**. C'de ürün günlüğünün tepesindeki durum bölümü canlı sürümleri, son migration'ı ve bekleyenleri tek yerde gösteriyor.
+
 [kanıtlı]
+
 **STATUS'taki her canlı satırı doğrulama yöntemini ve tarihini taşır**. Hafıza notu ve eski durum satırı durum kaynağı değildir.
+
 [öneri]
+
 **Kararlar depoya yazılır** (DECISIONS.md ya da numaralı ADR). En büyük hafıza klasöründeki 74 notun 28'i karar içeriyordu ve yalnız o makinede duruyordu.
 
 ## Göreve başlarken
@@ -3233,22 +3860,39 @@ Kanıtlı kural bizde işliyor. Ölçüldü etiketinde rakam bizim ölçümümü
 Bizde aynı anda birkaç uzun ömürlü oturum, aynı depolarda çalışıyordu. Yayın kuralının hafızadan depoya taşındığı 20 Eylül olayı ve yazılı 'önce test' kuralının üç depoda atlandığı 26 Eylül olayı: [Kullanıcıyı kırmadan değiştirmek](#kirmama), [7.2](#k-7-2) ve [7.1](#k-7-1).
 
 [kanıtlı]
+
 **Bir depo ya da dal, bir sahip oturum**. Sahibin adı STATUS'ta yazılı; diğerleri kendi dalında çalışır ve dalı commit listesiyle sahibe teslim eder.
+
 [kanıtlı]
+
 **İşe başlamadan ve push'tan önce `git fetch`, son 20 commit, CHANGELOG'un tepesi**. 4 Ekim'de bir düzeltmenin sabah başka oturumda yapıldığı böyle bir dakikada görüldü.
+
 [kanıtlı]
-**Her paralel iş kendi dalında ve worktree'sinde**. Worktree kalıcı klasörde durur (`~/Documents/worktrees/<depo>-<dal>` gibi); /tmp açılışta silinir.
+
+**Her paralel iş kendi dalında ve worktree'sinde**. Worktree kalıcı klasörde durur (`~/Documents/worktrees/<repo>-<branch>` gibi); /tmp açılışta silinir.
+
 [kanıtlı]
+
 **Aynı gün birden çok dal girecekse tek entegrasyon dalı kullanılır**: dallar orada sırayla birleşir, test ortamına o dal çıkar, main o commit'e ileri sarılır.
+
 [kanıtlı]
+
 **Oturumlar arası mesaj yalnız ürün sahibinin 'ilet' sözüyle gider**: kanıt, kodda yer, öneri. Raporu yazan oturum koda dokunmaz.
+
 [kanıtlı]
+
 **Uzun iş akışında her ajanın sonucu kalıcı bir günlüğe yazılır**; kesintide iş kaldığı yerden sürer, biten ajan yeniden koşmaz.
+
 [öneri]
+
 **Haftada en az bir devir notu**; büyük iş yeni oturumda, devir notuyla başlar. Uzun oturum bağlamı aşındırır: bir oturum 49 günde 67 kez sıkıştırıldı.
+
 [öneri]
+
 **Oturum değiştirilecek depoda açılır**. Birden çok depo için `--add-dir` ve `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1`. Bizde a-portal'da açılan bir oturumun 29.866 araç çağrısının 10.739'u dört kardeş depoya gitti (en çok a-api, 5.079).
+
 [öneri]
+
 **Geri dönüşü olmayan adımı araç durdurur**: korumalı main, izin listesinde `git push` yok, onay dosyası yoksa main push'unu durduran PreToolUse hook'u. 26 Eylül'de yazılı 'önce test' kuralı üç depoda atlandı.
 
 ## Tazelik kontrolleri
@@ -3267,6 +3911,8 @@ Güncellemesi birinin hatırlamasına kalan belge bayatlıyor; a-mobile'in TODO.
 | Dal birleşince, kesintiden sonra | **Dal ve worktree.** Birleşen dal ve worktree hemen silinir. A'nın dört deposunda uzakta yalnız main ve test kaldı. | [kanıtlı] |
 |  | **Ölü kayıtlar.** Kesintiden sonra `git worktree prune`. C'de 28 worktree kaydı silinmiş /tmp klasörlerini gösteriyordu. | [öneri] |
 
+<a id="hf-iyisi"></a>
+
 ## Bizdekinden iyisi
 
 Bizde denenmedi; belgelere ve kendi açıklarımıza dayanıyor.
@@ -3275,7 +3921,7 @@ Bizde denenmedi; belgelere ve kendi açıklarımıza dayanıyor.
 
 ### Değişiklik günlüğü parçaları
 
-Her dal kendi küçük dosyasını yazar (changes/unreleased/<dal>.md), sürüm anında tek komutla birleştirilir; towncrier ve changesets böyle çalışır. `merge=union` da olur, ama sıra elle kontrol edilir.
+Her dal kendi küçük dosyasını yazar (changes/unreleased/<branch>.md), sürüm anında tek komutla birleştirilir; towncrier ve changesets böyle çalışır. `merge=union` da olur, ama sıra elle kontrol edilir.
 
 [öneri]
 
@@ -3336,16 +3982,26 @@ Aynı commit oranı commit başına; bir özellik birden çok commit'e bölünd�
 ## Kaynaklar
 
 **Claude Code: proje hafızası, @import, auto memory**https://code.claude.com/docs/en/memory
+
 **Claude Code: araç başvurusu, kısmi okuma**https://code.claude.com/docs/en/tools-reference
+
 **OpenAI Codex: AGENTS.md ve 32 KiB sınırı**https://learn.chatgpt.com/docs/agent-configuration/agents-md
+
 **AGENTS.md açık biçimi**https://agents.md/
+
 **Keep a Changelog 1.1.0**https://keepachangelog.com/en/1.1.0/
+
 **git gitattributes: union birleştirme**https://git-scm.com/docs/gitattributes
+
 **towncrier: parça dosyalarla günlük**https://towncrier.readthedocs.io/en/stable/tutorial.html
+
 **Mimari kararların kaydı (ADR), ilk yazı**https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions
+
 **ADR örnekleri ve araçları**https://adr.github.io/
 
 <a id="katmanlar"></a>
+
+<a id="katman-1"></a>
 
 Katman 1 / 11
 
@@ -3354,73 +4010,122 @@ Katman 1 / 11
 Neon ancak 5 dakika hiç bağlantı olmazsa uyur. Bu katmanın ayarları veritabanını uyutabilmek ve pooler üzerinden güvenle konuşmak içindir.
 
 33,41 CU-saat
+
 18–23 Eyl'de ticker'lar ve gece tarayıcıları yüzünden 7/24 uyanık kalan bir veritabanının tüketimi.
 
 ## Yap
 
 [ölçüldü]
-** Planı proje doğarken seç**: gerçek kullanıcılı prod Launch'ta, test ve gerçek kullanıcısı olmayan yan projeler Free org'da. Launch'ta aylık asgari ücret yok: kullanıcı gelmeden neredeyse ₺0, az trafikli üründe ayda ~₺50–80 (CU-saat başına ~₺5,2). Neon bir projeyi alt plandaki bir org'a kendisi taşımaz; sonradan taşımak döküm, geri yükleme ve bağlantı adresi değişikliği demektir.
+
+**Planı proje doğarken seç**: gerçek kullanıcılı prod Launch'ta, test ve gerçek kullanıcısı olmayan yan projeler Free org'da. Launch'ta aylık asgari ücret yok: kullanıcı gelmeden neredeyse ₺0, az trafikli üründe ayda ~₺50–80 (CU-saat başına ~₺5,2). Neon bir projeyi alt plandaki bir org'a kendisi taşımaz; sonradan taşımak döküm, geri yükleme ve bağlantı adresi değişikliği demektir.
+
 [kanıtlı]
-** Pool tek bir fonksiyonda yaratılır**; API, migrate, araçlar ve testler onu çağırır.
+
+**Pool tek bir fonksiyonda yaratılır**; API, migrate, araçlar ve testler onu çağırır.
+
 [kanıtlı]
-** Uygulama adında -pooler geçen adrese pgx varsayılan moduyla bağlanır** (bir projemizin prod'unda doğrulandı, iki projede yapılandırma aynı); ilk gün pooler üzerinden jsonb, bytea ve dizi testi.
+
+**Uygulama adında -pooler geçen adrese pgx varsayılan moduyla bağlanır** (bir projemizin prod'unda doğrulandı, iki projede yapılandırma aynı); ilk gün pooler üzerinden jsonb, bytea ve dizi testi.
+
 [öneri]
-** Pooler transaction modunda oturum advisory lock, SET/RESET, LISTEN/NOTIFY ve SQL PREPARE çalışmaz**; kilit işle aynı transaction'da pg_advisory_xact_lock(hashtext(...)) ile alınır ve yarış testi yazılır.
+
+**Pooler transaction modunda oturum advisory lock, SET/RESET, LISTEN/NOTIFY ve SQL PREPARE çalışmaz**; kilit işle aynı transaction'da pg_advisory_xact_lock(hashtext(...)) ile alınır ve yarış testi yazılır.
+
 [öneri]
-** Uygulama rolüne ALTER ROLE ile statement_timeout ve idle_in_transaction_session_timeout verilir**; sızan transaction'ı MaxConnIdleTime kapatmaz ve veritabanı uyumaz.
+
+**Uygulama rolüne ALTER ROLE ile statement_timeout ve idle_in_transaction_session_timeout verilir**; sızan transaction'ı MaxConnIdleTime kapatmaz ve veritabanı uyumaz.
+
 [öneri]
-** Compute min 0,25, max 1 CU**; max en kötü faturayı da belirler (1 CU'da 7/24 ~$76/ay).
+
+**Compute min 0,25, max 1 CU**; max en kötü faturayı da belirler (1 CU'da 7/24 ~$76/ay).
+
 [kanıtlı]
-** Zamanlayıcıyla soran goroutine yok**; işi doğuran kod zamanını kurar; bakım yalnız trafik veritabanını uyandırmışken çalışır.
+
+**Zamanlayıcıyla soran goroutine yok**; işi doğuran kod zamanını kurar; bakım yalnız trafik veritabanını uyandırmışken çalışır.
+
 [ölçüldü]
-** Herkese açık okumalar tek yükleme zinciriyle belleğe**; set tamsa bilinmeyen slug 404'ü de bellekten; her yazan yol (API, job ve betik) GCS işaretini aynı yazma kodundan günceller.
+
+**Herkese açık okumalar tek yükleme zinciriyle belleğe**; set tamsa bilinmeyen slug 404'ü de bellekten; her yazan yol (API, job ve betik) GCS işaretini aynı yazma kodundan günceller.
+
 [öneri]
-** Canlıda elle SQL yalnız olay anında ve runbook'la yapılır**; SQL işareti kendisi güncelleyemez, bu yüzden runbook'un son adımı işareti güncelleyen kayıtlı komuttur.
+
+**Canlıda elle SQL yalnız olay anında ve runbook'la yapılır**; SQL işareti kendisi güncelleyemez, bu yüzden runbook'un son adımı işareti güncelleyen kayıtlı komuttur.
+
 [öneri]
-** Üç rol**: uygulama yalnız DML yetkili rolle pooled adresten, migration şemanın sahibi rolle direct adresten, yedek salt okunur rolle direct adresten bağlanır.
+
+**Üç rol**: uygulama yalnız DML yetkili rolle pooled adresten, migration şemanın sahibi rolle direct adresten, yedek salt okunur rolle direct adresten bağlanır.
+
 [kanıtlı]
-** Her ortamda aynı PG ana sürümü**; SELECT * yazılmaz; her uyanış 'db wake' olarak nedeniyle loglanır.
+
+**Her ortamda aynı PG ana sürümü**; SELECT * yazılmaz; her uyanış 'db wake' olarak nedeniyle loglanır.
 
 ## Başlangıç ayarları
 
 [kanıtlı]
-` MinConns=0`, `MaxConnIdleTime=90s` (pgx varsayılanı 30 dk), kodda sabit ve testle kilitli.
+
+`MinConns=0`, `MaxConnIdleTime=90s` (pgx varsayılanı 30 dk), kodda sabit ve testle kilitli.
+
 [öneri]
-` MaxConns` da kodda açıkça yazılır, 1 vCPU'da ör. 10. Yazılmazsa pgx 4 bağlantı açar (4 ya da CPU sayısı, hangisi büyükse); Cloud Run ise bir instance'a aynı anda 80 istek verir ve birkaç yavaş sorgu havuzu tıkar. Havuzdan bağlantı isteğin bağlamıyla alınır. Bekleme ölçülen en uzun uyanıştan (5,2 sn) uzun, WriteTimeout'tan (10 sn) kısa tutulur, ör. 8 sn. `MaxConns` × max-instances ile job'ların bağlantılarının toplamı Neon pooler sınırının çok altında kalır. Boştaki bağlantıyı pgx dakikada bir yaptığı kontrolde kapatır; bu yüzden uyku son istekten 6,5 ile 7,5 dk sonra başlar.
+
+`MaxConns` da kodda açıkça yazılır, 1 vCPU'da ör. 10. Yazılmazsa pgx 4 bağlantı açar (4 ya da CPU sayısı, hangisi büyükse); Cloud Run ise bir instance'a aynı anda 80 istek verir ve birkaç yavaş sorgu havuzu tıkar. Havuzdan bağlantı isteğin bağlamıyla alınır. Bekleme ölçülen en uzun uyanıştan (5,2 sn) uzun, WriteTimeout'tan (10 sn) kısa tutulur, ör. 8 sn. `MaxConns` × max-instances ile job'ların bağlantılarının toplamı Neon pooler sınırının çok altında kalır. Boştaki bağlantıyı pgx dakikada bir yaptığı kontrolde kapatır; bu yüzden uyku son istekten 6,5 ile 7,5 dk sonra başlar.
+
 [kanıtlı]
+
 Exec mode varsayılan (PgBouncer max_prepared_statements=1000); sorun olursa DescribeExec, SimpleProtocol asla.
+
 [kanıtlı]
+
 Migration ve yedek direct host; transaction içinde `SET LOCAL lock_timeout='5s'`.
+
 [öneri]
+
 statement_timeout 15 sn, idle_in_transaction_session_timeout 30 sn.
+
 [öneri]
+
 Free: proje başına ayda 100 CU-saat, 6 saat geçmiş, 5 GB çıkış; aşılınca ay sonuna kadar durur, uyarı yok. Uyanma bütçesi: veritabanına giden bir yenileme ya birkaç saatte bir ya da yalnız değişiklik işaretiyle çalışır. Her uyanış en az ~6,5 dk sürer (havuzun 90 sn'si ve Neon'un 5 dakikası). 6,5 dakikadan sık bir yenileme veritabanını hiç uyutmaz; 15 dakikalık aralık bile zamanın ~%43'ünde uyanık tutar. Günde ~74 uyanış ayda ~₺190 ekledi.
 
 ### Kaçın
 
 [kanıtlı]
+
 'Pooler için' SimpleProtocol: []byte jsonb'ye bytea gider, pgx SQL injection açığı ulaşılabilir olur.
+
 [kanıtlı]
+
 MinConns>0 ya da MinConns = MaxIdleConns; ticker'la yoklama; /health'te ping.
+
 [kanıtlı]
+
 Önünde uygulayan katman yokken Cache-Control yazıp her istekte toplamak; SQL'de '||' ile tip tahmini.
+
 [öneri]
+
 Pooled bağlantıda pg_advisory_lock; LISTEN/NOTIFY ile instance eşitlemek.
 
 ### Bizdekinden iyisi
 
 [kanıtlı]
+
 SimpleProtocol'den varsayılan moda geçerken SELECT * kaldırılır, eski revizyon trafik alırken test ortamında migration denenir ('cached plan must not change result type') ve p50/p90 ölçülür.
+
 [öneri]
+
 Bölge seçilmeden önce gecikme etkisi ölçülür; europe-west3 Tier 2'dir ve domain mapping vermez.
+
 [öneri]
+
 Supabase Pro $25/ay'dan ve uyumuyor (7 gün PITR +$100); Cloud SQL db-f1-micro ~$8. Günde ≥6 CU-saat ve >1 GB RAM sürekli olursa karşılaştırılır.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **18–23 Eyl** ticker'lar ve gece crawler'ları 33,41 CU-saat yazdırdı (günde ~6,2, 7/24 uyanık); düzeltmeden sonra günde ~3,2 (4–7 Eki ortalaması 3,18).
+
 **5–6 Eki** 300 sn'lik revalidate günde ~74 uyanma, ayda +₺190 yazdı; 'db wake' logu bir günde buldu.
+
 **2–23 Eyl** SimpleProtocol yüzünden ödeme webhook'u her teslimde 500 döndü; 29 Eyl'de -pooler lock_timeout başlangıç parametresini reddetti.
+
+<a id="katman-2"></a>
 
 Katman 2 / 11
 
@@ -3429,74 +4134,128 @@ Katman 2 / 11
 API tek yazma noktasıdır. Geçici bir hata kimseyi oturumdan atmaz, başarısız iş sessiz kalmaz.
 
 ~%1–1,5
+
 Uyuyan Neon'a denk gelip 503 alan soğuk başlangıç payı. 30 sn beklemeden sonra 17 açılışta sorun çıkmadı.
 
 ## Yap
 
 [kanıtlı]
-** Dinleyici hemen açılır, pool tembel kurulur, veritabanı ikiye katlanan aralarla ~30 sn beklenir**; açılış hatasına log alarmı.
+
+**Dinleyici hemen açılır, pool tembel kurulur, veritabanı ikiye katlanan aralarla ~30 sn beklenir**; açılış hatasına log alarmı.
+
 [kanıtlı]
-** 401 yalnız token yok/geçersiz, kullanıcı pasif ya da kod yanlışsa**; veritabanı ve dış servis hatası 503; bu sözleşme testlidir.
+
+**401 yalnız token yok/geçersiz, kullanıcı pasif ya da kod yanlışsa**; veritabanı ve dış servis hatası 503; bu sözleşme testlidir.
+
 [öneri]
-** 503 ve 429 Retry-After taşır**.
+
+**503 ve 429 Retry-After taşır**.
+
 [öneri]
-** slog ReplaceAttr**: level→severity, WARN→WARNING, msg→message. (Ölçülen: 14 günde 18 ERROR satırının severity alanı boştu.)
+
+**slog ReplaceAttr**: level→severity, WARN→WARNING, msg→message. (Ölçülen: 14 günde 18 ERROR satırının severity alanı boştu.)
+
 [kanıtlı]
-** Toplu iş handler'da ya da yanıt sonrası goroutine'de yapılmaz**; `/app job <ad>` olur; yanıttan sonra bitmesi gereken iş outbox'a girer (nasıl boşaldığı [E-posta katmanında](#katman-9)); SIGTERM'deki son yazma GCS'e park edilir.
+
+**Toplu iş handler'da ya da yanıt sonrası goroutine'de yapılmaz**; `/app job <name>` olur; yanıttan sonra bitmesi gereken iş outbox'a girer (nasıl boşaldığı [E-posta katmanında](#katman-9)); SIGTERM'deki son yazma GCS'e park edilir.
+
 [kanıtlı]
-** Başarısız iş non-2xx ya da exit≠0**; (iş, dönem) anahtarıyla idempotent.
+
+**Başarısız iş non-2xx ya da exit≠0**; (iş, dönem) anahtarıyla idempotent.
+
 [kanıtlı]
-** Webhook önce ham gövdeyi kaydeder**; her non-2xx loglanır; sağlayıcıdan çeken TTL'li mutabakat vardır.
+
+**Webhook önce ham gövdeyi kaydeder**; her non-2xx loglanır; sağlayıcıdan çeken TTL'li mutabakat vardır.
+
 [kanıtlı]
-** Config tehlikeli kombinasyonlarda açılmaz** (izin listesi dışında sabit kod + production, allowlist'siz SMTP); değerler trim'lenir.
+
+**Config tehlikeli kombinasyonlarda açılmaz** (izin listesi dışında sabit kod + production, allowlist'siz SMTP); değerler trim'lenir.
+
 [öneri]
-** Mağaza incelemesi tek istisnadır**: prod'da izin listesindeki tek bir inceleme adresi sabit kodla girer; hesap en az yetkilidir, kod sınırlarına tabidir ve her girişi bir log satırı yazar.
+
+**Mağaza incelemesi tek istisnadır**: prod'da izin listesindeki tek bir inceleme adresi sabit kodla girer; hesap en az yetkilidir, kod sınırlarına tabidir ve her girişi bir log satırı yazar.
+
 [kanıtlı]
-** Özellikler veritabanısız /v1/app/update-policy ile**; sözleşme değişince yeni anahtar adı; geri dönüş anahtarla.
+
+**Özellikler veritabanısız /v1/app/update-policy ile**; sözleşme değişince yeni anahtar adı; geri dönüş anahtarla.
+
 [kanıtlı]
-** İstemci IP'si [Kenar katmanındaki adres tablosuna](#adres) göre okunur**: doğrudan gelen istekte X-Forwarded-For'un en sağ elemanı, BFF'den gelende iç anahtarla doğrulanan X-Client-IP. Giriş kodu sınırları veritabanında: adres başına saatte 8, IP başına saatte 40, 60 sn; sabit kodlar da sayaca tabi.
+
+**İstemci IP'si [Kenar katmanındaki adres tablosuna](#adres) göre okunur**: doğrudan gelen istekte X-Forwarded-For'un en sağ elemanı, BFF'den gelende iç anahtarla doğrulanan X-Client-IP. Giriş kodu sınırları veritabanında: adres başına saatte 8, IP başına saatte 40, 60 sn; sabit kodlar da sayaca tabi.
+
 [öneri]
-** Kod isteği, sayaç kontrolüyle aynı transaction'da adres başına pg_advisory_xact_lock altında yazılır**; paralel istekler sınırı aşamaz.
+
+**Kod isteği, sayaç kontrolüyle aynı transaction'da adres başına pg_advisory_xact_lock altında yazılır**; paralel istekler sınırı aşamaz.
+
 [öneri]
-** Gönderim sayacı UTC gününe göre ortaktır**: 70'te uyarı, günün toplamı 80'e varınca toplu gönderim durur, giriş kodları 100'e kadar gider; 100 dolarsa kodlar yedek sağlayıcıdan.
+
+**Gönderim sayacı UTC gününe göre ortaktır**: 70'te uyarı, günün toplamı 80'e varınca toplu gönderim durur, giriş kodları 100'e kadar gider; 100 dolarsa kodlar yedek sağlayıcıdan.
+
 [öneri]
-** Para tavanı veritabanında pg_advisory_xact_lock altında 'requested' satırıyla**; sağlayıcıda sert bütçe; olmuyorsa en kötü durum max-instances ile çarpılır.
+
+**Para tavanı veritabanında pg_advisory_xact_lock altında 'requested' satırıyla**; sağlayıcıda sert bütçe; olmuyorsa en kötü durum max-instances ile çarpılır.
+
 [kanıtlı]
-** Hesap silme gerçek silmedir** (DELETE); kayıt arşive taşınmaz.
+
+**Hesap silme gerçek silmedir** (DELETE); kayıt arşive taşınmaz.
+
 [öneri]
-** Silme, kişisel veri taşımayan bir tombstone bırakır** (tablo, kayıt kimliği, silinme zamanı); yedekten geri yüklemenin son adımı bu silmeleri yeniden uygular. Silme commit olunca aynı iz bir log satırı olarak 400 gün saklanan log kovasına da yazılır. Neon kaybolursa tablodaki iz de gider. Dökümdeki iz ise yalnız dökümden önceki silmeleri taşır, onlar zaten dökümde yoktur. Varsayılan log kovası 30 gün tutar, bu da yedeğin en uzun ömründen (bizde 37 gün) kısadır.
+
+**Silme, kişisel veri taşımayan bir tombstone bırakır** (tablo, kayıt kimliği, silinme zamanı); yedekten geri yüklemenin son adımı bu silmeleri yeniden uygular. Silme commit olunca aynı iz bir log satırı olarak 400 gün saklanan log kovasına da yazılır. Neon kaybolursa tablodaki iz de gider. Dökümdeki iz ise yalnız dökümden önceki silmeleri taşır, onlar zaten dökümde yoktur. Varsayılan log kovası 30 gün tutar, bu da yedeğin en uzun ömründen (bizde 37 gün) kısadır.
+
 [kanıtlı]
-** Herkese açık toplamlar her grupta en az 10 farklı kurulumla yayınlanır** (bizde başta 20 idi). Ayrıntı [Analitik ve admin](#analitik) bölümünde.
+
+**Herkese açık toplamlar her grupta en az 10 farklı kurulumla yayınlanır** (bizde başta 20 idi). Ayrıntı [Analitik ve admin](#analitik) bölümünde.
+
 [öneri]
-** Geliştirme ve test kurulumları bu sayıma girmez**.
+
+**Geliştirme ve test kurulumları bu sayıma girmez**.
 
 ## Başlangıç ayarları
 
 [kanıtlı]
+
 WriteTimeout 10 sn; startup probe TCP 240 sn; genel tavan 600/dk/IP; max-instances 2–3.
+
 [öneri]
+
 Kabul edilen canlı kod sayısı saatlik tavana eşittir (8); 60 sn'lik tekrar gönderiden sonra gecikerek gelen ilk kod da geçer.
+
 [kanıtlı]
+
 Scheduler → Job: oauthToken (cloud-platform), tetikleyen hesaba yalnız o job'da roles/run.invoker; OIDC yalnız servis URL'sine.
+
 [kanıtlı]
+
 Retry 2 kez, 60–300 sn, yalnız idempotent işte; SIGTERM sonrası boşaltma ≤4 sn, son yazma ≤5 sn.
 
 ### Kaçın
 
 [kanıtlı]
+
 Her veritabanı hatasını 401'e çevirmek; açılışta 5 sn ping + os.Exit(1).
+
 [kanıtlı]
+
 Fan-out'u r.Context()'e ya da kısılan CPU'da yanıt sonrası goroutine'e bağlamak; işi WARN + 204 ile yutmak.
+
 [ölçüldü]
+
 Kod ucunu yalnız instance başına 30/dk/IP ile korumak: tek IP günlük 100 maili ~4 dakikada bitirir.
+
 [kanıtlı]
+
 X-Forwarded-For'un ilk elemanı; mobil pakete gömülü ortak sırla iş uçları; status='deleted' ile silme.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **6 Eyl** soğuk başlangıç uyuyan Neon'a denk gelip 503 verdi (~%1–1,5); 30 sn bekleme sonrası 17 açılışta sorun yok.
+
 **27 Eyl** ara sertifika göndermeyen bir dış siteyi okuyan günlük iş her sabah düştü ama 204 döndü. Bu yüzden yeniden deneme de çalışmadı; hata beş gün sonra bir etki kontrolünde görüldü. Go eksik ara sertifikayı kendisi tamamlamıyor.
+
 **28 Eyl** 21 giriş kodu isteğinin hepsi aynı IP hash'iyle sayıldı; adres yanlış okunursa tek kişi bütün girişleri kilitleyebilir.
+
+<a id="katman-3"></a>
 
 Katman 3 / 11
 
@@ -3505,69 +4264,114 @@ Katman 3 / 11
 Herkese açık her sayfa sunucuda tam HTML olarak çıkar; oturumlu bölüm aynı uygulamada /app altında durur.
 
 116 sayfa
+
 Sayfalar sunucuda render edilince OAI-SearchBot'un ~11,7 günde taradığı sayfa. SPA'nın HTML gövdesi boştu.
 
 ## Yap
 
 [kanıtlı]
-** Herkese açık her sayfa sunucuda tam HTML**; oturumlu bölüm aynı uygulamada /app altında; iki uygulama yol bazında proxy'lenmez.
+
+**Herkese açık her sayfa sunucuda tam HTML**; oturumlu bölüm aynı uygulamada /app altında; iki uygulama yol bazında proxy'lenmez.
+
 [ölçüldü]
-** next/font/local**; build backend'den veri okumaz; büyük sitemap gzip'li.
+
+**next/font/local**; build backend'den veri okumaz; büyük sitemap gzip'li.
+
 [kanıtlı]
-** notFound() yalnız backend 404'ünde**; 5xx fırlatılır ki sağlam kopya kalsın; ISR x-nextjs-cache: HIT ile doğrulanır; [slug]'a boş generateStaticParams.
+
+**notFound() yalnız backend 404'ünde**; 5xx fırlatılır ki sağlam kopya kalsın; ISR x-nextjs-cache: HIT ile doğrulanır; [slug]'a boş generateStaticParams.
+
 [kanıtlı]
-** Proxy'de istek başlığı yazılmaz**; dil yoldan; dil çerezi yalnız kullanıcı seçince; kök yönlendirme 307 ve kenarda bypass.
+
+**Proxy'de istek başlığı yazılmaz**; dil yoldan; dil çerezi yalnız kullanıcı seçince; kök yönlendirme 307 ve kenarda bypass.
+
 [kanıtlı]
-** Çok instance'ta ISR**: proxy.ts instance başına 30 sn'de bir GCS işaretini okur, değişiklikte aynı instance'taki sırla korunan loopback route revalidateTag çalıştırır, 45 sn ve 5 dk sonra tekrar; zamanlayıcı yok, okuma hatası yakalanır.
+
+**Çok instance'ta ISR**: proxy.ts instance başına 30 sn'de bir GCS işaretini okur, değişiklikte aynı instance'taki sırla korunan loopback route revalidateTag çalıştırır, 45 sn ve 5 dk sonra tekrar; zamanlayıcı yok, okuma hatası yakalanır.
+
 [öneri]
-** Next 16'da çağrı `revalidateTag(tag, { expire: 0 })` olur**. Tek argümanlı kullanım eskidi. Uyarının önerdiği 'max' profili değişiklikten sonraki ilk isteğe bayat kopyayı verir ve 3.7'yi bozar. updateTag yalnız Server Action içinde çalışır, route'ta hata verir.
+
+**Next 16'da çağrı `revalidateTag(tag, { expire: 0 })` olur**. Tek argümanlı kullanım eskidi. Uyarının önerdiği 'max' profili değişiklikten sonraki ilk isteğe bayat kopyayı verir ve 3.7'yi bozar. updateTag yalnız Server Action içinde çalışır, route'ta hata verir.
+
 [öneri]
+
 **'use cache' kullanılırsa aynı iş cacheHandlers.default içindeki refreshTags'tedir**; her istekte çağrılır ve hatası isteği düşürür, bu yüzden 30 sn kısıtlı ve try/catch'li olur. cacheHandlers yalnız 'use cache' içindir; route ISR tekil cacheHandler kullanır.
+
 [öneri]
-** deploymentId tanımlanır**.
+
+**deploymentId tanımlanır**.
+
 [kanıtlı]
-** BFF**: HttpOnly, Secure, SameSite=Lax çerez; tek yerde single-flight yenileme; çıkışta sunucuda iptal; same-origin kontrolü.
+
+**BFF**: HttpOnly, Secure, SameSite=Lax çerez; tek yerde single-flight yenileme; çıkışta sunucuda iptal; same-origin kontrolü.
+
 [kanıtlı]
+
 **'use server' export'ları herkese açıktır**; ?next= yalnız site içi; JSON-LD'de '<' kaçırılır; proxy yolları encode edilir.
+
 [kanıtlı]
-** Güvenlik başlıkları ilk gün**; CSP report-only ve origin'ler API'den türetilir; ortama göre değişen her şey çalışma anında okunur.
+
+**Güvenlik başlıkları ilk gün**; CSP report-only ve origin'ler API'den türetilir; ortama göre değişen her şey çalışma anında okunur.
+
 [öneri]
-** Terfi eden imajda ortama özel değer yoktur**: public değerler çalışma anında okunur (tarif [Artifact Registry](#registry) bölümünde); canonical, og:url ve sitemap istek anında; terfi sonrası curl ile kontrol.
+
+**Terfi eden imajda ortama özel değer yoktur**: public değerler çalışma anında okunur (tarif [Artifact Registry](#registry) bölümünde); canonical, og:url ve sitemap istek anında; terfi sonrası curl ile kontrol.
+
 [kanıtlı]
-** noindex X-Robots-Tag ile**; test kopyası host'tan tanır; standalone'da HOSTNAME=0.0.0.0 ve static kopyası; her sayfa 1280, 900, 375 px ve WebKit'te ölçülür.
+
+**noindex X-Robots-Tag ile**; test kopyası host'tan tanır; standalone'da HOSTNAME=0.0.0.0 ve static kopyası; her sayfa 1280, 900, 375 px ve WebKit'te ölçülür.
 
 ## Başlangıç ayarları
 
 [kanıtlı]
-` output 'standalone'`, `poweredByHeader false`; Next 16 güncel yama.
+
+`output 'standalone'`, `poweredByHeader false`; Next 16 güncel yama.
+
 [ölçüldü]
+
 1 GiB ve OOM alarmı (512 MiB'ta bot trafiği altında 7 günde 540 bellek aşımı oldu); görseller yüklemede boyutlandırılır. Proxy'nin dil yönlendirmesi /api'ye dokunmaz, kapı /api aktarma uçlarında da çalışır.
+
 [ölçüldü]
+
 Katalog günlük ISR + değişiklik işareti; veritabanına giden revalidate birkaç saatte bir ya da yalnız işaretle (6,5 dk'dan sık yenileme veritabanını hiç uyutmaz; 15 dk bile ~%43 uyanık tutar).
 
 ### Kaçın
 
 [kanıtlı]
+
 Tanımsız proxy hedefinde kendi host'una düşmek; next/font/google; hatayı boş liste ya da 404 olarak önbelleğe sokmak.
+
 [kanıtlı]
+
 Token'ı proxy ve tarayıcıda birlikte yenilemek; CSP origin'lerini sabit yazmak.
+
 [öneri]
+
 Route ISR'ı refreshTags'e bağlamak; refreshTags'te kısıtsız ve try/catch'siz GCS okumak.
+
 [ölçüldü]
+
 Çerezsiz her isteğe dil çerezi yazan proxy.
 
 ### Bizdekinden iyisi
 
 [kanıtlı]
+
 Proxy + loopback düzeni bir projemizde yorumun görünmesini bir günden ~1 dakikanın altına indirdi.
+
 [öneri]
+
 Test'te doğrulanan tek imaj prod'a terfi eder; public değerler build'e gömülmez, çalışma anında okunur. Vercel Pro $20/ay + Active CPU; Workers/OpenNext Node proxy'yi desteklemiyor.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **18 Eyl** SPA'nın HTML gövdesi boştu; Next'e geçince OAI-SearchBot ~11,7 günde 116 sayfa taradı.
+
 **29 Eyl–7 Eki** 68 web build'inin 7'si (~%10) next/font hatasıyla düştü. 18–19 Eyl: yutulan okuma hatası site haritasından 2.668 sayfa düşürdü, 16 saat deploy çıkmadı.
+
 **22–23 Eyl** CSP img-src API'yi içermiyordu, logolar bir gece kırık kaldı. 4 Eki: işaret okumasında zaman aşımı görüldü.
+
+<a id="katman-4"></a>
 
 Katman 4 / 11
 
@@ -3576,71 +4380,115 @@ Katman 4 / 11
 Uzaktan kontrol kiti ilk mağaza sürümünde hazır olur; kit kurulmadan uygulama yayınlanmaz, sonradan eklenen kanal eski build'lere ulaşmaz.
 
 3 build
+
 Boş gelen versionCode yüzünden güncelleme uyarısını hiç gösteremeyecek Android build'i.
 
 Ayrıntı
+
 Bu katmanın iki eki katmanın hemen ardından gelir: [Mobil uzaktan kontrol kiti](#mobilkit) (mağazaya çıkmadan önce kurulacak 11 parça ve yayın kapısı; OTA dışında hepsi şart) ve [Mobil build ve dağıtım](#dagitim) (EAS mi, kendi hattımız mı).
 
 ## Yap
 
 [kanıtlı]
-** CNG, config plugin ve ilk günden New Arch**; her native SDK New Arch'lı release build'de denenir.
+
+**CNG, config plugin ve ilk günden New Arch**; her native SDK New Arch'lı release build'de denenir.
+
 [öneri]
-** İlk mağaza build'inden expo-updates**: fingerprint, production/preview kanalı, %10'dan %100'e yayın, hazır geri alma. OTA kitte önerilir, zorunlu değildir; kurulursa her OTA yayını ürün sahibinin kararıdır.
+
+**İlk mağaza build'inden expo-updates**: fingerprint, production/preview kanalı, %10'dan %100'e yayın, hazır geri alma. OTA kitte önerilir, zorunlu değildir; kurulursa her OTA yayını ürün sahibinin kararıdır.
+
 [kanıtlı]
-** İlk sürümde kapatılabilir 'yeni sürüm var' sayfası, tam ekran zorunlu güncelleme ve nativeBuildVersion karşılaştırması**; politika veritabanısız uçta.
+
+**İlk sürümde kapatılabilir 'yeni sürüm var' sayfası, tam ekran zorunlu güncelleme ve nativeBuildVersion karşılaştırması**; politika veritabanısız uçta.
+
 [kanıtlı]
-** Her istek sürüm, build, platform ve kanal başlığı taşır**; dev build test API'sine gider, prod adresi yalnız EAS production env'inde.
+
+**Her istek sürüm, build, platform ve kanal başlığı taşır**; dev build test API'sine gider, prod adresi yalnız EAS production env'inde.
+
 [öneri]
-** Production kanalında API host'u prod değilse uygulama açılmaz ve ERROR yazar**; eas update ve yerel build yalnız --environment production'ı zorlayan betikle; yerel build 'Secret' EAS değişkenlerini okumaz; submit öncesi hedef API logdan doğrulanır.
+
+**Production kanalında API host'u prod değilse uygulama açılmaz ve ERROR yazar**; eas update ve yerel build yalnız --environment production'ı zorlayan betikle; yerel build 'Secret' EAS değişkenlerini okumaz; submit öncesi hedef API logdan doğrulanır.
+
 [öneri]
-** Binary de kademeli**: App Store phased release (7 gün, durdurulabilir), Play staged rollout.
+
+**Binary de kademeli**: App Store phased release (7 gün, durdurulabilir), Play staged rollout.
+
 [öneri]
-** Uygulama içi hesap silme** (Apple 5.1.1(v)) ve Play için web silme adresi.
+
+**Uygulama içi hesap silme** (Apple 5.1.1(v)) ve Play için web silme adresi.
+
 [öneri]
-** Her yeni SDK'dan önce App Store gizlilik etiketi, Play Data safety ve gizlilik metni güncellenir**.
+
+**Her yeni SDK'dan önce App Store gizlilik etiketi, Play Data safety ve gizlilik metni güncellenir**.
+
 [kanıtlı]
-** Release build gerçek telefonda listeyle denenir**; sesli komut ve widget hedef dilde, TestFlight'tan geçerek.
+
+**Release build gerçek telefonda listeyle denenir**; sesli komut ve widget hedef dilde, TestFlight'tan geçerek.
+
 [kanıtlı]
-** Abonelik üç yoldan**: SDK, 10 dk TTL'li sunucu mutabakatı, webhook. Yeni yüzeyler sunucu anahtarı arkasında kapalı gider.
+
+**Abonelik üç yoldan**: SDK, 10 dk TTL'li sunucu mutabakatı, webhook. Yeni yüzeyler sunucu anahtarı arkasında kapalı gider.
+
 [kanıtlı]
-** Push makbuzu 15 dk'lık alarmla okunur, ölü token silinir, FCM için yalnız FCM rolü olan hesap**.
+
+**Push makbuzu 15 dk'lık alarmla okunur, ölü token silinir, FCM için yalnız FCM rolü olan hesap**.
+
 [öneri]
-** Play'de yeni kişisel hesap için 12 testçinin son 14 gün kesintisiz katıldığı kapalı test gerekir**; target SDK 36, 16 KB hizalama, yalnız 64-bit.
+
+**Play'de yeni kişisel hesap için 12 testçinin son 14 gün kesintisiz katıldığı kapalı test gerekir**; target SDK 36, 16 KB hizalama, yalnız 64-bit.
 
 ## Başlangıç ayarları
 
 [öneri]
+
 New Arch SDK 55'ten beri tek seçenek. newArchEnabled yazılmaz, SDK 57 bu ayarı yok sayar. OTA kurulacaksa runtimeVersion { policy: 'fingerprint' } ilk mağaza build'inde yazılır.
+
 [kanıtlı]
+
 appVersionSource 'remote', autoIncrement; numaralar eas build:list'ten.
+
 [kanıtlı]
+
 Zaman aşımları: depolama 2,5 sn, update-policy 5 sn + son bilinen değer, onay formu 6 sn; oturum yalnız refresh 401'inde kapanır.
+
 [ölçüldü]
+
 EAS Free: 15 iOS + 15 Android build ayrı sayılır; 3 dakikadan sonra düşen build de hak yer; OTA ayda 1.000 MAU'ya kadar ücretsiz, üstünde Starter $19.
 
 ### Kaçın
 
 [kanıtlı]
+
 Özelliğe mock'lu testle 'çalışıyor' demek; hedef API'yi paket grep'iyle doğrulamak; build numarasını depodan okumak.
+
 [kanıtlı]
+
 Zorunlu güncellemeyi sonradan eklemek; eski build'ler hiç zorlanamaz.
+
 [kanıtlı]
+
 Binary'yi herkese birden açmak; bir sesli komut hatası ve hiç çıkmayan bir güncelleme uyarısı herkese aynı anda ulaştı.
 
 ### Bizdekinden iyisi
 
 [ölçüldü]
+
 OTA ilk sürümde hazırsa küçük düzeltme mağaza sürümü harcamaz: OTA'sız bir uygulamanın 19 Eylül–7 Ekim'deki 19 mağaza build'inin 11'i yalnız JS idi ve iOS kotası 22 Eylül'de doldu. Kota bitince `eas build --local`; acil düzeltmede Starter $19/ay.
+
 [kanıtlı]
+
 CNG'li uygulama SDK 57'ye çıktı; native klasörleri depoya alıp New Arch'ı kapatan iki uygulama SDK 54'te kaldı.
+
 [öneri]
+
 Çökme telemetrisi önce birinci taraf ucu; Sentry EU ancak KVKK adımlarından sonra.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **18 Eyl** boş gelen versionCode yüzünden üç Android build'i güncelleme uyarısını hiç gösteremeyecek.
+
 **24 ve 26 Eyl** Expo 54'te .env Metro ortamını ezdi, simülatör prod'a yazdı. 2–3 Eki: TestFlight atlanan sesli komut özelliği iki ekstra build harcattı.
+
 **4–5 Eki** Play, 4 KB hizalı kütüphaneler ve AD_ID yüzünden reddetti; üretim erişimi düşük kapalı test kullanımı yüzünden bir kez reddedildi.
 
 <a id="mobilkit"></a>
@@ -3652,6 +4500,7 @@ Mobil
 Mağazadaki bir build'e yeni build olmadan ancak ona baştan konmuş kanallarla ulaşılır. Kit ilk mağaza sürümünde eksiksiz bulunur; sonradan eklenen parça o güne kadarki kurulumlara hiç ulaşmaz.
 
 **Kural:** Bu kit olmadan uygulama mağazaya çıkmaz.
+
 Zorunlu güncelleme, yeni build'siz özel bildirim, sunucudan duyuru ve ekran içi uyarı, bayrak ve kill switch kurulmadan ilk mağaza build'i gönderilmez; bakım modu, push ve sürüm telemetrisi bunların taşıyıcısıdır. Her parça release build'de ve gerçek telefonda denenir; kanıtı sürüm notuna yazılır, kanıtı olmayan parça kurulmamış sayılır. OTA kanalı (8) kuralın parçası değildir, önerilir: küçük düzeltmeyi mağaza build'i harcamadan gönderir.
 
 1Sürüm başlıkları2Politika ucu3Zorunlu güncelleme4Yumuşak uyarı5Duyuru alanı6Bayrak ve kill switch7Bakım modu8OTA (öneri)9Push kaydı10Sürüm telemetrisi11Mağaza izleyicisi
@@ -3920,7 +4769,7 @@ GET /v1/app/update-policy. Değerler örnektir, gerçek bir uygulamanın değerl
   },
   "notices": [
     {
-      "id": "akis-v2-2026-10",
+      "id": "flow-v2-2026-10",
       "screen": "inbox",
       "severity": "warning",
       "platforms": ["ios", "android"],
@@ -3937,7 +4786,7 @@ GET /v1/app/update-policy. Değerler örnektir, gerçek bir uygulamanın değerl
       "dismissible": true
     },
     {
-      "id": "gecikme-2026-10-08",
+      "id": "delay-2026-10-08",
       "screen": "home",
       "severity": "info",
       "platforms": ["ios", "android"],
@@ -3947,7 +4796,7 @@ GET /v1/app/update-policy. Değerler örnektir, gerçek bir uygulamanın değerl
       "endsAt": "2026-10-09T06:00:00Z",
       "title": {"tr": "Veriler bugün geç güncellenecek"},
       "body": {"tr": "Uygulamanın geri kalanı etkilenmez."},
-      "cta": {"action": "deeplink", "link": "uygulama://ana-sayfa", "label": {"tr": "Aç"}},
+      "cta": {"action": "deeplink", "link": "app://home", "label": {"tr": "Aç"}},
       "dismissible": true
     }
   ],
@@ -4066,10 +4915,15 @@ Mobil uygulamayı derleyip mağazaya ve testçiye ulaştırmanın iki yolu var: 
 Ürün sahibinin görüşü şu: kendi dağıtım hattımızı kurarsak Expo'nun ücretsiz sınırlarına hiç takılmayız. Kendi kullanımımıza baktık. Kotayı en çok iki şey yiyor: preview build'leri ve aynı hesaptaki ikinci uygulama. İkisi bütçeye bağlanınca platform başına 15 hak yetiyor. Bizim hacmimizde Starter ayda ~$24 tutuyor; bu, kendi hattın kurulum ve bakım emeğinden ucuz. Kendi hattımız ancak EAS faturası üç ay üst üste ayda $50'ı geçerse ya da EAS'in karşılayamadığı bir ihtiyaç çıkarsa kurulur.
 
 **15 + 15** Hesap başına aylık iOS ve Android build hakkı. Hesaptaki bütün uygulamalar paylaşır; kullanılmayan hak devretmez.
+
 **33 build** Eylül'de: 17 iOS (6'sı preview), 16 Android (5'i preview). Haziran 33, Temmuz 11, Ağustos 28.
+
 **22 Eylül** iOS kotasının dolduğu gün. 24 Eylül'de istenen iOS build'i reddedildi ve Ekim'e kaldı.
+
 **7 / 15 ve 6 / 15** Ekim'in ilk 8 gününde hesapta kullanılan iOS ve Android hakkı; iki uygulama aynı hesapta.
+
 **132 dk** En uzun Android kuyruğu; medyan bekleme 6 sn, 44 build'in 4'ü 16 dakikadan fazla bekledi. Medyan build iOS 5, Android 9 dk.
+
 **11 / 19** 19 Eylül–7 Ekim'de çıkan mağaza build'lerinden yalnız JS olanlar: iOS'ta 9'da 4, Android'de 10'da 7. OTA olsaydı mağazaya gitmeden çıkabilirdi.
 
 ## Preview'lar buluttan çıkınca kota yetiyor
@@ -4077,6 +4931,7 @@ Mobil uygulamayı derleyip mağazaya ve testçiye ulaştırmanın iki yolu var: 
 Eylül 2026, platform başına build. Kesikli çizgi ücretsiz hak. Preview'lar test için bulutta alındı.
 
 production profilipreview profilibuild, ölçek gerçek
+
 _Grafik: Eylül build'leri ve ücretsiz hak_
 
 ## OTA olsaydı mağazaya gitmeyecek build'ler
@@ -4084,6 +4939,7 @@ _Grafik: Eylül build'leri ve ücretsiz hak_
 19 Eylül–7 Ekim 2026'da çıkan mağaza build'leri. Native değişiklik: widget, SKAdNetwork, Associated Domains, yeni native modül, sesli komut kodu.
 
 native değişiklik vardıyalnız JSbuild, ölçek gerçek
+
 _Grafik: Mağaza build'lerinde native ve yalnız JS payı_
 
 ## Karar tablosu
@@ -4242,6 +5098,8 @@ Expo yalnız 3 dakikadan kısa sürede düşen build'in sayılmadığını yazı
 
 <a id="katmanlar-2"></a>
 
+<a id="katman-5"></a>
+
 Katman 5 / 11
 
 # Kenar, DNS ve alan adı
@@ -4249,50 +5107,80 @@ Katman 5 / 11
 DNS ilk günden Cloudflare'de durur. Varsayılan bağlantı: web Worker üzerinden run.app'e, api.* domain mapping ile. İstemci adresi bu yola göre okunur.
 
 ~20 dk
+
 Domain mapping geçişinde yaşanan HTTPS kopukluğu.
 
 ## Yap
 
 [öneri]
-** DNS ilk günden Cloudflare Free'de, kayıtlar başta gri**.
+
+**DNS ilk günden Cloudflare Free'de, kayıtlar başta gri**.
+
 [öneri]
-** Varsayılan bağlantı**: web host'ları Cloudflare Worker → *.run.app ile turuncu bulutta, api.* domain mapping ile yalnız DNS (gri). Google domain mapping'i Preview sayıyor ve gecikme yüzünden production için önermiyor (europe-west1'de var, europe-west3'te yok); bizde api.*'de prod'da çalışıyor, gecikmesi ölçülür. Worker günde 100.000 isteğe kadar ücretsiz; Worker yönlendirici olduğu için fail open kurtarmaz (atlanan istek boş yer tutucu kökene gider), günde ~80.000'e varmadan Workers Paid ($5/ay). Global external ALB (~$18/ay + veri) yalnız Cloud Armor ya da çok bölge gerekince; Firebase Hosting yalnız __session çerezini geçirdiği için yok.
+
+**Varsayılan bağlantı**: web host'ları Cloudflare Worker → *.run.app ile turuncu bulutta, api.* domain mapping ile yalnız DNS (gri). Google domain mapping'i Preview sayıyor ve gecikme yüzünden production için önermiyor (europe-west1'de var, europe-west3'te yok); bizde api.*'de prod'da çalışıyor, gecikmesi ölçülür. Worker günde 100.000 isteğe kadar ücretsiz; Worker yönlendirici olduğu için fail open kurtarmaz (atlanan istek boş yer tutucu kökene gider), günde ~80.000'e varmadan Workers Paid ($5/ay). Global external ALB (~$18/ay + veri) yalnız Cloud Armor ya da çok bölge gerekince; Firebase Hosting yalnız __session çerezini geçirdiği için yok.
+
 [öneri]
-** Turuncu bulutta domain mapping kullanılmaz**: 'Always Use HTTPS' sertifika doğrulamasını bozabiliyor, yenileme 60–90 günde bir olduğu için sorun aylar sonra çıkar. Bu host'lar Worker'la run.app'e gider; uygulama canonical'ı SITE_URL'den kurar.
+
+**Turuncu bulutta domain mapping kullanılmaz**: 'Always Use HTTPS' sertifika doğrulamasını bozabiliyor, yenileme 60–90 günde bir olduğu için sorun aylar sonra çıkar. Bu host'lar Worker'la run.app'e gider; uygulama canonical'ı SITE_URL'den kurar.
+
 [öneri]
-** Takılan sertifika yenilemesi alarmla yakalanır**: yenileme tablosu, otomatik yenilenen sertifikanın takıldığını göstermez. Web ve api.* için kurulan uptime kontrollerinde SSL doğrulaması açılır. Kontrol run.app'e değil alan adına gider, yoksa ölçülen sertifika Google'ınkidir. uptime_check/time_until_ssl_cert_expires 14 günün altına inince bugün seviyesinde alarm çalar. Olağan yenileme bitişten haftalar önce yapıldığı için bu alarm yalnız yenileme takılınca çalar. Sertifika geçersiz olursa kontrol düşer ve erişim alarmı acil çalar. Uptime metriğine bağlı alarm ücretsiz kalır.
+
+**Takılan sertifika yenilemesi alarmla yakalanır**: yenileme tablosu, otomatik yenilenen sertifikanın takıldığını göstermez. Web ve api.* için kurulan uptime kontrollerinde SSL doğrulaması açılır. Kontrol run.app'e değil alan adına gider, yoksa ölçülen sertifika Google'ınkidir. uptime_check/time_until_ssl_cert_expires 14 günün altına inince bugün seviyesinde alarm çalar. Olağan yenileme bitişten haftalar önce yapıldığı için bu alarm yalnız yenileme takılınca çalar. Sertifika geçersiz olursa kontrol düşer ve erişim alarmı acil çalar. Uptime metriğine bağlı alarm ücretsiz kalır.
+
 [öneri]
-** AI tarayıcılarında Training için 'Disallow AI Training' seçilir**; Googlebot, Bingbot ve Applebot aramada kalır. 'Block' aramayı da keser. CCBot ve ChatGPT-User için ayrı karar verilir. 15 Eyl 2026'dan beri yeni alan adına önerilen hazır ayar okunmadan kabul edilmez.
+
+**AI tarayıcılarında Training için 'Disallow AI Training' seçilir**; Googlebot, Bingbot ve Applebot aramada kalır. 'Block' aramayı da keser. CCBot ve ChatGPT-User için ayrı karar verilir. 15 Eyl 2026'dan beri yeni alan adına önerilen hazır ayar okunmadan kabul edilmez.
+
 [öneri]
-** HTML kenar önbelleği yalnız yazmada URL purge bağlıysa**; Edge TTL override yok; '/', dil yönlendirmesi ve çerezli istekler bypass; Set-Cookie'li yanıt önbelleğe girmez. Cloudflare Vary'yi varsayılan olarak cache key'e katmaz; Vary: Cookie'ye güvenilmez.
+
+**HTML kenar önbelleği yalnız yazmada URL purge bağlıysa**; Edge TTL override yok; '/', dil yönlendirmesi ve çerezli istekler bypass; Set-Cookie'li yanıt önbelleğe girmez. Cloudflare Vary'yi varsayılan olarak cache key'e katmaz; Vary: Cookie'ye güvenilmez.
+
 [öneri]
-** api.* proxy'lenmez** (gri); turuncuda BFM mobil istemciye challenge çıkarabilir ve X-Forwarded-For'un en sağı Cloudflare'in adresi olur. Ayrıntı [Botlara karşı tutum › Ayarlar](#bot-ayarlar)'da.
+
+**api.* proxy'lenmez** (gri); turuncuda BFM mobil istemciye challenge çıkarabilir ve X-Forwarded-For'un en sağı Cloudflare'in adresi olur. Ayrıntı [Botlara karşı tutum › Ayarlar](#bot-ayarlar)'da.
+
 [öneri]
-** Turuncu buluttan önce, prod açılmadan, geçici bir prova host'unda SSL Full** (strict), CF-Connecting-IP ve gizli başlıksız run.app isteğinin reddi doğrulanır. Bu host Worker ile prod web'in run.app adresine gider ve prod web'de EDGE_KEY tanımlıdır; prova bitince kayıt silinir. Nameserver taşınırken MX, SPF, DKIM, DMARC ve BIMI birebir taşınır.
+
+**Turuncu buluttan önce, prod açılmadan, geçici bir prova host'unda SSL Full** (strict), CF-Connecting-IP ve gizli başlıksız run.app isteğinin reddi doğrulanır. Bu host Worker ile prod web'in run.app adresine gider ve prod web'de EDGE_KEY tanımlıdır; prova bitince kayıt silinir. Nameserver taşınırken MX, SPF, DKIM, DMARC ve BIMI birebir taşınır.
+
 [kanıtlı]
-** Canlı domain mapping silinip yeniden kurulmaz**; zorunluysa apex ve www sırayla taşınır.
+
+**Canlı domain mapping silinip yeniden kurulmaz**; zorunluysa apex ve www sırayla taşınır.
+
 [kanıtlı]
-** Alan adı lansmandan haftalar önce alınır ve FortiGuard, Trend Micro, Talos, Broadcom'a kategori başvurusu yapılır**.
+
+**Alan adı lansmandan haftalar önce alınır ve FortiGuard, Trend Micro, Talos, Broadcom'a kategori başvurusu yapılır**.
 
 ## Başlangıç ayarları
 
 [öneri]
+
 Free: 5 WAF kuralı, 1 hız sınırı, 10 cache kuralı; Pro ($20–25/ay) gerekmiyor.
+
 [ölçüldü]
+
 Domain mapping yeniden kurulumu: ~5 dk eski sertifika, ~12 dk yeni sertifika, ~8 dk yayılma.
 
 ### Kaçın
 
 [öneri]
+
 AI ayarında 'Block'; purge'süz HTML önbelleği (günlük s-maxage'la bir yorum bir gün görünmez).
+
 [öneri]
+
 Bu ölçekte Cloud Armor + LB: proje başına ~$25+/ay.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **18 Eyl** domain mapping geçişinde ~20 dk HTTPS kopukluğu.
+
 **6 Eki** robots.txt'yi dinlemeyen 47.79.0.0/16 (Alibaba Cloud) günde ~25.000 istek attı. 7 Eki'de açılan 403 kuralıyla sonraki 24 saatte 6.654 istek reddedildi.
+
 **2 Eki** 38 günlük alan adının kod mailleri kurum geçitlerinde bekledi; kategori başvurusu aynı akşam döndü.
+
+<a id="adres"></a>
 
 ## İstemci adresi nereden okunur
 
@@ -4331,6 +5219,8 @@ export default {
 
 [öneri] www'den çıplak adrese 308'i Cloudflare yapar, Next değil. www için turuncu bulutta bir kayıt durur. Free planda gelen tek bir yönlendirme kuralı (Single Redirect), yolu ve sorgu dizesini koruyarak 308 döner. Worker yalnız çıplak host'un route'una bağlanır. Next her isteği run.app adıyla gördüğü için www'yi Host başlığından ayıran bir middleware bu yolda hiç çalışmaz. Kontrol: www adresine curl -I tek adımda 308 ve çıplak https adresi döner; çıplak adreste bir form gönderimi 200 alır.
 
+<a id="katman-6"></a>
+
 Katman 6 / 11
 
 # Bulut altyapısı (Cloud Run)
@@ -4338,53 +5228,82 @@ Katman 6 / 11
 Servisler min 0 ile çalışır, her ürünün kendi faturalama hesabı vardır ve servis tanımı depoda durur.
 
 ~₺255/ay
+
 Konsoldan açılan tek bir minScale=1'in tutarı. 2 Eki'de kaldırıldı, 5xx 0 kaldı.
 
 ## Yap
 
 [kanıtlı]
-** Min 0, istek bazlı CPU, CPU boost**; web'i ve API'yi ayrı ayrı, her birinin veritabanısız sağlık ucuna 300 sn'de bir, 3 bölgeden giden uptime check sıcak tutar.
+
+**Min 0, istek bazlı CPU, CPU boost**; web'i ve API'yi ayrı ayrı, her birinin veritabanısız sağlık ucuna 300 sn'de bir, 3 bölgeden giden uptime check sıcak tutar.
+
 [ölçüldü]
-** Her ürüne kendi faturalama hesabı**; ücretsiz kotalar hesap başına.
+
+**Her ürüne kendi faturalama hesabı**; ücretsiz kotalar hesap başına.
+
 [öneri]
-** Servis tanımı depoda service.yaml**; konsoldan ayar yok; haftalık drift kontrolü. service.yaml kaynak ve ölçek ayarını tutar: bellek, CPU, min ve max, eşzamanlılık, probe, servis hesabı, sır referansları ve düz ortam değerleri. Yaml'a sır değeri yazılmaz, yalnız Secret Manager referansı yazılır. İmaj digest'ini yalnız hat değiştirir. Prod'da gcloud run services replace kullanılmaz. Bu komut yaml'da olmayan ortam değerini siler ve acil durumda kapatılmış bir anahtarı sessizce geri açar; [kural 7.8](#k-7-8)'deki kaybın aynısıdır. Ayar gcloud run services update ile, ortam değeri --update-env-vars ile değişir. İkisi de aynı gün service.yaml'a commit'lenir, acil ortam değişikliği denetim kaydına da yazılır. Drift kontrolü gcloud run services describe SERVIS --format=export çıktısını service.yaml ile karşılaştırır. Karşılaştırmaya imaj digest'i, revizyon adı, status, zaman damgaları ve gcloud'un her deploy'da yazdığı notlar girmez; servis düzeyindeki minScale notu girer. Ortam farkı susturulmaz, ayrı satırda raporlanır. Canlıda açık sanılan bayrağın kapalı çıktığı 1 Ekim notu bu farktan doğdu. Konsoldan açılan minScale=1 de bu karşılaştırmada ilk hafta görünür.
+
+**Servis tanımı depoda service.yaml**; konsoldan ayar yok; haftalık drift kontrolü. service.yaml kaynak ve ölçek ayarını tutar: bellek, CPU, min ve max, eşzamanlılık, probe, servis hesabı, sır referansları ve düz ortam değerleri. Yaml'a sır değeri yazılmaz, yalnız Secret Manager referansı yazılır. İmaj digest'ini yalnız hat değiştirir. Prod'da gcloud run services replace kullanılmaz. Bu komut yaml'da olmayan ortam değerini siler ve acil durumda kapatılmış bir anahtarı sessizce geri açar; [kural 7.8](#k-7-8)'deki kaybın aynısıdır. Ayar gcloud run services update ile, ortam değeri --update-env-vars ile değişir. İkisi de aynı gün service.yaml'a commit'lenir, acil ortam değişikliği denetim kaydına da yazılır. Drift kontrolü gcloud run services describe SERVICE --format=export çıktısını service.yaml ile karşılaştırır. Karşılaştırmaya imaj digest'i, revizyon adı, status, zaman damgaları ve gcloud'un her deploy'da yazdığı notlar girmez; servis düzeyindeki minScale notu girer. Ortam farkı susturulmaz, ayrı satırda raporlanır. Canlıda açık sanılan bayrağın kapalı çıktığı 1 Ekim notu bu farktan doğdu. Konsoldan açılan minScale=1 de bu karşılaştırmada ilk hafta görünür.
+
 [öneri]
-** AR temizliği gerçek modda**; canlı ve önceki imaj her deploy'da taşınan live ve prev etiketleriyle süresiz, deploy edilen imaj deployed- etiketiyle 30 gün KEEP; geri dönüş penceresi gerçek listeden hesaplanır; job imajlarını hat günceller.
+
+**AR temizliği gerçek modda**; canlı ve önceki imaj her deploy'da taşınan live ve prev etiketleriyle süresiz, deploy edilen imaj deployed- etiketiyle 30 gün KEEP; geri dönüş penceresi gerçek listeden hesaplanır; job imajlarını hat günceller.
+
 [ölçüldü]
-** Tetikleyiciler bölgesel, AR ile aynı bölgede**; buildpack tetikleyicisinde pull/push bırakılmaz.
+
+**Tetikleyiciler bölgesel, AR ile aynı bölgede**; buildpack tetikleyicisinde pull/push bırakılmaz.
+
 [ölçüldü]
-** Bellek gerçek tepeye göre, OOM alarmlı**; istek dışında CPU kısılır.
+
+**Bellek gerçek tepeye göre, OOM alarmlı**; istek dışında CPU kısılır.
 
 ## Başlangıç ayarları
 
 [kanıtlı]
+
 API: min 0, max 2–3, 512 MiB, 1 vCPU, startupProbe TCP 240 sn. Web: min 0, max 3.
+
 [öneri]
+
 Go API'de GOMEMLIMIT ortam değişkeni bellek sınırının ~%85'i olarak service.yaml'da durur (512 MiB'ta GOMEMLIMIT=435MiB). Go bellek sınırını container'dan kendisi okumaz; bu ayar olmadan çöp toplayıcı sınırı bilmez. Bellek değişince bu değer de aynı deploy'da değişir. Yumuşak bir sınırdır, OOM alarmının yerini tutmaz.
+
 [kanıtlı]
+
 Deploy --image=<digest> --update-env-vars; --set-env-vars yok.
+
 [öneri]
+
 Günlük veritabanı işleri tek 10 dakikalık sabah penceresinde art arda. Varsayılan pencere 05:00–05:10 İstanbul saatidir; takvim kodda UTC ile yazılır (02:00). Bu saatte UTC günü de İstanbul günü de dönmüştür: e-posta sayacı yeni günün kotasındadır, dünün özeti eksiksiz okunur. Trafik en azdır, yedek kullanıcıyla yarışmaz. Saat değişirse 03:00'ten önceye alınmaz ve DECISIONS'a yazılır.
 
 ### Kaçın
 
 [kanıtlı]
+
 Konsoldan minScale=1; uptime check'i silmek (kontrolsüz serviste günde 8,3–33 otomatik başlatma).
+
 [ölçüldü]
+
 Global tetikleyicide kıtalar arası pull/push; günlük işleri farklı saatlere dağıtmak (bir üründe haftada 6 gün üç ayrı uyanış).
 
 ### Bizdekinden iyisi
 
 [ölçüldü]
+
 Her ürünün kendi faturalama hesabı ücretsiz kotaları ayırır: aynı hesaptaki iki ürün Eylül'de 3.121 build dakikasıyla kotayı aştı (₺187).
+
 [öneri]
+
 Fly.io, Railway ve Hetzner ancak sürekli açık bir iş çıkarsa düşünülür.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **7 Eyl** konsoldan açılan minScale=1 ayda ~₺255 yazdı; 2 Eki'de kaldırıldı, 5xx 0.
+
 **Eylül** global tetikleyici 73 GiB kıtalar arası çıkış yaptı, ₺282.
+
 **21 Eyl ve 7 Eki** AR temizliği elle sabitlenmiş migrate job'ını kırdı; 1–8 Eki'de 512 MiB'lik bir serviste 7 günde 540 OOM; 2 Eki'de tek günde 192.
+
+<a id="katman-7"></a>
 
 Katman 7 / 11
 
@@ -4393,67 +5312,110 @@ Katman 7 / 11
 İmaj bir kez kurulur. Test'te doğrulanan digest onay kapısından geçerek prod'a çıkar.
 
 11 dk
+
 Migration koşmadan yayına çıkan kodun 500 döndürdüğü süre.
 
 ## Yap
 
 [kanıtlı]
-** İki dal, iki ortam**; main yalnız test'te görülmüş commit'e fast-forward; birleşen dal silinir.
+
+**İki dal, iki ortam**; main yalnız test'te görülmüş commit'e fast-forward; birleşen dal silinir.
+
 [öneri]
-** Bir kez build, terfi**: test hattı vet, Postgres sidecar'lı test, govulncheck, Docker build sonrası digest'i yazar; prod aynı digest'i onay kapısından geçirir.
+
+**Bir kez build, terfi**: test hattı vet, Postgres sidecar'lı test, govulncheck, Docker build sonrası digest'i yazar; prod aynı digest'i onay kapısından geçirir.
+
 [kanıtlı]
-** Migration'lar yalnız ekler ve koddan önce koşar**; uygulanmış dosya değişmez.
+
+**Migration'lar yalnız ekler ve koddan önce koşar**; uygulanmış dosya değişmez.
+
 [öneri]
-** Migration hattın adımıdır**: migrate job aynı digest'le execute --wait; başarısızsa trafik verilmez.
+
+**Migration hattın adımıdır**: migrate job aynı digest'le execute --wait; başarısızsa trafik verilmez.
+
 [öneri]
-** Migrate job'ı yeniden denemesiz kurulur**: gcloud run jobs create SERVIS-migrate --image=<digest> --project PROJE --region=europe-west1 --max-retries=0 --tasks=1 --task-timeout=10m. Cloud Run Jobs başarısız görevi varsayılan olarak 3 kez yeniden dener; yarım kalmış bir göç kendiliğinden tekrar koşar ve hata geç görünür. Bizdeki migrate job'ı da tek görev, sıfır yeniden deneme ve 600 sn tavanla çalışıyor.
+
+**Migrate job'ı yeniden denemesiz kurulur**: gcloud run jobs create SERVICE-migrate --image=<digest> --project PROJECT --region=europe-west1 --max-retries=0 --tasks=1 --task-timeout=10m. Cloud Run Jobs başarısız görevi varsayılan olarak 3 kez yeniden dener; yarım kalmış bir göç kendiliğinden tekrar koşar ve hata geç görünür. Bizdeki migrate job'ı da tek görev, sıfır yeniden deneme ve 600 sn tavanla çalışıyor.
+
 [kanıtlı]
-** Entegrasyon veritabanı yoksa testler FAIL eder**; 'testler geçti' yalnız veritabanlı koşudan sonra.
+
+**Entegrasyon veritabanı yoksa testler FAIL eder**; 'testler geçti' yalnız veritabanlı koşudan sonra.
+
 [kanıtlı]
-** Test ortamı prod'un şeklini taşır**: ayrı Neon, ayrı hesap ve sırlar, aynı PG, temsili veri, mail allowlist'i, '-test' guard'ı.
+
+**Test ortamı prod'un şeklini taşır**: ayrı Neon, ayrı hesap ve sırlar, aynı PG, temsili veri, mail allowlist'i, '-test' guard'ı.
+
 [öneri]
-** Test ortamında tek kural**: test web'i IAP arkasında; test API'si ağda açık, çünkü mobil build IAM'i geçemez, ama giriş yalnız izinli adreslere (sabit kod da yalnız onlara), X-Robots-Tag noindex ve en fazla 1 instance. Test ve prod aynı projede durur: '-test' servisleri kendi servis hesabı ve sırrıyla, prod sırrına erişimsiz. Aynı projede sınırı yetki çizer. test'e push onaysızdır ve test'in build dosyası dalla gelir; test tetikleyicisinin build hesabı prod'u değiştirebiliyorsa main'in onay kapısı aşılır. Bu yüzden hiçbir build hesabı projede Cloud Run rolü taşımaz. Servis ve job'lar gün 0'da bir kez açılır, yetki sonra kaynakta verilir. Test build hesabı yalnız '-test' servis ve job'larında roles/run.developer, yalnız test çalışma hesaplarında roles/iam.serviceAccountUser, depoda roles/artifactregistry.writer, projede roles/logging.logWriter alır. main build hesabı aynı rolleri yalnız prod kaynaklarında alır; yalnız terfi ediyorsa depoda reader yeter. Rol listesi docs/DECISIONS.md'ye yazılır. Kontrol: test build hesabıyla prod servisine deploy denemesi yetki hatası alır. Ücretli test anahtarının sağlayıcıda sert tavanı vardır; sertifika logları host adını açığa çıkarır. Test web'i kendi run.app adresinden IAP ile açılır. Önüne Cloudflare host'u ve Worker konmaz, servisinde EDGE_KEY tanımlanmaz. IAP'den geçen istek run.app'e anahtarsız gelir; EDGE_KEY tanımlıysa kapı ona 403 verir. Test API'si de kendi run.app adresinde kalır, ayrı alan adı almaz. Mobil preview build bu adrese bakar.
+
+**Test ortamında tek kural**: test web'i IAP arkasında; test API'si ağda açık, çünkü mobil build IAM'i geçemez, ama giriş yalnız izinli adreslere (sabit kod da yalnız onlara), X-Robots-Tag noindex ve en fazla 1 instance. Test ve prod aynı projede durur: '-test' servisleri kendi servis hesabı ve sırrıyla, prod sırrına erişimsiz. Aynı projede sınırı yetki çizer. test'e push onaysızdır ve test'in build dosyası dalla gelir; test tetikleyicisinin build hesabı prod'u değiştirebiliyorsa main'in onay kapısı aşılır. Bu yüzden hiçbir build hesabı projede Cloud Run rolü taşımaz. Servis ve job'lar gün 0'da bir kez açılır, yetki sonra kaynakta verilir. Test build hesabı yalnız '-test' servis ve job'larında roles/run.developer, yalnız test çalışma hesaplarında roles/iam.serviceAccountUser, depoda roles/artifactregistry.writer, projede roles/logging.logWriter alır. main build hesabı aynı rolleri yalnız prod kaynaklarında alır; yalnız terfi ediyorsa depoda reader yeter. Rol listesi docs/DECISIONS.md'ye yazılır. Kontrol: test build hesabıyla prod servisine deploy denemesi yetki hatası alır. Ücretli test anahtarının sağlayıcıda sert tavanı vardır; sertifika logları host adını açığa çıkarır. Test web'i kendi run.app adresinden IAP ile açılır. Önüne Cloudflare host'u ve Worker konmaz, servisinde EDGE_KEY tanımlanmaz. IAP'den geçen istek run.app'e anahtarsız gelir; EDGE_KEY tanımlıysa kapı ona 403 verir. Test API'si de kendi run.app adresinde kalır, ayrı alan adı almaz. Mobil preview build bu adrese bakar.
+
 [öneri]
-** Prod'a dokunan komut 'prod-' ile başlar ve host'u kontrol eder**; testlerde ağ kapalı.
+
+**Prod'a dokunan komut 'prod-' ile başlar ve host'u kontrol eder**; testlerde ağ kapalı.
+
 [kanıtlı]
-** Commit'ler birikir, iş bitince tek deploy**; canlı kırıkta sebep → düzeltme → doğrulama → commit → ilk satırda onay isteği. Build, sürüm ve deploy ürün sahibinin kararıdır ve CLAUDE.md/AGENTS.md'de yazılıdır.
+
+**Commit'ler birikir, iş bitince tek deploy**; canlı kırıkta sebep → düzeltme → doğrulama → commit → ilk satırda onay isteği. Build, sürüm ve deploy ürün sahibinin kararıdır ve CLAUDE.md/AGENTS.md'de yazılıdır.
 
 ## Başlangıç ayarları
 
 [öneri]
+
 test ^test$; main ^main$ ve approval required.
+
 [öneri]
+
 Tetikleyici kendi build hesabıyla koştuğu için her cloudbuild*.yaml dosyasının sonunda `options: logging: CLOUD_LOGGING_ONLY` durur. Bu satır yoksa Cloud Build build'i hiç başlatmaz. Build logu Cloud Logging'in 30 günlük _Default kovasında kalır. Bizim depolarımızda da bu satır var.
+
 [öneri]
+
 Prod: jobs update --image=<digest> → jobs execute --wait → deploy --no-traffic --tag=candidate → smoke → trafik.
+
 [öneri]
-Bu hat yalnız var olan servis ve job'da çalışır: gcloud yeni serviste --no-traffic'i reddeder, jobs update de olmayan job'da hata verir. İlk kurulumda servis ve SERVIS-migrate job'ı, test'te doğrulanan digest'le hattın dışında bir kez açılır: servis --no-traffic olmadan, job jobs create ile ve çalıştırılmadan. Prod'daki bu ilk açılış da ürün sahibinin onayıyla yapılır. Adım runbooks/new-env.md'ye yazılır.
+
+Bu hat yalnız var olan servis ve job'da çalışır: gcloud yeni serviste --no-traffic'i reddeder, jobs update de olmayan job'da hata verir. İlk kurulumda servis ve SERVICE-migrate job'ı, test'te doğrulanan digest'le hattın dışında bir kez açılır: servis --no-traffic olmadan, job jobs create ile ve çalıştırılmadan. Prod'daki bu ilk açılış da ürün sahibinin onayıyla yapılır. Adım runbooks/new-env.md'ye yazılır.
+
 [ölçüldü]
+
 ignoredFiles **/*.md; başarısız build bildirimi.
 
 ### Kaçın
 
 [kanıtlı]
+
 Kodu migration bitmeden trafiğe vermek; prod migration'ı dizüstünden koşmak.
+
 [ölçüldü]
+
 Prod için --no-cache yeniden build; onaysız main deploy'u.
+
 [kanıtlı]
+
 SKIP eden testleri yeşil saymak; verisiz test ortamında 'geçti' demek.
+
 [öneri]
+
 Herkese açık test ortamında gerçek ücretli anahtar. İzin verilen tek hal: kimlik doğrulama arkasında ve sağlayıcıda sert tavanla.
 
 ### Bizdekinden iyisi
 
 [ölçüldü]
+
 Tek build ve onay kapılı terfi, değişiklik başına ~4,5 dk kazandırır; test ve main için ayrı build 4,8 + 4,4 dk sürer.
+
 [kanıtlı]
+
 Migration hattın adımı olunca job imajı bayatlamaz; elle yürütülen düzende imaj iki kez bayatladı.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **21 Eyl** göçle aynı commit'teki kod 11 dk 500 döndürdü.
+
 **26 Eyl** düzeltmeler test'i atlayıp main'e gitti; 20 Eyl'de izinsiz iki prod build başlatıldı.
+
 **22 Eyl** 1.000 yeşil test bir build kırığını yakalamadı, deploy sessizce çıkmadı.
+
+<a id="katman-8"></a>
 
 Katman 8 / 11
 
@@ -4462,50 +5424,80 @@ Katman 8 / 11
 Her servis en az yetkiyle çalışır, sırlar Secret Manager'da durur. Botlara karşı ayrıntılı tutum bu katmanın ardından gelir.
 
 8 → 0
+
 Güvenlik denetimi günü Go taramasında (govulncheck) bulgu sayısı. Next'teki SSRF zinciri ertesi gün sürüm yükseltmesi ve rolsüz hesapla kapandı.
 
 ## Yap
 
 [kanıtlı]
-** Önce her tetikleyiciye gereken rollerle kendi build hesabı verilir, sonra compute hesabından Editor kaldırılır**; yeni projede build varsayılan olarak compute hesabıyla koştuğu için sıra ters olursa tetikleyiciler kırılır. Kendi hesabıyla koşan her cloudbuild*.yaml dosyasının options bölümünde logging: CLOUD_LOGGING_ONLY durur ve bu hesaba projede roles/logging.logWriter verilir; bu ayar yoksa Cloud Build build'i hiç başlatmaz. Her servis rolsüz kendi hesabıyla; roller kaynakta; Token Creator hesabın kendi üstüne; build actAs'ı yalnız deploy ettiği hesaplarda.
+
+**Önce her tetikleyiciye gereken rollerle kendi build hesabı verilir, sonra compute hesabından Editor kaldırılır**; yeni projede build varsayılan olarak compute hesabıyla koştuğu için sıra ters olursa tetikleyiciler kırılır. Kendi hesabıyla koşan her cloudbuild*.yaml dosyasının options bölümünde logging: CLOUD_LOGGING_ONLY durur ve bu hesaba projede roles/logging.logWriter verilir; bu ayar yoksa Cloud Build build'i hiç başlatmaz. Her servis rolsüz kendi hesabıyla; roller kaynakta; Token Creator hesabın kendi üstüne; build actAs'ı yalnız deploy ettiği hesaplarda.
+
 [kanıtlı]
-** Her sır ilk deploy'dan Secret Manager referansı**; düz env'den geçiş tek komutta ve SHA-256 kontrolüyle.
+
+**Her sır ilk deploy'dan Secret Manager referansı**; düz env'den geçiş tek komutta ve SHA-256 kontrolüyle.
+
 [öneri]
-** JSON anahtar indirilmez**: organizasyon varsa iam.disableServiceAccountKeyCreation; CI Workload Identity Federation ile; sağlayıcıya yüklenen anahtar diskten silinir.
+
+**JSON anahtar indirilmez**: organizasyon varsa iam.disableServiceAccountKeyCreation; CI Workload Identity Federation ile; sağlayıcıya yüklenen anahtar diskten silinir.
+
 [kanıtlı]
-** Private depo, gitleaks, push protection**; secret taraması .env'i atlamayan grep'le.
+
+**Private depo, gitleaks, push protection**; secret taraması .env'i atlamayan grep'le.
+
 [kanıtlı]
-** Müşteri belgeleri PAP'li ayrı kovada, yalnız sahiplik kontrollü indirme**; medyada legacyObjectReader.
+
+**Müşteri belgeleri PAP'li ayrı kovada, yalnız sahiplik kontrollü indirme**; medyada legacyObjectReader.
+
 [ölçüldü]
-** Bot sırası**: önce okuma yolunu veritabanından ayır, sonra robots.txt, en son kapı ya da WAF.
+
+**Bot sırası**: önce okuma yolunu veritabanından ayır, sonra robots.txt, en son kapı ya da WAF.
+
 [kanıtlı]
-** Proxy'nin ilk satırında kapı**: tarama yolları 404, adı belli botlar 403, şekil kuralları yalnız çıplak GET'e; link tarayıcıları ve paylaşım yolları muaf; hata olursa geçir. Gün 0'da yalnız başka sitelerde gölgeden geçmiş ortak kurallar reddeder; yeni kural, log birikmişse önce 30 günlük log üzerinde denenir, sonra en az 7 gün (kurumsal 14) gölgede çalışır.
+
+**Proxy'nin ilk satırında kapı**: tarama yolları 404, adı belli botlar 403, şekil kuralları yalnız çıplak GET'e; link tarayıcıları ve paylaşım yolları muaf; hata olursa geçir. Gün 0'da yalnız başka sitelerde gölgeden geçmiş ortak kurallar reddeder; yeni kural, log birikmişse önce 30 günlük log üzerinde denenir, sonra en az 7 gün (kurumsal 14) gölgede çalışır.
+
 [öneri]
-** Kapı her depoya bayt bayt kopyalanmak yerine sürümlü tek bir paket olarak dağıtılır**.
+
+**Kapı her depoya bayt bayt kopyalanmak yerine sürümlü tek bir paket olarak dağıtılır**.
+
 [kanıtlı]
-** Güvenlik başlıkları ilk gün**; admin girişi ayrı uçta ve her adrese aynı cevap.
+
+**Güvenlik başlıkları ilk gün**; admin girişi ayrı uçta ve her adrese aynı cevap.
+
 [öneri]
-** Herkese açık yazma uçlarında Firebase App Check**.
+
+**Herkese açık yazma uçlarında Firebase App Check**.
 
 ## Başlangıç ayarları
 
 [ölçüldü]
+
 Secret Manager ~₺16/ay (12 referans).
 
 ### Kaçın
 
 [kanıtlı]
+
 Next servisini Editor yetkili compute hesabıyla çalıştırmak; proje geneli Token Creator.
+
 [kanıtlı]
+
 Sırrı düz env'de ya da herkese açık depoda tutmak; 'Cache-Control: private'ı erişim kontrolü sanmak.
+
 [ölçüldü]
+
 Bot kuralını gölgesiz zorlamak; bot engelinin Neon faturasını düşüreceğini sanmak.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **23 Eyl** Next 14.2.35 SSRF (GHSA-c4j6-fc7j-m34r) + Editor hesabı proje ele geçirmeye açıktı; aynı gün kapatıldı: siteler Next 15.5'e geçti ve rolsüz hesaba alındı.
+
 **22 Eyl** taramada kullanıcı yüklemelerinin avatarlarla aynı medya kovasına yazıldığı görüldü; aynı gün PAP'li ayrı kovaya taşındı. Go imajı da yükseltildi, govulncheck 8 → 0.
+
 **7 Eki** gölgesiz bir kural bir mail link tarayıcısına 403 verdi.
+
+<a id="botlar"></a>
 
 Güvenlik ve botlar
 
@@ -4518,15 +5510,19 @@ Dayanak, 1–7 Ekim 2026'da dört sitemizin 11 servisinden çekilen yaklaşık 5
 ## Dört tutum
 
 [aç]
+
 Hiçbir kural dokunmaz.
 
 [sınırla]
+
 Geçer, hız kovasından düşer.
 
 [izle]
+
 Reddedilmez, gölge satırı yazar.
 
 [engelle]
+
 403 ya da 404.
 
 ## Trafik sınıfları ve tutum
@@ -4553,15 +5549,25 @@ Her sınıf için ne yaptığımız ve kuralın nerede çalıştığı. [Sınıf
 ## 1–7 Ekim 2026 loglarından
 
 **275'ten ~25.000'e** Alibaba Cloud kazıyıcısının günlük isteği; robots.txt'yi hiç okumadı.
+
 **%41 ve %44** Aynı kazıyıcının web isteklerindeki ve UI baytlarındaki payı.
+
 **6.654** 403 kuralı açıldıktan sonraki 24 saatte reddedilen istek.
+
 **%65** Bir sitede .env, .git ve wp-admin taramalarının trafikteki payı; hiçbiri 200 almadı.
+
 **35'te 2** Bir sitede gerçek çıkan ChatGPT-User iddiası. PerplexityBot'ta 63'te 4.
+
 **7.656 adres** 2.331 ASN'den; konut proxy havuzunun 15,9 saatteki ayak izi, adreslerin %98'i tek istek attı.
+
 **38.022** Adresi okunamayan tek bir botun ~90 dakikalık patlaması; arka uç çağrıları 21 kat arttı.
+
 **%30** Meta'nın eğitim tarayıcısının bir sitedeki payı (31.651 istek, bir saatte 11.448).
+
 **0** 517.285 istekte engelli bulut aralıklarından gelen uygulama isteği.
+
 **24 / 10 sn** En yoğun gerçek adresin sayfa sayısı, günde 129; varsayılan sınır her pencerede bunun en az 5 katı.
+
 **~4–10 µs ve $0** Kapının istek başına bedeli. Cloud Armor proje başına ~$25–30/ay.
 
 ## İlkeler
@@ -4609,33 +5615,43 @@ Her istek bu sırayla yargılanır. Sağdaki işaret adımın tutumunu gösterir
 1. robots.txt, /.well-known ve ret sayfasının işaret pikseli her zaman geçer.
 
 [aç]
+
 2. Yol tarama listesinde mi: render etmeden 404.
 
 [engelle]
+
 3. Ajan okur getirmeyen listede mi: her yolda 403.
 
 [engelle]
+
 4. İçerik sayfasına GET, ajan boş, URL ya da kesik, Accept-Language ve Sec-Fetch-Mode yok, adres sessiz listede yok: 403.
 
 [engelle]
+
 5. Adres kanıtlı tarama bloğunda mı: her yolda 403. Engelli bulut ASN'sinde mi: yalnız içerik sayfasında 403.
 
 [engelle]
+
 6. Ajan doğrulanabilir bir bot adı taşıyor mu: adres yayıncının aralığındaysa gölge katmanlardan muaf, dışındaysa 'reddederdim' satırı.
 
 [izle]
+
 7. Kendi çıkışımız, Google, Bing ya da Apple alanı, güvenlik firması veya kapı anahtarı: gölge katmanlar atlanır.
 
 [aç]
+
 8. Sayfa belgesi: adres başına (IPv6'da /64 ve /48 toplamı) hız kovasından düşer. Next payload'ı ayrı ve yüksek kovada.
 
 [sınırla]
+
 9. HTTPS'te Chrome ajanı Sec-Fetch-Mode göndermiyor: gölgede yazılır.
 
 [izle]
+
 10. Her ret ya da 'reddederdim' için adres, katman ve sebep başına dakikada bir satır yazılır.
 
 log
+
 11. Kapının içinde hata olursa istek geçer ve bir hata satırı yazılır.
 
 [aç]
@@ -4656,50 +5672,96 @@ Reddetme yetkisi kanıtla gelir: başka sitelerde gölgeden geçmiş ortak kural
 | Adresi okunamayan istekler, ortak kova | [izle] | İçinde kullanıcı adına çalışan getiriciler var. |
 | Ürüne özel her yeni kural; kanıtlı tarama blokları | [izle] | Log birikmişse önce 30 günlük logda denenir, sonra en az 7 gün (kurumsal 14) gölgede çalışır. |
 
+<a id="bot-ayarlar"></a>
+
 ## Ayarlar
 
 robots.txt
+
 [kanıtlı]
+
 Kapının okuduğu ad listesinden üretilir; elle ikinci bir liste tutulmaz. Arama ve cevap botları açık, okur getirmeyen liste ve SEO paketleri Disallow. Eğitim tarayıcıları için ürün kararı yazılır; GEO hedefi yoksa GPTBot, ClaudeBot, CCBot, meta-externalagent, Amazonbot, Bytespider ve Google-Extended satırları eklenir. Adlar botun duyurduğu biçimde yazılır. Değişiklik botlara aynı gün ulaşmayabilir: önbelleğindeki eski dosyayla 20 sayfa daha çeken bir arama botu görüldü.
+
 Cloudflare, AI tarayıcı ayarı
+
 [öneri]
+
 Training için 'Disallow AI Training' seçilir. 'Block' seçilmez: Googlebot, Bingbot ve Applebot gibi çok amaçlı tarayıcıları da keser ve arama görünürlüğü gider. 15 Eyl 2026'dan beri yeni alan adlarında reklam gösteren sayfalarda Training ve Agent varsayılan olarak engelli; ayar gün 0'da okunur ve elle kurulur.
+
 Cloudflare, API host'u
+
 [öneri]
+
 api.* DNS-only (gri) kalır, turuncuya alınmaz. Gri kayıt Cloudflare'den geçmez; Bot Fight Mode ve WAF ona dokunmaz. Turuncuda iki şey bozulur. BFM WAF kuralıyla atlanamıyor ve mobil uygulamaya challenge çıkarabiliyor. X-Forwarded-For'un en sağı Cloudflare'in adresi olur; API en sağ elemanı okuduğu için bütün mobil kullanıcıları birkaç adreste sayar ve giriş kodu sınırları girişleri kilitler. Domain mapping de turuncuda kullanılmaz. API'yi kenara almak ayrı bir karardır: Worker yolu, adresin yalnız kenar anahtarı eşleşen X-Client-IP'den okunması ve kapalı BFM birlikte kurulur, önce prova host'unda denenir.
+
 Cloudflare, WAF özel kuralları
+
 [öneri]
+
 Free'deki 5 kuraldan biri bulut ASN'leri için, yalnız içerik host'u ve yollarında; biri tarama yolları için. Worker CF-Connecting-IP'yi X-Client-IP'ye yazar ve kenar anahtarını ekler; uygulama adresi yalnız anahtar eşleşirse bu başlıktan okur. run.app adresine anahtarsız gelen istek reddedilir.
+
 Kapı, Next proxy ya da middleware
+
 [kanıtlı]
+
 İlk satırda çalışır. Matcher /api aktarma uçlarını, tarama desenlerini ve ret sayfasının işaret yolunu kapsar. İstemci adresi Kenar katmanındaki tabloya göre okunur ([İstemci adresi nereden okunur](#adres)). ::ffff: ile yazılmış IPv4 normalize edilir; son eleman özel alanda ya da Google yük dengeleyicisinin aralığındaysa (35.191.0.0/16, 130.211.0.0/22) istek adressiz sayılır ve uyarı yazılır.
+
 Kapı, hız kovaları
+
 [ölçüldü]
+
 Sayfa belgesi: 120 anlık, saniyede 1, günde 2.000. Next payload'ı: 3.000 anlık, saniyede 20, günde 20.000; prefetch ve gezinme aynı kovada, sayfa kovasına hiç girmez. Kurumsal ağdan gelen kullanıcılı üründe belge 300 anlık, saniyede 3, günde 6.000. IPv6 /64 ile anahtarlanır, /48 toplamı 4 kat. Kovalar instance başınadır. Bu rakamlar en yoğun gerçek adresin her pencerede en az 5 katıdır; operatör NAT'ı ve kurum proxy'si yüzünden daha düşük tutulmaz.
+
 Gölge mod
+
 [kanıtlı]
+
 Her yeni kural, log birikmişse önce 30 günlük log üzerinde denenir, sonra en az 7 gün (kurumsal kullanıcılı üründe 14) yalnız 'would-refuse' satırı yazar. Zorlama bu dönemin logu temizse yapılır. Temiz demek: aynı adresten 2 dakika içinde JavaScript kanıtı (fetch ya da payload isteği, runtime config, CSP raporu, ret sayfası işareti) gelmiş hiçbir 'reddederdim' satırı olmaması. Kurumsal kullanıcılı üründe tarayıcı başlık kontrolü gölgede kalır.
+
 Log
+
 [kanıtlı]
+
 Her ret ya da 'reddederdim' console.warn ile tek JSON satırı yazar: door, layer, reason, site, ip, ua, path, host. Aynı adres (IPv6'da /64), katman ve sebep için dakikada en çok bir satır; sonraki satır aradaki atlanan sayısını taşır. Çerez, sorgu dizesi ve anahtar yazılmaz. Bugünkü hacimde günde ~10 MB.
+
 Ret cevabı
+
 [kanıtlı]
+
 Hangi kural vurursa vursun aynı 403 sayfası: Türkçe ve İngilizce, yeniden dene bağlantısı, iletişim adresi, işaret yolundan yüklenen bir piksel, no-store ve noindex. Hangi kuralın vurduğu yalnız logda durur. Tarama yollarına düz metin 404.
+
+<a id="ayar-adres"></a>
 Adres listesi, aylık yenileme
+
 [kanıtlı]
+
 Betikle yenilenir, fark okunarak bütün sitelerde aynı gün işlenir. Engelli ASN'lerin prefix'leri RIPEstat'tan alınır; iki haftalık pencerenin yarısından azında duyurulan, pencere sonunda duyurulmayan ya da IPv4'te /11'den, IPv6'da /20'den geniş prefix alınmaz. Başka şirketin kendi rotasıyla kullandığı alan kesilir. Türk ve Körfez operatörlerinin bütün prefix'leri, bot, kendi çıkışımız ve güvenlik firması aralıkları çıkarılır. Açık kalması ve reddedilmesi gereken örnek adreslerle sınanır. Veri 45 günü geçince kapı uyarı yazar.
+
 Mobil uygulamanın API'si
+
 [kanıtlı]
+
 ASN engeli, Bot Fight Mode ve tarayıcı başlık kontrolü uygulanmaz. Adres başına sınır yüksek: en yoğun uygulama adresi 10 dakikada 80 istek attı, sınır dakikada 600 (genel) ve 30 (giriş).
+
 Sitenin JSON uçları (/api)
+
 [öneri]
+
 Aktarma ucu, tarayıcının gerçekten yaptığı çağrılardan çıkarılan yöntem ve yol izin listesiyle çalışır; listede olmayan yol loglanan bir 404 alır. Aynı köken kontrolü: Sec-Fetch-Site same-origin, yoksa Origin ya da Referer host'u. Toplu liste uçları yalnız web sunucusunun sırrını kabul eder; mobil pakete gömülü anahtar herkese açıktır.
+
 Kapı anahtarı
+
 [öneri]
+
 Kendi betiklerimiz bir anahtar başlığıyla gelir; anahtar yalnız hız ve başlık katmanlarını atlar. Değer Secret Manager'da durur, loga yazılmaz, ayda bir değiştirilir.
+
 Ücretli seçenekler
+
 [öneri]
+
 Bu ölçekte Cloud Armor alınmaz: harici yük dengeleyiciyle proje başına ~$25–30/ay tutar ve kapının yaptığını tekrarlar. Konut proxy havuzunu durdurabilecek tek parça, Cloud Armor Enterprise bot yönetimi, proje başına ~$200/ay ve reCAPTCHA ister. Kapının bedeli istek başına ~4–10 µs ve $0.
+
+<a id="iskelet"></a>
 
 ## Kapının iskeleti
 
@@ -4811,119 +5873,185 @@ Kapının veri yaşı uyarısı (45 gün) ve aylık adres listesi farkı.
 
 **Kural:** Muaf yol listesi her dil ve her yazımıyla yazılır; mağazanın denetlediği sayfalar hiçbir sınıra girmez.
 
+<a id="siniflar"></a>
+
 ## Sınıf sınıf ayrıntı
 
 ### Doğrulanmış arama motorları
 
 [aç]
+
 **Örnekler:** Googlebot, Bingbot, Applebot, YandexBot, DuckDuckBot; aynı Google adreslerinden Google-InspectionTool, PlayStore-Google, AdsBot ve GoogleOther.
+
 **Nasıl tanınır:** Yayıncının yayımladığı aralıklar: Google için googlebot.json, special-crawlers.json ve user-triggered-fetchers dosyaları; Bing için bingbot.json; Apple için 17.0.0.0/8; DuckDuckGo için duckduckbot.json. Yandex aralık yayımlamaz; ters DNS *.spider.yandex.com ve ileri doğrulama kullanılır. Yandex'in adres alanı ASN kayıtlarında başka bir adla (TELETECH) görünür, bu yüzden ASN adına göre kurulan izin listesi onu kaçırır.
+
 **Neden bu tutum:** Arama ziyaretçisi bunlardan gelir. Adres başına dakikada en çok 6 HTML sayfa çektiler (GoogleOther 14); varsayılan sınır dakikada 180. Bir sitede Applebot 3 günde 4.137 adresten 17.532 istekle web trafiğinin %10'unu yaptı ve hepsi Apple ağındaydı.
+
 **Dikkat:** Aralık listesi bayatlarsa gerçek Googlebot sahte sayılır; liste ayda bir yenilenir, kapı 45 günden eski veride uyarı yazar. Google için goog.json eksi cloud.json kabul edilir ve Cloud Run'ın paylaşılan çıkışı ayrıca çıkarılır, çünkü onu herkes kiralayabilir. GoogleOther aramayı beslemez; 'User-agent: GoogleOther' satırı aramaya dokunmadan onu durdurur (bir sitede 6 günde 6.113 istek). PlayStore-Google gizlilik ve hesap silme sayfalarını denetler; bu sayfalar hiçbir sınıra girmez.
 
 ### AI cevap motorları ve kullanıcı adına getiriciler
 
 [aç]
+
 **Örnekler:** OAI-SearchBot, ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User, DuckAssistBot.
+
 **Nasıl tanınır:** OpenAI için searchbot.json ve chatgpt-user.json; Perplexity için perplexitybot.json ve perplexity-user.json; DuckDuckGo için duckassistbot.json; Anthropic için 216.73.216.0/22 (ARIN kaydı Anthropic, AWS duyuruyor). OpenAI ve Anthropic adreslerinin ters DNS'i yok; doğrulama yalnız aralıkla yapılır.
+
 **Neden bu tutum:** Bunlar bir kişinin sorusuna cevap ararken gelir ve kaynak olarak link verir. Sayfalar sunucuda render edilince OAI-SearchBot ~11,7 günde 116 sayfa taradı; ChatGPT-User kullanıcılar adına günde ~25 sayfa açıyor.
+
 **Dikkat:** En çok taklit edilen adlar bunlar: bir sitede ChatGPT-User iddialarının 35'inden 2'si, PerplexityBot'un 63'ünden 4'ü, Perplexity-User'ın 20'sinden hiçbiri gerçek çıkmadı. Claude-User bazen adressiz (0.0.0.0) loglanır ve doğrulanamaz; ona yalnız ad kuralları uygulanır.
 
 ### AI eğitim tarayıcıları
 
 [sınırla]
+
 **Örnekler:** GPTBot, ClaudeBot, CCBot, meta-externalagent, Amazonbot, Bytespider; Google-Extended yalnız robots.txt işareti.
+
 **Nasıl tanınır:** GPTBot gptbot.json içinde; ClaudeBot 216.73.216.0/22 içinde; meta-externalagent Meta'nın AS32934 ağından gelir (IPv6'da ters DNS yok, ASN doğrular); Amazonbot'un ters DNS'i *.crawl.amazonbot.amazon. Bytespider AWS adreslerinden gelir ve doğrulanamaz. Google-Extended ayrı bir istek olarak gelmez; Googlebot'un taradığı içeriğin Google'ın modellerinde kullanılıp kullanılmayacağını söyleyen bir robots.txt adıdır.
+
 **Neden bu tutum:** Doğrudan ziyaretçi getirmezler, ama GEO hedefi olan bir üründe modelin içeriği bilmesi istenir. Yükleri ağır olabilir: meta-externalagent bir sitede trafiğin %30'unu yaptı (31.651 istek, bir saatte 11.448); ClaudeBot tek adresten dakikada 641, GPTBot 10 dakikada 919 sayfa çekti. Hız kovası onları reddetmeden saniyede 1 sayfaya indirir.
+
 **Dikkat:** robots.txt'ye uymaları bota göre değişir: ClaudeBot robots.txt'yi 46 kez okudu ve kendini yavaşlattı, meta-externalagent bu adla hiç okumadı. Meta'yı ağ olarak engelleme; aynı blok sosyal paylaşım linklerinin önizlemesini de taşır. Bytespider ve CCBot ortak okur getirmeyen listededir; GEO hedefli ürün CCBot'u bilerek açabilir.
+
+<a id="sinif-okursuz"></a>
 
 ### Okur getirmeyen beyanlı tarayıcılar
 
 [engelle]
+
 **Örnekler:** ShapBot, Reflectionbot, Scrapy, Diffbot, panscient, cold-email-radar, omgili, Timpibot, ImagesiftBot, FriendlyCrawler, Webzio-Extended, Bytespider, CCBot.
+
 **Nasıl tanınır:** Adını kullanıcı ajanında söyler. Ad, büyük-küçük harf gözetmeden alt dize olarak eşlenir.
+
 **Neden bu tutum:** Hiçbiri ziyaretçi getirmez. ShapBot ~90 dakikalık tek bir patlamada 38.022 istek attı, dakikada 541'e çıktı ve arka uç çağrılarını 21 kat artırdı. Adresi 0.0.0.0 loglandığı için onu ancak adı durdurabilirdi.
+
 **Dikkat:** Ad kuralı yalnız adını söyleyen botu durdurur; adını değiştiren kazıyıcı bu katmandan geçer. Yeni adlar, logdaki en çok istek atan kullanıcı ajanları haftada bir okunarak eklenir.
 
 ### SEO paketleri
 
 [engelle]
+
 **Örnekler:** AhrefsBot, SemrushBot, DataForSeoBot, SERankingBacklinksBot, serpstatbot, AwarioBot, Barkrowler, MJ12bot, DotBot.
+
 **Nasıl tanınır:** Ters DNS ve ileri doğrulama: *.ahrefs.net, *.bl.bot.semrush.com, *.blex.seranking.com. AhrefsBot OVH'tan 1.079 farklı adresle gelir; aynı ağda gizli kazıyıcılar da çalıştığı için ad ile ters DNS birlikte okunur.
+
 **Neden bu tutum:** Ürüne ziyaretçi getirmezler, sayfa başına render ve API çağrısı harcatırlar. SERankingBacklinksBot bir sitede 10 dakikada 654 istek attı. Çoğu robots.txt'ye uyar: Disallow yayına girince yalnız robots.txt'yi çektiler.
+
 **Dikkat:** robots.txt'deki ad botun duyurduğu adla birebir yazılır (SERankingBacklinksBot); katı ayrıştırıcılar kısaltmayı tanımaz. Kapı alt dize eşlediği için orada kısa ad da tutar; iki listeyi aynı kaynaktan üret.
 
 ### Link önizleyiciler
 
 [aç]
+
 **Örnekler:** WhatsApp, facebookexternalhit, Twitterbot, LinkedInBot, Slackbot, TelegramBot, iMessage önizlemesi.
+
 **Nasıl tanınır:** Kullanıcı ajanındaki ad. Meta için AS32934 ağı, X için r-*.twttr.com, LinkedIn için *.fwd.linkedin.com ters DNS'i. iMessage önizlemesi linki gönderen kişinin telefonundan gelir.
+
 **Neden bu tutum:** İnsanlar ürüne çoğunlukla WhatsApp ve sosyal medyada paylaşılan linkle gelir; önizlemesi kırık link tıklanmaz. Günlük paylaşımdan sonra Meta ve birkaç reklam denetleyicisi o sayfayı bütün dosyalarıyla yükler; bir sitede bu günde en çok ~500 istek tuttu.
+
 **Dikkat:** Meta'nın eğitim tarayıcısı ile link denetimi aynı ağ bloğundan (57.141.0.0/16) gelir; bloğu ağ olarak reddetmek paylaşımları kırar, eğitim tarayıcısı adıyla ayrılır. Düz Chrome ajanı gönderen önizleyiciler de beklenir; tarayıcı başlık kontrolü onları yanlış yakalayabilir, bu yüzden o kural gölgede kalır.
 
 ### E-posta link tarayıcıları ve güvenlik firmaları
 
 [aç]
+
 **Örnekler:** Microsoft Safe Links (134.149.116.0/24), Kaspersky, Zscaler, Fortinet, Proofpoint, Mimecast, Cisco Umbrella, Trend Micro, Palo Alto, Netskope, Forcepoint, Barracuda, Symantec.
+
 **Nasıl tanınır:** Firmanın ASN'si, sahip adı RIPEstat'ta kontrol edilerek (19 ASN). Microsoft'ta yalnız tarayıcının görüldüğü /24 alınır; AS8075'in geri kalanı herkesin kiralayabildiği Azure'dur. Kullanıcı ajanına bakılmaz: Microsoft hiç göndermez, Kaspersky YaBrowser/Chrome 110 der, Fortinet Firefox der.
+
 **Neden bu tutum:** Kurum ve şirket proxy'leri bir alan adını bu firmaların koyduğu kategoriye göre açar ya da kapatır. Reddedilen bir kategorileyici alan adını derecesiz bırakırsa ofisteki herkes için site kapanabilir. E-posta tarayıcıları da bültendeki linkleri kendi adreslerinden açıp kontrol eder.
+
 **Dikkat:** Microsoft'un tarayıcısı 6 Eki'de linkleri kullanıcı ajanı olmadan düz bir GET ile açtı; sessiz liste olmasa boş ajan kuralı her bülten linkine 403 döndürürdü. Aylık yenileme sahip adı tutmayan numarayı listeden düşürür, yeniden atanmış bir ASN izin listesine girmez.
+
+<a id="sinif-bulut"></a>
 
 ### Tarayıcı kılığında bulut kazıyıcıları
 
 [engelle]
+
 **Örnekler:** Alibaba Cloud 47.79.0.0/16 (AS45102) ve Alibaba Çin (AS37963); Tencent (AS132203, AS45090) ve onun 2019 tarihli 'iPhone OS 13_2_3' ajanı; OVH'ta adres döndüren Chrome/148 kazıyıcısı; saniyede 19 sayfa çeken tek adresli site aynalayıcıları.
+
 **Nasıl tanınır:** Ağ: bu ASN'lerin RIPEstat'ta duyurduğu bütün prefix'ler. Tencent kazıyıcısı 60'tan fazla farklı prefix kullandı, /24 listesi tutmaz. Davranış: yalnız HTML, asset ve _rsc yok, robots.txt hiç okunmaz, Referer sahte 'google.com' (Alibaba'da isteklerin %99,6'sı), saat başı başlayan toplu iş, her istekte yeni adres.
+
 **Neden bu tutum:** Alibaba kazıyıcısı günde 275 istekle başladı ve ~25.000'e çıktı; web isteklerinin %41'ini, UI baytlarının %44'ünü aldı ve gece bellek taşmalarının büyük nedeni oldu. 403 kuralı açıldıktan sonraki 24 saatte 6.654 istek reddedildi. 517.285 istekte bu aralıklardan tek bir uygulama isteği gelmedi.
+
 **Dikkat:** Operatör başka buluta taşınabilir; her gün en çok yalnız-HTML belge çeken reddedilmemiş barındırma ASN'leri listelenir. Kapıdan sonra kalan barındırma trafiği ASN başına saatte 60'ı geçmedi, Alibaba saatte 250–1.500 çalışıyordu. OVH, AWS, Azure, Google Cloud ve Cloudflare bütün olarak engellenmez: kendi SSR çıkışımız, doğrulanmış AhrefsBot, VPN'li uygulama kullanıcıları ve bir kişi adına çalışan AI tarayıcı ajanları oradan gelir. Bu bulutlardaki bazı adresler tam render da yapar; asset yüklemek insan kanıtı sayılmaz.
 
 ### Konut proxy havuzları
 
 [izle]
+
 **Örnekler:** Binlerce ev ve mobil hattan dönen kazıyıcılar (bir sitede 15,9 saatte 7.656 adres, 2.331 ASN, ~100 ülke); her saat bir oran sayfasını farklı proxy adresinden çeken izleyici.
+
 **Nasıl tanınır:** Adreslerin %98'i tek istek atar. Eski sürümlü masaüstü Chrome ajanları sırayla döner (14 ajan, Chrome/99–136). Yalnız HTML; asset, _rsc prefetch, Referer ve çerez yok; hep aynı URL listesi. Aynı sitede gerçek tarayıcılar sayfa isteklerinin %96'sını prefetch olarak yaptı.
+
 **Neden bu tutum:** Adres ya da ağ engeli gerçek kullanıcıyı keser: havuzda 127 Türk ev hattı adresi vardı. Adres başına sınır onları hiç görmez. Bir sitede saatte 410–600 istekle süren, hâlâ sayfa alan en büyük kazıyıcı buydu.
+
 **Dikkat:** Başlık kontrolü tek satırlık bir ayarla atlatılır: Sec-Fetch başlığını eklemek ya da Safari veya Firefox ajanına geçmek yeter. Durdurmak ücretli bot yönetimi ister (Cloud Armor Enterprise, proje başına ~$200/ay ve reCAPTCHA). İnsan kanıtı olarak Türk operatör ağı ya da /_next/static yüklemesi kullanılamaz; havuz Türk ev hatlarını kullanıyor, bazı bulut adresleri tam render yapıyor. Geçerli kanıt, aynı adresten 2 dakika içinde JavaScript'in attığı bir istektir.
+
+<a id="sinif-zafiyet"></a>
 
 ### Zafiyet taramaları
 
 [engelle]
+
 **Örnekler:** /.env ve türevleri, /.git/config, /.aws/credentials, wp-admin, wp-login, xmlrpc.php, *.php, phpinfo, Vite'ın /@fs/ yolu, id_rsa, server.key.
+
 **Nasıl tanınır:** Yol listesi açıkça yazılır. 'Nokta ile başlayan klasör' gibi genel bir kural yazılmaz, çünkü /.well-known uygulama linklerini taşır. Taramalar çoğunlukla 1–2 dakikalık, adres başına 100–300 isteklik patlamalardır.
+
 **Neden bu tutum:** Bir sitede trafiğin %65'i taramaydı ve hiçbiri 200 almadı. Kapıdan önce /xmlrpc.php benzeri bir yol 68.774 baytlık ana sayfayı 3 arka uç çağrısıyla render ediyordu; şimdi 10 baytlık 404 ~1 ms'de döner.
+
 **Dikkat:** Tarama yapan adres sonradan yasaklanmaz: bir xmlrpc taraması ev ve mobil hatlardan geliyordu, yasak operatör NAT'ındaki komşuları keserdi. Harf sınıfı olmayan matcher'da /WP-LOGIN.PHP gibi büyük harfli deneme kapıya ulaşmaz ve ana sayfayı alır.
 
 ### Boş, URL biçimli ya da kesik kullanıcı ajanı
 
 [engelle]
+
 **Örnekler:** Hiç kullanıcı ajanı göndermeyen webshell avcıları (Azure); ajanı bir URL olan kit ('http://<site>/wp-admin/install.php?step=1', Cloudflare Workers çıkışından); tam olarak 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' diye biten kesik ajan.
+
 **Nasıl tanınır:** Ajanın kendisi; hiçbir tarayıcı boş, URL biçimli ya da bu kesik ajanı göndermez. Ek koşul: istek Accept-Language ve Sec-Fetch-Mode da göndermiyor olmalı. Ajanı silen bir proxy'nin arkasındaki tarayıcı bu ikisini yine gönderir.
+
 **Neden bu tutum:** Bir sitede Azure'daki 15 adresin 6 günde attığı 6.222 isteğin hepsi boş ajanlıydı ve hepsi webshell aramasıydı. Kesik ajan, Google Cloud ve Hong Kong'daki tarama kitlerinin imzası.
+
 **Dikkat:** Microsoft'un e-posta link tarayıcısı hiç ajan göndermez; sessiz liste olmasa bülten linkleri 403 alırdı. URL biçimli ajanı gönderen kit Cloudflare'in paylaşılan çıkış adreslerinden gelir; adresle engellenemez.
 
 ### Adresi okunamayan istekler (0.0.0.0)
 
 [sınırla]
+
 **Örnekler:** ShapBot, Reflectionbot, Scrapy, Claude-User, bir fbclid HEAD denetleyicisi; bir sitede 3 günde 22.750 satır.
+
 **Nasıl tanınır:** Cloud Run istek logunda remoteIp 0.0.0.0. Kapıda X-Forwarded-For'un son elemanı boş, okunamaz ya da 0.0.0.0.
+
 **Neden bu tutum:** Ağ kuralı bu istekleri göremez. ShapBot'un 38.022 isteklik patlaması ancak beyan ettiği adla durdurulabilirdi.
+
 **Dikkat:** Sebebi bilinmiyor. Bu yüzden adressiz istek hiçbir kuraldan muaf tutulmaz; ad kuralları ve ortak hız kovası her zaman uygulanır. Ortak kova önce gölgede çalışır, çünkü içinde kullanıcı adına çalışan getiriciler de var.
 
 ### Sahte Googlebot ve sahte AI bot iddiaları
 
 [engelle]
+
 **Örnekler:** Google Cloud'daki tarama kitlerinin sırayla taşıdığı 29 bot adı: Googlebot, GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, meta-externalagent ve diğerleri.
+
 **Nasıl tanınır:** Ajan doğrulanabilir bir ad taşıyor, adres o yayıncının aralığında yok. Google için tarayıcı dosyaları ve Google'ın kendi alanı (goog.json eksi cloud.json) kabul edilir, Cloud Run'ın paylaşılan çıkışı çıkarılır.
+
 **Neden bu tutum:** Kendi testlerimiz dışında, bir penceredeki doğrulanamayan arama botu iddialarının hepsi Google Cloud (270) ve Hetzner (2) tarama adreslerindendi. Adında 'bot' geçen ajan tarayıcı başlık kontrolünden de muaf olduğu için, reddedilmeyen sahte ad bütün katmanları geçen bir kaçış yolu olur.
+
 **Dikkat:** Aralık listesi bayatlarsa gerçek Googlebot 403 alır ve arama trafiği kaybolur. Liste düzenli yenilenir ve Search Console tarama istatistiklerinde 429 ile 5xx izlenir.
 
 ### Kendi trafiğimiz
 
 [aç]
+
 **Örnekler:** Sitenin kendi sunucusunun API çağrıları (Cloud Run çıkışı 34.96.0.0/14 ve 2600:1900::/28, ajan 'node'), uptime kontrolleri, Cloud Build işçileri, kendi betiklerimiz.
+
 **Nasıl tanınır:** İç anahtar (web sunucusunun API sırrı) ve kapı anahtarı başlığı. Cloud Run çıkış aralığı tek başına kanıt sayılmaz, çünkü aynı aralığı herkes kiralayabilir.
+
 **Neden bu tutum:** Bir sitede isteklerin %17'si sitenin kendi sunucusunun API çağrılarıydı; Google Cloud'u ağ olarak engellemek siteyi kırardı. Kendi betiklerimiz 10 saniyede 114 sayfa çekip hız kovasına takıldı.
+
 **Dikkat:** Kendi adresinizi 'dışarıdan biri' testi için kullanmayın; sahte ajanlı testler logda sahte bot gibi görünür ve sayımları bozar. Kapı anahtarı yalnız hız ve başlık katmanlarını atlar; tarama, ad ve ağ kurallarına takılır.
+
+<a id="katman-9"></a>
 
 Katman 9 / 11
 
@@ -4932,51 +6060,77 @@ Katman 9 / 11
 Kod mailleri ayrı bir alt alan adından, outbox'tan ve gönderim bütçesinden geçerek gider.
 
 38 gün
+
 Kod mailleri dört kurumun posta geçidinde bekleyen alan adının yaşı. Kategori başvurusu aynı akşam döndü.
 
 ## Yap
 
 [kanıtlı]
-** İşlem maili aynı transaction'da dedupe_key'li outbox'a yazılır**; mail hatası girişi bozmaz.
+
+**İşlem maili aynı transaction'da dedupe_key'li outbox'a yazılır**; mail hatası girişi bozmaz.
+
 [öneri]
-** Outbox'ı yazan istek boşaltır**: min 0'da arka plan döngüsü yok ve CPU istek dışında kısılır. Satırı yazan istek commit'ten sonra onu aynı istekte gönderir ve 'sent' işaretler; hata isteği bozmaz, satır beklemede kalır. Outbox'a yazan sonraki istek birkaç eski satırı da dener, sabah penceresindeki job kalanı süpürür. Bu iki yol 1 saatten eski gönderilmemiş satır görünce ERROR yazar, alarm bu satırdan kurulur. Satır yaşı için saatlik iş kurulmaz: saatlik yoklama veritabanını %11 uyanık tutar, ayda ~₺101 eder. Giriş kodunun gönderim hatası zaten ilk seferde acil alarmdır.
+
+**Outbox'ı yazan istek boşaltır**: min 0'da arka plan döngüsü yok ve CPU istek dışında kısılır. Satırı yazan istek commit'ten sonra onu aynı istekte gönderir ve 'sent' işaretler; hata isteği bozmaz, satır beklemede kalır. Outbox'a yazan sonraki istek birkaç eski satırı da dener, sabah penceresindeki job kalanı süpürür. Bu iki yol 1 saatten eski gönderilmemiş satır görünce ERROR yazar, alarm bu satırdan kurulur. Satır yaşı için saatlik iş kurulmaz: saatlik yoklama veritabanını %11 uyanık tutar, ayda ~₺101 eder. Giriş kodunun gönderim hatası zaten ilk seferde acil alarmdır.
+
 [kanıtlı]
-** SPF, DKIM, DMARC ve BIMI ilk gönderimden önce**; alan adı haftalar önce alınıp ısıtılır.
+
+**SPF, DKIM, DMARC ve BIMI ilk gönderimden önce**; alan adı haftalar önce alınıp ısıtılır.
+
 [öneri]
-** Resend AB bölgesinde**; kodlar auth., bülten news.'ten. Free 3 alan adı veriyor ve her alt alan adı ayrı sayılır: apex, auth. ve news. kotayı doldurur. Test ortamı prod'un sağlayıcı hesabından gönderirse aynı günlük 100'ü yer ve prod'daki ortak sayaç bunu görmez. Free'de test için dördüncü alan adı da yok. Bizde test ortamının SMTP ayarı boş: kodlar test API'sinin loguna düşer, izinli adresler sabit kodla girer. Test ortamından gerçek gönderim yalnız kurulumdaki tek doğrulamadır; auth.'tan, izin listesindeki bir adrese gider.
+
+**Resend AB bölgesinde**; kodlar auth., bülten news.'ten. Free 3 alan adı veriyor ve her alt alan adı ayrı sayılır: apex, auth. ve news. kotayı doldurur. Test ortamı prod'un sağlayıcı hesabından gönderirse aynı günlük 100'ü yer ve prod'daki ortak sayaç bunu görmez. Free'de test için dördüncü alan adı da yok. Bizde test ortamının SMTP ayarı boş: kodlar test API'sinin loguna düşer, izinli adresler sabit kodla girer. Test ortamından gerçek gönderim yalnız kurulumdaki tek doğrulamadır; auth.'tan, izin listesindeki bir adrese gider.
+
 [kanıtlı]
-** Kod maili linksiz, uzak görselsiz, logo CID**; kod 30 dk, canlı kodlar FOR UPDATE ile kilitlenir; 60 sn'lik 'tekrar gönder'.
+
+**Kod maili linksiz, uzak görselsiz, logo CID**; kod 30 dk, canlı kodlar FOR UPDATE ile kilitlenir; 60 sn'lik 'tekrar gönder'.
+
 [öneri]
-** Konu ve ilk satır kodu adlandıran sözden hemen sonra verir** ('… kodunuz: 482915'); İngilizce kalıp bir uygulamamızda iPhone'da önerildi, Türkçe kalıp doğrulanmadı.
+
+**Konu ve ilk satır kodu adlandıran sözden hemen sonra verir** ('… kodunuz: 482915'); İngilizce kalıp bir uygulamamızda iPhone'da önerildi, Türkçe kalıp doğrulanmadı.
+
 [öneri]
-** Kota tüketmeye karşı adres ve IP sınırları ile UTC gününe göre ortak sayaç veritabanında durur**: 70'te uyarı, günün toplamı 80'e varınca toplu gönderim durur, giriş kodları 100'e kadar gider; 100 dolarsa kodlar yedek sağlayıcıdan. Web'deki kod formunda Turnstile, mobil kod ucunda App Check.
+
+**Kota tüketmeye karşı adres ve IP sınırları ile UTC gününe göre ortak sayaç veritabanında durur**: 70'te uyarı, günün toplamı 80'e varınca toplu gönderim durur, giriş kodları 100'e kadar gider; 100 dolarsa kodlar yedek sağlayıcıdan. Web'deki kod formunda Turnstile, mobil kod ucunda App Check.
+
 [kanıtlı]
-** Toplu mail yalnız doğrulanmış adreslere**; RFC 8058 List-Unsubscribe; GET hiçbir şey değiştirmez; belirsiz sonuç 'sent_pending' kalır.
+
+**Toplu mail yalnız doğrulanmış adreslere**; RFC 8058 List-Unsubscribe; GET hiçbir şey değiştirmez; belirsiz sonuç 'sent_pending' kalır.
 
 ## Başlangıç ayarları
 
 [ölçüldü]
+
 Resend Free: 3.000/ay, 100/gün, 3 alan adı; Pro $20/ay, 10 alan adı. Kota dolunca API 429 döner, mail gitmez.
+
 [kanıtlı]
+
 Adres başına saatte 8, IP başına saatte 40 kod, 60 sn bekleme.
 
 ### Kaçın
 
 [kanıtlı]
+
 Kod mailinde link ya da uzak görsel; 10 dakikada ölen kod.
+
 [ölçüldü]
+
 Kod ve bülteni aynı kotadan sınırsız göndermek; sağlayıcı değiştirmenin itibarı düzelteceğini sanmak.
 
 ### Bizdekinden iyisi
 
 [öneri]
+
 Gönderim bölgesi ilk gün AB seçilir; sonradan değiştirmek destek ister ve DKIM değişebilir.
+
 [öneri]
+
 Haftalık abone ~60'ı geçince bülten günün 80'lik payına sığmaz: günlere yayılır, ya da Resend Pro veya bülten için SES ($0,10/1.000) alınır.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **2 Eki** dört kurumun posta geçidi 38 günlük alan adının kodlarını bekletti; başvuru aynı akşam döndü, kod 30 dk oldu.
+
 **18 Ağu'ya kadar** bir projemizde outbox'ı boşaltan bir şey yoktu.
 
 <a id="icerik"></a>
@@ -4992,7 +6146,9 @@ E-posta ve paylaşım
 Sunucudan, resmi API'lerle, onaylı ve kayıtlı paylaşım yapan bir hat gerekir: şirkete ait hesaplar ve uygulamalar, token kasası ve süre izleyici, tekilliği olan yayın kuyruğu, platform başına görsel çizici, insan onayı, denetim kaydı, deploy gerektirmeyen kapatma anahtarı ve harcama tavanı. Platform kuralları ve fiyatları sık değişir; X 2026'da fiyat modelini iki kez değiştirdi. Bu yüzden tavan, alarm ve kapatma anahtarı seçenek değil, şarttır.
 
 **30 gün** X kredisi bitmişti; her gün denenen paylaşım 402 aldı ve kimse fark etmedi.
+
 **~13 kat** X'te bağlantılı gönderi bağlantısıza göre: $0,20 ve $0,015.
+
 **60 gün** Meta kullanıcı token'ının ömrü; süresiz system user token'ına geçildi.
 
 ## Bizde ne oldu
@@ -5403,43 +6559,77 @@ Meta'nın izin geri alma ya da uygulama kaldırma için bildirim (deauthorize ca
 
 System user token'ı üretmek için belgeler API yolunda uygulamanın Ads Management standart erişimi olmasını istiyor; bizde token iş yöneticisi ekranından üretildi ve bu şart sorulmadı.
 
+<a id="icerik-kaynaklar"></a>
+
 ## Kaynaklar
 
 Resmi sayfalar Ekim 2026'da okundu. "Bizde ne oldu" kartları kendi kayıtlarımızdan.
 
 **X API fiyatları**https://docs.x.com/x-api/getting-started/pricing
+
 **X başlangıç kredileri**https://docs.x.com/x-api/getting-started/free-credits
+
 **X API değişiklik günlüğü**https://docs.x.com/changelog
+
 **X hız sınırları**https://docs.x.com/x-api/fundamentals/rate-limits
+
 **X yanıt kodları ve hatalar**https://docs.x.com/x-api/fundamentals/response-codes-and-errors
+
 **X medya yükleme önerileri**https://docs.x.com/x-api/media/quickstart/best-practices
+
 **X OAuth 2.0 yetkilendirme kodu ve PKCE**https://docs.x.com/fundamentals/authentication/oauth-2-0/authorization-code
+
 **X yalnız uygulama token'ı**https://docs.x.com/fundamentals/authentication/oauth-2-0/application-only
+
 **X kimlik doğrulama SSS**https://docs.x.com/fundamentals/authentication/faq
+
 **X geliştirici uygulaması ve izinler**https://docs.x.com/resources/fundamentals/developer-apps
+
 **X geliştirici kuralları**https://docs.x.com/developer-guidelines
+
 **X otomasyon kuralları (yardım sayfası, Cloudflare yüzünden okunamadı)**https://help.x.com/en/rules-and-policies/x-automation
+
 **Instagram platformu genel bakış**https://developers.facebook.com/docs/instagram-platform/overview
+
 **Instagram içerik yayınlama**https://developers.facebook.com/docs/instagram-platform/content-publishing
+
 **Instagram medya ucu, biçim ve boyut**https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media
+
 **Instagram girişli yol**https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/business-login
+
 **Meta erişim seviyeleri**https://developers.facebook.com/docs/graph-api/overview/access-levels
+
 **Meta hız sınırları**https://developers.facebook.com/docs/graph-api/overview/rate-limiting
+
 **Meta hata kodları**https://developers.facebook.com/docs/graph-api/guides/error-handling
+
 **Meta uzun ömürlü token**https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived
+
 **Meta 90 günlük veri erişimi süresi**https://developers.facebook.com/docs/facebook-login/auth-vs-data
+
 **Meta system user token'ı**https://developers.facebook.com/docs/business-management-apis/system-users/install-apps-and-generate-tokens
+
 **Meta system user sayıları**https://developers.facebook.com/docs/marketing-api/system-users/overview
+
 **Facebook Sayfası gönderileri**https://developers.facebook.com/docs/pages-api/posts
+
 **Threads gönderileri**https://developers.facebook.com/docs/threads/posts
+
 **Threads genel bakış ve sınırlar**https://developers.facebook.com/docs/threads/overview
+
 **Threads uzun ömürlü token**https://developers.facebook.com/docs/threads/get-started/long-lived-tokens
+
 **LinkedIn Posts API**https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api
+
 **LinkedIn erişim katmanları**https://learn.microsoft.com/en-us/linkedin/marketing/increasing-access
+
 **LinkedIn Community Management başvurusu**https://learn.microsoft.com/en-us/linkedin/marketing/community-management-app-review
+
 **LinkedIn programatik yenileme token'ı**https://learn.microsoft.com/en-us/linkedin/shared/authentication/programmatic-refresh-tokens
 
 <a id="katmanlar-3"></a>
+
+<a id="katman-10"></a>
 
 Katman 10 / 11
 
@@ -5448,44 +6638,63 @@ Katman 10 / 11
 Alarmlar ilk kullanıcıdan önce kurulur ve her biri uçtan uca denenir.
 
 192/gün
+
 Alarmsız bir serviste 2 Eki'de tesadüfen bulunan günlük OOM sayısı.
 
 ## Yap
 
 [öneri]
-** İlk gün**: uptime, 5xx, açılışta veritabanı yok, Job/Scheduler hatası, yedek hatası, OOM, Cloud Build hatası, ERROR>0 (bugün seviyesi, geliştiriciye e-posta; süzgece NOT jsonPayload.message="alert" eklenir, yoksa notify()'ın kendi satırı her uyarıyı ikinci kez yollar; != yazılmaz, alanı olmayan çökme satırlarını da dışarıda bırakır), kritik uçlarda eşiksiz 5xx, dead-man's switch, 'db wake' sayısı, eski gönderilmemiş outbox satırı.
+
+**İlk gün**: uptime, 5xx, açılışta veritabanı yok, Job/Scheduler hatası, yedek hatası, OOM, Cloud Build hatası, ERROR>0 (bugün seviyesi, geliştiriciye e-posta; süzgece NOT jsonPayload.message="alert" eklenir, yoksa notify()'ın kendi satırı her uyarıyı ikinci kez yollar; != yazılmaz, alanı olmayan çökme satırlarını da dışarıda bırakır), kritik uçlarda eşiksiz 5xx, dead-man's switch, 'db wake' sayısı, eski gönderilmemiş outbox satırı.
+
 [kanıtlı]
-** Her alarm '[TEST]' hatasıyla uçtan uca denenir**; durum Monitoring API'den okunur.
+
+**Her alarm '[TEST]' hatasıyla uçtan uca denenir**; durum Monitoring API'den okunur.
+
 [öneri]
-** Neon Free'de tüketim API'si yok**: uygulama her uyanışı 'db wake' satırıyla loglar, o satırdan log metriği ve alarm kurulur; Usage sayfası haftada bir okunur, 50 ve 80 CU-saatte uyarı. Gerçek kullanıcılı proje Free'de durmaz.
+
+**Neon Free'de tüketim API'si yok**: uygulama her uyanışı 'db wake' satırıyla loglar, o satırdan log metriği ve alarm kurulur; Usage sayfası haftada bir okunur, 50 ve 80 CU-saatte uyarı. Gerçek kullanıcılı proje Free'de durmaz.
+
 [öneri]
-** Yenileme takvimi**: Apple Developer üyeliği (düşerse uygulama satıştan kalkar), alan adları, GCP, Neon, registrar, Expo ve Resend kartlarının son kullanma tarihi, APNs/FCM anahtarları, token'lar, krediler; 30 ve 7 gün önce hatırlatma.
+
+**Yenileme takvimi**: Apple Developer üyeliği (düşerse uygulama satıştan kalkar), alan adları, GCP, Neon, registrar, Expo ve Resend kartlarının son kullanma tarihi, APNs/FCM anahtarları, token'lar, krediler; 30 ve 7 gün önce hatırlatma.
+
 [kanıtlı]
-** Dış entegrasyon hataları ERROR üretir**; gözetimsiz kontroller bulutta çalışır.
+
+**Dış entegrasyon hataları ERROR üretir**; gözetimsiz kontroller bulutta çalışır.
 
 ## Başlangıç ayarları
 
 [kanıtlı]
+
 Uptime 300 sn, 3 bölge; 5xx servis başına 5 dk'da >3.
+
 [öneri]
+
 Ödeme ve mağaza webhook'larında başarılı teslim durursa ya da tek bir 5xx görülürse ayrı alarm.
+
 [öneri]
+
 Alarmlar bugün ücretsiz; ücret en erken 1 Eyl 2027'de, metrik referansı başına ayda $0,35. Uptime, billing ve kota metriğine bağlı alarm ücretsiz kalır. Proje başına 50 GiB log ücretsiz.
 
 ### Kaçın
 
 [ölçüldü]
+
 Alarmsız işletmek; severity'siz log; kaçağı ay sonu faturasında bulmak.
 
 ### Bizdekinden iyisi
 
 [öneri]
+
 Çökme telemetrisi için Sentry Developer $0, Team $26/ay; KVKK adımlarından sonra.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **23 Eyl** alarm testi 16:57 → 17:01 → 17:11.
+
 **2 Eki** alarmsız bir serviste tek günde 192 OOM bir maliyet analizinde tesadüfen bulundu.
+
 **28 Ağu–27 Eyl** bir API kredisi bitince 30 paylaşım 402 aldı.
 
 <a id="uyarilar"></a>
@@ -5503,7 +6712,9 @@ Her uyarı için beş şey yazılır: sinyal, eşik, seviye, kanal ve harekete g
 Dört ürünümüzde sessiz kalan arızaların çoğunda sinyal vardı: bir özet e-postasında bir satır, sağlayıcının panelinde başarısız teslimlerin listesi, faturada bir kalem. Eksik olan, sinyalin eşik aşıldığı anda, doğru kanaldan, doğru kişiye gitmesiydi. Teknik alarmların eşikleri [Gözlem ve alarmlar](#katman-10) katmanında; bu bölüm onları ürün sahibine taşıyan yolu kurar.
 
 **5 / 0 / 0 / 0** Alarm politikası: Ürün A, B, C ve D, 8 Eki 2026. Ürün A'nın beşi erişim, 5xx, yedek, yedek zamanlayıcısı ve açılışta veritabanı içindir.
+
 **2 e-posta** Ürün A'daki beş alarmın gittiği iki kutu. Telefona giden kanal yok; postanın kutuya düştüğünü iki alıcıdan biri doğruladı.
+
 **0** Dört üründe dış API hatası, kota, token süresi ve hiç çalışmayan iş için kurulu alarm.
 
 ## Ne kadar sonra, nereden öğrenildi
@@ -5511,6 +6722,7 @@ Dört ürünümüzde sessiz kalan arızaların çoğunda sinyal vardı: bir öze
 Arızanın başladığı andan fark edildiği ana. Ölçek gerçek; aynı çalışma ve 1 saat bu ölçekte ancak bir çizgi.
 
 Bir kontrol ya da alarm yakaladıKullanıcı, fatura ya da tesadüf gösterdi
+
 _Grafik: Arızanın başlangıcından fark edilmesine geçen süre ve nasıl öğrenildiği: Ürün A: ilk yedek 7 bayt: aynı çalışmada, boyut karşılaştırması; Ürün B: site haritası kısaldı: 1 saat içinde, haftalık kontrol; Ürün C: Instagram token'ı doldu: ~21 saat, paylaşım düşünce; Ürün A: iOS build kotası doldu: 2 gün, build reddedilince; Ürün C: X kredisi bitti: 30 gün, ürün sahibi sorunca_
 Kontrolü olan iki olay aynı çalışmada ya da bir saat içinde görüldü. Kontrolü olmayan üç olay ~21 saatte, 2 günde ve 30 günde fark edildi. Ödeme webhook'u (en az 21 gün), boşta çalışan API sunucusu (25 gün) ve yazılmayan analitik olayları (~7 gün) [Analitik ve admin](#analitik) bölümünün grafiğinde; paylaşım hattı [İçerik otomasyonu](#icerik) bölümünde.
 
@@ -5553,41 +6765,49 @@ Her satır bir uyarıdır; etiketsiz satırlar öneridir. Mesaj sütunu ilk sat�
 Ürün sahibi uyarıyı telefonda, bir bakışta okur. Önce kurallar, sonra iki örnek.
 
 1. [öneri]
+
 Konu tek satırdır: seviye ve ne olduğu, düz Türkçe.
 
 Ürün A'nın beş alarmında kendi konu satırı yok; konuyu Google üretiyor. Google konu için 255 karakter ve en çok 3 bağlantı veriyor.
 
 2. [öneri]
+
 İkinci satır kullanıcıya etkisini söyler; etkisi yoksa onu yazar.
 
 Webhook olayında ürün sahibinin işine yarayan, etkiyi söyleyen kısa cümleydi: 'ödemeler etkilenmedi'.
 
 3. [öneri]
+
 Üçüncü satır tek iş ve sorumlusu, dördüncü satır bağlantıdır.
 
 Yığın izi, istek gövdesi, token ve kişisel veri mesaja girmez; ayrıntı admin'deki kayıttadır. Ağ hatasında istemci kütüphanesi tam adresi hata metnine koyar; adreste token varsa mesaja da düşer.
 
 4. [öneri]
+
 Aynı arıza bir kez bildirilir, sonra günde bir hatırlatılır.
 
 Anahtar kaynak, tür ve hedeftir; açık uyarıda yeni olay yalnız sayacı artırır. Kapanmamış arıza her sabah yeniden gelir. Susturmak bir düğmedir ve sebebiyle kayda geçer.
 
 5. [öneri]
+
 Telefona yalnız acil uyarı gider; acilin sessiz saati yoktur.
 
 Bugün seviyesindekiler sessiz saatte (örnek: 22:00–08:00) bekler, sabah tek e-postada toplanır.
 
 6. [öneri]
+
 Acil uyarının iki alıcısı vardır; ikisine aynı anda gider.
 
 Bekleyip ikinci kişiye geçen bir zamanlayıcı kurulmaz. Cloud Run min 0'da arka plan döngüsü yok. Birkaç dakikada bir çalışan bir kontrol Neon'u uyanık tutar, API çökünce de çalışmaz. Google bir politikadaki bütün kanallara aynı anda gönderir. Uyarı kutusundaki 'gördüm' kimin baktığını kayda geçirir, öteki kişi aynı işe başlamaz. Google'da 'gördüm' demek tekrar bildirimi durdurmaz; durduran kapatmaktır.
 
 7. [öneri]
+
 Haftalık özet boş haftada da gelir ve 'N kontrol geçti' yazar.
 
 Ürün A'da gece raporu geldiği halde gelmedi sanıldı; o korkuyla açılan bir ayar API sunucusunu 25 gün boşta çalıştırdı (ayda ~₺255). Her hafta aynı saatte gelen ve 'N kontrol geçti' yazan özet bu tahmine yer bırakmaz.
 
 8. [kanıtlı]
+
 Her uyarı türü bir kez sahte bir hatayla uçtan uca denenir; konuda TEST yazar.
 
 Ürün A'nın yedek alarmı böyle denendi: hata 16:57, alarm 17:01, kapanış 17:11. Politikanın adına geçici olarak TEST eklenir; kapanış postası da bu adı taşıdığı için ad, alarm kapandıktan sonra eski haline döner.
@@ -5617,6 +6837,7 @@ Altı parça, hepsi mevcut yığının içinde: Go API, Postgres, Cloud Run, Clo
 ### 1. notify() ve uyarı tablosu
 
 [öneri]
+
 API'deki tek giriş noktası. Uyarıyı tabloya yazar; aynı anahtar açıkken yeni satır açmaz, sayacı artırır. Yeni açılan ya da günü dönen uyarı için tek bir yapılandırılmış log satırı yazar.
 
 **Nerede:** API içinde; tablo ürünün kendi Postgres'inde.
@@ -5634,12 +6855,12 @@ CREATE TABLE alerts (
   id        bigserial PRIMARY KEY,
   key       text NOT NULL,  -- kaynak:tür:hedef
   level     text NOT NULL CHECK
-    (level IN ('acil','bugun','haftalik')),
+    (level IN ('urgent','today','weekly')),
   title     text NOT NULL,  -- tek satır
   effect    text NOT NULL,  -- kullanıcıya etkisi
   action    text NOT NULL,  -- yapılacak iş
   link      text,
-  owner     text NOT NULL,  -- urun | gelistirici
+  owner     text NOT NULL,  -- product | developer
   count     integer NOT NULL DEFAULT 1,
   first_at  timestamptz NOT NULL DEFAULT now(),
   last_at   timestamptz NOT NULL DEFAULT now(),
@@ -5671,7 +6892,7 @@ slog.Error("alert",
 ```
 resource.type="cloud_run_revision"
 jsonPayload.message="alert"
-jsonPayload.alert_level="acil"
+jsonPayload.alert_level="urgent"
 
 labelExtractors:
   alert_key: EXTRACT(jsonPayload.alert_key)
@@ -5682,6 +6903,7 @@ labelExtractors:
 ### 2. Google'ın log alarmı
 
 [öneri]
+
 İki politika: acil satır telefona ve e-postaya, bugün olan e-postaya. Politika alert_key etiketini çıkarır; her uyarı kendi zaman çizgisini alır. Bildirim aralığı 1 saat, kendiliğinden kapanma 1 gün.
 
 **Nerede:** Cloud Monitoring. Bizde iki e-posta kutusuna kurulu, hiç tetiklenmedi; iki politika ve mobil kanal denenmedi.
@@ -5693,6 +6915,7 @@ labelExtractors:
 ### 3. Admin'deki uyarı kutusu
 
 [öneri]
+
 Açık uyarılar seviyeye göre sıralı; 'gördüm' ve 'kapat' düğmeleri, ikisi de denetim kaydına. Kapanan uyarı silinmez: bulut logları 30 günde gider, tablo kalır.
 
 **Nerede:** Admin ekranı; okuma ucu tabloyu okur.
@@ -5704,6 +6927,7 @@ Açık uyarılar seviyeye göre sıralı; 'gördüm' ve 'kapat' düğmeleri, iki
 ### 4. Bütçe ve Pub/Sub
 
 [öneri]
+
 Her faturalama hesabında bütçe: %50, %80, %100, e-postayla. Aynı bütçe bir Pub/Sub konusuna bağlanır; Google günde birkaç kez tutarı, bütçeyi ve aşılan eşiği yollar. Küçük bir uç mesajdaki alertThresholdExceeded değerini GCS'teki küçük bir dosyada tutulan son eşikle karşılaştırır; dosya dönem başına (costIntervalStart) göre tutulur, yeni ayda sıfırdan başlar. Değer saklanandan büyük değilse veritabanına hiç gitmez; büyükse notify() çağırır ve dosyayı günceller. Pub/Sub aynı mesajı birden çok kez ve sırasız getirebilir; 'büyükse' kuralı bunu da karşılar. Günde birkaç mesaj böylece veritabanını uyandırmaz.
 
 **Nerede:** Cloud Billing ve Pub/Sub; uç API içinde.
@@ -5715,6 +6939,7 @@ Her faturalama hesabında bütçe: %50, %80, %100, e-postayla. Aynı bütçe bir
 ### 5. Denetim işi
 
 [öneri]
+
 Günde iki kez: sağlayıcı bakiyeleri ya da kendi sayaçlarımız, kotalar, token bitişleri, yenileme tablosundaki tarihler ve her zamanlanmış işin son başarısı (günlük işte 26 saat). Bulduğunu notify()'a verir. Sabah çalışması veritabanı penceresine girer, tablolara ve sayaçlara bakar. Akşam çalışması veritabanına dokunmaz: yalnız logları ve sağlayıcı API'lerini okur, bir şey bulursa notify()'a verir.
 
 **Nerede:** Dağıtıcı job'ın kod takviminde, sabah ve akşam. Ayrı Scheduler işi açılmaz. Diğer işlerin hatası onu durdurmaz. İş yine de API'de bir uç olarak kalacaksa token'ı API kendisi doğrular: OIDC token'ının hedef adresi (audience) ve servis hesabı kontrol edilir. API mobil istemciler için ağda açık olduğundan bu kontrolü Cloud Run yapmaz.
@@ -5726,6 +6951,7 @@ Günde iki kez: sağlayıcı bakiyeleri ya da kendi sayaçlarımız, kotalar, to
 ### 6. Haftalık özet
 
 [öneri]
+
 Pazartesi sabahı: hafta içinde açılan ve kapanan uyarılar, eşiğe yaklaşan sayaçlar, 30 gün içinde dolacak süreler, OOM ve 5xx sayıları.
 
 **Nerede:** Zamanlanmış iş; ürünün kendi e-posta sağlayıcısıyla gider.
@@ -5752,31 +6978,37 @@ Sunucuda hazır servis gerekmez; notify() altyapısı ve Google'ın ücretsiz Er
 ### Yeni üründe
 
 1. [kanıtlı]
+
 Sunucu ve iş hataları Monitoring alarmına bağlanır; ikinci bir log servisi eklenmez.
 
 Ürün A'da beş alarm ücretsiz kurulu; yedek alarmı denemede 4 dk'da çaldı. 5xx ve log alarmları hiç çalmadı.
 
 2. [öneri]
+
 notify(), uyarı tablosu ve Error Reporting ilk sürümde kurulur.
 
 Yığın stack_trace alanına yazılır, sahte bir panikle grubun açıldığı görülür. Ayrı fatura yok; bedeli log.
 
 3. [öneri]
+
 Mobilde ilk mağaza sürümünden önce bir çökme aracı kurulur.
 
 Build'e girmeyen araç o build'in native çökmesini görmez; kurulana kadar mobil hata error_shown olayıyla API'ye gelir. Araç AB bölgeli Sentry, [KVKK](#kvkk) adımlarından sonra; veri yerinin seçilememesi kabul edilirse Crashlytics.
 
 4. [öneri]
+
 Kişisel veri hata yüküne girmez.
 
 sendDefaultPii false; beforeSend e-posta, token ve gövdeyi siler; hesap kimliği yerine kurulum kimliğinin HMAC'i.
 
 5. [öneri]
+
 Hata fırtınası fatura çıkaramaz.
 
 Sentry'de ani artış koruması (spike protection) açık, kullandıkça öde bütçesi $0; kota bitince olay düşer. Error Reporting'in bedeli log; aylık log 25 GiB'ı (ücretsiz 50 GiB'ın yarısı) geçince alarm çalar.
 
 6. [öneri]
+
 Ürün sahibine yalnız kullanıcıyı etkileyen kısım gider, o da notify()'dan.
 
 Yeni sürümdeki çökme artışı, ödeme ve girişteki hata. Error Reporting'in webhook kanalı notify()'a bağlanır.
@@ -5918,23 +7150,41 @@ Sessiz saat, 14 günlük bakiye eşiği ve giriş kodu oranının eşiği bizde 
 Resmi sayfalar 8 Ekim 2026'da okundu. Bizim rakamlarımız alarm listelerinden, vaka kayıtlarından ve faturalardan.
 
 **Cloud Monitoring bildirim kanalları ve yedek kanal**https://docs.cloud.google.com/monitoring/support/notification-options
+
 **Alarm belgesi: konu satırı ve bağlantılar**https://docs.cloud.google.com/monitoring/alerts/doc-variables
+
 **Log tabanlı alarm: bildirim aralığı, kapanma**https://docs.cloud.google.com/logging/docs/alerting/log-based-alerts
+
 **Log alarmında etiket ve günlük olay sınırı**https://docs.cloud.google.com/logging/docs/alerting/monitoring-logs
+
 **Metrik yokluğu alarmı: en çok 23,5 saat**https://docs.cloud.google.com/monitoring/alerts/metric-absence
+
 **Olaylar, 'gördüm' ve tekrar bildirim**https://docs.cloud.google.com/monitoring/alerts/incidents-events
+
 **Cloud Billing bütçeleri**https://docs.cloud.google.com/billing/docs/how-to/budgets
+
 **Bütçe bildirimini Pub/Sub ile almak**https://docs.cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications
+
 **Logging, Monitoring, Error Reporting fiyatları**https://cloud.google.com/products/observability/pricing
+
 **Resend kota ve sınırları**https://resend.com/docs/knowledge-base/account-quotas-and-limits
+
 **Expo fiyatları, build hakkı**https://expo.dev/pricing
+
 **X API yanıt kodları**https://docs.x.com/x-api/fundamentals/response-codes-and-errors
+
 **Meta uzun ömürlü token**https://developers.facebook.com/docs/facebook-login/guides/access-tokens/get-long-lived
+
 **Meta sistem kullanıcısı token'ı**https://developers.facebook.com/docs/business-management-apis/system-users/install-apps-and-generate-tokens
+
 **Error Reporting: yığın alanları**https://docs.cloud.google.com/error-reporting/docs/formatting-error-messages
+
 **Error Reporting: bildirim ve saatlik sınır**https://docs.cloud.google.com/error-reporting/docs/notifications
+
 **Sentry fiyatları ve kotalar**https://sentry.io/pricing/
+
 **Sentry veri bölgesi**https://docs.sentry.io/organization/data-storage-location/
+
 **Crashlytics verisi, yeri ve süresi**https://firebase.google.com/support/privacy
 
 <a id="analitik"></a>
@@ -5952,10 +7202,15 @@ Olay kaydı ve yönetim yüzeyi mobil kit gibi ilk sürümle kurulur. Sonradan e
 Dört ürünümüzün hiçbirinde kurulum ve paywall olayı yok; 'kaç kişi indirip kaçı ödedi' sorusunun cevabı bugün de yok. Admin tarafında okuma ekranları erken geldi; bayrak, güncelleme politikası ve iş durumu ekranları gelmedi. Mobil kitin bayrak, güncelleme politikası ve duyuru parçaları bu bölümdeki admin uçlarından beslenir: [Mobil uzaktan kontrol kiti](#mobilkit).
 
 **~1 hafta** Ürün A'nın ilk analitik haftası (26 Ağu–2 Eyl 2026) yazılmadı. API her olaya 500 döndü, uygulama hatayı göstermedi. Cihaz kuyruklarından yalnız bir kısmı sonra geldi.
+
 **21 gün** Aynı jsonb hatası ve bir NOT NULL hatasıyla ödeme webhook'u 2–23 Eyl 2026 arası her teslimde 500 döndü; 23 Eyl öncesindeki ödeme olayları kayıp.
+
 **139 / 211** 28 Eyl 2026'da 28 günlük sayım iOS'ta 211 telefonun 139'unu eski sürümde gösterdi. Gelir aracının 7 günlük aktif müşteri sayımında gerçek 308'de 22'ydi.
+
 **553 ile 228** 28 Eyl 2026'da aynı dakikada rapor e-postası ve gelir aracının paneli 'yeni müşteri' için bu iki rakamı verdi. E-posta aracın eski bir ucunu okuyordu.
+
 **en az 14** 19 Eyl–8 Eki 2026 arasında güncelleme politikası (9) ve bayrak (5) için elle açılan revizyon. Admin ekranı yoktu.
+
 **~₺255/ay** Gece raporu gelmedi sanıldı, API konsoldan sürekli açık bırakıldı (7 Eyl–2 Eki 2026). Rapor gelmişti; bunu gösteren bir yer yoktu.
 
 ## Kimsenin görmediği sorunlar
@@ -6056,13 +7311,17 @@ Olay sunucuya, kendi veritabanımıza gider. Üçüncü taraf araç ancak veri y
 5. Reklam neden gösterilmedi?
 
 [kanıtlı]
-** Olayda kişiyi gösteren hiçbir şey olmaz**: kullanıcı kimliği, ad, e-posta, telefon, serbest metin, kesin konum. Kurulum kimliği sunucu anahtarıyla HMAC'lenir; anahtar ortam başına ayrıdır.
+
+**Olayda kişiyi gösteren hiçbir şey olmaz**: kullanıcı kimliği, ad, e-posta, telefon, serbest metin, kesin konum. Kurulum kimliği sunucu anahtarıyla HMAC'lenir; anahtar ortam başına ayrıdır.
+
 [ölçüldü]
-** Olay ilk sürümde gelir**. Sonradan eklenen olayın geçmişi yoktur ve mobilde her yeni olay bir mağaza sürümünü bekler. Bizde paylaşım sayımı ve PDF sonucu ayrı birer mağaza sürümünü bekledi.
+
+**Olay ilk sürümde gelir**. Sonradan eklenen olayın geçmişi yoktur ve mobilde her yeni olay bir mağaza sürümünü bekler. Bizde paylaşım sayımı ve PDF sonucu ayrı birer mağaza sürümünü bekledi.
 
 ### Olay adları
 
 [öneri]
+
 Ad küçük harf, İngilizce, alt çizgili; önce nesne, sonra eylem; en çok 40 karakter (GA4 sınırı): `app_open`, `signup_complete`, `paywall_view`, `purchase_result`, `ad_result`, `share_tap`, `error_shown`. Sonuç aynı olayın `outcome` alanına yazılır ve sabit bir listeden gelir (bizde Premium'suz PDF için 10 değer). Bir ad bir kez kullanılır, anlamı değişirse yeni ad açılır. Bütün ad ve değerler tek bir sözlük dosyasındadır; istemci ve sunucu testleri bu dosyayı okur.
 
 ### Her olayda
@@ -6070,39 +7329,51 @@ Ad küçük harf, İngilizce, alt çizgili; önce nesne, sonra eylem; en çok 40
 Zarf alanları; olayın kendi alanları props içinde.
 
 event_id [kanıtlı]
+
 İstemcinin ürettiği UUID; sunucuda tekil, yeniden gönderilen olay bir kez yazılır.
 
 name, outcome [öneri]
+
 Sözlükteki ad ve sonuç değeri.
 
 occurred_at [kanıtlı]
+
 Cihaz saati; 7 gün geriye, 10 dk ileriye kadar kabul. Raporlar bunu sayar.
 
 received_at [kanıtlı]
+
 Sunucu saati; saklama ve silme bunu kullanır.
 
 install_id [kanıtlı]
+
 İlk açılışta üretilen rastgele kimlik, güvenli depoda. Sunucuda yalnız HMAC'i durur. iOS'ta güvenli depo (Keychain) uygulama silinip yeniden kurulunca çoğu zaman kalır, Android'de silinir; Expo buna güvenilmemesini söyler. [öneri] Yeni kurulum kararı ve `app_open`'daki `first=true` bu kimliğe bakılarak verilmez; uygulamanın kendi deposundaki bayraktan okunur.
 
 session_id [öneri]
+
 Her açılışta yeni rastgele kimlik; huni sırası için.
 
 platform, app_version, build [kanıtlı] build [öneri]
+
 Her olayda. Bizde platform ve sürüm her olayda var; build olayda yok, yalnız iOS isteklerinin kullanıcı ajanında.
 
 env [öneri]
+
 prod ya da test; canlı API prod olmayan olayı reddeder.
 
 tier [kanıtlı]
+
 premium, free ya da guest; sunucu oturumdan belirler.
 
 segment [kanıtlı]
+
 Kaba kullanıcı tipi (uzman ya da son kullanıcı); kimlik taşımaz.
 
 consent [öneri]
+
 Üçüncü taraf ölçüm ve reklam kişiselleştirme kararı: kabul, ret, sorulmadı.
 
 props [kanıtlı]
+
 Olay başına izin listesindeki birkaç alan; yayınlanacak tutarlar bantlanır.
 
 ### Tablo
@@ -6152,11 +7423,16 @@ CREATE TABLE events_daily (
 ```
 
 [öneri]
-** Ad ve outcome CHECK yerine uygulamadaki sözlükle doğrulanır**. Yeni değer migration beklemez; sözlüğe ve teste girmeden de kabul edilmez.
+
+**Ad ve outcome CHECK yerine uygulamadaki sözlükle doğrulanır**. Yeni değer migration beklemez; sözlüğe ve teste girmeden de kabul edilmez.
+
 [kanıtlı]
-** Olay tablosunda hesap bağı yoktur**; başka bir tabloda varsa hesap silinince NULL olur (ON DELETE SET NULL), olay sayı olarak kalır.
+
+**Olay tablosunda hesap bağı yoktur**; başka bir tabloda varsa hesap silinince NULL olur (ON DELETE SET NULL), olay sayı olarak kalır.
+
 [öneri]
-** Özette boş sonuç `''` olarak durur**. Birincil anahtardaki sütun NULL alamaz; özet işi `coalesce(outcome, '')` ile yazar. ON CONFLICT (day, name, outcome, platform, app_version) DO UPDATE aynı günü yeniden hesaplar, iş iki kez çalışsa da sayı ikilenmez.
+
+**Özette boş sonuç `''` olarak durur**. Birincil anahtardaki sütun NULL alamaz; özet işi `coalesce(outcome, '')` ile yazar. ON CONFLICT (day, name, outcome, platform, app_version) DO UPDATE aynı günü yeniden hesaplar, iş iki kez çalışsa da sayı ikilenmez.
 
 ### On zorunlu olay
 
@@ -6178,42 +7454,72 @@ CREATE TABLE events_daily (
 ### Olay ucu
 
 [öneri]
-** Tek uç**: `POST /v1/events`, en çok 50 olaylık toplu gövde. Bilinmeyen alan, ad ya da değer 400 döner ve sayılır; sessizce 'diğer'e düşmez.
+
+**Tek uç**: `POST /v1/events`, en çok 50 olaylık toplu gövde. Bilinmeyen alan, ad ya da değer 400 döner ve sayılır; sessizce 'diğer'e düşmez.
+
 [öneri]
-** Olay ucu veritabanını kendisi uyandırmaz**. Her olay için tek log satırı yazar. Havuzda açık bağlantı varsa, yani veritabanı zaten uyanıksa, aynı istekte tabloya da yazar. Uyurken ne token ne de günlük sınır veritabanında aranır; bu durumda tier istemcinin bildirdiğidir, kurulum başına 500 sınırı sabah job'ında uygulanır. Kalan olayları sürüm telemetrisini okuyan sabah job'ı Logging API'den alır ve event_id ile tekil yazar. Olay bellekte biriktirilmez; bellekte biriken sayaç bizde kapanışta sayı kaybetti. Admin'deki bugünkü sayı ve 24 saat alarmı log metriğinden okunur; tablo ertesi sabah tamamlanır. Bizde uç bugün her olayı tabloya yazıyor ve sınır için tabloyu sayıyor.
+
+**Olay ucu veritabanını kendisi uyandırmaz**. Her olay için tek log satırı yazar. Havuzda açık bağlantı varsa, yani veritabanı zaten uyanıksa, aynı istekte tabloya da yazar. Uyurken ne token ne de günlük sınır veritabanında aranır; bu durumda tier istemcinin bildirdiğidir, kurulum başına 500 sınırı sabah job'ında uygulanır. Kalan olayları sürüm telemetrisini okuyan sabah job'ı Logging API'den alır ve event_id ile tekil yazar. Olay bellekte biriktirilmez; bellekte biriken sayaç bizde kapanışta sayı kaybetti. Admin'deki bugünkü sayı ve 24 saat alarmı log metriğinden okunur; tablo ertesi sabah tamamlanır. Bizde uç bugün her olayı tabloya yazıyor ve sınır için tabloyu sayıyor.
+
 [kanıtlı]
-** İstemci olayı kuyrukta tutar** (bizde 100) ve aynı event_id ile yeniden dener; arayüz hiç beklemez. Sınırlar: olay başına 4 KiB, kurulum başına günde 500 olay, adres başına saatte 300 istek.
+
+**İstemci olayı kuyrukta tutar** (bizde 100) ve aynı event_id ile yeniden dener; arayüz hiç beklemez. Sınırlar: olay başına 4 KiB, kurulum başına günde 500 olay, adres başına saatte 300 istek.
+
 [kanıtlı]
-** Geçersiz token olayı guest yapar ve 204 döner**; analitik çağrısı kimseyi oturumdan düşürmez.
+
+**Geçersiz token olayı guest yapar ve 204 döner**; analitik çağrısı kimseyi oturumdan düşürmez.
+
 [kanıtlı]
-** Uç, API'nin bağlantı moduyla gerçek Postgres'e karşı test edilir**. İki sessiz kaybımızda da aynı hata vardı. Basit sorgu modunda bayt dizisi bytea olarak gidiyor, jsonb kolonu bunu reddediyordu; testler bu modla koşmadığı için görülmedi.
+
+**Uç, API'nin bağlantı moduyla gerçek Postgres'e karşı test edilir**. İki sessiz kaybımızda da aynı hata vardı. Basit sorgu modunda bayt dizisi bytea olarak gidiyor, jsonb kolonu bunu reddediyordu; testler bu modla koşmadığı için görülmedi.
+
 [öneri]
-** Son olay 24 saattir gelmediyse alarm çalar.** 5xx alarmı [Gözlem ve alarmlar](#katman-10) katmanında.
+
+**Son olay 24 saattir gelmediyse alarm çalar.** 5xx alarmı [Gözlem ve alarmlar](#katman-10) katmanında.
+
 [kanıtlı]
-** Ham olay 180 gün**; silme veritabanı zaten uyanıkken çalışır.
+
+**Ham olay 180 gün**; silme veritabanı zaten uyanıkken çalışır.
+
 [öneri]
-** Özet tablo daha uzun kalır** (ör. 2 yıl); işin son çalışması kaydedilir.
+
+**Özet tablo daha uzun kalır** (ör. 2 yıl); işin son çalışması kaydedilir.
+
 [kanıtlı]
-** Herkese açık özet k-anonim eşikten geçer**. Her grup en az 10 farklı kurulumdan gelir.
+
+**Herkese açık özet k-anonim eşikten geçer**. Her grup en az 10 farklı kurulumdan gelir.
 
 ### Gizlilik
 
 İşleyen listesi, m.9 bildirimi ve cezası [KVKK ve veri yeri](#kvkk) bölümünde.
 
 [kanıtlı]
-** Veri yeri doğru yazılır**: veritabanımız AB'de (Frankfurt). Ne gidip ne gitmediği gizlilik metninde ve uygulamanın ayarlar ekranında anlatılır.
+
+**Veri yeri doğru yazılır**: veritabanımız AB'de (Frankfurt). Ne gidip ne gitmediği gizlilik metninde ve uygulamanın ayarlar ekranında anlatılır.
+
 [kanıtlı]
-** Üçüncü taraf ölçüm onaydan önce hiç istek atmaz**; kabul ve ret eşit görünür, kişisel alanlar maskelenir; oturumlu, yönetim ve form sayfalarında ve test ortamında yüklenmez.
+
+**Üçüncü taraf ölçüm onaydan önce hiç istek atmaz**; kabul ve ret eşit görünür, kişisel alanlar maskelenir; oturumlu, yönetim ve form sayfalarında ve test ortamında yüklenmez.
+
 [kanıtlı]
-** Alanlara başka kişilerin adı, telefonu ya da kimlik numarası yazılabiliyorsa otomatik yakalama ve oturum kaydı kapalıdır**. Bir ürün analitiği aracını bu yüzden beklettik.
+
+**Alanlara başka kişilerin adı, telefonu ya da kimlik numarası yazılabiliyorsa otomatik yakalama ve oturum kaydı kapalıdır**. Bir ürün analitiği aracını bu yüzden beklettik.
+
 [kanıtlı]
-** App Store gizlilik etiketi ve Play Data safety, SDK'ların topladığı dahil, olaylarla aynı gün güncellenir**.
+
+**App Store gizlilik etiketi ve Play Data safety, SDK'ların topladığı dahil, olaylarla aynı gün güncellenir**.
+
 [öneri]
-** ATT yalnız izleme varsa sorulur**; birinci taraf takma kimlikli analitik için gerekmez.
+
+**ATT yalnız izleme varsa sorulur**; birinci taraf takma kimlikli analitik için gerekmez.
+
 [kanıtlı]
-** Gizlilik metnindeki her saklama süresi çalışan bir işe bağlıdır**. Bir üründe metin süre yazıyordu, süpürme işi hiç çalışmamıştı.
+
+**Gizlilik metnindeki her saklama süresi çalışan bir işe bağlıdır**. Bir üründe metin süre yazıyordu, süpürme işi hiç çalışmamıştı.
+
 [öneri]
-** Kişinin kendi verisi için başvurusu** (KVKK m.11) en geç 30 günde cevaplanır (m.13); admin'deki döküm ucu bunu dakikalara indirir.
+
+**Kişinin kendi verisi için başvurusu** (KVKK m.11) en geç 30 günde cevaplanır (m.13); admin'deki döküm ucu bunu dakikalara indirir.
 
 ### Araç seçimi
 
@@ -6230,22 +7536,33 @@ CREATE TABLE events_daily (
 ### Nasıl okunur
 
 [kanıtlı]
-** Günlük rapor e-postası**: günün ve toplamın rakamları, gelir aracının rakamları, deneme hunisi. Bizde hafta içi 18:00 ve her gün 23:59; panel açmaya gerek kalmıyor.
+
+**Günlük rapor e-postası**: günün ve toplamın rakamları, gelir aracının rakamları, deneme hunisi. Bizde hafta içi 18:00 ve her gün 23:59; panel açmaya gerek kalmıyor.
+
 [öneri]
-** Haftada 30 dakika, her hafta aynı sırayla.**
+
+**Haftada 30 dakika, her hafta aynı sırayla.**
+
 1. Huni: kurulum, ilk anahtar eylem, paywall görüntüleme, satın alma; platform ve sürüm kırılımıyla.
+
 2. Son 7 günün sürüm dağılımı.
+
 3. Gelir aracının paneliyle karşılaştırma.
+
 4. 400 alan olay sayısı.
+
 5. Hiç gelmeyen olay adları.
+
 [kanıtlı]
-** Aynı metrik iki kaynaktan geliyorsa ikisi yan yana gösterilir, fark gizlenmez**; yaklaşık rakam etiketlenir.
+
+**Aynı metrik iki kaynaktan geliyorsa ikisi yan yana gösterilir, fark gizlenmez**; yaklaşık rakam etiketlenir.
 
 ## Sürüm payı nereden okunur
 
 28 Eyl 2026, aynı soru: iOS'ta kaç telefon hâlâ eski sürümde. Uzun pencerede güncelleyen kurulum iki sürümde birden sayıldı; 55 kimlik hem eski hem yeni sürümde görünüyordu.
 
 Yanlış pencereDoğru kaynak: gelir aracı, app_version süzgecieski sürümdeki pay
+
 _Grafik: Eski sürümdeki pay, 28 Eyl 2026: iOS, 28 gün, telefon başına %66 (139/211); iOS, 7 gün, aktif müşteri %7 (22/308); Android, 7 gün, aktif müşteri %3 (3/88)_
 [ölçüldü] Sürüm dağılımı 7 günlük pencereyle, platform ve build başına tekil kurulum olarak sayılır; zorunlu güncellemeden önce ikinci bir kaynakla karşılaştırılır. Telemetri [mobil kitin](#mobilkit) onuncu parçası.
 
@@ -6256,7 +7573,8 @@ Gün 0
 Admin ilk sürümle gelir ve okumayla başlar. Ürün A'nın ilk admin sürümü (28 Ağu 2026) tamamen salt okunurdu. Yeni projede yazma uçları sonra gelir ve her biri denetim satırı yazar.
 
 [öneri]
-** Ürünü build ve deploy olmadan yöneten her ayar** (bayrak, kill switch, güncelleme politikası, duyuru) veritabanında durur ve admin'den değişir; ortam değişkeni yalnız acil yedektir.
+
+**Ürünü build ve deploy olmadan yöneten her ayar** (bayrak, kill switch, güncelleme politikası, duyuru) veritabanında durur ve admin'den değişir; ortam değişkeni yalnız acil yedektir.
 
 ### Yirmi iki uç
 
@@ -6297,25 +7615,44 @@ Yol kalıpları ilk gün yazılır, ekranlar sonra gelebilir. Risk: giriş, okum
 Genel kurallar [Güvenlik ve botlar](#katman-8) katmanında.
 
 [kanıtlı]
-** Admin'i e-posta izin listesi belirler**; liste boşsa panel kapanır.
+
+**Admin'i e-posta izin listesi belirler**; liste boşsa panel kapanır.
+
 [öneri]
-** Yanında üç rol olur** (sahip, operatör, salt okuyucu); rol her yazmada veritabanından okunur.
+
+**Yanında üç rol olur** (sahip, operatör, salt okuyucu); rol her yazmada veritabanından okunur.
+
 [kanıtlı]
-** Giriş e-posta koduyla, kendi ucundan**. Kod 10–30 dk yaşar, 5 deneme hakkı var, adres ve IP başına saatlik sınır konur, cevap herkese aynıdır. Bir ürünün formu üye ucunu çağırıp her adrese kod yolluyordu; ayrı uca alındı.
+
+**Giriş e-posta koduyla, kendi ucundan**. Kod 10–30 dk yaşar, 5 deneme hakkı var, adres ve IP başına saatlik sınır konur, cevap herkese aynıdır. Bir ürünün formu üye ucunu çağırıp her adrese kod yolluyordu; ayrı uca alındı.
+
 [kanıtlı]
-** Admin oturumu ayrı tabloda, ayrı önekli token'la**; veritabanında yalnız özeti durur. Üye token'ı ve mobil uygulamadaki hiçbir anahtar admin'i açamaz.
+
+**Admin oturumu ayrı tabloda, ayrı önekli token'la**; veritabanında yalnız özeti durur. Üye token'ı ve mobil uygulamadaki hiçbir anahtar admin'i açamaz.
+
 [kanıtlı]
-** Boşta 30 dk kayan süre, 12 saat tavan**; 8 saatlik boşta süre denendi, güvenlik için geri alındı. Token sunucuda iptal edilir; bir üründe süresizdi, 7 güne indi.
+
+**Boşta 30 dk kayan süre, 12 saat tavan**; 8 saatlik boşta süre denendi, güvenlik için geri alındı. Token sunucuda iptal edilir; bir üründe süresizdi, 7 güne indi.
+
 [öneri]
-** Bitmeden 2 dk önce uyarı ve tek tıkla uzatma**; okuma sırasında da oturum düşmez.
+
+**Bitmeden 2 dk önce uyarı ve tek tıkla uzatma**; okuma sırasında da oturum düşmez.
+
 [öneri]
-** Tehlikeli eylemde son 5 dk içinde yeni kod ve sebep istenir**: herkese duyuru, silme ve veri dökümü, kill switch, zorunlu güncelleme, rol değişikliği.
+
+**Tehlikeli eylemde son 5 dk içinde yeni kod ve sebep istenir**: herkese duyuru, silme ve veri dökümü, kill switch, zorunlu güncelleme, rol değişikliği.
+
 [kanıtlı]
-** Token yalnız httpOnly çerezde durur**. Yetkisiz isteğe 404; admin uçlarına ayrı hız sınırı (bir üründe dakikada 120).
+
+**Token yalnız httpOnly çerezde durur**. Yetkisiz isteğe 404; admin uçlarına ayrı hız sınırı (bir üründe dakikada 120).
+
 [kanıtlı]
-** Panel noindex ve CSP'li, kullanıcı metnini kaçışlı gösterir**; yardımcı uçlar da admin ister. Bir üründe ham HTML gösterimiyle başlayan zincir bulunduğu gün kapatıldı.
+
+**Panel noindex ve CSP'li, kullanıcı metnini kaçışlı gösterir**; yardımcı uçlar da admin ister. Bir üründe ham HTML gösterimiyle başlayan zincir bulunduğu gün kapatıldı.
+
 [öneri]
-** Açılışta zorunlu ayarlar doğrulanır**; yönetici listesi boşsa loga uyarı yazılır. IP izin listesi ya da IAP isteğe bağlı ikinci kapıdır.
+
+**Açılışta zorunlu ayarlar doğrulanır**; yönetici listesi boşsa loga uyarı yazılır. IP izin listesi ya da IAP isteğe bağlı ikinci kapıdır.
 
 ### Denetim kaydı
 
@@ -6342,33 +7679,42 @@ CREATE INDEX ON admin_audit (target_type, target_id, at DESC);
 ```
 
 [kanıtlı]
-** Satır değişiklikle aynı işlemde** (transaction) yazılır; değişiklik geri alınırsa satır da geri alınır.
+
+**Satır değişiklikle aynı işlemde** (transaction) yazılır; değişiklik geri alınırsa satır da geri alınır.
+
 [öneri]
-** Uygulamanın veritabanı rolü bu tabloya yalnız INSERT ve SELECT yapabilir**; UPDATE ve DELETE yok.
+
+**Uygulamanın veritabanı rolü bu tabloya yalnız INSERT ve SELECT yapabilir**; UPDATE ve DELETE yok.
+
 [öneri]
-** Her yazan admin ucunun 'tam bir denetim satırı yazdı' testi vardır**; eylem ve hedef türü kısıtlı bir listeyse yeni tür migration'la eklenir.
+
+**Her yazan admin ucunun 'tam bir denetim satırı yazdı' testi vardır**; eylem ve hedef türü kısıtlı bir listeyse yeni tür migration'la eklenir.
+
 [öneri]
-** Admin'den başlayan her toplu işlem sonucunu sayıyla yazar**: kaç cihaza gitti, kaç satır yazıldı, kaç hata.
+
+**Admin'den başlayan her toplu işlem sonucunu sayıyla yazar**: kaç cihaza gitti, kaç satır yazıldı, kaç hata.
+
 [öneri]
-** Saklama süresi yazılır** (ör. 2 yıl) ve bir işe bağlanır. Ortam değişkeniyle yapılan acil değişiklik de sonradan bu tabloya sebebiyle elle yazılır.
+
+**Saklama süresi yazılır** (ör. 2 yıl) ve bir işe bağlanır. Ortam değişkeniyle yapılan acil değişiklik de sonradan bu tabloya sebebiyle elle yazılır.
 
 ### Admin'de asla
 
 **Admin yolunu kimlik ara katmanının dışında kaydetmek.** Router'daki her /v1/admin yolu token'sız çağrılınca reddedilir; bunu bütün yolları gezen bir test denetler. [öneri]
 
-** Paylaşılan admin hesabı.** Herkes kendi e-postasıyla girer; denetim kaydı kişiyi gösterir. [öneri]
+**Paylaşılan admin hesabı.** Herkes kendi e-postasıyla girer; denetim kaydı kişiyi gösterir. [öneri]
 
-** Canlıya test verisi yazmak.** Canlıda deneme duyurusunu herkese göndermek ve canlı sayaçları doğrulama için çağırmak da buna girer; bir doğrulama 92 istekten sonra 429 aldı. [kanıtlı]
+**Canlıya test verisi yazmak.** Canlıda deneme duyurusunu herkese göndermek ve canlı sayaçları doğrulama için çağırmak da buna girer; bir doğrulama 92 istekten sonra 429 aldı. [kanıtlı]
 
-** Canlı veritabanında elle SQL ile moderasyon ya da düzeltme.** Gerekiyorsa denetim kaydı yazan bir admin ucu ya da kayıtlı bir betik. [öneri]
+**Canlı veritabanında elle SQL ile moderasyon ya da düzeltme.** Gerekiyorsa denetim kaydı yazan bir admin ucu ya da kayıtlı bir betik. [öneri]
 
-** Mobil uygulamadaki bir anahtarla ya da üye token'ıyla admin'i açmak.** Süresiz admin token'ı da buna girer. [kanıtlı]
+**Mobil uygulamadaki bir anahtarla ya da üye token'ıyla admin'i açmak.** Süresiz admin token'ı da buna girer. [kanıtlı]
 
-** Listelerde maskesiz kişisel veri.** Ad baş harfle, telefonun ortası yıldızlı; tam veri yalnız ayrıntıda ve denetim kaydıyla. [kanıtlı]
+**Listelerde maskesiz kişisel veri.** Ad baş harfle, telefonun ortası yıldızlı; tam veri yalnız ayrıntıda ve denetim kaydıyla. [kanıtlı]
 
-** Sessiz başarı.** Tanınmayan süzgeç değeri, kırpılmış dışa aktarım, boş alıcı listesi 'başarılı' dönmez. Ürün B'de 126 satırın 50'si indi, dosya eksiksiz göründü. [öneri]
+**Sessiz başarı.** Tanınmayan süzgeç değeri, kırpılmış dışa aktarım, boş alıcı listesi 'başarılı' dönmez. Ürün B'de 126 satırın 50'si indi, dosya eksiksiz göründü. [öneri]
 
-** Admin'i arama motorlarına açık bırakmak.** noindex ve robots ilk gün. [kanıtlı]
+**Admin'i arama motorlarına açık bırakmak.** noindex ve robots ilk gün. [kanıtlı]
 
 ## Bizdekinden iyisi
 
@@ -6394,30 +7740,39 @@ CREATE INDEX ON admin_audit (target_type, target_id, at DESC);
 - [ ] Ürün sahibinin beş sorusu yazıldı; olay sözlüğü bu sorulardan çıkarıldı.
 
 [öneri]
+
 - [ ] Tek olay ucu; ilk build'de on zorunlu olay, her olayda platform, sürüm ve build gidiyor.
 
 [öneri]
+
 - [ ] Olay uçları API'nin bağlantı moduyla gerçek Postgres'e karşı test edildi; testlerde ağ kapalı.
 
 [kanıtlı]
+
 - [ ] Alarmlar kuruldu ve bir kez çaldırıldı: 5xx oranı, webhook son teslim yaşı, son olay yaşı, işin son başarısı.
 
 [öneri]
+
 - [ ] Gelir aracının webhook'u belgelenen başarı kodunu dönüyor; sağlayıcının panelinde bir teslim başarılı göründü.
 
 [öneri]
+
 - [ ] Günlük rapor e-postası gidiyor; 'bugün' ürünün saat diliminde, her rakamın kaynağı ve penceresi yanında.
 
 [kanıtlı]
+
 - [ ] Admin: ayrı giriş ucu, izin listesi, ayrı oturum tablosu, 30 dk kayan süre ve 12 saat tavan, noindex; denetim satırı değişiklikle aynı işlemde yazılıyor.
 
 [kanıtlı]
+
 - [ ] Bayrak, kill switch, güncelleme politikası ve duyuru veritabanında, admin'den değişiyor; işler ve webhook'lar ekranı, kullanıcı arama, askıya alma, silme ve veri dökümü uçları var.
 
 [öneri]
+
 - [ ] Roller tanımlı, tehlikeli eylemde yeniden doğrulama var; admin yollarını token'sız çağıran ve her yazan ucun denetim satırına bakan testler yeşil. Canlı API test ortamının olayını reddediyor.
 
 [öneri]
+
 - [ ] Gizlilik metni, ayarlar kartı ve iki mağaza beyanı olaylarla aynı gün yazıldı; her saklama süresi bir işe bağlı.
 
 [kanıtlı]
@@ -6455,25 +7810,44 @@ Mağaza tarafındaki hata ve çökme sayıları; App Store Connect ve Play Conso
 8 Ekim 2026'da okundu. Bizim rakamlarımız depolardan, değişiklik kayıtlarından ve faturalardan.
 
 **PostHog fiyatları**https://posthog.com/pricing
+
 **PostHog ürün analitiği fiyatı**https://posthog.com/docs/product-analytics/pricing
+
 **PostHog veri yeri (AB bulutu Frankfurt)**https://posthog.com/docs/privacy/data-storage
+
 **GA4 veri saklama**https://support.google.com/analytics/answer/7667196
+
 **GA4 ve Firebase toplama sınırları**https://support.google.com/firebase/answer/9237506
+
 **Google Analytics for Firebase**https://firebase.google.com/docs/analytics
+
 **Microsoft Clarity SSS**https://learn.microsoft.com/en-us/clarity/faq
+
 **RevenueCat fiyatları**https://www.revenuecat.com/pricing/
+
 **RevenueCat webhook'ları**https://www.revenuecat.com/docs/integrations/webhooks
+
 **Apple App Tracking Transparency**https://developer.apple.com/documentation/apptrackingtransparency
+
 **Apple kullanıcı gizliliği ve veri kullanımı**https://developer.apple.com/app-store/user-privacy-and-data-use/
+
 **Apple App Privacy details**https://developer.apple.com/app-store/app-privacy-details/
+
 **Google Play Data safety**https://support.google.com/googleplay/android-developer/answer/10787469
+
 **KVKK standart sözleşme bildirim duyurusu**https://www.kvkk.gov.tr/Icerik/8043/Standart-Sozlesme-Bildirim-Modulu-Hakkinda-Kamuoyu-Duyurusu
+
 **6698 sayılı KVKK metni (m.11, m.13)**https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf
+
 **Google Cloud Observability fiyatları**https://cloud.google.com/stackdriver/pricing
+
 **Neon fiyatları**https://neon.com/pricing
+
 **Expo SecureStore**https://docs.expo.dev/versions/latest/sdk/securestore/
 
 <a id="katmanlar-4"></a>
+
+<a id="katman-11"></a>
 
 Katman 11 / 11
 
@@ -6482,9 +7856,11 @@ Katman 11 / 11
 Yedek dört katmandır: Neon geçmişi, Neon snapshot'ı, Neon dışında günlük döküm ve haftalık proje dışı kopya. Her döküm geri yüklenerek doğrulanır.
 
 2 proje
+
 2 Ekim'de silinen iki GCP projesiyle içindeki her şey gitti. Proje dışı kopya bu yüzden ayrı bir katman.
 
 Ayrıntı
+
 Bu katmanın bütün kuralları hemen aşağıdaki bölümde: [Veritabanı yedeği ve geri yükleme](#yedek). Orada katmanlar tablosu, Free ve ücretli prod için tarif, ölçülmüş sürelerle geri yükleme sırası, tatbikat takvimi, silme ve KVKK, taşıma doğrulaması ve kontrol listesi var.
 
 <a id="yedek"></a>
@@ -6498,10 +7874,15 @@ Yedek üç soruya cevap verir: yanlış bir yazmayı dakikalar içinde geri alab
 Üçü ayrı katmanlarla karşılanır: hızlı geri dönüş için Neon'un kendi geçmişi ve snapshot'ları, sağlayıcı kaybı için Neon dışında her gün alınan ve alındığı anda geri yüklenerek denetlenen döküm. 70 MB'lık prod veritabanımızda geçmiş ve snapshot 1–7 Ekim 2026 ölçümüyle ayda ~5 sent; döküm kovası ve job'ı bir sentin altında. Yedek ucuz; pahalı olan, hiç denenmemiş bir yedekle olay günü karşılaşmak.
 
 **~$0,05/ay** 70 MB'lık prod veritabanında 7 gün geçmiş (~$0,03), 14 gün snapshot (~$0,02), döküm kovası ve job (~$0).
+
 **15 / 15** 24 Eylül–8 Ekim'de ilk denemede başarılı zamanlanmış çalışma. Döküm, geri yükleme kontrolü ve yükleme 5–8 sn.
+
 **1 günden 7 güne** Launch'ta geçmiş penceresinin varsayılanı 1 gün; 7'ye ayardan elle çıkarılır, plan değişince kendiliğinden büyümez.
+
 **4 dk** Alarm denemesinde hatadan alarma: 16:57'de hata, 17:01'de alarm, 17:11'de kendiliğinden kapanış.
+
 **2,76 MB** 70 MB'lık veritabanının dökümü. 23 Eylül'de 702 KB'tı; tablo sayısı 47'den 55'e çıktı.
+
 **~37 gün** Bir dökümün en uzun ömrü: 30. günde lifecycle siler, soft delete 7 gün daha geri getirilebilir tutar.
 
 ## İlkeler
@@ -6512,7 +7893,7 @@ Döküm sağlam olsa bile yükleme onu bozabilir. Bir projemizde ilk çalışma 
 
 2. Katmanlar birbirinden bağımsız arızalara karşı kurulur: sağlayıcı geçmişi, sağlayıcı snapshot'ı, sağlayıcı dışı döküm, proje dışı kopya.
 
-Neon geçmişi ve snapshot'ları Neon projesiyle birlikte yaşar; proje silinirse 7 gün içinde kurtarılmazsa hepsi gider. Aynı GCP projesindeki döküm de o proje silinirse gider. [öneri] Prod projesine silme kilidi (lien) konur. Bedeli yoktur; projeyi silmek için önce kilidin kaldırılması gerekir: `gcloud alpha resource-manager liens create --project=PROJE --restrictions=resourcemanager.projects.delete --reason="prod"`. Kilit kazaya karşıdır; sahip hesap ele geçirilirse kaldırılabilir. Silinen proje 30 gün bekler ve `gcloud projects undelete PROJE` ile geri alınır. Ama faturalama bağlantısı elle yeniden kurulur, servislerin toparlanması 36 saati bulabilir. Kovadaki nesneler soft delete süresi (bizde 7 gün) dolunca geri gelmeyebilir; soft delete kapalıysa hemen gider. Bu yüzden geri alma proje dışı kopyanın yerini tutmaz. İki adım da restore-db.md'ye yazılır.
+Neon geçmişi ve snapshot'ları Neon projesiyle birlikte yaşar; proje silinirse 7 gün içinde kurtarılmazsa hepsi gider. Aynı GCP projesindeki döküm de o proje silinirse gider. [öneri] Prod projesine silme kilidi (lien) konur. Bedeli yoktur; projeyi silmek için önce kilidin kaldırılması gerekir: `gcloud alpha resource-manager liens create --project=PROJECT --restrictions=resourcemanager.projects.delete --reason="prod"`. Kilit kazaya karşıdır; sahip hesap ele geçirilirse kaldırılabilir. Silinen proje 30 gün bekler ve `gcloud projects undelete PROJECT` ile geri alınır. Ama faturalama bağlantısı elle yeniden kurulur, servislerin toparlanması 36 saati bulabilir. Kovadaki nesneler soft delete süresi (bizde 7 gün) dolunca geri gelmeyebilir; soft delete kapalıysa hemen gider. Bu yüzden geri alma proje dışı kopyanın yerini tutmaz. İki adım da restore-db.md'ye yazılır.
 
 3. Önce en hızlı yol denenir: pencere içindeyse Neon geçmişi, değilse snapshot, en son döküm.
 
@@ -6544,18 +7925,19 @@ Her katman başka bir arızaya karşıdır. Maliyetler 1–7 Ekim 2026 ölçüm�
 
 | Katman | Neye karşı korur | Neye karşı korumaz | Maliyet |
 |---|---|---|---|
-| Neon geçmişiInstant restore. Launch 7 gün (varsayılan 1), Free 6 saat. Tüm zaman çizgisinin üzerine yazar; eski hal `_old_` dalında kalır, adres değişmez. | Yanlış migration, yanlış UPDATE ya da DELETE, uygulama hatasıyla bozulan satır, silinen tablo; son dakikalara kadar kayıpsız. | Pencereden eski hata, Neon projesinin silinmesi (7 gün kurtarılabilir), hesap ya da sağlayıcı kaybı. Snapshot'tan geri yüklenmiş dalda çalışmaz. | Launch'ta $0,20/GB-ay; Free'de ücretsiz. Bizde 7 gün ortalama 129 MB, ~$0,03/ay. |
-| Neon snapshotZamanlanmış, günde bir; 14 gün saklama, azami 35. Zamanlama yalnız ücretli planda, Free'de tek elle snapshot. | Geçmiş penceresinden eski ama saklamadan yeni hata; büyük bir değişiklikten önce elle alınan güvenli nokta. | Proje silinmesi, hesap ve sağlayıcı kaybı; snapshot anı ile hata arasındaki yazmalar. | $0,09/GB-ay; ilki tam, sonrakiler fark. Bizde 14 gün 212–253 MB, ~$0,02/ay. |
-| Neon dışı günlük dökümCloud Run job'u direct adresten pg_dump -Fc; imaj Postgres 18 ve curl, digest ile sabit; kova bölgesel ve herkese kapalı. | Neon projesinin ya da hesabının kaybı, sağlayıcı değiştirme, snapshot saklamasından eski (30 güne kadar) hata. | Gün içi kayıp (en kötü 24 saat); kova aynı GCP projesindeyse o projenin silinmesi ya da sahip hesabın ele geçirilmesi. Bozuk veriyi de sadakatle yedekler. | Kova ~30 MB, ayda bir sentin çok altında; job günde 17–62 sn, ücretsiz kotada. |
-| DoğrulamaGeçici Postgres'e pg_restore --exit-on-error, tablo eşiği, yükleme sonrası boyut karşılaştırması, tek satır 'backup ok' logu ve iki alarm. | Yarım ya da bozuk yükleme, pg_dump sürüm uyumsuzluğu, açılmayan döküm, hata veren zamanlayıcı. | Satır düzeyinde eksik veri. Sabit tablo eşiği zamanla gevşer. Duraklatılan ya da silinen zamanlayıcı hiçbir alarmı çaldırmaz; başarı satırının yokluğuna ayrı alarm gerekir. | Çalışma başına birkaç saniye; ücretsiz. |
-| Proje dışı kopya[öneri] Haftada bir, ayrı sahiplik ve faturalamalı başka bir projeye ya da sağlayıcıya; kopyalayan kimlik hedefte yalnız nesne oluşturur. | GCP projesinin yanlışlıkla silinmesi, sahip hesabın ele geçirilmesi, faturalama askısıyla kapanan proje. | Hedef aynı hesapla yönetiliyorsa hesap ele geçirilmesine karşı yalnız kısmen korur; hedefte de saklama kuralı gerekir. | Birkaç MB'lık nesneler için ayda birkaç sent. |
-| Saklama kilidiRetention 7 gün (kilitsiz), lifecycle 30. günde siler, soft delete 7 gün. | Bir betiğin ya da elle silmenin son haftanın dökümlerini yok etmesi, üzerine yazma; kilitliyse projenin silinmesi de. | Kilitsiz politikada sahip hesabın ele geçirilmesi. Kilit geri alınamaz, süre kısaltılamaz; süre kesinleşmeden kilitlenmez. | Soft delete içindeki nesne de ücretlenir; MB'larda önemsiz. |
+| Neon geçmişi Instant restore. Launch 7 gün (varsayılan 1), Free 6 saat. Tüm zaman çizgisinin üzerine yazar; eski hal `_old_` dalında kalır, adres değişmez. | Yanlış migration, yanlış UPDATE ya da DELETE, uygulama hatasıyla bozulan satır, silinen tablo; son dakikalara kadar kayıpsız. | Pencereden eski hata, Neon projesinin silinmesi (7 gün kurtarılabilir), hesap ya da sağlayıcı kaybı. Snapshot'tan geri yüklenmiş dalda çalışmaz. | Launch'ta $0,20/GB-ay; Free'de ücretsiz. Bizde 7 gün ortalama 129 MB, ~$0,03/ay. |
+| Neon snapshot Zamanlanmış, günde bir; 14 gün saklama, azami 35. Zamanlama yalnız ücretli planda, Free'de tek elle snapshot. | Geçmiş penceresinden eski ama saklamadan yeni hata; büyük bir değişiklikten önce elle alınan güvenli nokta. | Proje silinmesi, hesap ve sağlayıcı kaybı; snapshot anı ile hata arasındaki yazmalar. | $0,09/GB-ay; ilki tam, sonrakiler fark. Bizde 14 gün 212–253 MB, ~$0,02/ay. |
+| Neon dışı günlük döküm Cloud Run job'u direct adresten pg_dump -Fc; imaj Postgres 18 ve curl, digest ile sabit; kova bölgesel ve herkese kapalı. | Neon projesinin ya da hesabının kaybı, sağlayıcı değiştirme, snapshot saklamasından eski (30 güne kadar) hata. | Gün içi kayıp (en kötü 24 saat); kova aynı GCP projesindeyse o projenin silinmesi ya da sahip hesabın ele geçirilmesi. Bozuk veriyi de sadakatle yedekler. | Kova ~30 MB, ayda bir sentin çok altında; job günde 17–62 sn, ücretsiz kotada. |
+| Doğrulama Geçici Postgres'e pg_restore --exit-on-error, tablo eşiği, yükleme sonrası boyut karşılaştırması, tek satır 'backup ok' logu ve iki alarm. | Yarım ya da bozuk yükleme, pg_dump sürüm uyumsuzluğu, açılmayan döküm, hata veren zamanlayıcı. | Satır düzeyinde eksik veri. Sabit tablo eşiği zamanla gevşer. Duraklatılan ya da silinen zamanlayıcı hiçbir alarmı çaldırmaz; başarı satırının yokluğuna ayrı alarm gerekir. | Çalışma başına birkaç saniye; ücretsiz. |
+| Proje dışı kopya [öneri] Haftada bir, ayrı sahiplik ve faturalamalı başka bir projeye ya da sağlayıcıya; kopyalayan kimlik hedefte yalnız nesne oluşturur. | GCP projesinin yanlışlıkla silinmesi, sahip hesabın ele geçirilmesi, faturalama askısıyla kapanan proje. | Hedef aynı hesapla yönetiliyorsa hesap ele geçirilmesine karşı yalnız kısmen korur; hedefte de saklama kuralı gerekir. | Birkaç MB'lık nesneler için ayda birkaç sent. |
+| Saklama kilidi Retention 7 gün (kilitsiz), lifecycle 30. günde siler, soft delete 7 gün. | Bir betiğin ya da elle silmenin son haftanın dökümlerini yok etmesi, üzerine yazma; kilitliyse projenin silinmesi de. | Kilitsiz politikada sahip hesabın ele geçirilmesi. Kilit geri alınamaz, süre kısaltılamaz; süre kesinleşmeden kilitlenmez. | Soft delete içindeki nesne de ücretlenir; MB'larda önemsiz. |
 
 ## Ne kadar geriye dönülebilir
 
 Bugünkü ayarlarla katman başına en eski geri dönüş noktası; ölçek gerçek.
 
 katmanın bugünkü süresiazami, soft delete ya da önerigün
+
 _Grafik: Katmana göre geri dönülebilecek süre_
 
 ## Geri yükleme sırası
@@ -6565,30 +7947,37 @@ _Grafik: Katmana göre geri dönülebilecek süre_
 1. **Dur ve kapsamı belirle.** Ne bozuldu, ilk yanlış yazma ne zaman oldu; zaman loglardan bulunur, tahmin edilmez. Bozulma sürüyorsa yazma durdurulur: bakım bayrağı ya da ilgili job duraklatılır.
 
 5–15 dk
+
 2. **Hedef anı doğrula.** Pencere içindeyse Time Travel Assist ile o an salt okunur sorgulanır ya da o andan bir dal açılır; kritik tablolarda satır sayısına bakılır. Dal açmak saniyeler sürer.
 
 birkaç dk
+
 3. **Tam mı seçici mi karar ver.** Birkaç tablo ya da satır bozulduysa geçmiş daldan yalnız onlar kopyalanır (`pg_dump -t` ya da `INSERT ... SELECT`). Tam dönüş, hata anından sonraki doğru yazmaları da siler.
 
 4. **Pencere içinde tam dönüş: instant restore.** Bağlantı adresi değişmez, açık bağlantılar kısa kopar. Eski hal `_old_` dalında kalır; sonradan gelen doğru yazmalar oradan alınır.
 
 saniyeler, Neon'a göre
+
 5. **Pencere dışında, snapshot saklaması içinde.** Çok adımlı snapshot geri yüklemesi: yeni dal açılır, incelenir, sonra geçilir. Bu dalda instant restore çalışmaz; geçişten sonra ilk iş elle snapshot.
 
 dakikalar, ölçülmedi
+
 6. **Neon kaybı ya da daha eski hata: döküm.** Son geçerli döküm bulunur (log satırındaki tables ve users değerleri beklenene uymalı) ve bulut kabuğuna indirilir. Yeni proje ya da dal açılır; direct adrese `pg_restore --no-owner --no-privileges --exit-on-error -1` ile tek işlemde yüklenir.
 
 63 sn, iki küçük veritabanı
+
 7. **Uygulama rolünün yetkilerini yeniden ver.** `--no-owner` ve `--no-privileges` ile yüklenen tablolar yükleyen role aittir.
 
 8. **Doğrula.** Eklentiler, şemalar, her tablonun satır sayısı, sequence değerleri ve her tablonun içeriğinin md5'i kaynakla birebir. Kaynak yoksa döküm anına en yakın Neon dalıyla ya da log satırındaki sayılarla.
 
 ~15 sn, 12 ve 53 tablo
+
 9. **Silmeleri yeniden uygula.** Yedekten sonra silinen hesap ve kayıtlar, silmenin bıraktığı iz listesinden yeniden silinir. Neon kaybolduysa liste log kovasından okunur [öneri]. Bu adım atlanırsa silinmiş kişisel veri geri gelir.
 
 10. **Geç.** Eski kaynak bir kez daha md5 ile karşılaştırılır; döküm sonrası yazma varsa önce o taşınır. Bağlantı sırrına yeni sürüm yazılır, servis yeni revizyona alınır.
 
 ~20 sn; tümü ~5 dk
+
 11. **Sağlığı oku.** Sağlık ucu, 5xx ve 'veritabanına bağlanamadı' logları temiz mi; eski ve yeni kaynak bir kez daha karşılaştırılır.
 
 12. **Kapat.** Yerel döküm kopyası, `_old_` ve geçici dallar doğrulamadan sonra silinir; olay notu ve ölçülen süreler runbook'a eklenir.
@@ -6600,24 +7989,31 @@ dakikalar, ölçülmedi
 Neon Free: 6 saat geçmiş, 1 elle snapshot, zamanlama yok, proje başına 1 GB, 100 CU-saat, 5 GB çıkış, 10 dal.
 
 1
+
 6 saatlik geçmiş açık ve büyütülemez; hatayı 6 saat içinde fark etmek için hata ve 5xx alarmı ilk gün kurulur.
 
 2
+
 Migration, toplu import ya da elle veri düzeltmeden hemen önce tek elle snapshot hakkı kullanılır; iş doğrulanınca eskisi silinir ki hak boşalsın.
 
 3
+
 Prod'daki döküm job'u aynen kopyalanır: aynı imaj ve betik, tablo eşiği projeye göre. Kova Neon dışında; retention 7, lifecycle 30 gün.
 
 4
+
 Job veritabanının zaten uyanık olduğu saate konur. Olmasa da birkaç saniyelik döküm 0,25 CU'da ayda ~0,6 CU-saat eder, kotanın %1'inden az (hesap, ölçülmedi).
 
 5
+
 Geri yükleme hedefi 1 GB ve 10 dal sınırına uyar; geri yüklemenin bıraktığı `_old_` dalları iş bitince silinir.
 
 6
+
 Free'de tüketim API'si yok: CU-saat 'db wake' log metriğiyle izlenir, Usage sayfası haftada bir, depolama ve dal sayısı ayda bir okunur. Kota aşılırsa compute dönem sonuna kadar durur.
 
 7
+
 Ücretli plandan Free'ye taşındıysa eski proje bir hafta yedek olarak durur, sonra silinir.
 
 ### Ücretli prod (Neon Launch)
@@ -6625,27 +8021,35 @@ Free'de tüketim API'si yok: CU-saat 'db wake' log metriğiyle izlenir, Usage sa
 Ölçülen maliyet 70 MB'lık veritabanında ayda ~$0,05: geçmiş ~$0,03, snapshot ~$0,02, kova ve job ~$0.
 
 1
+
 Geçmiş penceresi Settings > Postgres'ten 7 güne çıkarılır ve gözle kontrol edilir. Launch varsayılanı 1 gündür; pencere proje ayarında durur ve plan değişince kendiliğinden büyümez.
 
 2
+
 Günlük snapshot zamanlanır; 14 gün saklama yeter, azami 35.
 
 3
+
 Günlük döküm job'u: direct bağlantı, `pg_dump --format=custom`, geçici Postgres'e `pg_restore --no-owner --no-privileges --exit-on-error`, tablo eşiği, yükleme sonrası boyut karşılaştırması, tek satır başarı logu.
 
 4
+
 Job ve zamanlayıcıya iki alarm, bilerek başarısız bir çalışmayla bir kez uçtan uca denenir. Üçüncü alarm: son 'backup ok' satırı 26 saati geçerse. Bunu günde iki kez çalışan küçük bir denetim işi kontrol eder, çünkü Cloud Monitoring'in yokluk alarmı en çok 23,5 saat bekler.
 
 5
+
 Kova herkese kapalı, tek tip erişim, retention 7, lifecycle 30, soft delete 7 gün. Yedek kimliği yalnız nesne oluşturur; projenin Viewer ve Editor kolaylık bağları kovadan kaldırılır.
 
 6
+
 Döküm uygulamanın değil, salt okunur ayrı bir rolün bağlantısıyla alınır; migration ve yedek direct, uygulama pooled adres kullanır.
 
 7
+
 Haftada bir en son dökümün proje dışı kopyası alınır. [öneri] Hedef kovada lifecycle 28 gün, soft delete 7 gün olur. Lifecycle hedefteki kopyalama anından sayılır; 28 gün seçildiği için kopya da gizlilik metnindeki 37 günü aşmaz.
 
 8
+
 Ayda bir geçmişten önizleme, üç ayda bir dökümden tam geri yükleme tatbikatı; süreler runbook'a yazılır.
 
 ## Tatbikat takvimi
@@ -6662,13 +8066,21 @@ Ayda bir geçmişten önizleme, üç ayda bir dökümden tam geri yükleme tatbi
 ### Silme ve KVKK
 
 Yedekteki kişisel veri de kişisel veridir. Saklama ve imha politikası dökümleri, snapshot'ları ve kovanın soft delete süresini açıkça kapsar.
+
 Gerçek azami süre için süreler toplanmaz; koddaki silmeye en uzun yedek ömrü eklenir. Bizde döküm 30 gün lifecycle ve 7 gün soft delete ile 37 gün; Neon geçmişi (7 gün) ve snapshot (14 gün) bunun içinde kalır. Kodun 60. günde sildiği bir kayıt o sabahki dökümde 97. güne kadar geri getirilebilir durumda yaşar.
+
 Tek bir kişi yedekten tek tek silinmez; yedeklerin ömrü kısa tutulur ve dökümler kendiliğinden düşer. Silme talebinin cevabında yedeklerden en geç ne zaman düşeceği yazılır.
+
 Silme kişisel veri taşımayan bir iz bırakır (tablo, kayıt kimliği, silinme zamanı); geri yüklemenin son adımı bu izlerle silmeleri yeniden uygulamaktır.
+
 Silme yönetmeliğine göre talep en geç 30 günde sonuçlandırılır (m.12), periyodik imha aralığı altı ayı geçemez (m.11). Canlıdan silme 30 gün içinde yapılır; yedekteki kopya 37 güne kadar kalabildiği için bu fark cevapta açıkça yazılır ve ifadesi hukukçuya sorulur.
+
 Yedekler yurt dışındaysa (AB) aydınlatma metni bunu söyler ve yurt dışı aktarım şartı karşılanır; standart sözleşme imzadan itibaren beş iş günü içinde Kurum'a bildirilir.
+
 Döküm müşteri verisidir: bulut kabuğunda çalışılır ya da indirilen kopya iş bitince silinir. Sohbete, issue'ya, e-postaya ya da ortak klasöre konmaz.
+
 Canlı döküm test ortamına yüklenmez; testler ve elle denemeler canlı veritabanına yazmaz.
+
 Yedek kovasını yalnız proje sahibi okur; kimin ne zaman okuduğunu görmek için kovada veri erişim denetim kaydı açılabilir.
 
 ## Taşıma ve geri yüklemeyi doğrulamak
@@ -6694,7 +8106,7 @@ Her tablonun satırları metne çevrilip sıralanır ve tek md5 alınır. Aşağ
 ```
 select format(
   'select %L || '' '' || coalesce(md5(string_agg(t::text, ''|'' '
-  'order by t::text)), ''bos'') from %I.%I t;',
+  'order by t::text)), ''empty'') from %I.%I t;',
   c.relname, n.nspname, c.relname)
 from pg_class c
 join pg_namespace n on n.oid = c.relnamespace
@@ -6707,8 +8119,8 @@ order by 1;
 `pg_dump -Fc` ve `pg_restore --no-owner --no-privileges --exit-on-error -1`: tek işlem, yarım yükleme kalmaz. İki taraf da direct adresle bağlanır.
 
 ```
-pg_dump -Fc -f db.dump "$KAYNAK"
-pg_restore --no-owner --no-privileges --exit-on-error -1 -d "$HEDEF" db.dump
+pg_dump -Fc -f db.dump "$SOURCE"
+pg_restore --no-owner --no-privileges --exit-on-error -1 -d "$TARGET" db.dump
 ```
 
 6. Geçişten hemen önce ve sonra.
@@ -6804,7 +8216,9 @@ Sıra şöyle: push ve açılışta yenileme; yetmiyorsa yalnız açık ekranda 
 Ürün A'nın pazar yerinde talep sahibi ile kurumsal kullanıcı yazışıyor: haber push ve e-postayla gidiyor, cevap konuşma ekranı açıkken kısa yoklamayla geliyor. Bu düzen 5 Eki 2026'dan beri canlıda; yeni bir servis, ayrı bir zamanlayıcı ya da sürekli bağlantı istemedi. Veritabanının neden uyuyabilmesi gerektiği [Postgres](#katman-1), uyuyan veritabanını bekleyen ilk isteğin davranışı [Go API](#katman-2) katmanında.
 
 **0** Canlıda WebSocket, SSE ya da LISTEN/NOTIFY kullanan kod. Ürün C'nin web ve admin arayüzünde ilk günden kalan, hiç çağrılmayan bir Socket.IO istemcisi duruyor; sunucusu yok.
+
 **8 sn** Konuşma ekranının yoklama aralığı. Yalnız ekran açık ve öndeyken sorar; uygulama arka plandaysa ya da sekme gizliyse istek yok.
+
 **₺2.445** Tek bir WebSocket bağlantısının 7/24 açık tuttuğu 1 vCPU'luk Cloud Run instance'ının aylık liste bedeli. Bizim push ve açık ekranda yoklama yolumuzun ek istek bedeli ≈ ₺0.
 
 ## Bugün bizde
@@ -6813,12 +8227,12 @@ Dört ürünün mesaj, bildirim ve yorum akışları; depolardan ve migration'la
 
 | Akış | Haber nasıl gider | Ekran nasıl güncellenir | Veri |
 |---|---|---|---|
-| Ürün A: pazar yeri konuşması[kanıtlı] | Push, okunmamış dönem başına bir; saat gözetmez. E-posta günde en çok bir; mesaj metnini taşımaz, 30 gün geçerli imzalı bağlantı konuşmayı açar. | Konuşma açık ve öndeyken 8 sn'de bir yoklama; her turda konuşmanın tamamı okunur. Kaçan tur bir sonrakinde yakalanır. | Tek mesaj tablosu. Okundu, bildirildi, paylaşım ve ret zamanları iki taraf için konuşma satırında. |
-| Ürün A: yeni talep duyurusu[kanıtlı] | Premium kurumsal kullanıcıya anında push, 15 dk'lık pencerede toplanır; 21:00–08:00 arası düşen 08:00'den sonraki ilk trafikte gider. Ötekilere hafta içi 10:00'dan sonraki ilk trafikte tek satır. | Uygulama öne gelince ve push gelince liste yeniden okunur. | Talep 14 gün açık kalır. Gelen kutusu satırı talep düştüğü an yazılır. |
-| Ürün A: bildirim kutusu[kanıtlı] | Hesaplı kullanıcıya giden push'un kutuda bir satırı vardır; Premium olmayana giden hafta içi özet yalnız push'tur. Push yalnız haber verir. | Öne gelince ve push gelince okunur; uygulama simgesindeki sayı okunmamışa eşitlenir. | Bildirim, cihaz (build numarasıyla) ve push makbuzu tabloları. |
-| Ürün A: AI asistan[ölçüldü] | Yok. | Tek istek, tek JSON cevap; akış yok. Cevap ~2,7 sn; modele zaman aşımının varsayılanı 20 sn. | Günlük hak sayacı; geçmiş 180 günde silinir. |
-| Ürün B: yorumlar[kanıtlı] | Push gönderilmiyor; cihaz tablosu push token'ının yalnız özetini (hash) saklıyor, özetle push gitmez. E-posta kuyruğunu, satırı yazan istek işçiyi uyandırarak çalıştırır. | Yazan yorumunu hemen görür; öteki ziyaretçiler ~30 sn içinde görür, çünkü her web sunucusu değişiklik işaretini en çok 30 sn'de bir okur. | Yorum, denetim sonucu ve engellenen deneme tabloları. |
-| Ürün C ve Ürün D[kanıtlı] | Ürün C'de push içerik sayfasına derin bağlantıyla gider. Ürün D'de push yok. | Ürün C uygulaması öne gelince ve bağlantı dönünce veriyi yeniden okur. | İçerik yorumları; Ürün D'de içerik yorumları ve şikayet durumu. |
+| Ürün A: pazar yeri konuşması [kanıtlı] | Push, okunmamış dönem başına bir; saat gözetmez. E-posta günde en çok bir; mesaj metnini taşımaz, 30 gün geçerli imzalı bağlantı konuşmayı açar. | Konuşma açık ve öndeyken 8 sn'de bir yoklama; her turda konuşmanın tamamı okunur. Kaçan tur bir sonrakinde yakalanır. | Tek mesaj tablosu. Okundu, bildirildi, paylaşım ve ret zamanları iki taraf için konuşma satırında. |
+| Ürün A: yeni talep duyurusu [kanıtlı] | Premium kurumsal kullanıcıya anında push, 15 dk'lık pencerede toplanır; 21:00–08:00 arası düşen 08:00'den sonraki ilk trafikte gider. Ötekilere hafta içi 10:00'dan sonraki ilk trafikte tek satır. | Uygulama öne gelince ve push gelince liste yeniden okunur. | Talep 14 gün açık kalır. Gelen kutusu satırı talep düştüğü an yazılır. |
+| Ürün A: bildirim kutusu [kanıtlı] | Hesaplı kullanıcıya giden push'un kutuda bir satırı vardır; Premium olmayana giden hafta içi özet yalnız push'tur. Push yalnız haber verir. | Öne gelince ve push gelince okunur; uygulama simgesindeki sayı okunmamışa eşitlenir. | Bildirim, cihaz (build numarasıyla) ve push makbuzu tabloları. |
+| Ürün A: AI asistan [ölçüldü] | Yok. | Tek istek, tek JSON cevap; akış yok. Cevap ~2,7 sn; modele zaman aşımının varsayılanı 20 sn. | Günlük hak sayacı; geçmiş 180 günde silinir. |
+| Ürün B: yorumlar [kanıtlı] | Push gönderilmiyor; cihaz tablosu push token'ının yalnız özetini (hash) saklıyor, özetle push gitmez. E-posta kuyruğunu, satırı yazan istek işçiyi uyandırarak çalıştırır. | Yazan yorumunu hemen görür; öteki ziyaretçiler ~30 sn içinde görür, çünkü her web sunucusu değişiklik işaretini en çok 30 sn'de bir okur. | Yorum, denetim sonucu ve engellenen deneme tabloları. |
+| Ürün C ve Ürün D [kanıtlı] | Ürün C'de push içerik sayfasına derin bağlantıyla gider. Ürün D'de push yok. | Ürün C uygulaması öne gelince ve bağlantı dönünce veriyi yeniden okur. | İçerik yorumları; Ürün D'de içerik yorumları ve şikayet durumu. |
 
 ## Akışa göre dört basamak
 
@@ -6846,12 +8260,12 @@ Bedel bizim ölçeğimizde, 8 Eki 2026 liste fiyatıyla. İlk iki satır bizde �
 
 | Yol | Aylık bedel | Karmaşıklık | Bağlantı kopunca | Uygun akış |
 |---|---|---|---|---|
-| Push ve açılışta yenileme[kanıtlı] | ~₺0. Expo push ücretsiz, saniyede 600 sınırı; istek milyonu $0,40. | Düşük: bildirim kutusu, derin bağlantı, makbuz okuma. | Push gecikebilir ya da hiç ulaşmaz; açılışta sunucudan okunur. | Bildirim, duyuru, gelen kutusu, az değişen liste. |
-| Kısa yoklama, yalnız açık ekranda[kanıtlı] | Cloud Run'da ~₺0: 10 dk'da 75 istek. Ekran açıkken veritabanı uyanık; payı ölçülmedi. | Düşük: zamanlayıcı ve ekran durumu. 304 ve imleç bizde yok, öneri. | Hata yutulur, sonraki turda yakalanır. | Az hacimli konuşma, destek, durum takibi. |
-| Uzun yoklama[öneri] | Bekleyen her istek instance'ı aktif ve faturalı tutar, zaman aşımına kadar. | Orta: başka instance'taki yazma, bekleyen isteği ancak ortak bir işaretle uyandırır. | İstemci yeni istek atar. | Nadiren: kısa yoklama ile WebSocket arası. |
-| SSE[öneri] | Akış süresince; tek cevapta saniyeler. | Orta: Go'da yazma süresi, aradaki vekilin tamponu. | Tarayıcı yeniden bağlanır; mobilde bunu uygulama yapar. | Tek cevabın akışı: AI, uzun rapor. |
-| WebSocket, Cloud Run'da[öneri] | Bir bağlantı açık oldukça instance bazlı faturalı; 1 vCPU 7/24 ~₺2.445/ay. | Yüksek: yeniden bağlanma; instance'lar arası yayın için Redis Pub/Sub ya da Firestore. | Kopunca kaçanı imleçle yeniden okumak gerekir. | Canlı ortak çalışma, çevrimiçi göstergesi. |
-| Yönetilen servis[öneri] | Ücretsiz katman 100–200 eşzamanlı bağlantı; ilk ücretli $25–49/ay. | Orta: kanal yetkisi, ikinci bir veri yeri ve işleyen. | İstemci kütüphanesi yeniden bağlanır. | WebSocket gerekiyor ama sunucusu yazılmayacaksa. |
+| Push ve açılışta yenileme [kanıtlı] | ~₺0. Expo push ücretsiz, saniyede 600 sınırı; istek milyonu $0,40. | Düşük: bildirim kutusu, derin bağlantı, makbuz okuma. | Push gecikebilir ya da hiç ulaşmaz; açılışta sunucudan okunur. | Bildirim, duyuru, gelen kutusu, az değişen liste. |
+| Kısa yoklama, yalnız açık ekranda [kanıtlı] | Cloud Run'da ~₺0: 10 dk'da 75 istek. Ekran açıkken veritabanı uyanık; payı ölçülmedi. | Düşük: zamanlayıcı ve ekran durumu. 304 ve imleç bizde yok, öneri. | Hata yutulur, sonraki turda yakalanır. | Az hacimli konuşma, destek, durum takibi. |
+| Uzun yoklama [öneri] | Bekleyen her istek instance'ı aktif ve faturalı tutar, zaman aşımına kadar. | Orta: başka instance'taki yazma, bekleyen isteği ancak ortak bir işaretle uyandırır. | İstemci yeni istek atar. | Nadiren: kısa yoklama ile WebSocket arası. |
+| SSE [öneri] | Akış süresince; tek cevapta saniyeler. | Orta: Go'da yazma süresi, aradaki vekilin tamponu. | Tarayıcı yeniden bağlanır; mobilde bunu uygulama yapar. | Tek cevabın akışı: AI, uzun rapor. |
+| WebSocket, Cloud Run'da [öneri] | Bir bağlantı açık oldukça instance bazlı faturalı; 1 vCPU 7/24 ~₺2.445/ay. | Yüksek: yeniden bağlanma; instance'lar arası yayın için Redis Pub/Sub ya da Firestore. | Kopunca kaçanı imleçle yeniden okumak gerekir. | Canlı ortak çalışma, çevrimiçi göstergesi. |
+| Yönetilen servis [öneri] | Ücretsiz katman 100–200 eşzamanlı bağlantı; ilk ücretli $25–49/ay. | Orta: kanal yetkisi, ikinci bir veri yeri ve işleyen. | İstemci kütüphanesi yeniden bağlanır. | WebSocket gerekiyor ama sunucusu yazılmayacaksa. |
 
 ### Yönetilen servislerin sınırları
 
@@ -6940,17 +8354,23 @@ CREATE TABLE attachments (
 );
 ```
 
-**İstemci anahtarı**[ öneri]
+**İstemci anahtarı** [ öneri]
+
 Mobil ağda gönderim tekrar edilir. Aynı anahtarla gelen ikinci istek yeni satır açmaz, ilk mesajı döner. Bizim mesaj tablomuzda yok; e-posta kuyruklarımızda tekilleştirme anahtarı var.
 
-**Okundu zamanı**[ kanıtlı]
+**Okundu zamanı** [ kanıtlı]
+
 Okundu, katılımcı başına tek zamandır. Okunmamış sayı ondan türetilir; ayrı sayaç tutulmaz, çünkü sayaç ile mesajlar ayrışabilir. Ürün A'da iki taraf için iki sütun.
 
-**Ek dosya**[ kanıtlı]
+**Ek dosya** [ kanıtlı]
+
 Dosyanın satırı kalır, nesnesi gider: 60 günde kovadan silinir, konuşmada 'silindi' görünür. Günlük temizlik süresi dolan nesneyi yaşından bulur.
 
-**Silme ve saklama**[ öneri]
+**Silme ve saklama** [ öneri]
+
 Silinen mesajın gövdesi boşaltılır, satır 'silindi' olarak kalır. Konuşma kapanıştan sonra saklama süresi dolunca bütünüyle gider; Ürün A'da 180 gün.
+
+<a id="ms-dogru"></a>
 
 ## Doğru mesaj doğru alıcıya
 
@@ -6963,6 +8383,7 @@ Yanlış kişiye giden mesaj, push ya da e-posta geri alınamaz; tek düzeltme �
 **Bizde** Ürün A'nın iki hesaplı testlerinde başka hesap okundu işaretleyemez, yazamaz, dosya açamaz ya da silemez; değiştirilmiş e-posta bağlantısı da 404 alır.
 
 [kanıtlı]
+
 2. Push token'ı bir kurulumun ve o an tek hesabındır; çıkışta düşer, hesap değişince taşınır.
 
 Token tabloda tekildir. Çıkışta uygulama token'ı da gönderir, sunucu cihazı o hesaptan düşürür ve uygulama cihazı hesapsız yeniden kaydeder; kişisel push artık gelmez. Aynı telefona başka hesap girince satır yeni hesaba geçer. Kişisel push hesabın açık her cihazına gider.
@@ -6970,6 +8391,7 @@ Token tabloda tekildir. Çıkışta uygulama token'ı da gönderir, sunucu cihaz
 **Ölü token** Gönderimde ya da 15 dk sonra okunan makbuzda `DeviceNotRegistered` gelince token kapatılır; Expo makbuzu 24 saat tutar. Hesap silinince cihaz ve makbuz satırları da gider.
 
 [kanıtlı]
+
 3. Toplu gönderim önce kuru çalışır: alıcı sayısı ve üç örnek alıcı görülür, sonra onaylanır; gönderim başına tavan sunucudadır.
 
 Yanlış seçilen kitle tek tıkla herkese gider. Tavanı aşan gönderim ikinci bir onay ister.
@@ -6977,6 +8399,7 @@ Yanlış seçilen kitle tek tıkla herkese gider. Tavanı aşan gönderim ikinci
 **Bizde** Ürün A'nın duyuru ucu kitle ve platform adını doğrular; eşleşmeyen ad kimseye gitmeyip 'gönderildi' diyeceği için 400 döner. Cevap gönderim bitmeden döner; kaç cihaza gittiği görünmez. Güncelleme duyurusu güncel build'deki cihazı atlar. Sayı önizlemesi, onay adımı ve tavan yok.
 
 [öneri]
+
 4. Test ortamı gerçek kişiye ulaşamaz.
 
 Ayrı veritabanında gerçek cihaz kaydı yoktur. E-posta yalnız izin listesindeki adreslere gider; liste test ortamında zorunludur, canlıda doluysa API başlamaz. Ayrı push projesi ve gönderen alan adı bizde denenmedi.
@@ -6984,6 +8407,7 @@ Ayrı veritabanında gerçek cihaz kaydı yoktur. E-posta yalnız izin listesind
 **Olay** Ters yönü bizde oldu: adres verilmeyen portal testi ve simülatör canlı API'ye bağlanıp canlıya sahte satır yazdı ([Vaka 15](#vaka-15)). Test istemcisinin hedefi çalışma anında doğrulanır.
 
 [kanıtlı]
+
 5. Push ve e-posta yalnız haber verir; açılan ekran veriyi sunucudan, yetki denetlenerek okur.
 
 Push yalnız 'size yazdı' der; kilit ekranında görünen bu cümledir ([Kullanıcıyı kırmadan değiştirmek 5.8](#k-5-8)). Veri olarak yalnız konuşmanın kimliğini taşır; mesaj uygulamada kalır (Apple 4.5.4), bilinmeyen tür eski uygulamada yalnız uygulamayı açar. Push başka hesabın telefonuna düşse bile sunucu o oturuma konuşmayı döndürmez; ekran açılmaz, kurumsal tarafta 404. E-postanın adresi alıcının kendi kaydından gelir: oturum açıkken formda yazılan değil hesabın adresi kullanılır; oturumsuz talep, adresi kodla doğrulanınca pazar yerine düşer.
@@ -6991,6 +8415,7 @@ Push yalnız 'size yazdı' der; kilit ekranında görünen bu cümledir ([Kullan
 **Kilit ekranı** [öneri] Apple yönergesi bildirimde hassas ya da kişisel bilgi olmamasını, önizleme kapalıyken ayrı ve genel bir metin gösterilmesini öneriyor. Android'de kanal `VISIBILITY_PRIVATE` ile kurulursa kilit ekranında simge ve başlık görünür, metin gizlenir; son söz kullanıcının ayarındadır. Bizde kanal varsayılanda.
 
 [kanıtlı]
+
 6. Her gönderim tek bir kayıt satırı yazar: kime, ne, ne zaman, hangi kanaldan, teslim durumu; saklama süresi yazılıdır.
 
 Yanlış gönderimin kapsamı, kaç kişi ve kim, ancak buradan çıkar. Alıcı token'la değil hesap kimliğiyle yazılır, çünkü token sonradan başka hesaba geçebilir. Süre gizlilik metnine girer ([KVKK](#kvkk)), kayıt admin'den okunur ([Analitik ve admin](#analitik)), makbuz hatası artınca ürün sahibine uyarı düşer ([Uyarılar](#uyarilar)).
@@ -6998,6 +8423,7 @@ Yanlış gönderimin kapsamı, kaç kişi ve kim, ancak buradan çıkar. Alıcı
 **Bizde** gönderim izi her kanal için ayrı yerde, farklı sürelerle tutuluyor ve her kanal satır yazmıyor. Yanlış bir gönderimin kapsamı tek sorguyla çıkmıyor; bu kural oradan çıktı.
 
 [öneri]
+
 7. Kimin neyi göreceğini değiştiren sunucu değişikliği yalnız yeni sürüm ya da yetenek başlığı gönderen istemciye uygulanır; eski build eski kuralla cevap alır.
 
 Ürün A'da yeni akışın kayıtları yalnız 'bu akışı gösterebilirim' başlığını gönderen istemciye döner; eski ekran yalnız eski akışı görür. Push'lar build'e göre bölünür. Geri dönüş yalnız anahtarla: eski API revizyonuna dönülseydi eski kod yeni akışı süzmeyecek, talep sahibinin telefonunu onaysız, talebi alan kurumsal kullanıcıya gösterecekti ([Kullanıcıyı kırmadan değiştirmek 7.6](#k-7-6)). Genel sürüm başlığı bizde yok, mobil kitte öneri.
@@ -7013,18 +8439,23 @@ Test ortamında, X ve Y hesabı ve tek telefonla, yayından önce. Etiket, Ürü
 - [ ] Y, X'in konuşmasına yazar, okundu işaretler, dosyasını açar: üçü de 404; okuma isteğinde X'in konuşması Y'ye hiç dönmez.
 
 [kanıtlı]
+
 - [ ] X çıkış yapar, X'e yazılır: telefona kişisel push gelmez.
 
 [kanıtlı]
+
 - [ ] X'e giden push Y'nin oturumunda açılır: X'in konuşması görünmez.
 
 [kanıtlı]
+
 - [ ] Aynı telefona Y girer: Y'ye yazılan gelir, X'e yazılan gelmez.
 
 [kanıtlı]
+
 - [ ] Kilit ekranındaki push metninde ad, mesaj ve iletişim bilgisi yok.
 
 [kanıtlı]
+
 - [ ] Test ortamından listede olmayan adrese e-posta gitmez.
 
 [kanıtlı]
@@ -7040,21 +8471,25 @@ Konuşma uçları bir kez doğru kurulur; sonradan değişen her şey eski istem
 Zaman aşımında mesaj yazılmış olabilir. Aynı anahtarla gelen ikinci istek ilk mesajı döner, kullanıcı çift mesaj görmez.
 
 [öneri]
+
 2. Okuma imleçle yapılır; değişiklik yoksa 304 ya da boş liste döner.
 
 İstemci son gördüğü (`created_at`, `id`) çiftini gönderir. Sunucu imlecin 10 sn gerisinden başlar, istemci gelenleri kimlikle tekilleştirir. `now()` yazma işleminin bittiği an değil, başladığı andır: önce başlayıp geç biten bir yazma, ondan sonra gelip önce biten mesajın gerisinde kalır. Tam imleç o mesajı hiç döndürmez. Pencere en uzun yazma işleminden geniş tutulur. Ürün A'da konuşma en çok 300 mesaj olduğu için her turda tamamı okunuyor; sınırsız konuşmada liste sayfalanır.
 
 [öneri]
+
 3. Sınırlar sunucuda ve adlı hatayla: gövde 1.000 karakter, konuşmada 300 mesaj, 20 dosya, dosya 6 MB.
 
 Genel tavan IP başına dakikada 600 istek; 429 `Retry-After` taşır ve uygulama ayrı bir mesaj gösterir.
 
 [kanıtlı]
+
 4. Zaman ve sıra sunucudan gelir.
 
 `created_at` sunucuda yazılır; liste önce bu zamana, eşitlikte kimliğe göre sıralanır. Telefonun saati sırayı belirlemez.
 
 [kanıtlı]
+
 5. Bir hatalı mesaj konuşmayı kilitlemez.
 
 AI sohbetinde '70000 ay' diye okunan mesaj geçersiz vade hatası verdi ve sonraki her mesaj aynı hatayı aldı (2 Eki 2026). Hata o mesajda kalır, sonraki temiz başlar.
@@ -7070,16 +8505,19 @@ Sıklık kuralı ve kontrolü [Kullanıcıyı kırmadan değiştirmek 5.6](#k-5-
 Makbuz yalnız Apple ya da Google'ın isteği kabul ettiğini söyler; telefona ulaşıp ulaşmadığını söylemez. Uygulama açılınca konuşma ve kutu sunucudan okunur.
 
 [kanıtlı]
+
 2. Okunmamış dönem başına bir push; e-posta günde en çok bir.
 
 Karşı taraf okumadıkça yeni push gitmez, okuyunca sıfırlanır. E-posta gitmezse bir kez daha denenir; yine gitmezse günlük işaret silinir ki sonraki mesaj göndersin.
 
 [kanıtlı]
+
 3. Yeni talep duyurusu 15 dakikada toplanır ve gece çaldırmaz; Premium olmayana hafta içi tek özet gider.
 
 21:00–08:00 arası düşen talep 08:00'den, özet 10:00'dan sonraki ilk trafikte gider. Ayrı zamanlayıcı yok: trafiğin zaten uyandırdığı veritabanında var olan işçi gönderir; gelen kutusu satırı anında yazılır. Konuşma push'u saat gözetmez; yeni üründe konuşmaya da gece kuralı koymak önerimiz.
 
 [kanıtlı]
+
 4. Konuşma başına sessize alma, kategori anahtarından ayrıdır.
 
 Ürün A'da kategori var: kampanya anahtarını kapatmak yazışmayı susturmaz. Konuşma başına sessize alma yok; şemadaki `muted_until` bunun için.
@@ -7095,11 +8533,13 @@ Veri yeri, işleyen listesi ve aktarım [KVKK ve veri yeri](#kvkk) bölümünde.
 Kurumsal kullanıcı telefonu ve e-postayı görmeden yazar; talep sahibi paylaşımı onaylarsa açılır, reddederse o kişi artık yazamaz.
 
 [kanıtlı]
+
 2. Dosyayı yalnız talep sahibi ve yalnız paylaşımdan sonra gönderir.
 
 Kurumsal kullanıcı dosya yükleyemez; gönderebildiği yalnız uygulamanın oluşturduğu hazır kartlardır. Karşı tarafa sahte belge gönderen dolandırıcılığa kapı açılmaz. Dosyayı yalnız iki taraf API üzerinden indirir; fotoğrafın konum bilgisi silinir.
 
 [kanıtlı]
+
 3. Saklama süresi ilk sürümde yazılır: dosya 60 gün, konuşma kapanıştan sonra 180 gün.
 
 Günlük temizlik işi süresi dolanı kovadan siler, hesap silinince dosyalar da gider. Gizlilik metni bu süreleri yazar.
@@ -7115,16 +8555,19 @@ Yetenek başlığı ve anahtarla geri dönüş yukarıda, [Doğru mesaj doğru a
 Eski pazar yeri ekranına sunucudan yazı konamadığı için değişiklik eski sürümdeki kullanıcıya anlatılamadı.
 
 [kanıtlı]
+
 2. Spam sınırı konuşmanın kuralıdır: karşı taraf cevap vermeden en çok 3 mesaj.
 
 Cevap sayacı sıfırlar. Reddeden kişiye yazılamaz; reddeden yazarsa ret kalkar.
 
 [kanıtlı]
+
 3. Denetlenmeyen yorum yayınlanmaz.
 
 Ürün B'de yorum yayından önce modelle denetlenir; denetime ulaşılamazsa yorum yayınlanmaz, bekletilir. Reddedilen deneme kaydedilir ki karar incelenebilsin; kaldırılan silinmez.
 
 [kanıtlı]
+
 4. Her konuşmada rapor et ve engelle; rapor yöneticiye içeriğiyle ulaşır.
 
 Apple kuralı 1.2, kullanıcı içeriği olan uygulamada süzme, rapor, engelleme ve iletişim bilgisi ister. Yöneticiye yalnız 'bir şikayet geldi' diyen e-posta yetmez. Hangi içerik ve hangi konuşma olduğu yazmazsa karar elle aranır. Talep sahibinin reddi engelin yerini tutabilir. Rapor ise ayrı bir düğmedir ve ilk sürümde olur.
@@ -7154,6 +8597,7 @@ E-posta kuyruğu API içinde bütün gece saniyede bir yoklanıyordu. Artık sat
 ### E-posta tarayıcısı 'görüldü' yakacaktı
 
 Ürün A, 29 Eyl 2026
+
 E-postadaki bağlantıyı açmak okundu sayılıyordu; bağlantıları tarayan e-posta sistemleri kurumsal kullanıcıya yanlış 'görüldü' gösterecekti. Akış açılmadan düzeltildi.
 
 **Kural** 'Görüldü' yalnız görünür ekranda, POST ile. [Kullanıcıyı kırmadan değiştirmek](#kirmama)
@@ -7189,42 +8633,55 @@ Bir ziyaretçi 14 dakikada ~294 istek gönderdi, 200'den fazlası 429 aldı. Art
 - [ ] Her akışın basamağı ve üstteki basamağın neden yetmediği bir cümleyle yazıldı.
 
 [öneri]
+
 - [ ] Yoklama yalnız öndeki açık ekranda; arka planda ve gizli sekmede istek 0, yayından sonra logdan okunur.
 
 [kanıtlı]
+
 - [ ] Veritabanına zamanlayıcıyla soran iş yok; işler trafiğin zaten uyandırdığı veritabanında çalışıyor.
 
 [kanıtlı]
+
 - [ ] Yoklama ucu değişiklik yoksa 304 ya da boş liste dönüyor.
 
 [öneri]
+
 - [ ] Mesaj tablosunda istemci anahtarı ve tekil indeks var; aynı istek iki kez gidince tek satır.
 
 [öneri]
+
 - [ ] Gövde, üst üste mesaj, konuşma başına mesaj ve dosya sınırları sunucuda, adlı hatayla.
 
 [kanıtlı]
+
 - [ ] Okundu katılımcı başına; 'görüldü' yalnız görünür ekranda POST ile yanıyor.
 
 [kanıtlı]
+
 - [ ] Bildirim kuralı yazılı: okunmamış dönem başına bir push, e-posta günde en çok bir, yeni talep duyurusu 21:00–08:00 sessiz, hak sahibi olmayana özet.
 
 [kanıtlı]
+
 - [ ] İletişim bilgisi iki taraf razı olana kadar gizli; ret sonrası yazma kapalı.
 
 [kanıtlı]
+
 - [ ] İki hesaplı testte başkasının konuşmasına yazma, okundu işaretleme ve dosya açma 404.
 
 [kanıtlı]
+
 - [ ] Çıkıştan ve hesap değişiminden sonra kişisel push'un gelmediği iki hesapla telefonda denenir.
 
 [öneri]
+
 - [ ] Dosya saklama süresi, günlük temizlik işi ve gizlilik metnindeki süre ilk sürümde.
 
 [kanıtlı]
+
 - [ ] Rapor ve engel düğmesi var; rapor yöneticiye içeriğiyle düşüyor.
 
 [öneri]
+
 - [ ] Yeni akış yetenek başlığı ve kayıtlı build ile süzülüyor, anahtar arkasında kapalı çıkıyor; geri dönüş anahtarla.
 
 [kanıtlı]
@@ -7274,20 +8731,35 @@ Yanlış alıcıya giden bildirim sayısı: bu araştırmada canlı veritabanı 
 Resmi sayfalar 8 Ekim 2026'da okundu. Bizim rakamlarımız depolardan, değişiklik kayıtlarından, vaka defterinden ve faturalardan.
 
 **Cloud Run WebSocket**https://docs.cloud.google.com/run/docs/triggering/websockets
+
 **Cloud Run istek zaman aşımı**https://docs.cloud.google.com/run/docs/configuring/request-timeout
+
 **Cloud Run fiyatları**https://cloud.google.com/run/pricing
+
 **Neon scale to zero**https://neon.com/docs/introduction/scale-to-zero
+
 **Neon compute yaşam döngüsü**https://neon.com/docs/introduction/compute-lifecycle
+
 **Neon bağlantı havuzu**https://neon.com/docs/connect/connection-pooling
+
 **Expo push gönderme ve makbuz**https://docs.expo.dev/push-notifications/sending-notifications/
+
 **Expo fetch akışı**https://docs.expo.dev/versions/latest/sdk/expo/
+
 **MDN server-sent events**https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+
 **App Store kuralları 1.2 ve 4.5.4**https://developer.apple.com/app-store/review/guidelines/
+
 **Apple bildirim yönergesi**https://developer.apple.com/design/human-interface-guidelines/notifications
+
 **Android kilit ekranı görünürlüğü**https://developer.android.com/develop/ui/views/notifications/build-notification
+
 **Pusher Channels fiyatı**https://pusher.com/channels/pricing/
+
 **Ably fiyatı**https://ably.com/pricing
+
 **Supabase fiyatı**https://supabase.com/pricing
+
 **Firebase fiyatı**https://firebase.google.com/pricing
 
 <a id="tasarim"></a>
@@ -7303,7 +8775,9 @@ Canlı ürünlerimizde tasarım koda elle kopyalanarak indi ve her ürün aynı 
 Gün 0'da üç dosya açılır: renk, yazı ve ölçünün tek kaynağı olan token dosyası, tasarım paketlerinin tarihli klasörlerde durduğu depo yeri ve her kararın numarayla yazıldığı karar dosyası. Ekran gerçek cihazda ve tarayıcıda görülmeden iş bitmiş sayılmaz. Ajan arayüze dokunmadan önce bu dosyaları okur, işi bitirince ekran görüntüsüyle gösterir.
 
 **16 paket** Ürün A'da 16–19 Eylül'de tasarım aracından elle verilen devir paketi. Hiçbiri depoya alınmadı; bugün diskte yok, içerikleri yalnız oturum kayıtlarında.
+
 **292,4 / 329,8 pt** Aynı başlığın web'de ve uygulamada genişliği. Font yüklüydü ama kullanılmıyordu; düzeltmeden sonra uygulamada 292,7 pt.
+
 **2 hafta** Ürün B'de sonuç listesinin geniş ekranda bozuk kaldığı süre. Bütün kontroller telefon genişliğinde yapılmıştı.
 
 ## Token dosyası dışında yazılmış renk
@@ -7311,8 +8785,10 @@ Gün 0'da üç dosya açılır: renk, yazı ve ölçünün tek kaynağı olan to
 8 Ekim 2026 depo taraması. Ürünler ortak bir tasarım paketi kullanmıyor; her ürün token'larını kendi depolarında, çoğu zaman elle kopyalayarak tutuyor. Ürün A'nın ana marka rengi 5 depoda 17 dosyada sabit değer olarak yazılı. Ürün B iki dosyayı elle eşliyor ve yine de disiplinle temiz kaldı. Ürün D'nin token'ları tek CSS dosyasında, 12 benzersiz hex 2 dosyada; Ürün C'nin sayısı elimizde yok.
 
 kullanılan koddahiç import edilmeyen bir iskelet dosyasındaadet; ölçek gerçek
+
 _Grafik: Token dosyası dışında yazılmış sabit renk sayısı, ürün ve yüzey başına_
 Başka bölümlerde
+
 Görsel taramanın beş ölçüsü ve WebKit kontrolü [Kullanıcıyı kırmadan değiştirmek](#kirmama) bölümünün 3.10 maddesinde, sessizce durduran arayüz 3.11'de, incelenen işin commit'lenmemesi 7.4'te. AGENTS.md, CHANGELOG ve genel karar dosyası [Proje hafızası ve devir](#hafiza) bölümünde; OG kartları [SEO ve GEO](#seo), sosyal paylaşım görselleri [İçerik otomasyonu](#icerik) bölümünde.
 
 ## Tasarımdan koda devir
@@ -7324,36 +8800,47 @@ _Grafik: Tasarım paketinden CHANGELOG'a yedi adım_
 ### Devrin kuralları
 
 1
+
 **Tasarım için yeni uç, kolon ya da migration açılmaz**. Verisi olmayan öğe tasarımdan düşer, sahte ya da sabit veriyle doldurulmaz; yeni backend işini yalnız ürün sahibi açar.
 
 Ürün A'nın ilk altı paketi API'de olmayan veri ve kurallar çizdi; eleme olmasa ekrana uydurma rakam çıkacaktı.
 
 [kanıtlı]
+
 2
+
 **Tasarımda yeri belli olmayan ekran için yer uydurulmaz, ürün sahibine sorulur**. Onun kuralı: bizde olup tasarımda olmayanı tasarımın diline uyarlayıp koy; tasarımda olup bizde olmayanı koyma.
 
 Tasarımda yeri belli olmayan yedi ekran tek tek soruldu; kararlar 8 dakika sürdü.
 
 [kanıtlı]
+
 3
+
 **Paketin 'nerede kullanılmaz' ve 'ne yapılmaz' listesi kabul kriteridir**.
 
 Atlandığında yükleme animasyonu düğmeye kondu, hareketli logo 375 px ekranda iki düğmeyi dışarı itti.
 
 [kanıtlı]
+
 4
+
 **Rebrand renk, yazı, logo ve boşluğu değiştirir**. Kontrolün yeri, türü ve davranışı ancak ürün sahibi açıkça isterse değişir; eski ve yeni ekran yan yana gösterilir.
 
 Ürün C'de dört paralel ajan arama yerini, dil menüsünü ve ikonları da değiştirdi; aynı gün geri alındı.
 
 [kanıtlı]
+
 5
+
 **Ekran tarayıcıda ya da simülatörde görülmeden 'yapıldı' denmez**. Ara rapor 'yapıldı, yapılmadı, verisi yok' tablosudur.
 
 Dört tur testleri yeşil geçti ve 'bitti' denildi; portalın tablosu, çekmecesi ve üst çubuğu yoktu.
 
 [kanıtlı]
+
 6
+
 **Paket geldiği günün kaydı olarak saklanır**; geçerli değer token dosyasında ve karar dosyasında durur. Karar değişince ikisine yazılır; eski paketin DECISION.md'sine 'yerini aldı: K-NNN' düşülür.
 
 Ürün C'de 3 Ekim kararı pakete geri yazılmadı; 6 Ekim'de eski paket yeniden kaynak alındı. Kural bugün yalnız ajan belleğinde.
@@ -7367,36 +8854,47 @@ Gördüğümüz README'ler sayısaldı: ölçü, süre, easing, açık ve koyu r
 - [ ] Token'lar HTML'in yanında makinece okunan bir dosyada (DTCG JSON); mevcut adlarla eşleme tablosu.
 
 [öneri]
+
 - [ ] Her ekranın durumları: varsayılan, basılı, odak, seçili, devre dışı, yükleniyor, boş, hata, misafir ve girişli, çevrimdışı.
 
 [öneri]
+
 - [ ] Boş, hata ve yükleme metinleri; uzun Türkçe metinli bir varyant, iki satıra kırılma kuralı.
 
 [öneri]
+
 - [ ] Kırılımlar: 375, 900 ve 1280 px'te ayrı kare; tablet destekleniyorsa 768 de.
 
 [öneri]
+
 - [ ] Koyu tema kararı: koyu renk sütunu ya da 'yalnız açık tema' cümlesi.
 
 [kanıtlı]
+
 - [ ] Platform notları: iOS ve Android kontrolleri, güvenli alan, klavye, 44 pt ve 48 dp hedef.
 
 [öneri]
+
 - [ ] Veri kaynağı tablosu: her öğe hangi API alanından geliyor; olmayan veri işaretli.
 
 [öneri]
+
 - [ ] 'Nerede kullanılmaz' ve 'ne yapılmaz' listesi; küçük boy kuralı (44 px altında işaret).
 
 [kanıtlı]
+
 - [ ] Hareket: süre, easing, azaltılmış harekette ne olacağı.
 
 [kanıtlı]
+
 - [ ] Erişilebilirlik: rol, etiket, ekran okuyucu metni, kontrast oranı.
 
 [kanıtlı]
+
 - [ ] Mevcut kontrollerin listesi; paket değiştirdiği her kontrolü açıkça yazar.
 
 [öneri]
+
 - [ ] RTL gerekmiyorsa bunu yazan bir cümle.
 
 [öneri]
@@ -7536,18 +9034,23 @@ Sistem, açılış kütüphanesi ve JS katmanı üç ayrı görsel çiziyordu; A
 ### Token kaynağı ve adlandırma
 
 1
+
 **Tek token kaynağı depoda durur**: `tokens/tokens.json`, DTCG 2025.10 biçiminde. Bir build adımı web için CSS değişkenlerini, mobil için `theme.ts`'i, e-posta şablonları için sabitleri üretir; elle kopya yoktur.
 
 Ürün A'da üç CSS kopyası elle eşleniyor (birinde bir değer farklı), web ve mobilde token adları farklı, e-posta renkleri satır içi. Ürün C'de web dört katman, admin ayrı kopya; 51 ortak token'ın 19'u farklı.**Kontrol** CI üretilen dosyaları yeniden üretip fark arar; fark varsa build kırılır.
 
 [öneri]
+
 2
+
 **Token dosyası dışında renk, font adı ve gölge yazılmaz**. CI token dosyası dışındaki hex'leri sayar, sayı artarsa kırılır.
 
 Bugün token dosyası dışında Ürün A portalında 327, mobilde 155; Ürün B'de 29 ve 5.**Kontrol** stylelint `color-no-hex` ya da bir grep sayacı.
 
 [öneri]
+
 3
+
 **Token adı rolü söyler**: ink, ink-muted, surface, surface-muted, line, accent, focus. Durum renkleri üçlü gelir: ön plan, açık zemin, o zeminin üstündeki metin. Anlam değişirse yeni ad açılır, eski ad başka anlama verilmez.
 
 Ürün A'da adlar korunup yalnız değerler değişince ~40 ekran dokunulmadan yeni sisteme geçti. Bir yüzey rengi ters kutupluluğa geçince onu açık sanan her yer bozuldu.**Kontrol** Token dosyasında her token'ın bir rol açıklaması var.
@@ -7557,18 +9060,23 @@ Bugün token dosyası dışında Ürün A portalında 327, mobilde 155; Ürün B
 ### Tipografi ve Türkçe karakterler
 
 4
+
 **Tek yazı ailesi (gerekirse sayılar için bir mono), en çok dört ağırlık, web ve mobilde aynı ağırlık kümesi**. Ölçek rol adlarıyla 5–7 basamak, mobil gövde 15–18. Mobilde her ağırlık kendi dosyasına çözülür; sentetik kalınlık bırakılmaz.
 
 Ürün A'da web 800 kullandı, mobilde o dosya yoktu ve Android sahte kalınlık ekledi. Paketin iki ayrı yüzü ekranı iki ürün gibi okuttu; üç tur ve ~4 saat sonra tek aileye geçildi.**Kontrol** Aynı metin iki platformda aynı puntoda basılıp genişliği ölçülür (canvas `measureText`, React Native `onTextLayout`); fark %2'yi geçmez.
 
 [ölçüldü]
+
 5
+
 **Font Türkçe gliflerle (ğ ş ı İ ç ö ü), gerekiyorsa Kiril ile denenerek seçilir**; tam dosya ya da kendi adıyla kayıtlı latin-ext alt kümesi kullanılır. Font her yüzeyde ayrı denenir: web, uygulama, widget, e-posta ve API sayfaları, OG ve sosyal görsel, PDF, sunum.
 
 Ürün A'da font dört yüzeyde ayrı ayrı düştü; Ürün B'de desteklenen dillerden birinin alfabesini taşımayan bir yüz bu yüzden elendi.**Kontrol** Her yüzeyden 'Ağır Işık Şöğüş İı' örnek metnini gösteren bir ekran görüntüsü.
 
 [kanıtlı]
+
 6
+
 **Büyük harfte CSS'e güvenilmez**. lang her sayfada doğrudur, Türkçe metin tr-TR ile büyütülür, marka adı ve İngilizce marka kelimeleri kaynakta sabit yazılır; harf aralığı en çok 0,04em.
 
 Ürün A'da CSS uppercase İngilizce bir marka kelimesini noktalı İ ile yazdı; Ürün C'de Türkçe bir etiket İngilizce sayfada noktasız I çıktı. Geniş harf aralığı 'AI slop' diye reddedildi.**Kontrol** Birim test: her büyük harf etiket kendi dilinin büyük haliyle aynı.
@@ -7578,18 +9086,23 @@ Bugün token dosyası dışında Ürün A portalında 327, mobilde 155; Ürün B
 ### Renk, kontrast ve dokunma
 
 7
+
 **Kontrast WCAG 2.2 AA**: gövde metni 4,5:1, büyük metin ve kontrol kenarı 3:1. Oran metnin gerçekte durduğu her zemine göre ayrı hesaplanır.
 
 Ürün A'da soluk metin beyaz üstünde 4,69:1 idi, sayfa zemininde 4,41:1'e düşüyordu; 5,68:1 veren değer seçildi.**Kontrol** Token çiftleri listesi ve bir kontrast birim testi.
 
 [ölçüldü]
+
 8
+
 **Durum rengi tek başına anlam taşımaz**; yanında metin ya da işaret olur. Ana eylem rengi yalnız basılacak şeylerde kullanılır.
 
 Ürün A'nın tasarım belgesi ve Ürün B'de bir rozet bu kuralla çiziliyor.**Kontrol** Renk körlüğü simülasyonunda ekran okunuyor mu.
 
 [kanıtlı]
+
 9
+
 **Dokunma alanı en az 44x44 pt (iOS) ve 48x48 dp (Android)**; flex ebeveyn küçültemez. Başlık satırı gibi geniş hedeflerde bütün satır dokunulur.
 
 Ürün B'de 44 diye tanımlı bir düğme 36x44'e sıkışmıştı; Ürün A'da akordeonda yalnız 18 px'lik ok dokunuluyordu.**Kontrol** Bileşenin ekranda çizilen boyutu ölçülür.
@@ -7599,6 +9112,7 @@ Bugün token dosyası dışında Ürün A portalında 327, mobilde 155; Ürün B
 ### Koyu tema kararı
 
 10
+
 **Koyu tema gün 0'da karara bağlanır**. Ya token'larda iki mod tasarlanır ve her ekran iki modda görülür, ya da 'yalnız açık tema' yazılır ve kilitlenir: uygulama ayarında açık stil, web'de `color-scheme: light`. Yarım koyu ekran yayınlanmaz.
 
 Dört ürünün hiçbiri koyu tema yayınlamadı; bir uygulamanın ayarı hâlâ 'otomatik', birinde koyu palet açığın kopyası, bir web'de koyu mod tanımlı ama kullanılmıyor.**Kontrol** Sistem koyu moddayken native seçici, uyarı ve klavye ekranla uyumlu mu.
@@ -7608,24 +9122,31 @@ Dört ürünün hiçbiri koyu tema yayınlamadı; bir uygulamanın ayarı hâlâ
 ### Bileşenler ve durumlar
 
 11
+
 **Her bileşenin durumları baştan çizilir**: varsayılan, hover, odak, basılı, seçili, devre dışı, yükleniyor, boş, hata, misafir ve girişli.
 
 Gördüğümüz paketlerde boş ve yükleniyor durumları yoktu; durum galerisi bizde kurulmadı.**Kontrol** Bir durum galerisi her bileşeni her durumda ve uzun Türkçe metinle gösterir.
 
 [öneri]
+
 12
+
 **Kullanılamayan düğme basılabilir kalır ve eksiği söyler**; devre dışı yalnız iş sürerken kullanılır, meşgul düğme etiketini ve genişliğini korur. Yüzen her şey portal ile belgenin köküne çizilir.
 
 Ürün B'de devre dışı düğme uyarıyı gizledi, form içindeki diyalog sayfayı yeniledi.**Kontrol** Eksik formda gönder düğmesine basılır; ekran neyin eksik olduğunu yazar.
 
 [kanıtlı]
+
 13
+
 **Aynı iş aynı bileşen**. Yeni element yazmadan önce depoda aranır; ortak bileşen listesi DESIGN.md'de durur; birden fazla kopya bulunursa aynı değişiklikte teke indirilir.
 
 Ürün A'da tarih seçici üç ekranda üç ayrı koddu, ikisi iOS'ta formu aşağı itiyordu; iki PDF üreticisi de ayrışmıştı.**Kontrol** İncelemede açılan her yeni bileşen dosyasının listede karşılığı var mı.
 
 [kanıtlı]
+
 14
+
 **Hareket**: tek easing eğrisi, süreler 120–260 ms, azaltılmış harekette süre sıfır. Animasyon durum, süreklilik ya da geri bildirim anlatır; dekoratif döngü yok.
 
 Ürün A ve B aynı aralıkta birleşti.**Kontrol** Sistemde 'hareketi azalt' açıkken ekran kaydı.
@@ -7635,12 +9156,15 @@ Gördüğümüz paketlerde boş ve yükleniyor durumları yoktu; durum galerisi 
 ### Platform eşliği ve marka varlıkları
 
 15
+
 **Platform eşliği**: aynı bilgi, aynı akış, aynı özellik kümesi. Kontrol platformun kendisidir (tarih seçici, sheet, geri hareketi, paylaşım); piksel eşliği aranmaz. İki platformda tek ikon ailesi.
 
 Kayma en az bu ilkeyle çalışan Ürün B'de. Ürün A mobilde iki ikon ailesini karıştırıyor (kodda 280 ve 54 geçiş).**Kontrol** Yeni özellik raporunda 'web'de ve uygulamada nerede' satırı.
 
 [kanıtlı]
+
 16
+
 **Marka varlıkları bir README tablosunda durur**: dosya, boyut, rol, nerede kullanılmaz, SHA-256. Küçük boy kuralı yazılıdır (ör. 44 px altında yalnız işaret). İşaret koddan ya da tek SVG'den çizilir; native açılış animasyonun ilk karesidir.
 
 Ürün B'de roller ve hash'ler yazılı, kayma yok. Ürün A'da rolü yazılı olmayan bir ikon favicon ile ezildi, açılışta üç görsel arka arkaya çizildi.**Kontrol** Varlık değişince hash ve tablo aynı commit'te güncellenir.
@@ -7650,18 +9174,23 @@ Kayma en az bu ilkeyle çalışan Ürün B'de. Ürün A mobilde iki ikon ailesin
 ### Görsel tarama ve Safari
 
 17
-**Görsel tarama her sayfada, 375, 900 ve 1280 px'te, beş ölçüyle yapılır**; ölçü önce eski canlı sayfada denenir ki temiz sonuç bir şey ifade etsin. Beş ölçü [Kullanıcıyı kırmadan değiştirmek 3.10](#k-3-10)'da.
+
+**Görsel tarama her sayfada, 375, 900 ve 1280 px'te, beş ölçüyle yapılır**; ölçü önce eski canlı sayfada denenir ki temiz sonuç bir şey ifade etsin. Beş ölçü [Kullanıcıyı kırmadan değiştirmek 3.10](#k-3-10)'da.
 
 Ürün A'da yalnız bildirilen başlık ölçüldü, ürün sahibi aynı sayfada üç hata daha buldu (ek tur ~35 dakika).**Kontrol** Rapor taramanın bulduklarını ayrıca söyler.
 
 [kanıtlı]
+
 18
+
 **Form kontrolü ya da kart düzeni değişince WebKit'te bakılır**. select ve tarih alanında `appearance: none`; ölçüm gerçek kart genişliklerinde. İzin diyaloğu isteyen hata simülatördeki gerçek Mobile Safari'de üretilir.
 
 Ürün A'da iki kontrol yalnız Chrome'da bakılıp canlıya çıktı; Ürün B'de bir konum hatası beş kez 'çalışıyor' ölçüldü, izin hep verilmişti.**Kontrol** Playwright WebKit ya da macOS `qlmanage` ile ekran görüntüsü.
 
 [kanıtlı]
+
 19
+
 **Ekran gösterilmeden onay istenmez**: masaüstü ve telefon ekran görüntüsü, her biri bir satırla. Ürün sahibi bakarken commit yok ([Kullanıcıyı kırmadan değiştirmek 7.4](#k-7-4)).
 
 Ürün C'de ekranlar gösterilmeden deploy onayı istendi, ürün sahibi itiraz etti.**Kontrol** Deploy onayı mesajında ekran görüntüleri var.
@@ -7671,12 +9200,15 @@ Kayma en az bu ilkeyle çalışan Ürün B'de. Ürün A mobilde iki ikon ailesin
 ### Mağaza ve sosyal görseller
 
 20
+
 **Mağaza görseli bir hattan, gerçek ekran görüntüsünden çıkar**: simülatörde temiz durum çubuğu (9:41), demo hesap, gerçekçi örnek veri, kişisel veri yok; editör projesi JSON olarak git'te. Boyutlar: App Store 6,9 inç 1320x2868, iPad 13 inç 2064x2752, Play telefon en çok 2:1 (1080x2160), öne çıkan görsel 1024x500.
 
 Ürün A'da elle yapılan ilk set reddedildi; açık kaynak bir editöre geçince ilk onay 17 dakikada geldi.**Kontrol** Setin bütün kareleri tek görselde ürün sahibine gider.
 
 [kanıtlı]
+
 21
+
 **Sosyal ve OG görselleri koddan, tam font dosyasıyla üretilir**; boyutlar ve ızgara kırpması [İçerik otomasyonu](#icerik) bölümünde. Web'deki ekran görüntüleri WebP'dir ve her set yeni klasöre girer.
 
 Alt küme web fontu paylaşım kartlarında ğ ve ş'yi bozdu. WebP, PNG'nin beşte biri; 30 günlük önbellekte aynı adres yeni görseli göstermez.
@@ -7686,24 +9218,31 @@ Alt küme web fontu paylaşım kartlarında ğ ve ş'yi bozdu. WebP, PNG'nin be�
 ### Arayüz metni ve üslup
 
 22
+
 **Türkçe metin İngilizcesinden uzun çıkar**. Düğmeye min-height ve dikey dolgu verilir, sabit yükseklik verilmez; iki satıra kırılma tasarımın parçasıdır, üç noktayla kesme yok. Sayı biçimi her dilde tek bir biçimlendiriciden gelir.
 
 Ürün A'nın tasarım belgesi bu kuralla yazıldı; Ürün B bütün dillerinde aynısını uyguluyor.**Kontrol** Durum galerisinde ürünün en uzun dilindeki metin.
 
 [kanıtlı]
+
 23
+
 **Örnek ve yer tutucu değerler gerçekçi ve yasal olarak mümkündür**; uç değer yalnız testte kullanılır.
 
 Ürün A'da imkânsız bir örnek tutar ürünün tamamına güveni sarstı.**Kontrol** Örnek rakamlar ürünün kendi kural tablosundan okunur.
 
 [kanıtlı]
+
 24
+
 **Yasak kalıp listesi gün 0'da yazılır**; UI, e-posta, sunum ve sosyal görselde geçerlidir ve teslimden önce aranır. Bizim listemiz: uzun tire, orta nokta ayracı, mono ya da harf aralığı açılmış büyük harf üst etiket, hap etiket, numaralı kart, alt köşede sayfa numarası, iki noktalı vurucu cümle, 'X değil Y' kalıbı, uydurma slogan, kanıtsız iddia, soyut 2x2 grafik, kutu içinde kutu. Kişinin kendi yazdığı metin cilalanmaz; yalnız anlam ve doğruluk düzeltilir.
 
 Bu kalıpların hepsi iki üründe tek tek reddedildi.**Kontrol** Teslimden önce uzun tire, orta nokta ve büyük harf etiket için tek bir grep satırı.
 
 [kanıtlı]
+
 25
+
 **Marka adı sıradan bir kelimeyse cümle başında tek başına kullanılmaz**; okur ürünü mü cins ismi mi kastettiğini ayıramaz.
 
 Bir ürünümüzde cümle başındaki cins isim ürün adı gibi okundu.**Kontrol** Yeni metinde marka adının geçtiği her yer tek tek okunur.
@@ -7724,7 +9263,7 @@ Bir ürünümüzde cümle başındaki cins isim ürün adı gibi okundu.**Kontro
 |---|---|
 | tokens/tokens.json | Makinece okunan tek kaynak; DESIGN.md'deki tablo bundan üretilebilir. |
 | docs/DECISIONS.md | K numaralı kararlar; tasarım kararları da buraya girer. |
-| docs/design-handoffs/ | Her paket YYYY-AA-GG-konu/ klasöründe olduğu gibi, yanında DECISION.md. |
+| docs/design-handoffs/ | Her paket YYYY-MM-DD-konu/ klasöründe olduğu gibi, yanında DECISION.md. |
 | docs/brand/README.md | Varlık rolleri, boyutlar, hash, küçük boy kuralı. |
 | CHANGELOG.md | En yeni üstte; ne değişti ve neden; aynı commit'te. |
 
@@ -7741,28 +9280,34 @@ Genel karar dosyasının biçimi, AGENTS.md ve CHANGELOG kuralları [Proje hafı
 ### Ajan arayüz işinden önce okur
 
 1
+
 CLAUDE.md ve AGENTS.md: okuma sırası ve kurallar.
 
 2
+
 PRODUCT.md: ürün ne değil.
 
 3
+
 DESIGN.md ve tokens/tokens.json.
 
 4
+
 İlgili paketin README'si ve DECISION.md'si; 'yerini aldı' notu varsa yeni karar.
 
 5
+
 docs/DECISIONS.md'de ilgili K kayıtları.
 
 6
+
 Depoda mevcut bileşen ve canlıdaki ekran.
 
 Sonra eleme raporu: var, yeni backend ister, yapılamaz; yalnız ilki kurulur. Verilen her karar aynı commit'te DECISIONS.md'ye, sapma DESIGN.md'ye yazılır.
 
 ```
 # DESIGN.md
-Kaynak: tokens/tokens.json. Güncelleme: YYYY-AA-GG.
+Kaynak: tokens/tokens.json. Güncelleme: YYYY-MM-DD.
 ## Tema
 Yalnız açık | açık ve koyu. Koyu yoksa neden.
 ## Renk
@@ -7782,13 +9327,13 @@ dört durum; uzun Türkçe metin; kontrast; 44 pt.
 
 ```
 ## K-NNN Yalnız açık tema
-Tarih: YYYY-AA-GG.
+Tarih: YYYY-MM-DD.
 Durum: geçerli | yerini aldı: K-NNN.
 Karar veren: ürün sahibi. Yazan: kişi ya da ajan.
 Karar: tek cümle.
 Neden: olay, ölçüm ya da sahibin sözü, tarihiyle.
 Etkilenen: token, bileşen, web, mobil, e-posta.
-Kaynak: docs/design-handoffs/YYYY-AA-GG-konu/
+Kaynak: docs/design-handoffs/YYYY-MM-DD-konu/
 Eski girdiler: geçersiz kalan paket ya da belge.
 Geri alma: hangi commit'ler, ne gerekir.
 ```
@@ -7808,6 +9353,7 @@ Bizde gün 0'da yapılmadı; hepsi öneri. Süreler tahmin.
 ### Tek token paketi ve üretici
 
 [öneri]
+
 tokens.json'dan Style Dictionary ile CSS değişkenleri, React Native teması, e-posta sabitleri.
 
 **Etki** Elle kopya ve değer farkı biter; rebrand tek dosyada başlar.
@@ -7817,6 +9363,7 @@ tokens.json'dan Style Dictionary ile CSS değişkenleri, React Native teması, e
 ### CI'da token dışı renk sayacı
 
 [öneri]
+
 stylelint kuralı ve token dosyası dışındaki hex'leri sayan bir adım.
 
 **Etki** Ürün A'daki 327 ve 155 gibi sayılar büyümez, düşmeye başlar.
@@ -7826,6 +9373,7 @@ stylelint kuralı ve token dosyası dışındaki hex'leri sayan bir adım.
 ### Chromium ve WebKit'te ekran testi
 
 [öneri]
+
 Playwright ile 375, 900 ve 1280 px'te ekran görüntüsü ve görsel fark, en uzun Türkçe metinle.
 
 **Etki** Safari ve geniş ekran hatası canlıdan önce yakalanır.
@@ -7835,6 +9383,7 @@ Playwright ile 375, 900 ve 1280 px'te ekran görüntüsü ve görsel fark, en u
 ### Otomatik erişilebilirlik
 
 [öneri]
+
 Web'de axe-core ve eslint-plugin-jsx-a11y; token çiftleri için kontrast birim testi.
 
 **Etki** Kontrast, etiket ve rol hataları elle bulunmayı beklemez.
@@ -7844,6 +9393,7 @@ Web'de axe-core ve eslint-plugin-jsx-a11y; token çiftleri için kontrast birim 
 ### Tasarım sistemini koddan kurmak
 
 [öneri]
+
 Tasarım aracının kod tabanını okuyan yolu (Claude Code'da /design-sync) ve her turdan önce brief.
 
 **Etki** Araç gerçek token'ları ve bileşenleri okur; brief ile verisi olan alanları da bilir. Kontrol değiştirme ve olmayan veri riski azalır, bizde denenmedi.
@@ -7853,6 +9403,7 @@ Tasarım aracının kod tabanını okuyan yolu (Claude Code'da /design-sync) ve 
 ### Paketler depoda
 
 [öneri]
+
 Her paket docs/design-handoffs/ altında tarihli klasörde, yanında DECISION.md.
 
 **Etki** Kararın kaynağı izlenir, eski paket yeni kararı ezmez. Bizde 16 paketin hiçbiri bugün yok.
@@ -7862,6 +9413,7 @@ Her paket docs/design-handoffs/ altında tarihli klasörde, yanında DECISION.md
 ### Numaralı karar kaydı
 
 [öneri]
+
 Tasarım kararları DECISIONS.md'de K numarasıyla; DESIGN.md token satırında karar numarası.
 
 **Etki** Ürün B'nin geri bildirim numaralarıyla yaptığı izleme bütün ürünlere yayılır.
@@ -7871,6 +9423,7 @@ Tasarım kararları DECISIONS.md'de K numarasıyla; DESIGN.md token satırında 
 ### Durum galerisi
 
 [öneri]
+
 Yalnız geliştirmede açılan bir sayfa: her bileşen her durumda, uzun Türkçe metinle.
 
 **Etki** Tarama ve ekran testi tek yerden; boş, hata ve yükleniyor durumları unutulmaz.
@@ -7880,6 +9433,7 @@ Yalnız geliştirmede açılan bir sayfa: her bileşen her durumda, uzun Türkç
 ### Koyu tema kararını kilitlemek
 
 [öneri]
+
 Ya iki modlu token (DTCG modları) ya da uygulama ve web ayarında yalnız açık tema.
 
 **Etki** Sistem koyu moddayken native seçici ve uyarıların ekranla çelişmesi önlenir.
@@ -7889,6 +9443,7 @@ Ya iki modlu token (DTCG modları) ya da uygulama ve web ayarında yalnız açı
 ### Ürünler arası başlangıç kiti
 
 [öneri]
+
 Tek ikon ailesi ve tek görsel tarama listesi, her yeni ürüne hazır.
 
 **Etki** Her yeni ürün aynı soruları sıfırdan çözmez.
@@ -7902,36 +9457,47 @@ Tek ikon ailesi ve tek görsel tarama listesi, her yeni ürüne hazır.
 - [ ] `tokens/tokens.json` açıldı; CSS ve mobil tema ondan üretiliyor; CI renk sayacı var.
 
 [öneri]
+
 - [ ] Yazı ailesi Türkçe gliflerle her yüzeyde denendi; web ve mobil aynı ağırlıklarda.
 
 [kanıtlı]
+
 - [ ] Koyu tema kararı yazıldı; uygulama ve web ayarında kilitlendi.
 
 [öneri]
+
 - [ ] CLAUDE.md `@AGENTS.md`; AGENTS.md DESIGN.md'yi gösteriyor; PRODUCT.md ve DESIGN.md var.
 
 [kanıtlı]
+
 - [ ] Marka README'si: her varlığın rolü, boyutu, küçük boy kuralı ve hash'i.
 
 [kanıtlı]
+
 - [ ] Ortak bileşen listesi ve durumları (boş, hata, yükleniyor, devre dışı) yazılı.
 
 [kanıtlı]
+
 - [ ] Kontrast AA ve 44 pt / 48 dp hedef, gerçek zeminde ve çizilmiş boyutta ölçüldü.
 
 [kanıtlı]
+
 - [ ] Görsel tarama listesi (375, 900, 1280 px ve beş ölçü) ve WebKit kontrolü AGENTS.md'de.
 
 [öneri]
+
 - [ ] Paket klasörü açıldı, ilk paket DECISION.md ile girdi; kararlar DECISIONS.md'de.
 
 [öneri]
+
 - [ ] Mağaza ve sosyal görsel hattı: editör projesi git'te, temiz durum çubuğu, boyut listesi.
 
 [kanıtlı]
+
 - [ ] Yasak kalıp listesi (uzun tire, orta nokta, büyük harf etiket, hap, kanıtsız iddia) yazılı.
 
 [kanıtlı]
+
 - [ ] Onay akışı: masaüstü ve telefon ekran görüntüsü, sonra commit ve deploy.
 
 [kanıtlı]
@@ -7977,20 +9543,35 @@ Gerçek Android cihazlarda font çizimi; ölçümler iOS simülatörü ve taray�
 8 Ekim 2026'da okundu. Bu bölüme özel.
 
 **Design Tokens Format Module 2025.10**https://www.designtokens.org/tr/drafts/format/
+
 **Style Dictionary**https://styledictionary.com/
+
 **WCAG 2.2**https://www.w3.org/TR/WCAG22/
+
 **Understanding SC 1.4.3 Contrast (Minimum)**https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html
+
 **Understanding SC 1.4.11 Non-text Contrast**https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
+
 **Understanding SC 2.5.8 Target Size (Minimum)**https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html
+
 **Apple HIG: Accessibility**https://developer.apple.com/design/human-interface-guidelines/accessibility
+
 **Apple HIG: Dark Mode**https://developer.apple.com/design/human-interface-guidelines/dark-mode
+
 **Material Design 3: Accessibility basics**https://m3.material.io/foundations/accessible-design/accessibility-basics
+
 **App Store Connect: Screenshot specifications**https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications
+
 **Google Play: Add preview assets**https://support.google.com/googleplay/android-developer/answer/9866151
+
 **MDN: appearance**https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
+
 **MDN: text-transform**https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform
+
 **Playwright: Browsers**https://playwright.dev/docs/browsers
+
 **Set up your design system in Claude Design**https://support.claude.com/en/articles/14604397
+
 **Expo: Color themes**https://docs.expo.dev/develop/user-interface/color-themes/
 
 <a id="seo"></a>
@@ -8006,16 +9587,23 @@ Canlı ürünlerimizi arama motorlarında (SEO) ve yapay zekâ cevap motorların
 Ürün A'da sunucuda çizim, sitemap, IndexNow, Bing kaydı ve iç bağlantılar 18–22 Eylül'de, yapısal veri 6 Ekim'e kadar yapıldı. Dizindeki sayfa 18 Eylül'de 2'ydi, 4 Ekim verisinde 136; dış bağlantı 30 Eylül'de 2'ydi. Başlığının vaat ettiğini vermeyen sayfalar 4–8. sırada 0 tık aldı. Kullanıcı adına sayfa açma (ChatGPT-User) yalnız tarihli, kaynaklı rakam sayfaları olan üründe anlamlı sayıda geldi: Ürün A'da 6 günde 150, ~18 bin sayfalık katalogda 3 günde 0; bu bir ilişki, kanıt değil. Yeni projede teknik kısım gün 0 listesiyle yarım günde biter (tahmin); zaman dış bağlantıya ve tarihli veri sayfasına ayrılır.
 
 Başka bölümlerde
+
 Sunucuda çizim ve noindex başlığı [Next.js web](#katman-3) katmanında; açık ve kapalı botlar [Botlara karşı tutum](#botlar), hız [Performans](#performans), olay kaydı [Analitik ve admin](#analitik), adres ve 404 kuralları [Kullanıcıyı kırmadan değiştirmek](#kirmama) bölümünde.
 
 **Önce bunu bilin:** SEO botları çağırır, botlar veritabanını uyandırır.
+
 SEO ve GEO için açtığımız sayfalar önce kendi faturamızı büyüttü. Ürün B'de adı belli tarayıcılar veritabanına bir gün boyunca 5 dakikalık boşluk bırakmadı; Ürün C'de yeni kategori sayfaları veritabanını günde ~74 kez uyandırdı. Botun gelebileceği her yol (sayfa, site haritası, llms.txt, paylaşım görseli) bellekten ya da ISR'dan sunulur ve veritabanına hiç gitmez; yeni bir SEO yüzeyi açılınca 48 saat uyanmalar izlenir. Ayrıntı: [Postgres](#katman-1) ve [Botlara karşı tutum](#botlar).
 
 **2 → 136** Ürün A bilgi sitesinde dizindeki sayfa, 18 Eylül'den 4 Ekim verisine. Aynı haftalarda dört iş birlikte yapıldı; pay ayrılamıyor.
+
 **17 tık** Ürün A'da 4 Ekim'e kadar 28 günde, 2.350 gösterimden. Ortalama konum 30,2.
+
 **2 bağlantı** Ürün A'nın 30 Eylül'deki dış bağlantısı; ikisi de aynı sosyal ağdan. Kodla çözülmeyen en büyük boşluk.
+
 **1 → 200** Google'ın AI özelliklerinde gösterim: 18 Eylül'e kadar üç haftada 1; 6 Ekim okumasında (3 Ekim'e kadar veri) 51 sayfada 200.
+
 **150 ve 0** 1–7 Ekim'de ChatGPT-User isteği: tarihli veri sayfaları olan Ürün A'da 6 günde 150, ~18 bin sayfalık Ürün B kataloğunda 3 günde 0.
+
 **1 okuma** llms.txt ~11,7 günde bir kez istendi (ClaudeBot), sonraki 6,5 günde hiç istenmedi.
 
 ## Ne yaptık
@@ -8023,51 +9611,61 @@ SEO ve GEO için açtığımız sayfalar önce kendi faturamızı büyüttü. Ü
 18 Eylül–6 Ekim 2026, son tarihe göre sırayla.
 
 **18 Eyl Ürün A:** [ölçüldü]
+
 Bilgi sitesi istemcide çizilen tek sayfalık uygulamadan sunucuda tam HTML veren Next.js'e geçti. Eski sitenin HTML gövdesi AI tarayıcılarına boştu.
 
 **Sonuç** Dizindeki sayfa 2'den 136'ya (4 Eki verisi) çıktı; OAI-SearchBot ~11,7 günde 116 sayfa taradı. Aynı günlerde başka işler de yapıldığı için artış yalnız buna yazılamaz. Ayrıntı [Next.js web](#katman-3) bölümünde.
 
 **18–19 Eyl Ürün A:** [ölçüldü]
+
 Bing Webmaster Tools Search Console'dan içe aktarıldı; IndexNow her deploy'un son adımı.
 
 **Sonuç** ~11,7 günde Bing 7, Googlebot 911 sayfa çekti; Bing içerik sayfalarını ilk kez 6 Eki'de çizdi. 7 Eki'de Bing ~2.900 adres aldığını gösteriyordu; performansı 0 tık, 0 gösterim.
 
 **19 Eyl Ürün B:** [kanıtlı]
+
 Sitemap istek anında üretilir oldu; arka uç cevap veremezse hata döner, son iyi kopya kalır. Önce ulaşılamayan arka uç boş liste sayılmış, sitemap 12.589 sayfadan 9.921'e inmiş, 2.668 sayfa sessizce düşmüştü.
 
 **Sonuç** Tekrarlamadı. Düzeltme önce build'i kırdı, 16 saat deploy çıkmadı. Ayrıntı [Kullanıcıyı kırmadan değiştirmek 3.5 ve 3.6](#k-3-5) bölümünde.
 
 **22 Eyl Ürün A:** [ölçüldü]
+
 Her kurum sayfası, o kurumun sunduğu ürünlerin konu sayfalarından adıyla bağlandı. Önce her biri 1 iç bağlantı alıyordu, site ortalaması 9,9'du.
 
 **Sonuç** Bağlantı 1'den 3–8'e çıktı; payı 4 Eki verisindeki 136'nın içinde ayrılamıyor. 27 Eyl'de küçük kurumların sayfaları dışarıdaydı; elle istekten sonra 3 Eki'de Türkçe kurum sayfalarının hepsi dizindeydi.
 
 **23–24 Eyl Ürün B:** [ölçüldü]
+
 Okur getirmeyen tarayıcılar (SEO paketleri, PetalBot, Amazonbot, Meta'nın eğitim tarayıcısı) robots.txt'de Disallow edildi. Bir günde 18.266 isteğin ~9.400'ü adı belli tarayıcılardandı.
 
 **Sonuç** En büyüğü günde 4.685 istekten 4'e indi; uymayanı 24 Eyl'den beri proxy, 7 Eki'den beri ortak kapı reddediyor. Bedeli, backlink araçlarında daha az görünmek. Ayrıntı [Botlara karşı tutum](#botlar) bölümünde.
 
 **27 Eyl Ürün C:** [kanıtlı]
+
 Ürün C'nin sitesinde ana sayfa ve liste sayfaları sunucuda çizildi; site geneli tek canonical, hatalı hreflang ve /_next/ engeli kaldırıldı. Hatalar Şubat'taki ilk sürümden beri duruyordu.
 
 **Sonuç** Ölçülmedi; 5 Eki'de okunan sayfa raporu düzeltmeden önceki tarihi taşıyordu.
 
 **3 Eki Ürün B:** [ölçüldü]
+
 Katalog sitemap parçaları gzip'le sunuldu; www ve kimlikli eski adresler 308 ile tek adrese gitti.
 
 **Sonuç** En büyük parça 10,2 MB'tan 237 KB'a indi. Dizine etkisi ölçülmedi.
 
 **19 Eyl, 6 Eki Ürün A:** [ölçüldü]
+
 Veri sayfası açıldı, sonra tarihli hale geldi. Rakamın yanında kaynak ve okuma tarihi, başlıkta rakam ve ay, bir yöntem sayfası ve Dataset var.
 
 **Sonuç** İlk sayımda ChatGPT'den gelen 9 girişin 7'si bu sayfadaydı; düzeltilmiş sayımda bunların bir kısmı aynı linki 1–2 günde bir açan bir bot çıktı. Sayfayı bir kazıyıcı da 2–6 Eki'de 63 kez çekti.
 
 **6 Eki Ürün A:** [ölçüldü]
+
 Başlığı 'hesaplama' diyen yedi sayfaya tek rakamlık tahmin kutusu kondu. Bu sorgu ailesi 90 günde 4–8. sırada ~170 gösterimde 0 tık almıştı.
 
 **Sonuç** Taban kaydedildi: kutulu sayfaların sorgularında konum 5,1 ve 6,4, 0 tık (7,8'lik üçüncü sorgu kutusuz bir sayfaya ait). Etkisi 2–4 hafta sonra ölçülecek.
 
 **6 Eki Ürün A:** [kanıtlı]
+
 Her sorgu ailesine tek alan adı verildi; pazar yerindeki kopya veri sayfasının canonical'ı bilgi sitesine çevrildi.
 
 **Sonuç** Ölçülmedi. Pazar yeri o sırada 28 günde 3 tık, 211 gösterim ve ortalama 42. konumdaydı. Ayrıntı [Kullanıcıyı kırmadan değiştirmek 3.4](#k-3-4) bölümünde.
@@ -8077,6 +9675,7 @@ Her sorgu ailesine tek alan adı verildi; pazar yerindeki kopya veri sayfasını
 Ürün A bilgi sitesinde dizindeki ve dışarıdaki sayfa, Search Console okumalarıyla. 18 Eylül'de site Next.js'e geçti, 22 Eylül'de iç bağlantılar güçlendi, arada elle dizin istekleri yapıldı. Rapor 21 Eylül verisinde iki hafta dondu, 7 Ekim'de 4 Ekim verisine atladı; 22 Eylül'deki iç bağlantı değişikliği yalnız 4 Ekim verisine yansıyabilir.
 
 dizindedışarıdasayfa, Search Console; ölçek gerçek
+
 _Grafik: Ürün A bilgi sitesinde dizindeki ve dışarıdaki sayfa: 18 Eyl okuması (eski site) 2 dizinde, 4 dışarıda; 22 Eyl okuması (Next.js'ten 4 gün sonra) 43 dizinde, 47 dışarıda; 25 Eyl okuması (21 Eyl verisi) 92 dizinde, 54 dışarıda; 7 Eki okuması (4 Eki verisi) 136 dizinde, 28 dışarıda_
 
 ## Öbür ölçümler
@@ -8094,6 +9693,7 @@ _Grafik: Ürün A bilgi sitesinde dizindeki ve dışarıdaki sayfa: 18 Eyl okuma
 1–7 Ekim 2026, Ürün B'de 4–7 Ekim (3 gün); ham istek, yalnız OpenAI'ın yayımladığı aralıktan. Arama botu Ürün D'de yalnız robots.txt'yi okudu. Kullanıcı adına sayfa açma yalnız tarihli rakam sayfası olan üründe anlamlı; bu bir ilişki, kanıt değil.
 
 OAI-SearchBot, arama için taramaChatGPT-User, kullanıcı adına sayfa açmaistek; ölçek gerçek
+
 _Grafik: OAI-SearchBot ve ChatGPT-User istekleri, 1-7 Ekim 2026: Ürün A (6 gün, tarihli veri sayfaları) OAI-SearchBot 130, ChatGPT-User 150; Ürün B (3 gün, ~18 bin sayfalık katalog) OAI-SearchBot 19, ChatGPT-User 0; Ürün C (6 gün, içerik sitesi) OAI-SearchBot 39 gerçek, 66 iddia, ChatGPT-User 2 gerçek, 35 iddia; Ürün D (6 gün, küçük içerik sitesi) OAI-SearchBot 7, yalnız robots.txt, ChatGPT-User 0_
 
 ## Şaşırtanlar
@@ -8101,6 +9701,7 @@ _Grafik: OAI-SearchBot ve ChatGPT-User istekleri, 1-7 Ekim 2026: Ürün A (6 gü
 ### AI trafiğini doğru saymak
 
 [ölçüldü]
+
 Ürün A'da ChatGPT ziyaretini iki kez saydık; ikinci sayımda derin oturumlar prefetch, bir ziyaretçi bot çıktı.
 
 **İlk sayım, 30 Eylül:** 15 gün sanılan pencerede ChatGPT'den 9 giriş, 7'si veri sayfasına; ziyaretçiler 12–24 sayfa geziyor görünüyordu. 'google.com'dan gelen ~120 girişin ~105'i bulut kazıyıcısı olarak bu sayımda ayrıldı.
@@ -8122,7 +9723,9 @@ _Grafik: OAI-SearchBot ve ChatGPT-User istekleri, 1-7 Ekim 2026: Ürün A (6 gü
 ### IndexNow 'aldım' dedi, Bing gelmedi
 
 [ölçüldü]
+
 Ürün A, 18 Eyl–7 Eki
+
 ~2.900 adres gönderildi; Bing 7 Eki'de ana sayfayı hâlâ taramamıştı. Bağlantısı olan, Şubat'tan beri yayındaki Ürün C Bing'de marka sorgusunda 1.
 
 **Ders** IndexNow keşfi hızlandırır, otoritenin yerini tutmaz. Bu bizim yorumumuz.
@@ -8130,7 +9733,9 @@ _Grafik: OAI-SearchBot ve ChatGPT-User istekleri, 1-7 Ekim 2026: Ürün A (6 gü
 ### llms.txt'yi neredeyse kimse okumadı
 
 [ölçüldü]
+
 Ürün A, 18 Eyl–6 Eki
+
 ~11,7 günde tek istek, sonraki 6,5 günde sıfır. Okunan, sunucuda çizilmiş sayfaların kendisiydi. Eski sitede /llms.txt 200 dönüyordu ama içeriği HTML kabuğuydu.
 
 **Ders** llms.txt bir kez üretilir ve unutulur; emek sayfa metnine gider.
@@ -8138,7 +9743,9 @@ _Grafik: OAI-SearchBot ve ChatGPT-User istekleri, 1-7 Ekim 2026: Ürün A (6 gü
 ### 'Keşfedildi' 8.000'den 0'a indi, iyi haber değildi
 
 [ölçüldü]
+
 Ürün B, 20 Eyl–3 Eki
+
 Sitemap indekse geçtiği gün Google parçaları okumayı bıraktı; iki hafta 'Başarılı, 0 sayfa keşfedildi' göründü. Parçalar sıkıştırmasız 10 MB'a kadar çıkıyordu.
 
 **Ders** Sebebi bulunmayan düzelme iyileşme sayılmaz; her sitemap parçası ayrı ayrı 'Başarılı' görülür.
@@ -8146,7 +9753,9 @@ Sitemap indekse geçtiği gün Google parçaları okumayı bıraktı; iki hafta 
 ### Google bir sayfamız için ilgisiz bir bahis sitesini standart seçti
 
 [ölçüldü]
+
 Ürün A, 21–25 Eyl
+
 Canlı sayfa doğru canonical veriyordu; tarandığı anda 'bildirilen canonical: hiçbiri' görünüyordu. Yeniden dizin isteğinden sonra düzeldi.
 
 **Ders** Canonical bir işarettir; önemli sayfalarda URL denetimindeki 'Google'ın seçtiği standart' satırı okunur.
@@ -8154,7 +9763,9 @@ Canlı sayfa doğru canonical veriyordu; tarandığı anda 'bildirilen canonical
 ### SEO sayfaları fatura yazdı
 
 [ölçüldü]
+
 Ürün C 5–6 Eki, Ürün B 23 Eyl
+
 Ürün C'de kategori sayfaları, sitemap ve llms.txt listeyi 5 dakikada bir veritabanından okudu; 6 Eki'de 15:30'a kadar 51 uyanmanın 44'ü bu uçtandı (günde ~74 uyanma), sürseydi ayda ~₺190 fazla; bir günde kapandı. Ürün B'de adı belli tarayıcılar veritabanına bir gün boyunca 5 dakikalık boşluk bırakmadı.
 
 **Ders** Herkese açık SEO sayfası bellekten okur; yeni bir SEO yüzeyinden sonra 48 saat uyanmalar izlenir.
@@ -8162,7 +9773,9 @@ Canlı sayfa doğru canonical veriyordu; tarandığı anda 'bildirilen canonical
 ### Bir site hiç SEO temeli olmadan yayında kaldı
 
 [ölçüldü]
+
 Ürün D, 1–7 Eki
+
 Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, sayfalar /null adresine link üretiyor; robots.txt ancak 2 Eki'de geldi. Doğrulanmış insan ziyareti yok.
 
 **Ders** Küçük sitede de gün 0 listesi yarım günlük iştir (tahmin); sonradan dönmek Ürün C'de yedi ay sürdü.
@@ -8176,79 +9789,103 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 Çok dil, slug değişimi ve 404 ile 5xx ayrımı [Kullanıcıyı kırmadan değiştirmek](#kirmama) 3.1–3.8'de.
 
 1. [kanıtlı]
+
 **Herkese açık her sayfa sunucuda tam HTML çıkar (SSR ya da ISR)**; JavaScript'siz curl ile gövde metni okunur. Google da bazı botların JavaScript çalıştırmadığını yazıyor. Ayrıntı [Next.js web](#katman-3) bölümünde.
 
 2. [kanıtlı]
+
 **www tek adımda 308 ile çıplak https adrese gider**; her sayfa kendi canonical'ını istek anında verir. Site geneli tek canonical olmaz. Ürün B'de www 233 kez alternatif sayfa olarak tarandı; Ürün C'de her sayfa ana sayfayı canonical gösteriyordu. http'den https'e yönlendirmeyi bizde barındırma katmanı 302 ile yapıyor ve koddan değişmiyor; canonical, sitemap ve HSTS https olduğu için bırakıldı.
 
 3. [kanıtlı]
+
 **Sitemap istek anında üretilir**; lastmod yalnız gerçek tarihtir, bilinmiyorsa yazılmaz. Büyük katalog indeks ve gzip'li parçalar kullanır. Google lastmod'u yalnız tutarlıysa kullanır, changefreq ve priority'yi yok sayar. Ürün B'de sitemap indeksi, altı parçası, ana sayfa ve 621 zincir sayfası her okumada 'az önce değişti' diyordu.
 
 4. [kanıtlı]
+
 **robots.txt kapının ad listesinden üretilir**. Dil önekleri joker ile yazılır; noindex taşıyan sayfa Disallow edilmez; /_next/ engellenmez; test kopyası her şeyi Disallow eder. Ürün B'de noindex'i okunamayan sayfa dizinde kaldı; Ürün C'de /_next/ engeli vardı.
 
 5. [kanıtlı]
+
 **Yapısal veri canlı sayfada Rich Results Test ile denenir**. @id ve sameAs ile bağlı Organization ve WebSite, görünür breadcrumb ile aynı BreadcrumbList, veri sayfasında Dataset; aynı varlık iki kez tanımlanmaz. Ürün A'da 29 Eyl'de 46 geçerli breadcrumb, hata yok. Ürün B'de puanın içinde ikinci, eksik bir işletme tanımlanmıştı.
 
 6. [ölçüldü]
+
 **Sayfa hızı yayından önce ölçülür**; yerel font, WebP ve boyutu yazılı görsel, küçük LCP görseli. Ürün C'de tek bir 2 MB PNG mobil LCP'yi 7,3 sn yaptı; Ürün A'da görseller 8,9 MB'tan 1,1 MB'a indi. Ayrıntı [Performans](#performans) bölümünde.
 
 7. [ölçüldü]
+
 **Başlık sayfanın yaptığını söyler**; bir sorgu ailesinin tek sahibi sayfası ve tek alan adı vardır. Ürün A'da 4–8. sırada 0 tık; iki alan adı aynı sorgu ailesinde yarıştı.
 
 8. [ölçüldü]
+
 **Yeni sayfa en az bir ilgili sayfadan adıyla bağlanır**; liste sayfası tek bağlantı kaynağı olmaz. Tek iç bağlantılı kurum sayfaları 'keşfedildi, dizine eklenmedi'de bekledi.
 
 9. [öneri]
+
 **Şablondan çoğaltılmış ince sayfa açılmaz**; her sayfa kendi sayısal örneği ve ayırt edici olgularıyla çıkar. Ürün A'nın ~215 kelimelik yedi benzer sayfası 22 Eyl'de dizin dışındaydı; elle istekten sonra 3 Eki'de biri dışında hepsi dizindeydi, incelik ile dizin arasındaki bağ ölçülmedi. Ürün B'nin metinsiz mağaza sayfalarından ~18 binde 148'i dizinde.
 
 ### GEO 9 kural
 
 1. [kanıtlı]
+
 **Ziyaretçi getiren cevap botları açık kalır (OAI-SearchBot, ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User); eğitim botları ürün kararıdır ve robots.txt'ye yazılır**. OpenAI, OAI-SearchBot'u kapatan sitenin ChatGPT arama cevaplarında gösterilmeyeceğini yazıyor. Ayrıntı [Botlara karşı tutum](#botlar) bölümünde.
 
 2. [kanıtlı]
+
 **Bot kimliği yayıncının IP dosyasıyla doğrulanır**; dosyalar ayda bir yeniden okunur. Ürün C'de ChatGPT-User iddialarının 35'inden 2'si gerçekti.
 
 3. [öneri]
+
 **Aylık yenileme her yayıncının güncel listesini kapsar**; yeni bir cevap botu açılınca onun listesi de eklenir. Yayıncılar listelerini değiştiriyor. Ayrıntı [Botlara karşı tutum](#botlar) bölümünde.
 
 4. [ölçüldü]
+
 **Cevap motorları için tarihli, kaynaklı, rakamlı veri sayfası açılır**. Kaynak ve okuma tarihi görünür metinde durur, yöntem bir sayfada anlatılır. ChatGPT-User 1–7 Ekim'de yalnız bu tip sayfası olan üründe anlamlı sayıda geldi (Ürün A'da 6 günde 150, katalogda 3 günde 0); bu bir ilişki, kanıt değil.
 
 5. [öneri]
+
 **Her önemli sayfa bir tanım cümlesiyle başlar**; soru-cevap bölümleri Search Console'daki gerçek sorgulardan yazılır. Cevap motorları bir paragrafı alıntılar; tanımsız sayfa alıntılanacak cümle vermez.
 
 6. [öneri]
+
 **İkinci dil varsa eksiksiz tutulur**. Ürün A'da AI özelliklerinde en çok gösterim alan sayfalar İngilizceydi (mevzuat, veri ve ürün sayfaları).
 
 7. [ölçüldü]
+
 **llms.txt sitemap'ten üretilir, rakam ve tarih taşır, bir kez kurulur**; okunduğu logdan ölçülür. ~18 günde tek okuma; hiçbir motor okumayı taahhüt etmiyor.
 
 8. [öneri]
+
 **Marka tek biçimde yazılır**; sameAs, yazım varyantları için alternateName, mağaza sayfasından siteye bağlantı ve Wikidata kaydı. Ürün C'nin marka sorgusunu uygulama mağazası sayfası kazandı; Ürün A'nın pazar yeri markasının bir yazım varyantı 90 günde 0 gösterim aldı.
 
 9. [ölçüldü]
+
 **GEO için açılan veri sayfası ISR ile ucuz sunulur ve kapının arkasındadır**; aynı verinin JSON ucu da aynı korumayı alır. Ürün A'nın veri sayfası 2–6 Eki'de dönen proxy adresleriyle 63 kez çekildi. Ayrıntı [Botlara karşı tutum](#botlar) bölümünde.
 
 ### Ölçüm 6 kural
 
 1. [kanıtlı]
+
 **Sitemap her deploy'dan sonra gönderilir**; keşfedilen sayı curl ile sayılan adres sayısına eşit olmalı. IndexNow'un doğrulaması build logundaki 'IndexNow: N urls -> 200' satırıdır. Sayılar birkaç kez saptı (116'ya karşı 120); Bing'in IndexNow sayfası işe yarar veri göstermiyordu.
 
 2. [kanıtlı]
+
 **Gün 0'da taban kaydı tutulur**: dizin, 28 günlük tık ve gösterim, AI raporu, bot sayıları, dış bağlantı. Her değişiklikten 2–4 hafta sonra aynı sayım tekrarlanır. 'İşe yaradı mı' sorusunu Ürün A ve C'de cevaplatan tek şey taban kaydıydı.
 
 3. [ölçüldü]
+
 **AI trafiği logdan, yukarıdaki sırayla sayılır**. İlk sayım prefetch'i oturum, bir botu ChatGPT ziyaretçisi saydı. Ayrıntı [Analitik ve admin](#analitik) bölümünde.
 
 4. [ölçüldü]
+
 **Karar rapordan değil URL denetiminden verilir**. Elle dizin isteği günde ~10'dur ve kayan 24 saatte açılır; istemeden önce denetlenir. Ürün A'nın sayfa raporu 21 Eyl verisinde iki hafta dondu; 'keşfedildi' listesindeki sayfaların çoğu zaten dizindeydi.
 
 5. [öneri]
+
 **Google'ın AI özellikleri trafiği genel Web performans raporunda sayılır**; panelde ayrı bir sayfa raporu varsa ikisi birlikte okunur. Google belgesi AI trafiğini Web raporunda saydığını yazıyor; Ürün A'nın panelinde ayrıca yalnız sayfa kırılımı veren bir rapor gördük.
 
 6. [öneri]
+
 **Aynı anda tek değişken**; ayrılamıyorsa sonuç ortak yazılır. Ürün A'da 2'den 136'ya çıkış dört işin toplamıydı.
 
 ## Hiç bitmeyen işler
@@ -8275,6 +9912,7 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 ### 1. Gün 0'da sunucuda tam HTML ve tek kanonik host
 
 [öneri]
+
 **Bizde:** Ürün A 18 Eyl'e, Ürün C 27 Eyl'e kadar istemcide çiziliyordu; Ürün B'de www 3 Eki'ye kadar ayrı host'tu.
 
 **Beklenen etki:** AI botları içeriği ilk günden görür; Ürün A'da geçişten sonra OAI-SearchBot ~11,7 günde 116 sayfa taradı.
@@ -8286,6 +9924,7 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 ### 2. Ölçüm hattını kod olarak kur
 
 [öneri]
+
 **Bizde:** Elle ve arayüzden saydık (30 Eyl, 6 Eki); ilk sayım prefetch'i oturum saydı.
 
 **Beklenen etki:** Haftalık bir iş Search Console API'den ve istek logundan tek JSON yazar; önce-sonra rakamı birikir.
@@ -8297,6 +9936,7 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 ### 3. Bağlantı planını gün 0'da başlat
 
 [öneri]
+
 **Bizde:** Ürün A'nın 30 Eyl'de 2 dış bağlantısı vardı; Bing ilk 11,7 günde 7 sayfa çekti, içerik sayfalarını ilk kez 18 gün sonra (6 Eki) çizdi.
 
 **Beklenen etki:** Bing daha çok tarar, ikinci ve üçüncü sayfadaki sorgular yükselir. Tahmin, kanıt yok.
@@ -8308,6 +9948,7 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 ### 4. Tarihli veri sayfası, yöntem sayfası ve Dataset ilk sürümde
 
 [öneri]
+
 **Bizde:** Veri sayfası 19 Eyl'de; tarihli başlık, yöntem sayfası ve Dataset 6 Eki'de geldi.
 
 **Beklenen etki:** Kullanıcı adına sayfa açma böyle sayfası olan üründe gelir (tahmin); Ürün A'da ChatGPT-User 6 günde 150, katalogda 0.
@@ -8319,6 +9960,7 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 ### 5. Başlığı ve sorgu sahipliğini yayından önce yaz
 
 [öneri]
+
 **Bizde:** Başlık 'hesaplama' derken sayfa hesaplamıyordu; iki alan adı aynı sorguda yarıştı. İkisi 6 Eki'de değiştirildi; etkisi henüz ölçülmedi.
 
 **Beklenen etki:** İlk sayfadaki gösterim tık getirir (tahmin).
@@ -8330,6 +9972,7 @@ Sitemap yok, www ve çıplak alan adı yönlendirmesiz aynı içeriği veriyor, 
 ### 6. SEO yüzeyinin maliyetini baştan sınırla
 
 [öneri]
+
 **Bizde:** Ürün C'de kategori sayfaları ayda ~₺190 ekledi, 6 Eki'de düzeldi; Ürün B'de veritabanı 24 saat uyanıktı.
 
 **Beklenen etki:** Veritabanı uyuyabilir; SEO büyüdükçe fatura büyümez.
@@ -8415,19 +10058,33 @@ OAI-SearchBot taramasının ChatGPT aramasında gösterime dönüşme oranı; Op
 8 Ekim 2026'da okundu (Bing Webmaster Guidelines'ın metni alınamadı). Bu bölüme özel; genel kaynak listesinde yok.
 
 **Google: AI features and your website**https://developers.google.com/search/docs/appearance/ai-features
+
 **Google: Build and submit a sitemap**https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+
 **Google: Block indexing with noindex**https://developers.google.com/search/docs/crawling-indexing/block-indexing
+
 **Google: JavaScript SEO basics**https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics
+
 **Google: Consolidate duplicate URLs**https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
+
 **Google: Verifying Googlebot and other crawlers**https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot
+
 **Google: Search Console API usage limits**https://developers.google.com/webmaster-tools/limits
+
 **Bing: Sitemaps in AI powered search**https://blogs.bing.com/webmaster/July-2025/Keeping-Content-Discoverable-with-Sitemaps-in-AI-Powered-Search
+
 **Bing Webmaster Guidelines**https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a
+
 **IndexNow documentation**https://www.indexnow.org/documentation
+
 **OpenAI: Overview of OpenAI crawlers**https://developers.openai.com/api/docs/bots
+
 **Perplexity: Perplexity Crawlers**https://docs.perplexity.ai/guides/bots
+
 **Anthropic: crawler and how to block it**https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
+
 **Common Crawl: CCBot**https://commoncrawl.org/ccbot
+
 **llmstxt.org: The /llms.txt file**https://llmstxt.org/
 
 <a id="maliyet"></a>
@@ -8445,36 +10102,51 @@ Az trafikli yeni bir ürünün bulut faturası ayda ~₺55–135 olur: prod Neon
 ## Üç basamak
 
 Yeni başlayan ürün
+
 ~₺55–135/ay
+
 Kim
+
 Yeni açılmış, günde birkaç yüz istek alan, kullanıcısı henüz az olan ürün.
 
 Para nereye gider
+
 Neon Launch günde ~0,3–0,5 CU-saat (~₺50–80); aylık asgari ücret yok, kullanıcı gelmeden neredeyse ₺0. GCP'de para internet çıkışından (ücretsiz pay yok, ₺5–30), Secret Manager'ın 6'yı aşan sürümlerinden ve birkaç liralık GCS'ten gelir; Cloud Run, alarmlar ve tek Scheduler işi ücretsiz.
 
 Varsayımlar
+
 Prod Neon Launch'ta (0,25–1 CU, 7 gün geçmiş), CU-saat başına ~₺5,2; test ve gerçek kullanıcısı olmayan yan projeler Free'de ₺0. Cloud Run min 0'da çalışır, ayda 180.000 vCPU-sn, 360.000 GiB-sn ve 2 milyon istek ücretsizdir. Ürünün kendi faturalama hesabı vardır. Ürün D Launch'tayken günde ~0,45 CU-saatle Neon'a ayda ~₺70 ödüyordu; gerçek kullanıcısı az bir yan proje olduğu için 7 Eki'de Free'ye alındı.
 
 Büyüyen ürün
+
 ~₺220–550/ay
+
 Kim
+
 Herkese açık SSR sayfaları tarayıcılarca gezilen, kullanıcısı gelmeye başlamış ve 7 günlük geçmişe ihtiyacı olan ürün. Bizde Ürün C ve Ürün B.
 
 Para nereye gider
+
 Neon Launch günde ~1–2 CU-saat (~₺160–320): SSR istekleri, tarayıcılar ve yönetim işleri. GCP ₺60–230: bot çıkış trafiği ve build dakikaları; alarmlar bugün ücretsiz.
 
 Varsayımlar
+
 Free'nin sınırları dar gelmiştir: 100 CU-saat/ay, 5 GB çıkış ve kullanıcı verisi için kısa kalan 6 saatlik geçmiş. Herkese açık okumalar API belleğinden verilir, kazıyıcılar kapıda reddedilir. Ürün C bugün ~₺220, Ürün B ~₺470–550 tutuyor.
 
 Günlük kullanıcılı ürün
+
 ~₺510–690/ay
+
 Kim
+
 Her gün giriş yapan kullanıcıları ve her sabah çalışan okuma, rapor ve yedek işleri olan ürün. Bizde Ürün A.
 
 Para nereye gider
+
 Toplamın en az %60'ı Neon Launch compute (~₺436, günde ~2,8 CU-saat). GCP ~₺45–205: Secret Manager ~₺16, GCS ₺15–20, internet çıkışı ₺10–60 ve kota aşılırsa Cloud Run; alarmlar ve tek Scheduler işi ücretsiz. Günde her +1 CU-saat aya +₺158 ekler.
 
 Varsayımlar
+
 Model günde 2,8 CU-saat, ~1 GB veritabanı ve ürünün kendi faturalama hesabıyla kuruldu. Ürün A 4–7 Eki'de günde 2,12–4,03 CU-saat harcadı (ortalama 3,18); bu modele ~₺60 ekler ve sonuç aralığın içinde kalır: Neon ~₺500 + GCP ~₺110 = ~₺610. Her uyanış en az ~6,5 dk faturalanır (90 sn boşta kapanma + 5 dk uyku eşiği).
 
 ## Bizim dört ürünümüz, 8 Ekim 2026
@@ -8482,6 +10154,7 @@ Model günde 2,8 CU-saat, ~1 GB veritabanı ve ürünün kendi faturalama hesab
 Neon tüketimi 4–7 Ekim ölçümünden, günde sürekli 1 CU-saat ayda ~₺158. Ürün B'nin GCP payı ₺150–230 aralığının ortası.
 
 NeonGoogle CloudTL/ay, 8 Ekim 2026; alan adı ve mağaza (Apple, Google) ücretleri hariç
+
 _Grafik: Ürün başına aylık maliyet_
 
 | Ürün | Neon | GCP | Toplam | Not |
@@ -8533,41 +10206,57 @@ Maliyet
 Rakam tahminle konuşulmaz; fatura proje ve SKU bazında okunur.
 
 ₺2.087
+
 GCP için '$1/ay' denen ayda, Ağustos 2026'da faturalama hesabının toplamı.
 
 ## Yap
 
 [ölçüldü]
-** Fatura proje ve SKU bazında okunur**; ay başı rakamı yanıltır.
+
+**Fatura proje ve SKU bazında okunur**; ay başı rakamı yanıltır.
+
 [kanıtlı]
-** Ücretli API'de alanlar tek geçişte istenir**; cevaplar önbelleklenir, GCP'de API başına kota tavanı.
+
+**Ücretli API'de alanlar tek geçişte istenir**; cevaplar önbelleklenir, GCP'de API başına kota tavanı.
+
 [ölçüldü]
-** Model işleri kaynakta kısılır**: değişmeyen sayfa gönderilmez, günlük tavan, prompt önbelleği.
+
+**Model işleri kaynakta kısılır**: değişmeyen sayfa gönderilmez, günlük tavan, prompt önbelleği.
+
 [öneri]
-** Cloud Run çıkış trafiği izlenir**; bot baytı Cloudflare önbelleğiyle düşer.
+
+**Cloud Run çıkış trafiği izlenir**; bot baytı Cloudflare önbelleğiyle düşer.
 
 ## Başlangıç ayarları
 
 [ölçüldü]
+
 Neon $0,106/CU-saat; 0,25 CU 7/$2419,1, 1 CU 7/24 ~$76.
+
 [öneri]
+
 europe-west1'den internete çıkışta ücretsiz pay yok, ilk GiB'tan $0,12/GiB; Scheduler'da hesap başına 3 iş ücretsiz, sonra iş başına ayda $0,10.
+
 [ölçüldü]
+
 Instance başı günde 300 model çağrısı: bir instance ~$23/ay, 20 instance ~$470/ay.
 
 ### Kaçın
 
 [kanıtlı]
+
 Tahminden konuşmak; panikle min-instance; kıtalar arası pull/push.
 
 ### Bizdekinden iyisi
 
 [ölçüldü]
+
 Bütçe uyarısı ve kota tavanı yoktu; harita API'si Ağustos'ta ₺1.500 yazdı ve ancak fatura gelince görüldü.
 
 ### Nereden öğrendik projelerimizden, 2026
 
 **Ağu** GCP için '$1/ay' tahminine karşı faturalama hesabının toplamı ₺2.087; bunun ₺2.081'i tek projenin faturası.
+
 **6 Eki** dört ürünümüz ~₺1.590/ay tutuyordu; 8 Eki ölçümünde taşımalardan sonra ~₺1.300.
 
 <a id="krediler"></a>
@@ -8581,10 +10270,14 @@ Kredi programları yeni bir ürünün ilk 6–24 ayında bulut, veritabanı ve m
 Bilgiler 8 Ekim 2026'da resmi program sayfalarından doğrulandı; doğrulanamayanlar bölümün sonundaki [Doğrulanamayanlar](#kr-dogrulanamayan) kutusunda. Sıra bizim boyutumuzdaki bir ürün için yazıldı: kendi parasıyla dönen, Türkiye'de, küçük bir ekip.
 
 **Bizim durumumuz:** $1.000
+
 Claude API kredisi 5 Nisan 2027'ye kadar
+
 1 yıl
+
 Claude Team ücretsiz
-Ürün A 7 Ekim 2026'da Claude for Startups'a kabul edildi: 6 ay geçerli $1.000 Claude API kredisi ve bir yıl ücretsiz Claude Team.
+
+Ürünlerimizden biri Ekim 2026'da Claude for Startups'a kabul edildi: 6 ay geçerli $1.000 Claude API kredisi ve bir yıl ücretsiz Claude Team.
 
 Başka bir programa henüz başvurulmadı. Sıradaki başvuru Neon'un programı, çünkü faturanın en büyük kalemi Neon.
 
@@ -8595,6 +10288,7 @@ Başka bir programa henüz başvurulmadı. Sıradaki başvuru Neon'un programı,
 ### Claude for Startups (Anthropic)
 
 https://claude.com/programs/startups
+
 Bizde: alındı, 7 Ekim 2026.
 
 **Ne verir:** Tek seferlik $1.000 Claude API kredisi, 6 ay geçerli, ve daha yüksek API hız sınırı. Team'e yeni gelen organizasyona 5 koltuğa kadar 1 yıl ücretsiz Claude Team. Ortak ağdaki bir VC'nin desteklediği girişime o VC üzerinden en fazla $100.000 ek kredi.
@@ -8608,6 +10302,7 @@ Bizde: alındı, 7 Ekim 2026.
 ### Neon (Databricks Startup Program)
 
 https://neon.com/startups
+
 Bizde: sıradaki başvuru.
 
 **Ne verir:** Kendi parasıyla dönen girişime en fazla $1.000 Neon kredisi, onboarding desteği ve yeni özelliklere erken erişim. VC destekli girişime Neon ve Databricks için toplam en fazla $200.000. Kredi kabulden itibaren 12 ay geçerli.
@@ -8621,6 +10316,7 @@ Bizde: sıradaki başvuru.
 ### Google for Startups Cloud Program
 
 https://cloud.google.com/startup
+
 Bizde: Ürün A yaş sınırı yüzünden uymuyor; yeni bir ürün için ilk başvurulardan biri.
 
 **Ne verir:** Start: $2.000 Google Cloud kredisi (12 ay) ve 12 ay ücretsiz Workspace Business Plus. Scale: 2 yılda en fazla $200.000. AI-first girişime Scale'de 2 yılda en fazla $350.000.
@@ -8638,6 +10334,7 @@ O aracı gerçekten kurarken, şartlar hâlâ tutuyorsa.
 ### Sentry for Startups
 
 https://sentry.io/for/startups/
+
 **Ne verir:** 12 ay geçerli, en fazla $5.000 Sentry kredisi.
 
 **Kimler alır:** Son 2 yılda kurulmuş, $5 milyonun altında VC yatırımı almış ve Sentry'ye hiç ödeme yapmamış girişim. Önce ücretsiz bir Sentry hesabı açılır.
@@ -8649,6 +10346,7 @@ https://sentry.io/for/startups/
 ### GitHub for Startups
 
 https://github.com/enterprise/startups
+
 **Ne verir:** Onaydan itibaren 12 aya kadar geçerli $10.000 GitHub kredisi: Enterprise, Copilot, Advanced Security ve Actions.
 
 **Kimler alır:** Onaylı bir GitHub for Startups partnerine bağlı ve Seri B'ye kadar dış yatırım almış girişim. Partner bir yatırımcı, kuluçka merkezi ya da hızlandırıcı olabilir.
@@ -8664,6 +10362,7 @@ O platformda gerçek bir iş yükü ya da yatırım olunca.
 ### AWS Activate (Founders ve Portfolio)
 
 https://aws.amazon.com/startups/credits
+
 **Ne verir:** Founders: $1.000 Activate kredisi, seçilenlere en fazla $5.000. Portfolio: bir Activate Provider'ın (hızlandırıcı, melek yatırımcı ya da VC) Org ID'siyle en fazla $200.000.
 
 **Kimler alır:** Pre-Seri B ve son 10 yılda kurulmuş girişim. AWS hesabı Paid Tier planında olmalı; site ya da herkese açık profil başvurudaki şirket adını göstermeli.
@@ -8675,6 +10374,7 @@ https://aws.amazon.com/startups/credits
 ### Microsoft for Startups (Azure)
 
 https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
+
 **Ne verir:** Resmi sayfalar tutarı farklı anlatıyor. SSS'ye göre yatırımcısız ve Azure'a yeni gelen girişim 90 gün geçerli $1.000 ile başlar, iş doğrulamasından sonra 180 gün geçerli ek $4.000 alır. Başvuru sayfası onaydan sonra en fazla $150.000 diyor.
 
 **Kimler alır:** Kayıtlı şirket adı ve adresi resmi belgelerle aynı olan, özel ve kâr amaçlı, Seri C öncesi bir yazılım girişimi. Kayıt, daha önce Azure açılmamış kişisel bir Microsoft hesabıyla yapılır.
@@ -8686,6 +10386,7 @@ https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
 ### Cloudflare for Startups
 
 [cloudflare.com/forstartups](https://www.cloudflare.com/forstartups/)
+
 **Ne verir:** Tier 3: $10.000 (yatırım $1 milyonun altında). Tier 2: $100.000, Tier 1: $350.000 (anlaşmalı bir partnerden yatırım). Krediler 1 yıl ya da bitene kadar geçerli.
 
 **Kimler alır:** En fazla 10 yıl önce tescil edilmiş şirket, aktif bir ürün, doğrulanabilir canlı bir site ve iş e-postası. Program girişim başına bir kez verilir.
@@ -8697,6 +10398,7 @@ https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
 ### PostHog for Startups
 
 https://posthog.com/startups
+
 **Ne verir:** 12 ay geçerli $50.000 PostHog kredisi ve ortaklardan $12.000'ın üzerinde avantaj.
 
 **Kimler alır:** 2 yaşından küçük, toplam yatırımı $5 milyonun altında girişim. Hesap 1 Ocak 2023'ten sonra şirket alan adındaki bir e-postayla açılmış olmalı.
@@ -8708,6 +10410,7 @@ https://posthog.com/startups
 ### OpenAI for Startups
 
 https://openai.com/startups/
+
 **Ne verir:** Resmi sayfa 8 Ekim'de 403 döndü. İkincil kaynaklara göre API kredisi, hız sınırı artışı ve çözüm mühendisleriyle görüşme.
 
 **Kimler alır:** İkincil kaynaklara göre yalnız OpenAI'ın VC ortak ağındaki fonlardan yatırım alanlar, VC'nin verdiği referans koduyla. Kendi parasıyla dönen girişime açık bir program bulunamadı.
@@ -8721,6 +10424,7 @@ https://openai.com/startups/
 ### Expo (EAS)
 
 program yok
+
 Fiyat sayfası girişimlere indirim vermediklerini söylüyor. Free plan ayda 15 iOS ve 15 Android build içerir; kullanılmayan build kredisi sonraki aya devretmez.
 
 https://expo.dev/pricing
@@ -8728,6 +10432,7 @@ https://expo.dev/pricing
 ### RevenueCat
 
 program yok
+
 Program bulunamadı. Aylık takip edilen gelir $2.500 olana kadar ücretsiz, sonra bu gelirin %1'i; gelir mağaza komisyonu düşülmeden sayılır.
 
 [revenuecat.com/pricing](https://www.revenuecat.com/pricing/)
@@ -8735,6 +10440,7 @@ Program bulunamadı. Aylık takip edilen gelir $2.500 olana kadar ücretsiz, son
 ### Resend
 
 program yok
+
 Program bulunamadı, fiyatlar herkese aynı. Free plan ayda 3.000, günde 100 e-posta; Pro $20/ay'dan başlar. Günlük 100 sınırını giriş kodları ve bildirimler paylaşır.
 
 https://resend.com/pricing
@@ -8795,6 +10501,8 @@ Kuruluş tarihi, yatırım durumu, ekip ve ürün tanımı programlar arasında 
 
 AWS Activate Provider Org ID, Microsoft Investor Network kodu, Anthropic ortak ağı (en fazla $100.000 ek API kredisi) ve GitHub for Startups partnerliği bu yolla açılır. Google Scale ve Neon'un VC kolu yatırımın kanıtıyla açılır; Neon en az $1 milyon ya da tanınmış bir hızlandırıcı ister.
 
+<a id="kr-dogrulanamayan"></a>
+
 ### Doğrulanamayanlar
 
 8 Ekim 2026'da resmi sayfalardan teyit edilemeyen ya da sayfaların çeliştiği noktalar.
@@ -8834,8 +10542,10 @@ Sınırlar 8 Ekim 2026'da resmi sayfalardan okundu ve ikinci bir geçişte sayfa
 Ücretsiz katman faturalama hesabı başınadır; aynı hesaptaki projeler aynı kotayı paylaşır. Eylül'de hesap 1'deki iki ürün build kotasını birlikte 621 dakika aştı ve faturaya ₺187 yazıldı; ayrı hesaplarda ikisi de kotada kalırdı. Aynı hesaptaki ikinci ürüne ₺78 Cloud Run ücreti yazıldı, oysa kendi kullanımı kotanın altındaydı. Küçük bir ürünün gerçekten kullandığı kotaların değeri ayda ~$22: ~$15'i build dakikası, ~$6'sı Cloud Run.
 
 ücretsiz kotadakotayı aşan, faturalananEylül 2026, build dakikası; ölçek gerçek
+
 _Grafik: Eylül build dakikaları ve ücretsiz kota_
 **Google Cloud Şartları**
+
 Kural, kota için bir ürünü bölmek değildir. Google Cloud Şartları (madde 3.3) tek bir uygulamayı birden çok hesap ya da projeyle taklit ederek ücretten kaçınmayı ve kotayı dolanmayı yasaklıyor; ihlalde Google hizmeti askıya alabilir (madde 4.2). Her gerçek ürün kendi hesabında doğar, tek ürün hesaplara bölünmez. Hesaplar aynı ödeme profilinin altında açılır ve her birine bütçe alarmı kurulur. Ayrı hesap startup kredisinin doğru ürüne gitmesini ve ürünün devrini de kolaylaştırır.
 
 ## Neon Free'ye kim sığar
@@ -8843,6 +10553,7 @@ Kural, kota için bir ürünü bölmek değildir. Google Cloud Şartları (madde
 Aylık CU-saat, Ekim 2026 temposu (günlük ortalama × 30,4). Free'de proje başına ayda 100 CU-saat ve 5 GB çıkış var.
 
 Free'de ya da sığarLaunch'ta kalmalıCU-saat/ay
+
 _Grafik: Neon Free'ye kim sığar_
 
 ## Ücretsiz sınırlar, servis servis
@@ -8951,7 +10662,7 @@ _**Sıfırlanma** Her ay_ **Ücretsiz sınır:** Proje başına ayda 50 GiB; _D
 
 **Sınırda kalmak için:** Önce uygulamada gürültü kısılır; gerekirse uptime, /health ve statik 2xx satırları dışlanır. Hata, kapı ve denetim satırı dışlanmaz. Yeni projede log kovası AB'de.
 
-**Kurulum:** [öneri] Organizasyon varsa proje açılmadan önce: `gcloud logging settings update --organization=ORG --storage-location=europe-west1`. Yeni projenin `_Default` ve `_Required` kovaları böylece AB'de doğar. Organizasyon yoksa proje doğarken AB'de bir kova kurulur ve `_Default` yönlendiricisi ona çevrilir: `gcloud logging buckets create ab --location=europe-west1 --retention-days=30 --project PROJE`, sonra `gcloud logging sinks update _Default logging.googleapis.com/projects/PROJE/locations/europe-west1/buckets/ab --project PROJE`. Süzgeç ve dışlamalar yerinde kalır; 30 gün saklama aynı ücretsiz kotadadır. Bu yolda `_Required` kovası (yönetim denetim logları) global kalır ve KVKK belgesinde böyle yazılır. Logu okuyan iş ve log alarmları yeni kovada bir kez denenir; `gcloud logging sinks describe _Default --project PROJE` hedefte europe-west1 gösterir.
+**Kurulum:** [öneri] Organizasyon varsa proje açılmadan önce: `gcloud logging settings update --organization=ORG --storage-location=europe-west1`. Yeni projenin `_Default` ve `_Required` kovaları böylece AB'de doğar. Organizasyon yoksa proje doğarken AB'de bir kova kurulur ve `_Default` yönlendiricisi ona çevrilir: `gcloud logging buckets create ab --location=europe-west1 --retention-days=30 --project PROJECT`, sonra `gcloud logging sinks update _Default logging.googleapis.com/projects/PROJECT/locations/europe-west1/buckets/ab --project PROJECT`. Süzgeç ve dışlamalar yerinde kalır; 30 gün saklama aynı ücretsiz kotadadır. Bu yolda `_Required` kovası (yönetim denetim logları) global kalır ve KVKK belgesinde böyle yazılır. Logu okuyan iş ve log alarmları yeni kovada bir kez denenir; `gcloud logging sinks describe _Default --project PROJECT` hedefte europe-west1 gösterir.
 
 ### Cloud Monitoring
 
@@ -9229,7 +10940,7 @@ Bütçe ücretsiz, döküm sorguları BigQuery kotasında kalır. Eylül'deki �
 |---|---|---|---|
 | Bütçe alarmı | Her faturalama hesabına bir Cloud Billing bütçesi; %50, %80 ve %100'de e-posta. | Beklenen aylık tutar; küçük ürün için ~₺150. | Sürekli, kurulum ilk gün |
 | SKU bazında günlük maliyet | Faturalama dökümü BigQuery'ye; günlük sorgu tutarı SKU ve projeye göre toplar, önceki haftayla karşılaştırır. | Bir SKU'nun günlük tutarı önceki haftanın 2 katını geçerse. | Günde bir |
-| Cloud Build dakikası | Hesaptaki her projede ay içindeki build süreleri gcloud builds list --project PROJE --region europe-west1 ile ve bir kez de --region global ile toplanır, ay sonu temposu hesaplanır. Bölge verilmezse komut yalnız global build'leri listeler. Bölgesel tetikleyicinin build'leri o zaman sayılmaz ve alarm hiç çalmaz. | Tempo 2.000 dk'yı (%80) geçerse. | Haftada bir |
+| Cloud Build dakikası | Hesaptaki her projede ay içindeki build süreleri gcloud builds list --project PROJECT --region europe-west1 ile ve bir kez de --region global ile toplanır, ay sonu temposu hesaplanır. Bölge verilmezse komut yalnız global build'leri listeler. Bölgesel tetikleyicinin build'leri o zaman sayılmaz ve alarm hiç çalmaz. | Tempo 2.000 dk'yı (%80) geçerse. | Haftada bir |
 | Cloud Run CPU ve istek | billable_instance_time (vCPU ile çarpılır) ve request_count, hesaptaki projeler toplanarak. | Ay sonu temposu 144.000 vCPU-sn ya da 1,6 milyon isteği (%80) geçerse. | Haftada bir |
 | İnternet çıkışı | network/sent_bytes_count, kind=internet, servis bazında ve günlük. | Küçük üründe günde 1 GiB; ani artışın sebebi çoğu zaman bir kazıyıcı. | Günde bir, alarm |
 | Log hacmi | logging billing/bytes_ingested, proje bazında aylık toplam. | Proje başına 25 GiB (%50). | Ayda bir; alarmla sürekli |
@@ -9257,12 +10968,15 @@ Pahalı bir API'den önce alternatifler eksiksiz değerlendirilir. Açık veri, 
 Ürün B bir mağaza keşif uygulaması. İlk sürümde katalog, arama, konum seçici ve mağaza fotoğrafları Google Places API'ye dayanıyordu. Places Ağustos'ta projenin Google faturasının çoğunu yazdı; kısmi düzeltmeler yetmedi ve API Eylül'de tamamen kapatıldı.
 
 **₺1.500** Ağustos 2026'da Places: fotoğraf 3.786 çağrı ₺924, Enterprise ayrıntı 1.608 çağrı ₺576. Bu projenin ₺2.081'lik Ağustos Google faturasının ~%72'si.
+
 **₺0,33 ve ₺0,95** Ağustos faturamızda ücretsiz kotadan sonra bir fotoğrafın ve bir Enterprise ayrıntı çağrısının bedeli. Bugünkü liste fiyatı 49 TL ile ₺0,34 ve ₺0,98. 20 küçük resimli bir sonuç sayfası ~₺6,6.
+
 **~1.500 çağrı** Üç günde beş tek seferlik bakım komutundan gelen ayrıntı istekleri. Çoğu yalnız tür ya da durum istiyordu; hepsi Enterprise'tan ödendi.
 
 ## Aylık Places faturası
 
 Place Details PhotosPlace Details EnterpriseSKU kırılımı bakılmadıTL, fatura; ölçek gerçek
+
 _Grafik: Aylık Places faturası_
 
 ## Ne oldu
@@ -9568,10 +11282,15 @@ Hız ve maliyet aynı ayarlardan çıkar. Veritabanını uyutan, okumaları bell
 Rakamlar 1–8 Ekim 2026'da dört projenin Cloud Run istek ve sistem kayıtlarından salt okunur sorgularla alındı; bir kısmı bağımsız ikinci bir sorguyla yeniden doğrulandı. Bütün Cloud Run servisleri europe-west1'de (Belçika), bütün Neon veritabanları Frankfurt'ta.
 
 **2 ms** Bellekten verilen herkese açık okumanın p50'si. Aynı okuma veritabanından 28–80 ms'ydi.
+
 **0,99 sn** Uyuyan Neon'u uyandıran isteğin p50'si; p90 2,25 sn, en çok 5,2 sn.
+
 **0 / 25.409** Açılışta 30 sn bekleyen ve 401 yerine 503 dönen API'de 7 günde 5xx.
+
 **%7** ISR'lı kurum sayfalarında 20 ms'nin altında kalan istek payı; önbellek her sunucunun kendi diskinde.
+
 **6,2 sn** Site ile API aynı anda soğukken ilk isteğin p50'si; yalnız site soğukken 4,6 sn.
+
 **~₺255/ay** Tek bir min-instances 1'in faturadaki tutarı. Yerine uptime kontrolü: ₺0.
 
 ## Uptime kontrolü soğuk başlangıcı keser
@@ -9579,6 +11298,7 @@ Rakamlar 1–8 Ekim 2026'da dört projenin Cloud Run istek ve sistem kayıtları
 Servis başına günlük otomatik başlatma, 1–8 Ekim 2026. Kontrol 300 sn'de bir, 3 bölgeden, veritabanına dokunmayan sağlık ucuna.
 
 uptime kontrollükontrolsüzbaşlatma/gün; ölçek gerçek
+
 _Grafik: Uptime kontrolü ve günlük soğuk başlangıç_
 
 ## Ölçümler
@@ -9721,17 +11441,23 @@ Dört ürünümüz 14 aktif depoda duruyor. Sayımlar 8 Ekim 2026'da her deponun
 Toplam ~499.000 satır kod var, bunun ~132.000'i (%26) test. Yanında ~52.000 satır Markdown belge duruyor. Hiçbir .git klasörü 33 MB'ı geçmiyor ve depolardaki ağırlığın çoğu koddan değil görsellerden geliyor. En büyük ürün Ürün A: beş depo, ~265.000 satır, son 30 günde 955 commit.
 
 **14 depo** Ürün A 5, Ürün B 3, Ürün C 4, Ürün D 2. Emekli 6 depo ayrıca sayıldı.
+
 **~499.000 satır** Kod. Yanında ~52.000 satır Markdown belge var.
+
 **%26 test** 131.673 satır test kodu; depoya göre pay %0 ile %38 arası.
+
 **4.341 dosya** Ana dallarda izlenen dosyalar 99,4 MB; bunun 62,5 MB'ı görsel.
+
 **210 MB** On dört .git klasörünün toplamı. En büyüğü 32,8 MB.
+
 **2.368 commit** Bunun 1.711'i son 30 günde. a-web 18 Eylül'de açıldı ve 260 commit aldı.
 
 ## Depo başına kod satırı
 
 Test koduUygulama kodusatır, ana dal, 8 Ekim 2026; ölçek gerçek
+
 _Grafik: Depo başına kod satırı_
-En eski depo portal (ilk commit Kasım 2021), sonra Ürün A mobil (Şubat 2025). Geri kalan on iki depo 2026'da açıldı: Ürün C Şubat'ta, Ürün D Mayıs'ta, Ürün B ve a-api Ağustos'ta, a-web ve a-market Eylül'de.
+En eski depo beş yıllık portal, sonra Ürün A mobil (Şubat 2025). Geri kalan on iki depo 2026'da açıldı: Ürün C Şubat'ta, Ürün D Mayıs'ta, Ürün B ve a-api Ağustos'ta, a-web ve a-market Eylül'de.
 
 ## Proje toplamları
 
@@ -9753,23 +11479,23 @@ _Grafik: Dillere göre kod satırı_
 | Depo | Kod satırı | Test satırı | Görsel MB | .git MB | Commit | İmaj MB |
 |---|---|---|---|---|---|---|
 | Ürün A |
-| a-apiGo API | 66.212 | 25.232 | 1,7 | 12,4 | 219 | 30,6 |
-| a-portalPortal, React ve Vite | 52.033 | 15.467 | 8,7 | 32,8 | 194 | 34,6 |
-| a-webNext.js bilgi sitesi | 32.528 | 8.733 | 2,8 | 13,0 | 260 | 91,9 |
-| a-marketNext.js pazar yeri | 20.964 | 5.218 | 0,1 | 1,3 | 154 | 88,3 |
-| a-mobileExpo mobil | 93.745 | 25.965 | 0,5 | 18,1 | 278 | – |
+| a-api Go API | 66.212 | 25.232 | 1,7 | 12,4 | 219 | 30,6 |
+| a-portal Portal, React ve Vite | 52.033 | 15.467 | 8,7 | 32,8 | 194 | 34,6 |
+| a-web Next.js bilgi sitesi | 32.528 | 8.733 | 2,8 | 13,0 | 260 | 91,9 |
+| a-market Next.js pazar yeri | 20.964 | 5.218 | 0,1 | 1,3 | 154 | 88,3 |
+| a-mobile Expo mobil | 93.745 | 25.965 | 0,5 | 18,1 | 278 | – |
 | Ürün B |
-| b-apiGo API | 44.599 | 13.293 | 8,2 | 30,4 | 310 | 19,8 |
-| b-webNext.js web | 23.470 | 2.066 | 15,0 | 28,5 | 379 | 455,7 |
-| b-mobileExpo mobil | 1.635 | 0 | 13,0 | 14,1 | 19 | – |
+| b-api Go API | 44.599 | 13.293 | 8,2 | 30,4 | 310 | 19,8 |
+| b-web Next.js web | 23.470 | 2.066 | 15,0 | 28,5 | 379 | 455,7 |
+| b-mobile Expo mobil | 1.635 | 0 | 13,0 | 14,1 | 19 | – |
 | Ürün C |
-| c-apiGo API | 56.580 | 18.980 | 0,6 | 24,6 | 177 | 23,5 |
-| c-webNext.js web | 38.374 | 4.975 | 2,0 | 6,7 | 164 | 77,4 |
-| c-adminNext.js yönetim paneli | 29.140 | 2.216 | 1,8 | 6,4 | 51 | 76,6 |
-| c-mobileExpo mobil | 27.286 | 6.851 | 8,2 | 17,5 | 132 | – |
+| c-api Go API | 56.580 | 18.980 | 0,6 | 24,6 | 177 | 23,5 |
+| c-web Next.js web | 38.374 | 4.975 | 2,0 | 6,7 | 164 | 77,4 |
+| c-admin Next.js yönetim paneli | 29.140 | 2.216 | 1,8 | 6,4 | 51 | 76,6 |
+| c-mobile Expo mobil | 27.286 | 6.851 | 8,2 | 17,5 | 132 | – |
 | Ürün D |
-| d-apiGo API | 4.115 | 886 | 0,0 | 0,6 | 15 | 25,9 |
-| d-webNext.js web | 8.379 | 1.791 | 0,0 | 3,4 | 16 | 419,9 |
+| d-api Go API | 4.115 | 886 | 0,0 | 0,6 | 15 | 25,9 |
+| d-web Next.js web | 8.379 | 1.791 | 0,0 | 3,4 | 16 | 419,9 |
 
 Sayım origin/main dalından yapıldı (c-mobile'te origin/master), çünkü bazı yerel main dalları geride. Kod satırına Go, TypeScript, JavaScript, SQL, CSS, Swift, Kotlin, Objective-C, C#, HTML, Shell ve Python girer. Kilit dosyaları, Markdown, ikili dosyalar, bir depodaki üçüncü taraf ajan becerisi (72.643 satır) ve üretilmiş bir motor dosyası (4.984 satır) sayılmadı. Test satırı kod satırının içindedir. İmaj sütunu Artifact Registry'deki son prod imajıdır; mobil depoların sunucu imajı yok.
 
@@ -9820,21 +11546,27 @@ Birleşmiş yerel dallar bazı depolarda 6–20'ye çıktı. Yerel main dalları
 İki kapanmış ürünün altı deposu GitHub'da duruyor. Kişisel depolar bu sayıma girmedi.
 
 **e-api**
+
 Go API; 46 dosya, 4.313 satır, 11 commit.
 
 **e-web**
+
 Web arayüzü; 141 KB.
 
-**e-kapanış**
+**e-closing**
+
 Kapanan E ürününün kapanış sayfası deposu.
 
 **f-api**
+
 C# API; 53 dosya, 11.238 satır, 25 commit.
 
 **f-web**
+
 Web arayüzü; 4,9 MB.
 
-**f-kapanış**
+**f-closing**
+
 Kapanan F ürününün kapanış sayfası deposu.
 
 ## Denenebilecekler
@@ -9848,6 +11580,8 @@ Kapanan F ürününün kapanış sayfası deposu.
 | Ajan aracını depodan çıkarmak | O deponun toplam satır sayısı ~%60 azalır. | Ajan becerisi depo dışından yüklenir. |
 
 Ölçülmeyenler: GitHub'daki disk kullanımı (yerine yerel .git boyutu kullanıldı), mobil ikili boyutları (indirme gerekirdi) ve sıfırdan derlenmiş Go ikilisinin boyutu (yerine imaj boyutu kullanıldı).
+
+<a id="depo-kurallari"></a>
 
 ## Yeni depo için kurallar
 
@@ -9904,10 +11638,15 @@ Artifact Registry ve Cloud Build
 Dört projede 5 Docker deposu var; toplam 6,9 GB ve 94 imaj tutuyorlar. Temizlik kuralları hepsinde gerçekten çalışıyor, dry-run'da değil. Artifact Registry'nin imaj başına ücretli taraması hiçbir depoda açık değil, bütün tetikleyiciler global bölgede. Bugün kalıcı bir para kaçağı yok: Artifact Registry depolaması ayda ~$0,60 tutuyor. Asıl açık geri dönüş penceresi: dört serviste iki günden kısa.
 
 **6,9 GB** 5 Docker deposunda 94 imaj. Depolama ayda ~$0,60; ilk 0,5 GB ücretsiz.
+
 **3.751 dk** Son 30 günde 807 başarılı build. Ücretsiz kota faturalama hesabı başına ayda 2.500 dk.
+
 **0,9–16,5 gün** Bugünkü geri dönüş penceresi, servise göre. Önerilen kuralla 30 gün.
+
 **~5 kat** Buildpacks ile kurulan Next imajı Dockerfile'lı Next imajından büyük: 420–456 MB ve 77–92 MB.
+
 **%51** Ürün A'nın Ekim build dakikalarında test tetikleyicilerinin payı.
+
 **~$210/ay** Zafiyet taraması build depolarında açık olsaydı tutacak rakam: itilen her digest $0,26.
 
 ## Depolar ve temizlik
@@ -9968,59 +11707,72 @@ Ortalama süre: Go API 3,5–5,7 dk, bunun 141–275 sn'si önbelleksiz docker b
 ## Bugünkü kurallarımız
 
 Dört proje
+
 Tek AR deposu (cloud-run-source-deploy), europe-west1. 'En yeni 5'i tut, 1 günden eskiyi sil.' Tarama kapalı, tetikleyici global.
 
 Ürün A
+
 main prod'a, test test ortamına deploy eder; main'e yalnız test'ten geçen commit gider. Test ve prod ayrı paketlerde, çünkü NEXT_PUBLIC ve REACT_APP değerleri build anında gömülüyor. Migrate job'ı her API sürümünde yeni imaja çevriliyor. Tarayıcı servisi ve yedek imajı elle bölgesel build'le üretiliyor.
 
 Ürün B
+
 Yalnız main tetikleyicisi. UI buildpacks ile üretiliyor; Pull ve Push adımları 2 Ekim'de kaldırıldı, Ekim'deki 35 UI build'inin hepsi başarılı.
 
 Ürün C
+
 Yalnız main tetikleyicisi. Testler GitHub Actions'ta koşuyor, deploy yapmıyor.
 
 Ürün D
+
 Yalnız main tetikleyicisi. UI buildpacks ile üretiliyor.
 
 ## Ne yanlış gitti, neye para gitti
 
 ₺117
+
 Temizlik kuralları kurulduktan 21 Eylül'e kadar dry-run'da kaldı ve hiçbir şey silinmedi. Ürün A deposu 1,3 GB ve 68 imaja çıktı; Ürün B'nin AR depolaması Eylül'de ₺117 tuttu.
 
 **Ders:** Kural listesine değil, describe çıktısındaki cleanupPolicyDryRun alanına bakılır.
 
 ₺282
+
 Ürün B'de global buildpack tetikleyicisi her build'de 428 MB'lık imajı Avrupa'dan ABD'deki işçiye çekip geri itti: Eylül'de 194 build, 73 GiB kıtalar arası çıkış. Adımlar 2 Ekim'de kaldırıldı. Aynı kalıp ayda ~15 build'de ~$0,50 tutar ve her build iki imaj yazdığı için geri dönüş penceresini yarıya indirir.
 
 **Ders:** Tetikleyici, AR ve Cloud Run aynı bölgede olur; global bir build AR'den imaj çekmez.
 
 2 kez
+
 Migrate job'ı 'en yeni 5'in dışında kalmış bir imaja sabitti. Temizlik onu silince job kırılma noktasına geldi ve elle yeni imaja çevrildi; 21 Eylül ve 7 Ekim'de aynı şey oldu.
 
 **Ders:** Job imajı servis imajıyla aynı build'de güncellenir.
 
 1 gün
+
 Eylül'de API'nin geri dönülecek revizyonunun imajı bir gün sonra silindi. Ondan sonra geri dönüşün tek yolu revert ve yeniden build oldu.
 
 **Ders:** Bir önceki canlı imaj AR'de durmadan yeni deploy yapılmaz; prev etiketi bunu sağlar.
 
 ₺187
+
 İki ürün aynı faturalama hesabını paylaşıyor ve Eylül'de build kotası aşıldı. Ürün A'da test build'leri dakikaların yarısı.
 
 **Ders:** Kotayı birlikte aşan iki ürün ayrı faturalama hesabına alınır; tetikleyicilere includedFiles ve ignoredFiles eklenir.
 
 ## Yeni proje için kurallar
 
-Rehbere hazır kurallar; DEPO, PROJE, SERVIS ve ONCEKI yerine kendi adları yazılır.
+Rehbere hazır kurallar; REPO, PROJECT, SERVICE ve PREVIOUS yerine kendi adları yazılır.
 
+<a id="ar-kural-1"></a>
 1. Bölge tektir.
 
 AR deposu, Cloud Run ve Cloud Build tetikleyicisi aynı bölgede, europe-west1'de olur; tetikleyici global bırakılmaz. Aynı bölge içindeki aktarım ücretsiz, kıtalar arası çıkış $0,08/GiB. Global bir build'de AR'den imaj çekilmez.
 
+<a id="ar-kural-2"></a>
 2. Projede tek Docker deposu, build adımları depoda.
 
 Build adımları depodaki cloudbuild.yaml dosyasında durur. Cloud Run'ın kendi kurduğu satır içi tetikleyici olduğu gibi bırakılmaz, çünkü incelenmez ve sürümlenmez.
 
+<a id="ar-kural-3"></a>
 3. Temizlik: canlı ve önceki imaj süresiz, deploy edilen 30 gün, testte geçen 14 gün, en yeni 10, gerisi 2 gün.
 
 Kural `cleanup.json` dosyasına yazılır ve önce dry-run'la uygulanır. Bir gün sonra aynı komut `--dry-run` olmadan çalıştırılır, ardından describe çıktısında `cleanupPolicyDryRun` alanının olmadığı ya da false olduğu görülür. `live` ve `prev` etiketleri her deploy'da taşınır ve yaş sınırı olmadan tutulur: canlı imaj, geri dönüş imajı ve job'ın sabitlediği imaj hiç silinmez. Yalnız `deployed-*` kuralına güvenmek yetmez, çünkü `newerThan` yükleme anından sayılır: 30 gündür deploy almayan bir servisin canlı imajı 10 yeni test build'inden sonra silinir. 21 Eylül ve 7 Ekim'de migrate job'ı, sabitlendiği imaj sayı kuralıyla silinince kırıldı. Deploy edilmeyen build 2 gün durur, en yeni 10 imaj her zaman kalır. Ürün A'nın deploy hızında 30 günde ~4 GB, ayda ~$0,40.
@@ -10041,11 +11793,12 @@ Kural `cleanup.json` dosyasına yazılır ve önce dry-run'la uygulanır. Bir g�
 ```
 
 ```
-gcloud artifacts repositories set-cleanup-policies DEPO \
-  --project PROJE --location europe-west1 \
+gcloud artifacts repositories set-cleanup-policies REPO \
+  --project PROJECT --location europe-west1 \
   --policy cleanup.json --dry-run
 ```
 
+<a id="ar-kural-4"></a>
 4. Her build tam SHA'yla etiketlenir, her deploy etiketleri taşır.
 
 Terfinin son adımı eski live'ı prev'e, yeni digest'i live'a taşır ve `deployed-YYYYMMDD-HHMMSS` ekler. Aynı digest yeniden terfi edilirse prev'e dokunulmaz; yoksa prev live'a eşit olur ve önceki imaj korumasız kalır. live ya da prev adımı hata verirse build kırmızı biter ve Cloud Build alarmı çalar; deploy geri alınmaz ama koruma eksik kalmaz. `deployed-*` etiketindeki `|| true` deploy'u yalnız bu etiket yüzünden düşürmemek için. Deploy latest ile yapılmaz; job'lar servisle aynı digest'e aynı build'de çevrilir. Cloud Build'de `$$` kaçışı şart.
@@ -10069,18 +11822,22 @@ Terfinin son adımı eski live'ı prev'e, yeni digest'i live'a taşır ve `deplo
       $_IMG:deployed-$$(date -u +%Y%m%d-%H%M%S) || true
 ```
 
+<a id="ar-kural-5"></a>
 5. Değiştirilemez etiket build deposunda açılmaz.
 
 Bu ayar açık olan depoda temizlik etiketli imajları silemez; her build SHA etiketi taşıdığı için depo sonsuza kadar büyür.
 
+<a id="ar-kural-6"></a>
 6. Tarama build deposunda kapalı kalır.
 
 Otomatik tarama itilen her yeni digest için $0,26 alır, test build'leri de sayılır. Ekim hızıyla dört ürün ayda ~820 imaj itiyor; tarama açık olsaydı ayda ~$210 (~₺10.000) tutardı, bugünkü bütün GCP faturasının yirmi katından fazla. Yerine build'de ya da haftada bir canlı imajlara karşı Trivy, osv-scanner, govulncheck veya npm audit koşar; maliyeti yalnız build dakikası. AR'nin kendi taraması istenirse yalnız terfi edilen imajların durduğu küçük bir release deposunda açılır, build deposunda `--disable-vulnerability-scanning` uygulanır.
 
+<a id="ar-kural-7"></a>
 7. Temel imajlar sabit sürümle yazılır.
 
 Go için distroless/static nonroot (bizde 20–31 MB). Next için output standalone ve node:24-alpine (bizde Dockerfile'lı Next 77–92 MB). Statik site için nginx alpine (35 MB). Next için buildpacks kullanılmaz: imaj 5 kat büyük ve builder sürümü kayıyor. Etiketler sabit sürümle yazılır (node:24-alpine, golang:1.27-alpine); alpine:latest ya da builder:latest kullanılmaz. golang etiketindeki sürüm go.mod'daki go satırıyla ve sürüm taban dosyasıyla aynıdır; ikisi güncelleme gününde birlikte yükselir. Resmi golang imajı başka araç zinciri indirmez; go satırı imajdan yeniyse build durur. Node 24 LTS 30 Nisan 2028'e kadar destekli, Node 26 28 Ekim 2026'da LTS oluyor. Google'a göre imaj boyutu Cloud Run'da soğuk başlangıcı etkilemiyor; bizim ölçümümüzde büyük imajlı servislerin ilk isteği daha uzun sürdü, ama bu bir ilişki, nedensellik ölçülmedi. Küçük imajın kesin kazancı depolama, tarama yüzeyi ve bölgeler arası çıkış.
 
+<a id="ar-kural-8"></a>
 8. Bir kez build, terfi.
 
 Test dalının ürettiği imaj main'de yeniden build edilmez; main tetikleyicisi onay ister, digest'i `tested-*` etiketinden bulur, migrate job'ını o digest'e çevirip bitmesini bekler, servisi trafiksiz candidate etiketiyle açar, candidate adresinde duman testi yapar, trafiği verir ve etiketleri taşır. Web servislerinde migrate adımı yoktur. Prod'da testte denenen imaj bayt bayt aynı çalışır ve build dakikası yarıya iner.
@@ -10090,9 +11847,9 @@ Test dalının ürettiği imaj main'de yeniden build edilmez; main tetikleyicisi
 ```
 # cloudbuild.main.yaml: main tetikleyicisi, onay ister, build almaz
 substitutions:
-  _IMG: europe-west1-docker.pkg.dev/PROJE/DEPO/SERVIS
-  _SERVICE: SERVIS
-  _JOB: SERVIS-migrate
+  _IMG: europe-west1-docker.pkg.dev/PROJECT/REPO/SERVICE
+  _SERVICE: SERVICE
+  _JOB: SERVICE-migrate
   _R: europe-west1
 steps:
 - id: digest
@@ -10151,7 +11908,7 @@ Web servisinde Worker öndeyse (EDGE_KEY tanımlı), kapı kenar anahtarı taş�
 # web için cloudbuild.main.yaml eki
 availableSecrets:
   secretManager:
-  - versionName: projects/PROJE/secrets/web-edge-key/versions/latest
+  - versionName: projects/PROJECT/secrets/web-edge-key/versions/latest
     env: EDGE_KEY
 # smoke adımına eklenir:
   secretEnv: [EDGE_KEY]
@@ -10162,6 +11919,7 @@ availableSecrets:
 
 Build hesabına yalnız bu sır için secretAccessor rolü verilir. Adımda set -x açılmaz, anahtar loga düşmez. Anahtar ayda bir değiştiğinde versions/latest yeni değeri okur.
 
+<a id="ar-kural-9"></a>
 9. Next'te public ayar build'e gömülmez, çalışma anında okunur.
 
 Terfi ancak imaj ortamdan bağımsızsa çalışır. `NEXT_PUBLIC_` önekli değişken kalmaz; değerler düz adla (`SITE_URL`, `API_ORIGIN`) Cloud Run ortamında durur. Sunucu kodu bunları istek anında okur; ortama göre değişen bir şey okuyan sayfa build'de ön üretilmez (dinamik ya da boş generateStaticParams ile ISR). canonical, og:url ve sitemap istek anında kurulur, CSP origin'leri aynı değişkenlerden türetilir. Tarayıcıya gereken değerler dinamik bir route'tan gelir; istemci bir kez okur ve bellekte tutar. Terfiden sonra prod'da canonical ve bu route curl ile okunur.
@@ -10179,25 +11937,27 @@ export async function GET() {
 
 [öneri] `export const dynamic` yerine `await connection()` kullanılır. 'use cache' için `cacheComponents` açılırsa dynamic satırı build'i durdurur. Satır silinirse route build'de ön üretilir ve env build'deki değerle donar. `connection()` iki durumda da gerçek isteği bekler. Sayfaya ve sitemap'e konmaz. Onları ISR çalışma anında üretir ve son iyi kopyayı tutar. `connection()` ise her isteği arka uca götürür.
 
+<a id="ar-kural-10"></a>
 10. Geri dönüş her yeni projede bir kez denenir.
 
 Bir önceki canlı imaj AR'de durmadan yeni deploy yapılmaz; prev etiketi bunu sağlar. Geri dönüş tek komuttur (ilk blok). Hemen ardından etiketler trafiğe eşitlenir (ikinci blok): live geri dönülen imaja, prev kötü imaja geçer. Kötü imaj korunur, çünkü migration geri alınmaz ve migrate job'ı hâlâ ona bakar. Bu adım atlanırsa live kötü imajda kalır ve bir sonraki terfi iyi imajı prev'den düşürür.
 
 ```
-gcloud run services update-traffic SERVIS --to-revisions=ONCEKI=100 \
-  --project PROJE --region europe-west1
+gcloud run services update-traffic SERVICE --to-revisions=PREVIOUS=100 \
+  --project PROJECT --region europe-west1
 ```
 
 ```
-IMG=europe-west1-docker.pkg.dev/PROJE/DEPO/SERVIS
-KOTU=$(gcloud artifacts docker images describe $IMG:live \
-  --project PROJE --format='value(image_summary.digest)')
-IYI=$(gcloud run revisions describe ONCEKI --project PROJE \
+IMG=europe-west1-docker.pkg.dev/PROJECT/REPO/SERVICE
+BAD=$(gcloud artifacts docker images describe $IMG:live \
+  --project PROJECT --format='value(image_summary.digest)')
+GOOD=$(gcloud run revisions describe PREVIOUS --project PROJECT \
   --region europe-west1 --format='value(status.imageDigest)')
-gcloud artifacts docker tags add $IMG@$KOTU $IMG:prev --project PROJE
-gcloud artifacts docker tags add $IYI $IMG:live --project PROJE
+gcloud artifacts docker tags add $IMG@$BAD $IMG:prev --project PROJECT
+gcloud artifacts docker tags add $GOOD $IMG:live --project PROJECT
 ```
 
+<a id="ar-kural-11"></a>
 11. Build kotası sayılır.
 
 Varsayılan havuzda e2-standard-2 için faturalama hesabı başına ayda 2.500 dk ücretsiz, sonrası $0,006/dk, saniye bazında. İki ürün kotayı aşıyorsa ayrı faturalama hesabı açılır. Tetikleyiciye includedFiles ve ignoredFiles eklenir, yalnız belge değişen push build almaz. Build kaynak kovasına 30 günlük silme kuralı konur.
@@ -10240,30 +12000,50 @@ KVKK ve veri yeri
 Veri bölgesi, işleyen listesi ve aktarım dayanağı proje doğarken yazılır. Kurumsal müşteriler verinin ve yedeğin yerini ilk toplantıda soruyor.
 
 ₺90.308–1.806.177
+
 Bildirilmeyen standart sözleşmenin 2026 cezası.
+
 5 iş günü
+
 Standart sözleşme imzalandıktan sonra Kurum'a bildirim süresi.
 
 ## Yap
 
 [öneri]
-** Veri yeri proje doğarken yazılır** (Cloud Run Belçika, Neon Frankfurt, mail bölgesi); 'veri AB'de' denir, Türkiye'de olmayana 'Türkiye'de' denmez.
+
+**Veri yeri proje doğarken yazılır** (Cloud Run Belçika, Neon Frankfurt, mail bölgesi); 'veri AB'de' denir, Türkiye'de olmayana 'Türkiye'de' denmez.
+
 [öneri]
-** İşleyenler**: Google Cloud, Neon, Resend (hesap verisi ABD'de), Cloudflare (proxy açıksa IP ve istek), Expo, Apple ve Google, RevenueCat, AdMob, OpenAI, Clarity, kullanılırsa Sentry.
+
+**İşleyenler**: Google Cloud, Neon, Resend (hesap verisi ABD'de), Cloudflare (proxy açıksa IP ve istek), Expo, Apple ve Google, RevenueCat, AdMob, OpenAI, Clarity, kullanılırsa Sentry.
+
 [öneri]
-** KVKK m.9** (1 Haz 2024'ten beri): her işleyenle standart sözleşme, imzadan sonra 5 iş günü içinde Kurum'a bildirim; bildirilmezse 2026'da ₺90.308–1.806.177; metin ve VERBİS sorusu hukukçuya.
+
+**KVKK m.9** (1 Haz 2024'ten beri): her işleyenle standart sözleşme, imzadan sonra 5 iş günü içinde Kurum'a bildirim; bildirilmezse 2026'da ₺90.308–1.806.177; metin ve VERBİS sorusu hukukçuya.
+
 [öneri]
-** Her yeni SDK'dan önce liste, aydınlatma metni, App Store etiketi ve Play Data safety güncellenir**.
+
+**Her yeni SDK'dan önce liste, aydınlatma metni, App Store etiketi ve Play Data safety güncellenir**.
+
 [öneri]
-** Hata telemetrisi önce birinci taraf**; üçüncü taraf hukuki adımdan sonra.
+
+**Hata telemetrisi önce birinci taraf**; üçüncü taraf hukuki adımdan sonra.
+
 [kanıtlı]
-** Analitik onaydan önce istek atmaz, alanlar maskelenir**; kimlik yazılan formlarda session replay yok; loglarda yalnız sayı ve IP hash'i.
+
+**Analitik onaydan önce istek atmaz, alanlar maskelenir**; kimlik yazılan formlarda session replay yok; loglarda yalnız sayı ve IP hash'i.
+
 [öneri]
-** İstisna**: kullanıcı içerik yayımlıyorsa (ilan, yorum, mesaj) içerik yazan isteğin ham IP'si, alınabiliyorsa portu ve zamanı 5651 için ayrı bir tabloda 13 ay tutulur ve süre gizlilik metnine yazılır. Ayrıntı [Gün 0 önlemleri 18](#onlem-18)'de, kapsamı hukukçu söyler.
+
+**İstisna**: kullanıcı içerik yayımlıyorsa (ilan, yorum, mesaj) içerik yazan isteğin ham IP'si, alınabiliyorsa portu ve zamanı 5651 için ayrı bir tabloda 13 ay tutulur ve süre gizlilik metnine yazılır. Ayrıntı [Gün 0 önlemleri 18](#onlem-18)'de, kapsamı hukukçu söyler.
+
 [öneri]
-** Gizlilik metnindeki süreler yedek, proje dışı kopya ve soft delete dahil gerçek azami süredir**; geri yüklemede silmeler yeniden uygulanır.
+
+**Gizlilik metnindeki süreler yedek, proje dışı kopya ve soft delete dahil gerçek azami süredir**; geri yüklemede silmeler yeniden uygulanır.
+
 [öneri]
-** Kurumsal müşteri canlı sistemi ve yedeği Türkiye'de isteyebilir**. GCP Türkiye bölgesi 20 Kas 2025'te tarihsiz duyuruldu; açılınca Cloud Run, kovalar ve yedekler taşınabilir. Neon'da Türkiye bölgesi yok: veritabanı Türkiye'de ancak başka bir Postgres'le (Cloud SQL ya da kendi sunucumuz) durur, Neon'un uyuma kazancı da o gün gider.
+
+**Kurumsal müşteri canlı sistemi ve yedeği Türkiye'de isteyebilir**. GCP Türkiye bölgesi 20 Kas 2025'te tarihsiz duyuruldu; açılınca Cloud Run, kovalar ve yedekler taşınabilir. Neon'da Türkiye bölgesi yok: veritabanı Türkiye'de ancak başka bir Postgres'le (Cloud SQL ya da kendi sunucumuz) durur, Neon'un uyuma kazancı da o gün gider.
 
 <a id="kontrol"></a>
 
@@ -10278,36 +12058,47 @@ Dört aşama, her biri kendi listesiyle. Kutular yeni projede işaretlenmek içi
 - [ ] Kendi faturalama hesabı ve Neon org'u, üç eşikli bütçe uyarısı ve BigQuery faturalama dökümü; önce her tetikleyiciye kendi build hesabı, sonra compute hesabından Editor kaldırılır; rolsüz hesaplar; JSON anahtar yok, CI Actions'a taşınırsa WIF ile, anahtarsız.
 
 [öneri]
+
 - [ ] Private depo, gitleaks ve push protection; CLAUDE.md/AGENTS.md'de deploy kararı, test → main, tek deploy; birleşen dal silinir.
 
 [kanıtlı]
+
 - [ ] Yeni depo kuralları: 1 MB ve ikili dosya kapısı, .gitignore'da .env, *.jks, *.keystore, *.p8, *.p12 ve *.key, ajan dosyasında deploy kuralı.
 
 [öneri]
+
 - [ ] Alan adı haftalar önce alınır, güvenlik firmalarına kategori başvurusu yapılır; Cloudflare DNS; SPF/DKIM/DMARC; Resend AB, auth. ve news.; web Worker → run.app, api.* yalnız DNS ve gecikmesi ölçülür.
 
 [öneri]
+
 - [ ] KVKK: veri yeri, işleyen listesi, standart sözleşme ve 5 iş günü bildirimi.
 
 [öneri]
+
 - [ ] Neon: prod Launch (0,25–1 CU, aylık asgari ücret yok), test Free (en çok 0,25 CU); üç rol (uygulama DML, migration şema sahibi, salt okunur yedek) ve rol zaman aşımları.
 
 [öneri]
+
 - [ ] Go: tek pool fonksiyonu, pooler testi, severity, 30 sn bekleme, 401/503, veritabanısız /health, istemci adresi Kenar katmanındaki tabloya göre, veritabanında kod sınırları, `/app job`.
 
 [kanıtlı]
+
 - [ ] Next: standalone, font local, kapı (gün 0'da yalnız başka sitelerde gölgeden geçmiş ortak liste reddeder, gerisi gölgede başlar), başlıklar, CSP report-only, BFF, tazelik yolu.
 
 [kanıtlı]
+
 - [ ] Next'in public değerleri çalışma anında okunur; test'te doğrulanan imaj prod'a aynen terfi eder. Bizde bu değerler hâlâ build'e gömülü.
 
 [öneri]
+
 - [ ] Expo: CNG, New Arch, .env test'i gösterir, production host koruması; uzaktan kontrol kitinin iskeleti ilk commit'te (sürüm başlıkları, politika ucu, zorunlu güncelleme ekranı, push kaydı); duyuru alanı, ekran içi uyarı, bayrak ve kill switch ilk mağaza build'inden önce. OTA seçildiyse expo-updates ilk mağaza build'inde (öneri).
 
 [kanıtlı]
+
 - [ ] Hat: testler, digest, migrate --wait, onay, aynı digest; tek dağıtıcı Scheduler işi → Job, OAuth ile; AR'de live ve prev KEEP; test web'i IAP arkasında, test API'sinde giriş izin listeli; yenileme takvimi.
 
 [öneri]
+
 - [ ] Giriş kodu kotasına karşı: web'deki kod formunda Turnstile, mobil kod ucunda App Check (Play Integrity, App Attest), hazır bir yedek e-posta sağlayıcısı.
 
 [öneri]
@@ -10317,21 +12108,27 @@ Dört aşama, her biri kendi listesiyle. Kutular yeni projede işaretlenmek içi
 - [ ] Alarmlar [TEST] ile denenir; Neon Free ve mail bütçesi alarmları eklenir.
 
 [kanıtlı]
+
 - [ ] Yedek, haftalık proje dışı kopya, tombstone adımı, soft delete kararı; bir elle geri yükleme.
 
 [öneri]
+
 - [ ] Okumalar bellek kopyasına, önce gölgede; bir gün sonra boş pencereler ve Neon saatlik tüketimi okunur.
 
 [ölçüldü]
+
 - [ ] Saklama sözleri işlere ve testlere bağlı; gerçek hesap silme; ücretli işlerde rakam ve tavan.
 
 [kanıtlı]
+
 - [ ] Kategori başvuruları ve kurum adreslerine deneme kod maili; WebKit dahil görsel tarama; terfi sonrası canonical curl.
 
 [kanıtlı]
+
 - [ ] Cloudflare prova host'u doğrulaması, Worker → run.app, 'Disallow AI Training', purge'lü cache; KVKK sözleşmeleri bildirilir, çerez onayı.
 
 [öneri]
+
 - [ ] Startup kredileri: ayrı faturalama hesabı ve Neon org'u açıldıktan sonra, ağır kullanım başlamadan başvurulur.
 
 [öneri]
@@ -10341,18 +12138,23 @@ Dört aşama, her biri kendi listesiyle. Kutular yeni projede işaretlenmek içi
 - [ ] Uzaktan kontrol kitinin OTA dışındaki 10 parçası ve yayın kapısı kanıtlı; kit yoksa mağaza sürümü yok. OTA önerilir; kurulacaksa ilk mağaza build'inde kurulur.
 
 [öneri]
+
 - [ ] Güncelleme ekranları gerçek telefonda; RevenueCat üç yol; push makbuzu.
 
 [kanıtlı]
+
 - [ ] İnceleme hesabı: prod'da izin listesindeki tek adres, sabit kod, en az yetki, kod sınırı ve her girişte log satırı.
 
 [öneri]
+
 - [ ] OTA geri alma provası; ortamı zorlayan betik; test API'ye bakan release build yerelde preview profiliyle alınır, hedef API logdan doğrulanır; TestFlight ve internal track'teki production build'de yalnız salt okunur duman kontrolü.
 
 [öneri]
+
 - [ ] Play hesabı şirket adına; kişisel açıldıysa 12 testçili 14 günlük kapalı test ilk sürümden en az 3 hafta önce başlar; uygulama içi silme; gizlilik etiketi ve Data safety her SDK için; phased release ve staged rollout.
 
 [öneri]
+
 - [ ] EAS kotası sayılır; build için ürün sahibinin açık sözü beklenir.
 
 [kanıtlı]
@@ -10362,12 +12164,15 @@ Dört aşama, her biri kendi listesiyle. Kutular yeni projede işaretlenmek içi
 - [ ] Fatura, Neon saatlik tüketim, uyanma, OOM ve ERROR sayıları.
 
 [ölçüldü]
+
 - [ ] Yedekler doğrulanmış mı, AR'de geri dönüş imajları var mı, service.yaml ile canlı eşit mi.
 
 [kanıtlı]
+
 - [ ] Yenileme takvimi önümüzdeki 60 gün; yeni SDK ya da işleyen geldiyse KVKK listesi ve mağaza etiketleri.
 
 [öneri]
+
 - [ ] Güvenlik duyuruları; bir projede kapatılan açık hepsinde kontrol edildi mi; update-policy mağazayla eşit mi.
 
 [kanıtlı]
@@ -10379,54 +12184,71 @@ Dört aşama, her biri kendi listesiyle. Kutular yeni projede işaretlenmek içi
 Yeni projede gün 0'dan geçerli kurallar.
 
 1
+
 Yerel, test ya da CI varsayılanını asla prod yapma.
 
 2
+
 Veritabanı hatasında asla 401 dönme; başarısız işi 2xx ile yutma.
 
 3
+
 API'yi asla alan silerek ya da değiştirerek büyütme; yalnız ekle.
 
 4
+
 Canlı bir adresi asla kalıcı 308 olmadan değiştirme.
 
 5
+
 Neon'a bağlı serviste asla MinConns>0, soran ticker ya da veritabanına dokunan /health bulundurma.
 
 6
+
 Pooled bağlantıda asla oturum advisory lock, SET ya da LISTEN kullanma.
 
 7
+
 Ona dayanan kodu asla migration bitmeden yayına verme; migration hattın kendi adımında, bitmesi beklenerek ve yalnız ekleyerek koşar.
 
 8
+
 Prod'a asla test'te doğrulanmamış artefakt ve ürün sahibinin istemediği sürüm çıkarma.
 
 9
+
 Hiçbir runtime'ı Editor yetkili hesapla çalıştırma; JSON anahtarı diskte bırakma; sırrı düz env'e koyma.
 
 10
+
 Herkese açık test ortamına asla gerçek ücretli anahtar koyma. Ücretli anahtar ancak kimlik doğrulama arkasında ve sağlayıcıda sert tavanla.
 
 11
+
 Ücretli API'yi asla rakamı ve sert tavanı olmadan çağırma.
 
 12
+
 İlk mağaza sürümünü asla uzaktan kontrol kiti olmadan çıkarma: zorunlu güncelleme, duyuru alanı ve ekran içi uyarı, push, bayrak ve kill switch, bakım modu ve sürüm telemetrisi. OTA önerilir; OTA ve yerel build'i ortamı vermeden alma.
 
 13
+
 Zorunlu güncellemeyi asla Play'de yayın %100 olmadan ve App Store sürümü yayında değilken açma.
 
 14
+
 Cloudflare'de SEO hedefi varken asla 'Block' seçme; purge'süz HTML ya da Set-Cookie'li yanıtı önbelleğe alma.
 
 15
+
 Bot kuralını asla gölgeden geçirmeden zorlama; yeni sitede gün 0'da yalnız başka sitelerde gölgeden geçmiş ortak liste reddeder.
 
 16
+
 Geri yüklemeden sonra silmeleri uygulamadan asla trafiğe açma.
 
 17
+
 Yeni SDK'yı asla KVKK listesi ve mağaza etiketleri güncellenmeden çıkarma.
 
 <a id="onlemler"></a>
@@ -10469,6 +12291,8 @@ Kırmızı kenarlı ilk on madde her projede yapılır; 11 ile 26 arası yalnız
 
 3'ün yolları gezen testi akışların ilk ucundan önce depoda olur. 14, 16 ve 17 AI özelliği, 18, 19 ve 23 kullanıcı içeriği, 24 web'den satış açılmadan; 26 ilk mağaza ya da reklam ödemesinden önce yapılır. Ürünün hangi özellikleri olacağı 1. adımda sorulur; geçerli olmayan madde DECISIONS'a 'özellik yok' diye yazılır.
 
+<a id="onlem-1"></a>
+
 ### 1. Bütün hesapların anahtarı tek kişide, kurtarma tek telefonda
 
 Bulut, alan adı kayıt şirketi, kod ve mağaza hesapları tek kişinin adresine ve telefonuna bağlı; biri giderse hepsi gider.
@@ -10484,6 +12308,8 @@ Bulut, alan adı kayıt şirketi, kod ve mağaza hesapları tek kişinin adresin
 **Rehberde:** kısmen; [İçerik otomasyonu](#icerik) › Hattın on bir parçası › 1 (sosyal hesaplar), [Veritabanı yedeği ve geri yükleme](#yedek) › Katmanlar › Proje dışı kopya.
 
 **Kaynak:** [yubico.com/us/product/security-key-nfc-by-yubico](https://www.yubico.com/us/product/security-key-nfc-by-yubico/), https://docs.cloud.google.com/resource-manager/docs/manage-essential-contacts, https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/recovering-your-account-if-you-lose-your-2fa-credentials, [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari)
+
+<a id="onlem-2"></a>
 
 ### 2. Zararlı bir paket kurulurken diskteki sırları toplar
 
@@ -10501,6 +12327,8 @@ Ele geçmiş bir npm sürümü, ajanın çalıştırdığı npx ya da modelin uy
 
 **Kaynak:** [cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem](https://www.cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem), https://docs.npmjs.com/cli/v12/using-npm/config, https://github.com/npm/cli/blob/latest/CHANGELOG.md (12.0.0 ve 11.10.0), https://arxiv.org/abs/2406.10279, https://nvd.nist.gov/vuln/detail/CVE-2025-30066
 
+<a id="onlem-3"></a>
+
 ### 3. Başkasının kaydı kimlik değiştirilerek okunur
 
 Uç kaydı /v1/x/{id} ile okur, sahibini sormaz; kullanıcı kimliği değiştirip başkasının verisini görür. Ajanın yazdığı uçta bu kontrol kolayca eksik kalır.
@@ -10516,6 +12344,8 @@ Uç kaydı /v1/x/{id} ile okur, sahibini sormaz; kullanıcı kimliği değiştir
 **Rehberde:** yok; Admin'de asla'daki yol testi yalnız admin için.
 
 **Kaynak:** https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization
+
+<a id="onlem-4"></a>
 
 ### 4. Sahte webhook isteği ücretli üyelik açar
 
@@ -10533,6 +12363,8 @@ Abonelik ya da ödeme webhook'u imzası doğrulanmadan kabul edilir. Adresi bula
 
 **Kaynak:** https://docs.stripe.com/webhooks, https://developer.apple.com/documentation/appstoreservernotifications, https://docs.cloud.google.com/pubsub/docs/authenticate-push-subscriptions
 
+<a id="onlem-5"></a>
+
 ### 5. Kodlama ajanı okuduğu metinden komut alır
 
 Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat onu sır göndermeye, IAM'e üye eklemeye ya da push'a götürür.
@@ -10548,6 +12380,8 @@ Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat
 **Rehberde:** yok.
 
 **Kaynak:** https://aws.amazon.com/security/security-bulletins/AWS-2025-015/, https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c, https://nx.dev/blog/s1ngularity-postmortem, https://genai.owasp.org/llmrisk/llm01-prompt-injection/, https://code.claude.com/docs/en/permissions
+
+<a id="onlem-6"></a>
 
 ### 6. Ajan canlı veritabanında geri dönüşsüz komut çalıştırır
 
@@ -10565,6 +12399,8 @@ Ajan geniş yetkiyle issue, yorum ya da web sayfası okur. Gömülü bir talimat
 
 **Kaynak:** https://code.claude.com/docs/en/permissions, https://neon.com/docs/guides/protected-branches, [eweek.com/news/replit-ai-coding-assistant-failure](https://www.eweek.com/news/replit-ai-coding-assistant-failure/)
 
+<a id="onlem-7"></a>
+
 ### 7. Harcama tavanı yok, bütçe yalnız e-posta atar
 
 Sel ya da istek döngüsü Cloud Run'ı instance tavanına, Neon'u max CU'ya taşır. Bütçe alarmı yalnız haber verir. Herkese açık kovadaki dosyanın çıkışı ve log hacmi hiçbir tavana girmez.
@@ -10580,6 +12416,8 @@ Sel ya da istek döngüsü Cloud Run'ı instance tavanına, Neon'u max CU'ya ta�
 **Rehberde:** kısmen; [Bulut altyapısı (Cloud Run)](#katman-6) › Başlangıç ayarları, [Postgres (Neon + pgx)](#katman-1) › Yap, [Uyarılar kime, nasıl ulaşır](#uyarilar) › 4, [Pahalı dış API'ler](#pahali-api) › Kurallar, [Ücretsiz katmanları sonuna kadar kullanmak](#ucretsiz) › İzleme (Cloud Run çıkışı ve log alarmı). Yeni olan harcama tavanı, Neon kotası ve kova çıkışı.
 
 **Kaynak:** https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps, https://cloud.google.com/run/pricing, https://neon.com/docs/guides/consumption-limits, https://neon.com/faqs/postgres-services-capping-monthly-spend-autoscaling, https://cloud.google.com/storage/pricing
+
+<a id="onlem-8"></a>
 
 ### 8. E-posta Türkçe İ yüzünden iki hesaba bölünür
 
@@ -10597,6 +12435,8 @@ Türkçe klavye ilk harfi İ yapar. JavaScript'te 'İnfo@ornek.com'.toLowerCase(
 
 **Kaynak:** [unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt](https://www.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt), https://pkg.go.dev/strings#ToLower, https://reactnative.dev/docs/textinput#autocapitalize
 
+<a id="onlem-9"></a>
+
 ### 9. Veri ihlalinde 72 saat var, "kim neyi gördü" kaydı yok
 
 Admin oturumu çalınır ya da yetki hatası başkasının kaydını gösterir; Kurul kaç kişi ve hangi veri diye sorar, kayıt yoktur.
@@ -10612,6 +12452,8 @@ Admin oturumu çalınır ya da yetki hatası başkasının kaydını gösterir; 
 **Rehberde:** kısmen; [Analitik ve admin](#analitik) › Denetim kaydı adminin okumasını ve yazmasını kaydediyor; kullanıcı tarafındaki okuma ve kova okuması yok.
 
 **Kaynak:** [kvkk.gov.tr/Icerik/5362/Veri-Ihlali-Bildirimi](https://www.kvkk.gov.tr/Icerik/5362/Veri-Ihlali-Bildirimi), [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari), https://docs.cloud.google.com/storage/docs/audit-logging, https://docs.cloud.google.com/logging/docs/routing/overview
+
+<a id="onlem-10"></a>
 
 ### 10. Destek dışı kalan sürüm, yetişmeyen yama
 
@@ -10629,6 +12471,8 @@ Sürüm güvenlik desteğinden çıkar; sonraki açığın yaması yalnız yeni 
 
 **Kaynak:** https://nextjs.org/support-policy, https://go.dev/doc/devel/release, https://github.com/nodejs/Release, https://nextjs.org/blog/CVE-2025-66478, https://nvd.nist.gov/vuln/detail/CVE-2025-55182
 
+<a id="onlem-11"></a>
+
 ### 11. Mağazaların yıllık şartı güncellemeyi durdurur
 
 Play her 31 Ağustos'ta hedef API'yi, Apple her nisan Xcode sürümünü yükseltir; eski kütüphaneler yeni araçlarla derlenmez. Expo SDK 55'ten beri yeni mimari zorunlu; eski mimari isteyen kütüphane SDK geçişini durdurur.
@@ -10644,6 +12488,8 @@ Play her 31 Ağustos'ta hedef API'yi, Apple her nisan Xcode sürümünü yüksel
 **Rehberde:** kısmen; [React Native (Expo) mobil](#katman-4) › Yap (New Arch, hedef API); takvim yok.
 
 **Kaynak:** https://developer.android.com/google/play/requirements/target-sdk, https://developer.apple.com/news/upcoming-requirements/, https://docs.expo.dev/guides/new-architecture/
+
+<a id="onlem-12"></a>
 
 ### 12. Abonelik zammı aboneleri sessizce düşürür
 
@@ -10661,6 +12507,8 @@ Play'de zam varsayılan olarak onay ister; eski fiyat grubu taşınırsa onay ve
 
 **Kaynak:** https://developer.apple.com/help/app-store-connect/manage-subscriptions/manage-pricing-for-auto-renewable-subscriptions, https://developer.android.com/google/play/billing/price-changes
 
+<a id="onlem-13"></a>
+
 ### 13. Kart düşerse aynı faturalama hesabındaki her şey durur
 
 Kartın süresi biter, limiti dolar ya da kartı veren kuruluş yurt dışı işlemi reddeder. Yedek yöntem yoksa Google faturalama hesabını askıya alır; API, site ve yedek işi birlikte durur.
@@ -10676,6 +12524,8 @@ Kartın süresi biter, limiti dolar ya da kartı veren kuruluş yurt dışı iş
 **Rehberde:** kısmen; [Gözlem ve alarmlar](#katman-10) › Yap (kart bitiş takvimi), [Veritabanı yedeği ve geri yükleme](#yedek) › Katmanlar › Proje dışı kopya (askıda veri kaybı). Yedek kart ve ikinci faturalama yöneticisi yok.
 
 **Kaynak:** https://docs.cloud.google.com/billing/docs/how-to/payment-methods, https://docs.cloud.google.com/billing/docs/how-to/restart-services
+
+<a id="onlem-14"></a>
 
 ### 14. Model anahtarı: prod ve denemeler aynı havuzda
 
@@ -10693,6 +12543,8 @@ Kartın süresi biter, limiti dolar ya da kartı veren kuruluş yurt dışı iş
 
 **Kaynak:** https://support.claude.com/en/articles/9796807-creating-and-managing-workspaces-in-the-claude-console, [sysdig.com/blog/llmjacking-stolen-cloud-credentials-used-in-new-ai-attack](https://www.sysdig.com/blog/llmjacking-stolen-cloud-credentials-used-in-new-ai-attack)
 
+<a id="onlem-15"></a>
+
 ### 15. Alan adının süresi dolar ya da eski kaydı devralınır
 
 Yenileme kaçar; yeni sahip MX kurup o adresli hesapların sıfırlama postasını alır. Silinen servise bakan sarkık DNS kaydı da devralınabilir.
@@ -10708,6 +12560,8 @@ Yenileme kaçar; yeni sahip MX kurup o adresli hesapların sıfırlama postasın
 **Rehberde:** kısmen; [Gözlem ve alarmlar](#katman-10)'da yenileme takvimi; kilit, CAA ve sarkık kayıt yok.
 
 **Kaynak:** https://trufflesecurity.com/blog/millions-at-risk-due-to-google-s-oauth-flaw, https://docs.cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs, https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Subdomain_takeover
+
+<a id="onlem-16"></a>
 
 ### 16. Üründeki AI özelliği kullanıcının metninden komut alır
 
@@ -10725,6 +12579,8 @@ AI özelliği belge, e-posta ya da web sayfası okur ve araç çağırır. Göm�
 
 **Kaynak:** https://genai.owasp.org/llmrisk/llm01-prompt-injection/, https://nvd.nist.gov/vuln/detail/CVE-2025-32711
 
+<a id="onlem-17"></a>
+
 ### 17. AI özelliğinde açık izin adımı yok
 
 AI özelliği kişisel veriyi üçüncü taraf bir modele gönderir, sağlayıcıyı adıyla söyleyen izin adımı yoktur. Apple 5.1.2(i) üçüncü taraf AI ile paylaşımdan önce açık izin istiyor. Sağlayıcı yurt dışındaysa veri yurt dışına aktarılmış olur (6698 m.9).
@@ -10740,6 +12596,8 @@ AI özelliği kişisel veriyi üçüncü taraf bir modele gönderir, sağlayıc�
 **Rehberde:** kısmen; [KVKK ve veri yeri](#kvkk) › Veri nerede duruyorsa öyle yazılır (m.9, işleyen listesi); izin ekranı yok.
 
 **Kaynak:** https://developer.apple.com/app-store/review/guidelines/, [mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6698.pdf), [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari) (2026 tablosu)
+
+<a id="onlem-18"></a>
 
 ### 18. İçeriğin yazarı sorulunca IP ve zaman kaydı yok (5651)
 
@@ -10757,6 +12615,8 @@ Kullanıcı yorum, ilan ya da mesaj yayımlıyorsa ürün yer sağlayıcı sayı
 
 **Kaynak:** [mevzuat.gov.tr/mevzuatmetin/1.5.5651.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5651.pdf), [mevzuat.gov.tr/mevzuatmetin/1.5.5326.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5326.pdf) (m.17/7)
 
+<a id="onlem-19"></a>
+
 ### 19. Bildir ve engelle her içerikte yok
 
 Kullanıcılar birbirine içerik gösterebiliyorsa Apple 1.2 filtre, bildirme, engelleme ve iletişim bilgisi ister. Play uygulama içi bildir ve engelle ile içerikten önce kullanım şartı onayı ister.
@@ -10772,6 +12632,8 @@ Kullanıcılar birbirine içerik gösterebiliyorsa Apple 1.2 filtre, bildirme, e
 **Rehberde:** kısmen; [Gerçek zamanlı ve mesajlaşma](#mesajlasma) › Kurallar › Eski sürümler ve kötüye kullanım 4 ve 5, yalnız konuşma için.
 
 **Kaynak:** https://developer.apple.com/app-store/review/guidelines/, https://support.google.com/googleplay/android-developer/answer/9876937?hl=en
+
+<a id="onlem-20"></a>
 
 ### 20. Mağaza hesabı şahısta açılır, sonra devretmek pahalıdır
 
@@ -10789,6 +12651,8 @@ Apple 5.1.1(ix) finans ve sağlık gibi alanlarda tüzel kişi ister. Sonradan d
 
 **Kaynak:** https://developer.apple.com/app-store/review/guidelines/, https://developer.apple.com/help/app-store-connect/transfer-an-app/overview-of-app-transfer/, https://support.google.com/googleplay/android-developer/answer/14151465, https://support.google.com/googleplay/android-developer/answer/6230247 (devir)
 
+<a id="onlem-21"></a>
+
 ### 21. Büyük kesintide kullanıcıya haber verecek ikinci kanal yok
 
 Her şey tek bulutta ve tek CDN'in arkasında, uygulamadaki duyuru da API'den gelir. Sağlayıcı aksarsa kullanıcı yalnız "Tekrar dene" görür.
@@ -10804,6 +12668,8 @@ Her şey tek bulutta ve tek CDN'in arkasında, uygulamadaki duyuru da API'den ge
 **Rehberde:** kısmen; [Mobil uzaktan kontrol kiti](#mobilkit) › 404 kuralı ve 7. Bakım modu, [Ücretsiz katmanları sonuna kadar kullanmak](#ucretsiz) › Dış uptime. Eksik olan başka sağlayıcı ve başka alan adı.
 
 **Kaynak:** https://status.cloud.google.com/incidents/ow5i3PPK96RduMcb1SsW, https://blog.cloudflare.com/18-november-2025-outage/
+
+<a id="onlem-22"></a>
 
 ### 22. Bülten ve kampanya iletisi İYS'siz gider
 
@@ -10821,6 +12687,8 @@ Bülten, kampanya e-postası ve SMS ticari iletidir; onay İYS'de yoksa her şik
 
 **Kaynak:** https://iys.org.tr, [mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6563.pdf) (2026 tutarları: Resmî Gazete 25.12.2025, sayı 33118)
 
+<a id="onlem-23"></a>
+
 ### 23. 15 yaş altına hizmet yasağı (1 Kasım 2026)
 
 7578 sayılı Kanun 1 Kasım 2026'dan itibaren sosyal ağ sağlayıcının 15 yaş altına hizmet vermesini yasaklıyor. 15 yaşını dolduranlara ayrıştırılmış hizmet, yaş doğrulama, ebeveyn araçları ve tedbirlerin sitede yayımlanmasını istiyor. Kullanıcıların sosyal etkileşim için metin, görüntü, ses ya da konum paylaştığı ürün kapsama girebilir; yasakta erişim eşiği yok.
@@ -10836,6 +12704,8 @@ Bülten, kampanya e-postası ve SMS ticari iletidir; onay İYS'de yoksa her şik
 **Rehberde:** yok.
 
 **Kaynak:** [resmigazete.gov.tr/eskiler/2026/05/20260501-1.htm](https://www.resmigazete.gov.tr/eskiler/2026/05/20260501-1.htm) (RG 1.5.2026, sayı 33240), https://developer.apple.com/documentation/declaredagerange
+
+<a id="onlem-24"></a>
 
 ### 24. Mağaza dışı abonelik satışında tüketici kuralları
 
@@ -10853,6 +12723,8 @@ Web'den abonelik satılınca mağazanın taşıdığı yük ürüne geçer: ön 
 
 **Kaynak:** [mevzuat.gov.tr/mevzuatmetin/1.5.6502.pdf](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.6502.pdf) (m.48 ve m.52; Mesafeli Sözleşmeler Yönetmeliği m.15, RG 27.11.2014, sayı 29188; Abonelik Sözleşmeleri Yönetmeliği m.13, m.24 ve m.25, RG 24.01.2015, sayı 29246)
 
+<a id="onlem-25"></a>
+
 ### 25. VERBİS kararı yazılmadan veri işlemeye başlamak
 
 Ekip büyür ya da ana iş özel nitelikli veriye (sağlık, biyometri) kayar; kayıt gerektiği halde yapılmaz, ilk şikâyette ortaya çıkar.
@@ -10868,6 +12740,8 @@ Ekip büyür ya da ana iş özel nitelikli veriye (sağlık, biyometri) kayar; k
 **Rehberde:** kısmen; [KVKK ve veri yeri](#kvkk) › Veri nerede duruyorsa öyle yazılır (VERBİS sorusu hukukçuya), eşik yok.
 
 **Kaynak:** [kvkk.gov.tr/Icerik/8577/kisisel-verileri-koruma-kurulunun-04-09-2025-tarihli-ve-2025-1572-sayili-kararinin-uygulama-esaslarina-iliskin-kamuoyu-duyurusu](https://www.kvkk.gov.tr/Icerik/8577/kisisel-verileri-koruma-kurulunun-04-09-2025-tarihli-ve-2025-1572-sayili-kararinin-uygulama-esaslarina-iliskin-kamuoyu-duyurusu) (12.01.2026; kararlar 2025/1572 ve 2025/2393), [kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari](https://www.kvkk.gov.tr/Icerik/8145/6698-sayili-kisisel-verilerin-korunmasi-kanunu-kapsaminda-idari-para-cezasi-tutarlari)
+
+<a id="onlem-26"></a>
 
 ### 26. Şahıs olarak alınan mağaza ve reklam geliri (20/B)
 
@@ -10900,35 +12774,65 @@ Fiyatlar ve sınırlar Ekim 2026'da bu sayfalardan okundu. 'İkincil' işaretli 
 ## Sağlayıcı belgeleri ve fiyatlar
 
 **Neon fiyatları**https://neon.com/pricing
+
 **Neon pooler sınırları**https://neon.com/docs/connect/connection-pooling
+
 **Cloud Run domain mapping**https://docs.cloud.google.com/run/docs/mapping-custom-domains
+
 **Cloud Run job'ını zamanlamak (OAuth, :run)**https://docs.cloud.google.com/run/docs/execute/jobs-on-schedule
+
 **Cloud Run fiyatları**https://cloud.google.com/run/pricing
+
 **Cloud Scheduler fiyatları**https://cloud.google.com/scheduler/pricing
+
 **Cloud Build fiyatları**https://cloud.google.com/build/pricing
+
 **Cloud Storage soft delete**https://cloud.google.com/storage/docs/soft-delete
+
 **Cloud Run çıkış özeti (ikincil)**https://cloudchipr.com/blog/cloud-run-pricing
+
 **Alarm maliyeti**https://cloud.google.com/monitoring/alerts/cost-control
+
 **Load Balancing fiyatları**https://cloud.google.com/load-balancing/pricing
+
 **Servis hesabı anahtarı politikası**https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts
+
 **Next.js cacheHandlers ve refreshTags**https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheHandlers
+
 **Cloudflare AI tarayıcı ayarları**https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+
 **Cloudflare Vary**https://developers.cloudflare.com/cache/concepts/vary/
+
 **Cloudflare Bot Fight Mode**https://developers.cloudflare.com/bots/get-started/bot-fight-mode/
+
 **Cloudflare Workers fiyatları**https://developers.cloudflare.com/workers/platform/pricing/
+
 **Vercel fiyatları**https://vercel.com/pricing
+
 **OpenNext Cloudflare sınırları**https://opennext.js.org/cloudflare
+
 **Resend fiyatları**https://resend.com/pricing
+
 **Expo fiyatları**https://expo.dev/pricing
+
 **EAS yerel build sınırları**https://docs.expo.dev/build-reference/local-builds/
+
 **Play kapalı test şartı**https://support.google.com/googleplay/android-developer/answer/14151465
+
 **Play staged rollout**https://support.google.com/googleplay/android-developer/answer/6346149
+
 **App Store phased release**https://developer.apple.com/help/app-store-connect/update-your-app/release-a-version-update-in-phases
+
 **Apple uygulama içi hesap silme**https://developer.apple.com/support/offering-account-deletion-in-your-app/
+
 **Sentry fiyatları**https://sentry.io/pricing/
+
 **Supabase fiyatları**https://supabase.com/pricing
+
 **KVKK standart sözleşme bildirimi**https://www.kvkk.gov.tr/Icerik/8043/Standart-Sozlesme-Bildirim-Modulu-Hakkinda-Kamuoyu-Duyurusu
+
 **KVKK bildirim cezası 2026 (ikincil)**https://www.cottgroup.com/en/legislation/item/standart-sozlesme-bildirim-yukumlulugu-ve-yaptirimlari
+
 **GCP Türkiye bölgesi duyurusu**https://cloud.google.com/blog/products/infrastructure/new-google-cloud-region-coming-to-turkiye/
 
 ## Startup kredi programları
@@ -10936,16 +12840,27 @@ Fiyatlar ve sınırlar Ekim 2026'da bu sayfalardan okundu. 'İkincil' işaretli 
 Program şartları ve tutarlar 8 Ekim 2026'da bu sayfalardan okundu. Expo ve Resend fiyatları ilk listede.
 
 **Claude for Startups**https://claude.com/programs/startups
+
 **Neon Startup Program**https://neon.com/startups
+
 **Google for Startups Cloud Program**https://cloud.google.com/startup
+
 **AWS Activate kredileri**https://aws.amazon.com/startups/credits
+
 **Microsoft for Startups**https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
+
 **Cloudflare for Startups**https://www.cloudflare.com/forstartups/
+
 **Sentry for Startups**https://sentry.io/for/startups/
+
 **PostHog for Startups**https://posthog.com/startups
+
 **GitHub for Startups**https://github.com/enterprise/startups
+
 **OpenAI for Startups (8 Ekim'de 403 döndü)**https://openai.com/startups/
+
 **RevenueCat fiyatları**https://www.revenuecat.com/pricing/
+
 **TÜBİTAK 1512 BİGG resmi özet formu**https://yatirimadestek.gov.tr/pdf/assets/upload/dosyalar/ozet-1512_girisimcilik_destek_programi_bigg.pdf
 
 ## Artifact Registry ve Cloud Build
@@ -10953,19 +12868,33 @@ Program şartları ve tutarlar 8 Ekim 2026'da bu sayfalardan okundu. Expo ve Res
 Depolama, tarama ve build fiyatları, temizlik kuralları ve denemeler 8 Ekim 2026'da bu sayfalardan okundu. Cloud Build fiyatları ilk listede.
 
 **Artifact Registry fiyatları**https://cloud.google.com/artifact-registry/pricing
+
 **Artifact Analysis fiyatları (tarama)**https://cloud.google.com/artifact-analysis/pricing
+
 **AR temizlik kuralları**https://docs.cloud.google.com/artifact-registry/docs/repositories/cleanup-policy
+
 **Cloud Run'a deploy (imaj kopyası)**https://docs.cloud.google.com/run/docs/deploying
+
 **Cloud Run genel ipuçları (imaj boyutu)**https://docs.cloud.google.com/run/docs/tips/general
+
 **GitHub tetikleyicisinde bölge**https://docs.cloud.google.com/build/docs/automating-builds/github/build-repos-from-github
+
 **AR uzak depo**https://docs.cloud.google.com/artifact-registry/docs/repositories/remote-repo
+
 **Artifact Analysis SBOM**https://docs.cloud.google.com/artifact-analysis/docs/sbom-overview
+
 **Build kökeni üretme ve doğrulama**https://docs.cloud.google.com/build/docs/securing-builds/generate-validate-build-provenance
+
 **Workload Identity Federation ile deploy**https://docs.cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines
+
 **google-github-actions/auth**https://github.com/google-github-actions/auth
+
 **Docker Hub çekme sınırları**https://docs.docker.com/docker-hub/usage/pulls/
+
 **kaniko (arşivlendi)**https://github.com/GoogleContainerTools/kaniko
+
 **Node.js sürüm takvimi**https://raw.githubusercontent.com/nodejs/Release/main/schedule.json
+
 **GitHub Actions fiyat değişikliği (ikincil)**https://itbrief.news/story/github-cuts-actions-runner-prices-adds-new-usage-fee
 
 ## Mobil uzaktan kontrol ve dağıtım
@@ -10973,57 +12902,109 @@ Depolama, tarama ve build fiyatları, temizlik kuralları ve denemeler 8 Ekim 20
 Mağaza kuralları, Expo ve EAS belgeleri, CI ve OTA seçenekleri; 8 Ekim 2026'da okundu.
 
 **App Store İnceleme Kuralları (2.1(a), 2.3.1, 2.5.2, 3.2.2, 4.5.4)**https://developer.apple.com/app-store/review/guidelines/
+
 **Apple Developer Program lisans sözleşmesi, 3.3.1(B)**https://developer.apple.com/support/terms/apple-developer-program-license-agreement/
+
 **Google Play cihaz ve ağ kötüye kullanımı politikası**https://support.google.com/googleplay/android-developer/answer/9888379
+
 **Play uygulama içi güncelleme**https://developer.android.com/guide/playcore/in-app-updates
+
 **Play uygulama içi güncellemeyi denemek**https://developer.android.com/guide/playcore/in-app-updates/test
+
 **TestFlight genel bakış**https://developer.apple.com/help/app-store-connect/test-a-beta-version/testflight-overview/
+
 **expo-application**https://docs.expo.dev/versions/latest/sdk/application/
+
 **expo-updates**https://docs.expo.dev/versions/latest/sdk/updates/
+
 **expo-notifications**https://docs.expo.dev/versions/latest/sdk/notifications/
+
 **expo-updates kurulumu, native klasörü depoda olan proje**https://docs.expo.dev/bare/installing-updates/
+
 **EAS Update kademeli yayın**https://docs.expo.dev/eas-update/rollouts/
+
 **EAS Update geri alma**https://docs.expo.dev/eas-update/rollbacks/
+
 **EAS Update hata kurtarma**https://docs.expo.dev/eas-update/error-recovery/
+
 **Expo push gönderimi ve makbuzlar**https://docs.expo.dev/push-notifications/sending-notifications/
+
 **Expo, fiyatlandırma metni**https://expo.dev/pricing.md
+
 **Expo, planlar**https://docs.expo.dev/billing/plans/
+
 **Expo, faturalama SSS**https://docs.expo.dev/billing/faq/
+
 **Expo, kullanıma dayalı fiyatlandırma ve MAU tanımı**https://docs.expo.dev/billing/usage-based-pricing/
+
 **Expo, hızlı düşen build'ler sayılmaz**https://expo.dev/changelog/2024-05-02-fast-failed-builds-exclusion
+
 **EAS Build sınırları**https://docs.expo.dev/build-reference/limitations/
+
 **EAS Build altyapısı ve imajlar**https://docs.expo.dev/build-reference/infrastructure/
+
 **EAS uygulama sürümleri ve build:version:sync**https://docs.expo.dev/build-reference/app-versions/
+
 **EAS build'i CI'dan tetiklemek**https://docs.expo.dev/build/building-on-ci/
+
 **EAS Submit**https://docs.expo.dev/submit/introduction/
+
 **EAS ortam değişkenleri ve görünürlük**https://docs.expo.dev/eas/environment-variables/
+
 **EAS ortam değişkenleri, varsayılan ortam seçimi**https://docs.expo.dev/eas/environment-variables/usage/
+
 **EAS internal dağıtım ve App Store Connect anahtarı**https://docs.expo.dev/build/internal-distribution/
+
 **eas-cli v20.2.0 sürüm notu**https://github.com/expo/eas-cli/releases/tag/v20.2.0
+
 **Expo Updates protokolü v1**https://docs.expo.dev/technical-specs/expo-updates-1/
+
 **Expo, kendi güncelleme sunucusu**https://docs.expo.dev/eas-update/custom-updates-server/
+
 **expo/custom-expo-updates-server**https://github.com/expo/custom-expo-updates-server
+
 **EAS Update kod imzalama**https://docs.expo.dev/eas-update/code-signing/
+
 **EAS Update SSS**https://docs.expo.dev/eas-update/faq/
+
 **xprem**https://github.com/mercuretechnologies/xprem
+
 **hot-updater**https://github.com/gronxb/hot-updater
+
 **Microsoft, App Center emekliliği**https://learn.microsoft.com/en-us/appcenter/retirement
+
 **microsoft/code-push-server**https://github.com/microsoft/code-push-server
+
 **fastlane iOS kurulumu**https://docs.fastlane.tools/getting-started/ios/setup/
+
 **fastlane match**https://docs.fastlane.tools/actions/match/
+
 **fastlane, App Store Connect API anahtarı**https://docs.fastlane.tools/app-store-connect-api/
+
 **fastlane, iOS beta dağıtımı**https://docs.fastlane.tools/getting-started/ios/beta-deployment/
+
 **fastlane supply**https://docs.fastlane.tools/actions/supply/
+
 **GitHub Actions faturalama**https://docs.github.com/en/billing/concepts/product-billing/github-actions
+
 **GitHub Actions runner fiyatları**https://docs.github.com/en/billing/reference/actions-runner-pricing
+
 **GitHub, self-hosted ücretinin ertelenmesi**https://github.blog/changelog/2025-12-16-coming-soon-simpler-pricing-and-a-better-experience-for-github-actions/
+
 **GitHub self-hosted runner**https://docs.github.com/en/actions/concepts/runners/self-hosted-runners
+
 **Xcode Cloud**https://developer.apple.com/xcode-cloud/
+
 **Codemagic fiyatlandırma**https://codemagic.io/pricing/
+
 **Bitrise fiyatlandırma**https://bitrise.io/pricing
+
 **Firebase App Distribution**https://firebase.google.com/docs/app-distribution
+
 **Firebase fiyatlandırma**https://firebase.google.com/pricing
+
 **TestFlight**https://developer.apple.com/testflight/
+
 **Google Play dahili test**https://support.google.com/googleplay/android-developer/answer/9845334
 
 ## Veritabanı yedeği ve geri yükleme
@@ -11031,17 +13012,29 @@ Mağaza kuralları, Expo ve EAS belgeleri, CI ve OTA seçenekleri; 8 Ekim 2026'd
 Neon, PostgreSQL, Cloud Storage ve KVKK metinleri; 8 Ekim 2026'da okundu.
 
 **Neon planları**https://neon.com/docs/introduction/plans
+
 **Neon geçmiş penceresi**https://neon.com/docs/postgres/backup-restore/history-window
+
 **Neon anında geri yükleme**https://neon.com/docs/postgres/backup-restore/branch-restore
+
 **Neon, Time Travel Assist**https://neon.com/docs/postgres/backup-restore/time-travel-assist
+
 **Neon, snapshot ile yedek ve geri yükleme**https://neon.com/docs/guides/backup-restore
+
 **Neon yedeklerine genel bakış**https://neon.com/docs/postgres/backup-restore/backups
+
 **Neon, pg_dump ile yedek**https://neon.com/docs/manage/backup-pg-dump
+
 **Neon, pg_dump yedeğini otomatikleştirmek**https://neon.com/docs/manage/backup-pg-dump-automate
+
 **Neon proje yönetimi**https://neon.com/docs/manage/projects
+
 **Neon SSS: ücretsiz plan sınırları**https://neon.com/faqs/free-plan-limits-and-quotas
+
 **PostgreSQL 18, pg_dump**https://www.postgresql.org/docs/18/app-pgdump.html
+
 **Google Cloud Storage, Bucket Lock ve saklama politikası**https://docs.cloud.google.com/storage/docs/bucket-lock
+
 **KVKK, Kişisel Verilerin Silinmesi, Yok Edilmesi veya Anonim Hale Getirilmesi Hakkında Yönetmelik**https://www.kvkk.gov.tr/Icerik/5441/KISISEL-VERILERIN-SILINMESI-YOK-EDILMESI-VEYA-ANONIM-HALE-GETIRILMESI-HAKKINDA-YONETMELIK
 
 ## Ücretsiz katmanlar
@@ -11049,18 +13042,31 @@ Neon, PostgreSQL, Cloud Storage ve KVKK metinleri; 8 Ekim 2026'da okundu.
 Her servisin ücretsiz sınırı 8 Ekim 2026'da bu sayfalardan okundu ve ikinci geçişte metinle karşılaştırıldı.
 
 **Google Cloud ücretsiz katmanı**https://docs.cloud.google.com/free/docs/free-cloud-features
+
 **Google Cloud ağ fiyatları**https://cloud.google.com/vpc/network-pricing
+
 **Secret Manager fiyatları**https://cloud.google.com/secret-manager/pricing
+
 **Logging ve Monitoring fiyatları, alarm ücreti**https://cloud.google.com/products/observability/pricing
+
 **Cloudflare planları**https://www.cloudflare.com/plans/
+
 **Cloudflare Workers sınırları**https://developers.cloudflare.com/workers/platform/limits/
+
 **Cloudflare R2 fiyatları**https://developers.cloudflare.com/r2/pricing/
+
 **Cloudflare Turnstile planları**https://developers.cloudflare.com/turnstile/plans/
+
 **Resend kota ve sınırları**https://resend.com/docs/knowledge-base/account-quotas-and-limits
+
 **Expo push SSS**https://docs.expo.dev/push-notifications/faq/
+
 **Search Console API sınırları**https://developers.google.com/webmaster-tools/limits
+
 **PostHog fiyatları**https://posthog.com/pricing
+
 **UptimeRobot fiyatları**https://uptimerobot.com/pricing/
+
 **Google Cloud Hizmet Şartları**https://cloud.google.com/terms
 
 ## Pahalı dış API'ler
@@ -11068,35 +13074,65 @@ Her servisin ücretsiz sınırı 8 Ekim 2026'da bu sayfalardan okundu ve ikinci 
 Google Maps Platform fiyat ve şartları, açık veri ve alternatif sağlayıcılar; 8 Ekim 2026.
 
 **Google Maps Platform fiyat listesi**https://developers.google.com/maps/billing-and-pricing/pricing
+
 **Google Maps Platform Mart 2025 fiyat değişikliği**https://developers.google.com/maps/billing-and-pricing/march-2025
+
 **Places API kullanım ve faturalama**https://developers.google.com/maps/documentation/places/web-service/usage-and-billing
+
 **Place Details**https://developers.google.com/maps/documentation/places/web-service/place-details
+
 **Place Photos**https://developers.google.com/maps/documentation/places/web-service/place-photos
+
 **Places API politikaları: place_id süresiz saklanabilir, atıf**https://developers.google.com/maps/documentation/places/web-service/policies
+
 **Google Maps Platform hizmete özel şartlar, madde 14**https://cloud.google.com/maps-platform/terms/maps-service-terms
+
 **Google Maps Platform hizmet şartları, madde 3.2.3**https://cloud.google.com/maps-platform/terms
+
 **Google Maps Platform maliyet yönetimi**https://developers.google.com/maps/billing-and-pricing/manage-costs
+
 **Google Cloud: API kullanımını kota ile sınırlamak**https://docs.cloud.google.com/apis/docs/capping-api-usage
+
 **Google Cloud: bütçe ve bütçe uyarıları**https://docs.cloud.google.com/billing/docs/how-to/budgets
+
 **Google Cloud: harcama tavanı bütçeleri ve uygun servisler**https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps
+
 **Google Maps Platform API güvenliği en iyi uygulamaları**https://developers.google.com/maps/api-security-best-practices
+
 **Nominatim kullanım politikası**https://operations.osmfoundation.org/policies/nominatim/
+
 **Overpass API ortak kullanım kuralları**https://dev.overpass-api.de/overpass-doc/en/preface/commons.html
+
 **Overpass API kurulumu**https://wiki.openstreetmap.org/wiki/Overpass_API/Installation
+
 **OpenStreetMap telif ve lisans**https://www.openstreetmap.org/copyright
+
 **Foursquare fiyatlandırma**https://foursquare.com/pricing/
+
 **Foursquare OS Places**https://docs.foursquare.com/data-products/docs/fsq-places-open-source
+
 **Foursquare OS Places alan şeması**https://docs.foursquare.com/data-products/docs/places-os-data-schema
+
 **Foursquare OS Places erişim**https://docs.foursquare.com/data-products/docs/access-fsq-os-places
+
 **Foursquare OS Places tanıtım sayfası**https://opensource.foursquare.com/os-places/
+
 **Overture Maps atıf ve lisanslar**https://docs.overturemaps.org/attribution/
+
 **Overture Maps Places rehberi**https://docs.overturemaps.org/guides/places/
+
 **Geoapify fiyatlandırma**https://www.geoapify.com/pricing/
+
 **Geoapify Places API**https://www.geoapify.com/places-api/
+
 **Mapbox fiyatlandırma**https://www.mapbox.com/pricing
+
 **Mapbox geçici ve kalıcı geocoding**https://docs.mapbox.com/help/dive-deeper/understand-temporary-vs-permanent-geocoding/
+
 **HERE Base Plan fiyatlandırma**https://developers.here.com/plans
+
 **TomTom fiyatlandırma**https://docs.tomtom.com/pricing
+
 **Wikimedia Commons içeriğini dışarıda kullanmak**https://commons.wikimedia.org/wiki/Commons:Reusing_content_outside_Wikimedia
 
 ## Bot doğrulama aralıkları
@@ -11104,16 +13140,29 @@ Google Maps Platform fiyat ve şartları, açık veri ve alternatif sağlayıcı
 Botların kimliğini doğrulamak için yayıncıların yayımladığı adres listeleri. Kapının aylık yenileme betiği bunları okur.
 
 **Googlebot aralıkları**https://developers.google.com/static/search/apis/ipranges/googlebot.json
+
 **Google özel tarayıcı aralıkları**https://developers.google.com/static/search/apis/ipranges/special-crawlers.json
+
 **Google kullanıcı tetiklemeli getiriciler**https://developers.google.com/static/search/apis/ipranges/user-triggered-fetchers.json
+
 **Google adres alanı (goog.json)**https://www.gstatic.com/ipranges/goog.json
+
 **Google Cloud müşteri aralıkları (cloud.json)**https://www.gstatic.com/ipranges/cloud.json
+
 **Bingbot aralıkları**https://www.bing.com/toolbox/bingbot.json
+
 **OAI-SearchBot aralıkları**https://openai.com/searchbot.json
+
 **ChatGPT-User aralıkları**https://openai.com/chatgpt-user.json
+
 **PerplexityBot aralıkları**https://www.perplexity.com/perplexitybot.json
+
 **Perplexity-User aralıkları**https://www.perplexity.com/perplexity-user.json
+
 **DuckDuckBot aralıkları**https://duckduckgo.com/duckduckbot.json
+
 **DuckAssistBot aralıkları**https://duckduckgo.com/duckassistbot.json
+
 **RIPEstat duyurulan prefix'ler**https://stat.ripe.net/data/announced-prefixes
+
 Rehber Burak Altıntaş'ın çalışmasıdır; kurallar onun beş yıllık ürün geliştirme tecrübesinden, yaşadığı olaylardan, ödediği faturalardan ve bulduğu çözümlerden çıktı; son üç ayda, Ağustos–Ekim 2026 ölçümleriyle rehbere dönüştü. © 2026 Burak Altıntaş. Metin CC BY 4.0 lisansıyla paylaşılır: kaynak gösterilerek kullanılabilir, uyarlanabilir ve dağıtılabilir. Bu rehber canlı ürünlerimizin Ağustos–Ekim 2026 fatura, Neon tüketimi ve log ölçümlerine, 1–7 Ekim 2026'da 11 servisten çekilen yaklaşık 517.000 isteklik bot analizine ve sağlayıcıların yayımladığı belgelere dayanır. Kullanıcıyı kırmadan değiştirme kuralları Ağustos–Ekim 2026 olay kayıtlarından ve sürüm notlarından çıktı. Depo boyutları ve Artifact Registry denetimi 8 Ekim 2026'da salt okunur ölçüldü. Startup kredi bilgileri 8 Ekim 2026'da resmi program sayfalarından doğrulandı. Mobil kit, mobil dağıtım, yedek, ücretsiz katman, performans ve ücretli API bölümleri 8 Ekim 2026'da resmi sayfalardan ve salt okunur ölçümlerden doğrulandı. Maliyetlere alan adı ve mağaza ücretleri katılmadı. Fiyatlar Ekim 2026, 1 USD = 49 TL.

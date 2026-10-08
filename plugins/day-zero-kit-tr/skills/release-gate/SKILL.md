@@ -16,6 +16,7 @@ Yayın kararı ürün sahibinindir. Bu skill kararı kanıtla besler: neyin haz�
 
 - **Mobil mağaza sürümü:** `references/mobile-kit.md` içindeki yayın kapısı ve `references/mobile-distribution.md` içindeki kontrol listesi.
 - **Prod deploy:** `references/layers-5-9-and-bots.md` içindeki CI/CD ve ortamlar bölümü, `references/checklist.md`.
+- **Asla listesi ve vakalar:** `references/never.md`, `references/case-book.md`.
 - **Kullanıcıyı etkileyen her değişiklik:** `references/change-without-breaking-users.md` (API yalnız ekleyerek değişir, eski sürümler, geri dönüş yolu, açılış zamanı).
 
 ## Akış

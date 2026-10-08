@@ -1,4 +1,4 @@
-<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber: guide/project-setup-guide.md. Bağlantılar (#...) tam rehberdeki bölümlere gider. -->
+<!-- Proje Kurulum Rehberi'nden bir bölüm. Tam rehber project-setup skill'inin references/full-guide.md dosyasında (depoda guide/project-setup-guide.md); bu kesitteki (#...) bağlantılar oradaki bölümlere gider. -->
 
 <a id="krediler"></a>
 
@@ -11,10 +11,14 @@ Kredi programları yeni bir ürünün ilk 6–24 ayında bulut, veritabanı ve m
 Bilgiler 8 Ekim 2026'da resmi program sayfalarından doğrulandı; doğrulanamayanlar bölümün sonundaki [Doğrulanamayanlar](#kr-dogrulanamayan) kutusunda. Sıra bizim boyutumuzdaki bir ürün için yazıldı: kendi parasıyla dönen, Türkiye'de, küçük bir ekip.
 
 **Bizim durumumuz:** $1.000
+
 Claude API kredisi 5 Nisan 2027'ye kadar
+
 1 yıl
+
 Claude Team ücretsiz
-Ürün A 7 Ekim 2026'da Claude for Startups'a kabul edildi: 6 ay geçerli $1.000 Claude API kredisi ve bir yıl ücretsiz Claude Team.
+
+Ürünlerimizden biri Ekim 2026'da Claude for Startups'a kabul edildi: 6 ay geçerli $1.000 Claude API kredisi ve bir yıl ücretsiz Claude Team.
 
 Başka bir programa henüz başvurulmadı. Sıradaki başvuru Neon'un programı, çünkü faturanın en büyük kalemi Neon.
 
@@ -25,6 +29,7 @@ Başka bir programa henüz başvurulmadı. Sıradaki başvuru Neon'un programı,
 ### Claude for Startups (Anthropic)
 
 https://claude.com/programs/startups
+
 Bizde: alındı, 7 Ekim 2026.
 
 **Ne verir:** Tek seferlik $1.000 Claude API kredisi, 6 ay geçerli, ve daha yüksek API hız sınırı. Team'e yeni gelen organizasyona 5 koltuğa kadar 1 yıl ücretsiz Claude Team. Ortak ağdaki bir VC'nin desteklediği girişime o VC üzerinden en fazla $100.000 ek kredi.
@@ -38,6 +43,7 @@ Bizde: alındı, 7 Ekim 2026.
 ### Neon (Databricks Startup Program)
 
 https://neon.com/startups
+
 Bizde: sıradaki başvuru.
 
 **Ne verir:** Kendi parasıyla dönen girişime en fazla $1.000 Neon kredisi, onboarding desteği ve yeni özelliklere erken erişim. VC destekli girişime Neon ve Databricks için toplam en fazla $200.000. Kredi kabulden itibaren 12 ay geçerli.
@@ -51,6 +57,7 @@ Bizde: sıradaki başvuru.
 ### Google for Startups Cloud Program
 
 https://cloud.google.com/startup
+
 Bizde: Ürün A yaş sınırı yüzünden uymuyor; yeni bir ürün için ilk başvurulardan biri.
 
 **Ne verir:** Start: $2.000 Google Cloud kredisi (12 ay) ve 12 ay ücretsiz Workspace Business Plus. Scale: 2 yılda en fazla $200.000. AI-first girişime Scale'de 2 yılda en fazla $350.000.
@@ -68,6 +75,7 @@ O aracı gerçekten kurarken, şartlar hâlâ tutuyorsa.
 ### Sentry for Startups
 
 https://sentry.io/for/startups/
+
 **Ne verir:** 12 ay geçerli, en fazla $5.000 Sentry kredisi.
 
 **Kimler alır:** Son 2 yılda kurulmuş, $5 milyonun altında VC yatırımı almış ve Sentry'ye hiç ödeme yapmamış girişim. Önce ücretsiz bir Sentry hesabı açılır.
@@ -79,6 +87,7 @@ https://sentry.io/for/startups/
 ### GitHub for Startups
 
 https://github.com/enterprise/startups
+
 **Ne verir:** Onaydan itibaren 12 aya kadar geçerli $10.000 GitHub kredisi: Enterprise, Copilot, Advanced Security ve Actions.
 
 **Kimler alır:** Onaylı bir GitHub for Startups partnerine bağlı ve Seri B'ye kadar dış yatırım almış girişim. Partner bir yatırımcı, kuluçka merkezi ya da hızlandırıcı olabilir.
@@ -94,6 +103,7 @@ O platformda gerçek bir iş yükü ya da yatırım olunca.
 ### AWS Activate (Founders ve Portfolio)
 
 https://aws.amazon.com/startups/credits
+
 **Ne verir:** Founders: $1.000 Activate kredisi, seçilenlere en fazla $5.000. Portfolio: bir Activate Provider'ın (hızlandırıcı, melek yatırımcı ya da VC) Org ID'siyle en fazla $200.000.
 
 **Kimler alır:** Pre-Seri B ve son 10 yılda kurulmuş girişim. AWS hesabı Paid Tier planında olmalı; site ya da herkese açık profil başvurudaki şirket adını göstermeli.
@@ -105,6 +115,7 @@ https://aws.amazon.com/startups/credits
 ### Microsoft for Startups (Azure)
 
 https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
+
 **Ne verir:** Resmi sayfalar tutarı farklı anlatıyor. SSS'ye göre yatırımcısız ve Azure'a yeni gelen girişim 90 gün geçerli $1.000 ile başlar, iş doğrulamasından sonra 180 gün geçerli ek $4.000 alır. Başvuru sayfası onaydan sonra en fazla $150.000 diyor.
 
 **Kimler alır:** Kayıtlı şirket adı ve adresi resmi belgelerle aynı olan, özel ve kâr amaçlı, Seri C öncesi bir yazılım girişimi. Kayıt, daha önce Azure açılmamış kişisel bir Microsoft hesabıyla yapılır.
@@ -116,6 +127,7 @@ https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
 ### Cloudflare for Startups
 
 [cloudflare.com/forstartups](https://www.cloudflare.com/forstartups/)
+
 **Ne verir:** Tier 3: $10.000 (yatırım $1 milyonun altında). Tier 2: $100.000, Tier 1: $350.000 (anlaşmalı bir partnerden yatırım). Krediler 1 yıl ya da bitene kadar geçerli.
 
 **Kimler alır:** En fazla 10 yıl önce tescil edilmiş şirket, aktif bir ürün, doğrulanabilir canlı bir site ve iş e-postası. Program girişim başına bir kez verilir.
@@ -127,6 +139,7 @@ https://learn.microsoft.com/en-us/startups/microsoft-for-startups/overview
 ### PostHog for Startups
 
 https://posthog.com/startups
+
 **Ne verir:** 12 ay geçerli $50.000 PostHog kredisi ve ortaklardan $12.000'ın üzerinde avantaj.
 
 **Kimler alır:** 2 yaşından küçük, toplam yatırımı $5 milyonun altında girişim. Hesap 1 Ocak 2023'ten sonra şirket alan adındaki bir e-postayla açılmış olmalı.
@@ -138,6 +151,7 @@ https://posthog.com/startups
 ### OpenAI for Startups
 
 https://openai.com/startups/
+
 **Ne verir:** Resmi sayfa 8 Ekim'de 403 döndü. İkincil kaynaklara göre API kredisi, hız sınırı artışı ve çözüm mühendisleriyle görüşme.
 
 **Kimler alır:** İkincil kaynaklara göre yalnız OpenAI'ın VC ortak ağındaki fonlardan yatırım alanlar, VC'nin verdiği referans koduyla. Kendi parasıyla dönen girişime açık bir program bulunamadı.
@@ -151,6 +165,7 @@ https://openai.com/startups/
 ### Expo (EAS)
 
 program yok
+
 Fiyat sayfası girişimlere indirim vermediklerini söylüyor. Free plan ayda 15 iOS ve 15 Android build içerir; kullanılmayan build kredisi sonraki aya devretmez.
 
 https://expo.dev/pricing
@@ -158,6 +173,7 @@ https://expo.dev/pricing
 ### RevenueCat
 
 program yok
+
 Program bulunamadı. Aylık takip edilen gelir $2.500 olana kadar ücretsiz, sonra bu gelirin %1'i; gelir mağaza komisyonu düşülmeden sayılır.
 
 [revenuecat.com/pricing](https://www.revenuecat.com/pricing/)
@@ -165,6 +181,7 @@ Program bulunamadı. Aylık takip edilen gelir $2.500 olana kadar ücretsiz, son
 ### Resend
 
 program yok
+
 Program bulunamadı, fiyatlar herkese aynı. Free plan ayda 3.000, günde 100 e-posta; Pro $20/ay'dan başlar. Günlük 100 sınırını giriş kodları ve bildirimler paylaşır.
 
 https://resend.com/pricing
@@ -224,6 +241,8 @@ Kuruluş tarihi, yatırım durumu, ekip ve ürün tanımı programlar arasında 
 6. Yatırım gelirse partner kodları aynı hafta istenir.
 
 AWS Activate Provider Org ID, Microsoft Investor Network kodu, Anthropic ortak ağı (en fazla $100.000 ek API kredisi) ve GitHub for Startups partnerliği bu yolla açılır. Google Scale ve Neon'un VC kolu yatırımın kanıtıyla açılır; Neon en az $1 milyon ya da tanınmış bir hızlandırıcı ister.
+
+<a id="kr-dogrulanamayan"></a>
 
 ### Doğrulanamayanlar
 
