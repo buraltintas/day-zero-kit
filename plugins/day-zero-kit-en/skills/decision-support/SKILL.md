@@ -18,8 +18,8 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 ## Flow
 
 1. Restate the question in one sentence: what is being decided and why now.
-2. Find it in the decision list in `references/kararlar-ve-kurulum-plani.md`. If it is not there, find the closest section: cost in `maliyet.md`, `ucretsiz-katmanlar.md`, `pahali-dis-apiler.md`; architecture in `ilkeler.md`, `mimari.md`; messaging in `gercek-zamanli-ve-mesajlasma.md`; analytics and admin in `analitik-ve-admin.md`; mobile distribution in `mobil-dagitim.md`; social posting in `icerik-otomasyonu.md`; credits in `startup-kredileri.md`.
-3. Check `vaka-defteri.md` (the case book) for a lived case on the same topic. If there is one, put it first: experience comes before documentation.
+2. Find it in the decision list in `references/decisions-and-setup-plan.md`. If it is not there, find the closest section: cost in `cost.md`, `free-tiers.md`, `expensive-external-apis.md`; architecture in `principles.md`, `architecture.md`; messaging in `realtime-and-messaging.md`; analytics and admin in `analytics-and-admin.md`; mobile distribution in `mobile-distribution.md`; social posting in `content-automation.md`; credits in `startup-credits.md`.
+3. Check `case-book.md` (the case book) for a lived case on the same topic. If there is one, put it first: experience comes before documentation.
 4. Compare the options: what each gives, monthly and worst-day cost, quotas and caps, retention and data-location terms, the exit path, and our evidence level.
 5. State the guide's default and its reason. If the default does not fit this product, say why.
 6. Re-verify prices and terms on the official page that day; mark what you could not verify.

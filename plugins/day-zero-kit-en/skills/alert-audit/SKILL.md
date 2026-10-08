@@ -17,8 +17,8 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Read
 
-- `references/uyarilar.md`: sources, levels (urgent, today, weekly), the "what, when, to whom" table, message-writing rules, notify() and the log filter, ready-made service or own setup.
-- `references/katman-10-gozlem.md`, `references/yedek-ve-geri-yukleme.md`, `references/analitik-ve-admin.md`, `references/icerik-otomasyonu.md`.
+- `references/alerts.md`: sources, levels (urgent, today, weekly), the "what, when, to whom" table, message-writing rules, notify() and the log filter, ready-made service or own setup.
+- `references/layer-10-observability.md`, `references/backup-and-restore.md`, `references/analytics-and-admin.md`, `references/content-automation.md`.
 
 ## Flow
 

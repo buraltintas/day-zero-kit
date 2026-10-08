@@ -7,8 +7,8 @@
   "description": "Proje Kurulum Rehberi (Project Setup Guide) and the skill sets built on it, in Turkish and English, for setting up a new product's infrastructure from day 0.",
   "plugins": [
     {
-      "name": "day-zero-kit",
-      "source": "./plugins/day-zero-kit",
+      "name": "day-zero-kit-tr",
+      "source": "./plugins/day-zero-kit-tr",
       "description": "Proje Kurulum Rehberi'ne dayanan sekiz skill: yeni ürünün altyapısını gün 0'dan kurar, sonraki aşamalarda kontrol ve karar desteği verir."
     },
     {

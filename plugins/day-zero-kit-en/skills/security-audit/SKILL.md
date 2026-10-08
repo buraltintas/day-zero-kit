@@ -17,9 +17,9 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Read
 
-- `references/katmanlar-5-9-ve-botlar.md`: edge and DNS, Cloud Run, CI/CD, the security and bots layer, the stance on bots and the door skeleton.
-- `references/gun0-onlemleri.md`: risks we have not lived yet that must be prevented on day 0.
-- `references/kvkk.md`, `references/depolar-ve-boyutlar.md` (new repo rules), `references/asla.md`, `references/vaka-defteri.md`.
+- `references/layers-5-9-and-bots.md`: edge and DNS, Cloud Run, CI/CD, the security and bots layer, the stance on bots and the door skeleton.
+- `references/day-zero-precautions.md`: risks we have not lived yet that must be prevented on day 0.
+- `references/kvkk.md`, `references/repos-and-sizes.md` (new repo rules), `references/never.md`, `references/case-book.md`.
 
 ## Flow
 

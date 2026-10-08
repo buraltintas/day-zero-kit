@@ -15,9 +15,9 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Which list
 
-- **Mobile store release:** the release gate in `references/mobil-kit.md` and the checklist in `references/mobil-dagitim.md`.
-- **Production deploy:** the CI/CD and environments section in `references/katmanlar-5-9-ve-botlar.md`, and `references/kontrol-listesi.md`.
-- **Any user-facing change:** `references/kullaniciyi-kirmadan-degistirmek.md` (the API only grows by adding, old app versions, the rollback path, the time of release).
+- **Mobile store release:** the release gate in `references/mobile-kit.md` and the checklist in `references/mobile-distribution.md`.
+- **Production deploy:** the CI/CD and environments section in `references/layers-5-9-and-bots.md`, and `references/checklist.md`.
+- **Any user-facing change:** `references/change-without-breaking-users.md` (the API only grows by adding, old app versions, the rollback path, the time of release).
 
 ## Flow
 

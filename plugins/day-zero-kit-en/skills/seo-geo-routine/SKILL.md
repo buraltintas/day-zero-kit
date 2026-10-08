@@ -17,8 +17,8 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Read
 
-- `references/seo-ve-geo.md`: what we did, what came of it, the rules (day-0 technical, GEO, measurement), the jobs that never end, what could be done better, the day-0 list.
-- `references/katmanlar-1-4.md` (the Next.js web layer: full HTML on the server, ISR, the change marker), `references/katmanlar-5-9-ve-botlar.md` (the stance on bots), `references/performans.md`.
+- `references/seo-and-geo.md`: what we did, what came of it, the rules (day-0 technical, GEO, measurement), the jobs that never end, what could be done better, the day-0 list.
+- `references/layers-1-4.md` (the Next.js web layer: full HTML on the server, ISR, the change marker), `references/layers-5-9-and-bots.md` (the stance on bots), `references/performance.md`.
 
 ## Flow
 

@@ -17,11 +17,11 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Read
 
-- `references/botlar-ve-maliyet-ozet.md` and `references/maliyet.md`: what it costs, the line-by-line model.
-- `references/katmanlar-1-4.md`: Postgres settings (pool floor 0, 90 s idle close, wake budget).
-- `references/ucretsiz-katmanlar.md`: each service's limit, what happens when it is exceeded, monitoring.
-- `references/performans.md`, `references/artifact-registry-ve-build.md`, `references/pahali-dis-apiler.md`.
-- `references/vaka-defteri.md`: cost cases and what each fix saved.
+- `references/bots-and-cost-summary.md` and `references/cost.md`: what it costs, the line-by-line model.
+- `references/layers-1-4.md`: Postgres settings (pool floor 0, 90 s idle close, wake budget).
+- `references/free-tiers.md`: each service's limit, what happens when it is exceeded, monitoring.
+- `references/performance.md`, `references/artifact-registry-and-build.md`, `references/expensive-external-apis.md`.
+- `references/case-book.md`: cost cases and what each fix saved.
 
 ## Flow
 

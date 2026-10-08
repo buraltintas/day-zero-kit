@@ -17,10 +17,10 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Read first
 
-1. `references/kullanim.md`: how the guide is used and who does what.
-2. `references/kararlar-ve-kurulum-plani.md`: the decision list, "Day 0: accounts and versions", the agent's setup plan and the definition of done ("Bitti sayılır").
-3. `references/proje-hafizasi.md`: templates for the files opened on day 0.
-4. When needed, `references/rehber-tam.md` (the full guide, large; search by section heading, do not read it end to end).
+1. `references/how-to-use.md`: how the guide is used and who does what.
+2. `references/decisions-and-setup-plan.md`: the decision list, "Day 0: accounts and versions", the agent's setup plan and the definition of done ("Bitti sayılır").
+3. `references/project-memory.md`: templates for the files opened on day 0.
+4. When needed, `references/full-guide.md` (the full guide, large; search by section heading, do not read it end to end).
 
 ## Flow
 

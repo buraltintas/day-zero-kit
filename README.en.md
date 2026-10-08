@@ -7,9 +7,9 @@
 <p align="center">Accounts, environments, cost caps, the bot door, alerts, backups, the mobile kit and project memory ready from day one;<br>the team looks only at product flows while an AI agent builds the infrastructure from the guide.</p>
 
 <p align="center">
-  <a href="rehber/Proje-Kurulum-Rehberi.pdf"><b>Read the guide (PDF, Turkish)</b></a>
+  <a href="guide/project-setup-guide.pdf"><b>Read the guide (PDF, Turkish)</b></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="rehber/Proje-Kurulum-Rehberi.md"><b>Give it to your agent (Markdown)</b></a>
+  <a href="guide/project-setup-guide.md"><b>Give it to your agent (Markdown)</b></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#skill-set"><b>Install the skills</b></a>
 </p>
@@ -26,7 +26,7 @@ The guide does not write your product's code; it builds everything around it so 
 
 ## Knocks taken, goals scored
 
-<p align="center"><img src="assets/skor-en.svg" alt="Knocks taken and goals scored: monthly cloud bill from about 4,400 TL to about 1,300 TL; database from 6.5 to about 2.1 CU-hours a day; a maps API from 1,500 TL a month to 0; one scraper took 41% of web requests, then the bot door refused 6,654 requests on its first day; a depleted API credit went unnoticed for 30 days, then error to alarm took 4 minutes; a payment webhook failed silently for at least 21 days, then every dependency got an owner, a threshold and a channel; out of builds and a fix waited a week, then 3 builds are kept for month end; a test wrote 44 fake records to production, then the test setup cannot touch production." width="100%"></p>
+<p align="center"><img src="assets/scoreboard-en.svg" alt="Knocks taken and goals scored: monthly cloud bill from about 4,400 TL to about 1,300 TL; database from 6.5 to about 2.1 CU-hours a day; a maps API from 1,500 TL a month to 0; one scraper took 41% of web requests, then the bot door refused 6,654 requests on its first day; a depleted API credit went unnoticed for 30 days, then error to alarm took 4 minutes; a payment webhook failed silently for at least 21 days, then every dependency got an owner, a threshold and a channel; out of builds and a fix waited a week, then 3 builds are kept for month end; a test wrote 44 fake records to production, then the test setup cannot touch production." width="100%"></p>
 
 ## Two roads
 
@@ -41,11 +41,11 @@ The guide does not write your product's code; it builds everything around it so 
 
 ### 1. Give the guide to your agent
 
-Open the new product's repository, attach `rehber/Proje-Kurulum-Rehberi.md` and paste:
+Open the new product's repository, attach `guide/project-setup-guide.md` and paste:
 
 ```
 We are building a new product: <the product in one sentence; who uses it>.
-The attached Proje-Kurulum-Rehberi.md is the guide for this work. It is written in Turkish; read it as it is and talk to me in English.
+The attached project-setup-guide.md is the guide for this work. It is written in Turkish; read it as it is and talk to me in English.
 
 1. Read the guide end to end, including templates, rules and tables. It is long; read it section by section and reopen a layer's section while you build it.
 2. Ask me the questions in the "Verilecek kararlar" (decisions) section one by one. If I have no preference, propose the guide's default and give the reason in one sentence.
@@ -70,7 +70,7 @@ In Claude Code:
 /plugin install day-zero-kit-en@day-zero-kit
 ```
 
-Skills are called like `/day-zero-kit-en:project-setup`; the agent also uses them on its own when the topic comes up. For the Turkish set, install `day-zero-kit@day-zero-kit`.
+Skills are called like `/day-zero-kit-en:project-setup`; the agent also uses them on its own when the topic comes up. For the Turkish set, install `day-zero-kit-tr@day-zero-kit`.
 
 To install by hand, copy the folders under `plugins/day-zero-kit-en/skills/`:
 
@@ -116,4 +116,8 @@ It is not a guide for very high scale or multi-region setups. It is not legal ad
 
 **Burak Altıntaş** ([@buraltintas](https://github.com/buraltintas)). The experience, numbers and fixes in this guide come from my products.
 
-© 2026 Burak Altıntaş. A license will be added before publication.
+© 2026 Burak Altıntaş.
+
+## License
+
+The guide text (`guide/` and the guide sections in the skills' `references/` folders) is shared under [CC BY 4.0](guide/LICENSE): you may use, adapt and share it with attribution. The skills, scripts and everything else are under the [MIT](LICENSE) license.

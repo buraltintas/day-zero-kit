@@ -27,7 +27,7 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 | `DESIGN.md` | Design rules and decisions; read before any UI work |
 | Handoff note | Done, not done, next step, risks |
 
-Templates are in `references/proje-hafizasi.md`, design decisions in `references/tasarim-sistemi.md`.
+Templates are in `references/project-memory.md`, design decisions in `references/design-system.md`.
 
 ## Flow
 

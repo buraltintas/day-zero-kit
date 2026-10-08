@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/banner.svg" alt="Proje Kurulum Rehberi, day-zero-kit. Burak Altıntaş." width="100%"></p>
+<p align="center"><img src="assets/banner-tr.svg" alt="Proje Kurulum Rehberi, day-zero-kit. Burak Altıntaş." width="100%"></p>
 
 <p align="center"><b>Türkçe</b> &nbsp;|&nbsp; <a href="README.en.md">English</a></p>
 
@@ -7,9 +7,9 @@
 <p align="center">Hesaplar, ortamlar, maliyet tavanları, bot kapısı, uyarılar, yedek, mobil kit ve proje hafızası ilk günden hazır olsun;<br>ekip yalnız ürün akışına baksın, altyapıyı yapay zekâ ajanı rehberle kursun.</p>
 
 <p align="center">
-  <a href="rehber/Proje-Kurulum-Rehberi.pdf"><b>Rehberi oku (PDF)</b></a>
+  <a href="guide/project-setup-guide.pdf"><b>Rehberi oku (PDF)</b></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="rehber/Proje-Kurulum-Rehberi.md"><b>Ajana ver (Markdown)</b></a>
+  <a href="guide/project-setup-guide.md"><b>Ajana ver (Markdown)</b></a>
   &nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#skill-seti"><b>Skill setini kur</b></a>
 </p>
@@ -26,7 +26,7 @@ Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu baş
 
 ## Yenen dayaklar, atılan goller
 
-<p align="center"><img src="assets/skor.svg" alt="Yenen dayaklar ve atılan goller: aylık bulut faturası ~4.400 TL'den ~1.300 TL'ye; veritabanı günde 6,5 CU-saatten ~2,1'e; harita API'si 1.500 TL'den 0'a; web isteklerinin %41'ini alan kazıyıcıya karşı bot kapısı ilk günde 6.654 isteği reddetti; 30 gün fark edilmeyen kredi bitişine karşı 4 dakikada alarm; en az 21 gün sessiz hata dönen webhook'a karşı her bağımlılığa sahip, eşik ve kanal; build hakkı bitince bir hafta bekleyen düzeltmeye karşı ay sonuna 3 hak; testin canlıya yazdığı 44 sahte kayda karşı canlıya dokunamayan test ortamı." width="100%"></p>
+<p align="center"><img src="assets/scoreboard-tr.svg" alt="Yenen dayaklar ve atılan goller: aylık bulut faturası ~4.400 TL'den ~1.300 TL'ye; veritabanı günde 6,5 CU-saatten ~2,1'e; harita API'si 1.500 TL'den 0'a; web isteklerinin %41'ini alan kazıyıcıya karşı bot kapısı ilk günde 6.654 isteği reddetti; 30 gün fark edilmeyen kredi bitişine karşı 4 dakikada alarm; en az 21 gün sessiz hata dönen webhook'a karşı her bağımlılığa sahip, eşik ve kanal; build hakkı bitince bir hafta bekleyen düzeltmeye karşı ay sonuna 3 hak; testin canlıya yazdığı 44 sahte kayda karşı canlıya dokunamayan test ortamı." width="100%"></p>
 
 ## İki yol
 
@@ -41,11 +41,11 @@ Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu baş
 
 ### 1. Rehberi ajana ver
 
-Yeni ürünün deposunu aç, `rehber/Proje-Kurulum-Rehberi.md` dosyasını ekle ve şu mesajı yapıştır:
+Yeni ürünün deposunu aç, `guide/project-setup-guide.md` dosyasını ekle ve şu mesajı yapıştır:
 
 ```
 Yeni bir ürün kuruyoruz: <ürün tek cümleyle; kim kullanır>.
-Ekteki Proje-Kurulum-Rehberi.md bu işin rehberi.
+Ekteki project-setup-guide.md bu işin rehberi.
 
 1. Rehberi baştan sona oku; şablonlar, kurallar ve tablolar dahil. Dosya uzun; bölüm bölüm oku, kurarken o katmanın bölümünü yeniden aç.
 2. "Verilecek kararlar" bölümündeki soruları bana tek tek sor. Bir tercihim yoksa rehberin varsayılanını öner ve nedenini bir cümleyle söyle.
@@ -67,12 +67,12 @@ Claude Code içinde:
 
 ```bash
 /plugin marketplace add buraltintas/day-zero-kit
-/plugin install day-zero-kit@day-zero-kit
+/plugin install day-zero-kit-tr@day-zero-kit
 ```
 
-Skill'ler `/day-zero-kit:proje-kurulumu` gibi çağrılır; konusu açılınca ajan kendisi de kullanır. İngilizce sürüm için `day-zero-kit-en@day-zero-kit` kurulur.
+Skill'ler `/day-zero-kit-tr:project-setup` gibi çağrılır; konusu açılınca ajan kendisi de kullanır. İngilizce sürüm için `day-zero-kit-en@day-zero-kit` kurulur.
 
-Elle kurmak istersen `plugins/day-zero-kit/skills/` altındaki klasörleri kopyala:
+Elle kurmak istersen `plugins/day-zero-kit-tr/skills/` altındaki klasörleri kopyala:
 
 | Nereye | Yol |
 |---|---|
@@ -88,14 +88,14 @@ Elle kurmak istersen `plugins/day-zero-kit/skills/` altındaki klasörleri kopya
 
 | Skill | Ne zaman | Ne yapar |
 |---|---|---|
-| `proje-kurulumu` | Yeni ürüne başlarken | Kararları sorar, hafıza dosyalarını açar, altyapıyı gün 0'dan aşama aşama kurar ve doğrular. |
-| `karar-destegi` | "Şunu mu yapalım, bunu mu?" | Ücretli API, plan, analitik, gerçek zamanlı iletişim, OTA, bölge gibi kararlarda seçenekleri gerçek rakamlarla koyar, kararı kaydeder. |
-| `yayin-kapisi` | Mağaza sürümünden ve canlıya deploy'dan önce | Yayın kapısını çalıştırır, kanıtla "çıkar / çıkmaz" önerir, build hakkını ve eski sürümdeki kullanıcıyı hesaba katar. |
-| `maliyet-denetimi` | Ayda bir ya da fatura yükselince | Veritabanı uyanışı, instance tavanı, harcama freni, kota ve build dakikası için düzeltme listesi çıkarır. |
-| `guvenlik-denetimi` | Yayından önce ve ayda bir | Yetkiler, sırlar, bağımlılıklar, başkasının kaydını okuma, bot kapısı ve KVKK için bulgu listesi verir. |
-| `proje-hafizasi` | Her işin ve oturumun sonunda | CHANGELOG, STATUS, TODO, DECISIONS ve devir notunu günceller; yeni gelen hızla başlar. |
-| `uyari-denetimi` | Kurulumda ve her yeni dış bağımlılıkta | Her hata, kredi, kota ve süre dolumunun doğru kişiye, doğru kanaldan ulaştığını doğrular. |
-| `seo-geo-rutini` | Haftada ve ayda bir | SEO ve GEO işlerini yürütür; önce botların veritabanını uyandırmadığını kontrol eder. |
+| `project-setup` | Yeni ürüne başlarken | Kararları sorar, hafıza dosyalarını açar, altyapıyı gün 0'dan aşama aşama kurar ve doğrular. |
+| `decision-support` | "Şunu mu yapalım, bunu mu?" | Ücretli API, plan, analitik, gerçek zamanlı iletişim, OTA, bölge gibi kararlarda seçenekleri gerçek rakamlarla koyar, kararı kaydeder. |
+| `release-gate` | Mağaza sürümünden ve canlıya deploy'dan önce | Yayın kapısını çalıştırır, kanıtla "çıkar / çıkmaz" önerir, build hakkını ve eski sürümdeki kullanıcıyı hesaba katar. |
+| `cost-audit` | Ayda bir ya da fatura yükselince | Veritabanı uyanışı, instance tavanı, harcama freni, kota ve build dakikası için düzeltme listesi çıkarır. |
+| `security-audit` | Yayından önce ve ayda bir | Yetkiler, sırlar, bağımlılıklar, başkasının kaydını okuma, bot kapısı ve KVKK için bulgu listesi verir. |
+| `project-memory` | Her işin ve oturumun sonunda | CHANGELOG, STATUS, TODO, DECISIONS ve devir notunu günceller; yeni gelen hızla başlar. |
+| `alert-audit` | Kurulumda ve her yeni dış bağımlılıkta | Her hata, kredi, kota ve süre dolumunun doğru kişiye, doğru kanaldan ulaştığını doğrular. |
+| `seo-geo-routine` | Haftada ve ayda bir | SEO ve GEO işlerini yürütür; önce botların veritabanını uyandırmadığını kontrol eder. |
 
 ## Rehberde neler var
 
@@ -116,4 +116,8 @@ Her kural bir kanıt etiketi taşır: **kanıtlı** bizim canlıda çalışıyor
 
 **Burak Altıntaş** ([@buraltintas](https://github.com/buraltintas)). Rehberdeki deneyim, rakamlar ve çözümler benim ürünlerimden.
 
-© 2026 Burak Altıntaş. Lisans yayından önce eklenecek.
+© 2026 Burak Altıntaş.
+
+## Lisans
+
+Rehber metni (`guide/` ve skill'lerin `references/` klasörlerindeki bölümler) [CC BY 4.0](guide/LICENSE) ile paylaşılır: kaynak gösterilerek kullanılabilir, uyarlanabilir ve dağıtılabilir. Skill'ler, betikler ve diğer her şey [MIT](LICENSE) lisanslıdır.
