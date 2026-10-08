@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1072" width="1280" height="1072" role="img" aria-label="Yenen dayaklar, atılan goller: ~₺4.400/ay Eylül'de ürünlerimizin bulut faturası yerine ~₺1.300/ay Aynı ürünler, düzeltmelerden sonra; 6,5 CU-saat Günde; veritabanı hiç uyumuyordu yerine ~2,1 CU-saat Okumalar bellekten, veritabanı uyuyor; ₺1.500/ay Tavansız açılan harita API'si yerine ₺0 Açık veri ve kendi tablomuz; %41 Web isteklerini tek bir kazıyıcı aldı yerine 6.654 Bot kapısının ilk günde reddettiği istek; 30 gün Biten API kredisi kimseye haber vermedi yerine 4 dk Alarmlı düzende hatadan alarma; 21+ gün Ödeme webhook'u sessizce hata döndü yerine Gün 0 Her bağımlılığa sahip, eşik ve kanal; 1 hafta Build hakkı bitti, düzeltme ay başını bekledi yerine 3 hak Ay sonuna hata düzeltmesi için ayrılır; 44 Testin canlıya yazdığı sahte kayıt yerine 0 Test ortamı canlıya dokunamaz">
+<rect width="1280" height="1072" fill="#FFFFFF"/>
+<rect width="1280" height="10" fill="#0B6B66"/>
+<text x="60" y="82" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="44" font-weight="800" fill="#0E1A2B" letter-spacing="-0.8">Yenen dayaklar, atılan goller</text>
+<text x="60" y="120" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="500" fill="#3A4658">Ağustos ile Ekim 2026 arası, canlı ürünlerimizin faturalarından ve loglarından.</text>
+<rect x="60" y="148" width="540" height="34" fill="#B42318"/>
+<text x="80" y="172" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="800" fill="#FFFFFF">Yediğimiz dayak</text>
+<rect x="680" y="148" width="540" height="34" fill="#0B6B66"/>
+<text x="700" y="172" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="800" fill="#FFFFFF">Attığımız gol</text>
+<rect x="60" y="196" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="244" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">~₺4.400/ay</text>
+<text x="80" y="274" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Eylül'de ürünlerimizin bulut faturası</text>
+<path d="M618 245.0 L654 245.0 M644 236.0 L655 245.0 L644 254.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="244" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">~₺1.300/ay</text>
+<text x="700" y="274" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Aynı ürünler, düzeltmelerden sonra</text>
+<text x="80" y="342" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">6,5 CU-saat</text>
+<text x="80" y="372" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Günde; veritabanı hiç uyumuyordu</text>
+<path d="M618 343.0 L654 343.0 M644 334.0 L655 343.0 L644 352.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="342" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">~2,1 CU-saat</text>
+<text x="700" y="372" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Okumalar bellekten, veritabanı uyuyor</text>
+<rect x="60" y="392" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="440" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">₺1.500/ay</text>
+<text x="80" y="470" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Tavansız açılan harita API'si</text>
+<path d="M618 441.0 L654 441.0 M644 432.0 L655 441.0 L644 450.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="440" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">₺0</text>
+<text x="700" y="470" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Açık veri ve kendi tablomuz</text>
+<text x="80" y="538" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">%41</text>
+<text x="80" y="568" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Web isteklerini tek bir kazıyıcı aldı</text>
+<path d="M618 539.0 L654 539.0 M644 530.0 L655 539.0 L644 548.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="538" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">6.654</text>
+<text x="700" y="568" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Bot kapısının ilk günde reddettiği istek</text>
+<rect x="60" y="588" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="636" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">30 gün</text>
+<text x="80" y="666" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Biten API kredisi kimseye haber vermedi</text>
+<path d="M618 637.0 L654 637.0 M644 628.0 L655 637.0 L644 646.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="636" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">4 dk</text>
+<text x="700" y="666" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Alarmlı düzende hatadan alarma</text>
+<text x="80" y="734" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">21+ gün</text>
+<text x="80" y="764" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Ödeme webhook'u sessizce hata döndü</text>
+<path d="M618 735.0 L654 735.0 M644 726.0 L655 735.0 L644 744.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="734" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">Gün 0</text>
+<text x="700" y="764" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Her bağımlılığa sahip, eşik ve kanal</text>
+<rect x="60" y="784" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="832" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">1 hafta</text>
+<text x="80" y="862" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Build hakkı bitti, düzeltme ay başını bekledi</text>
+<path d="M618 833.0 L654 833.0 M644 824.0 L655 833.0 L644 842.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="832" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">3 hak</text>
+<text x="700" y="862" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Ay sonuna hata düzeltmesi için ayrılır</text>
+<text x="80" y="930" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">44</text>
+<text x="80" y="960" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Testin canlıya yazdığı sahte kayıt</text>
+<path d="M618 931.0 L654 931.0 M644 922.0 L655 931.0 L644 940.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="930" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">0</text>
+<text x="700" y="960" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Test ortamı canlıya dokunamaz</text>
+<text x="60" y="1032" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="600" fill="#0E1A2B">Her birinin hikâyesi, bedeli, çözümü ve kuralı rehberdeki Vaka defterinde.</text>
+</svg>

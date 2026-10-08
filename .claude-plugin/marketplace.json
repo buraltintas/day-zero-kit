@@ -1,0 +1,15 @@
+{
+  "name": "day-zero-kit",
+  "owner": {
+    "name": "Burak Altıntaş",
+    "url": "https://github.com/buraltintas"
+  },
+  "description": "Proje Kurulum Rehberi ve ona dayanan skill seti; yeni ürünlerin altyapısını gün 0'dan kurmak için.",
+  "plugins": [
+    {
+      "name": "day-zero-kit",
+      "source": "./plugins/day-zero-kit",
+      "description": "Proje Kurulum Rehberi'ne dayanan sekiz skill: yeni ürünün altyapısını gün 0'dan kurar, sonraki aşamalarda kontrol ve karar desteği verir."
+    }
+  ]
+}
