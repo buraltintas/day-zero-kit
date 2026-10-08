@@ -26,6 +26,12 @@ Bunu samimi olarak paylaşıyorum. Bence bu, az dayakla bir noktaya gelebilmenin
 
 Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu başlamasını sağlar. Ürünler rehberde Ürün A, B, C ve D diye anonim geçer; rakamlar bu ürünlerin Ağustos ile Ekim 2026 arasındaki faturalarından, loglarından ve olay kayıtlarından.
 
+## Yığın ve akış
+
+<p align="center"><img src="assets/architecture-tr.svg" alt="Mimari şeması: ziyaretçi Cloudflare üzerinden Next.js web'e, web BFF ile Go API'ye, mobil uygulama doğrudan Go API'ye gider; API Neon Postgres'e bağlanır; değişiklik işareti GCS'te, e-posta Resend'de; Cloud Scheduler Cloud Run Jobs'u tetikler, günlük döküm yedek kovasına gider." width="100%"></p>
+
+Yeşil kenarlı kutular Google Cloud'da, koyu kenarlılar dış servis, gri olanlar istemci. Kesikli oklar, değişiklik işaretinin web ve API'deki bellek kopyalarını tazelediğini gösterir.
+
 ## Yenen dayaklar, atılan goller
 
 <p align="center"><img src="assets/scoreboard-tr.svg" alt="Yenen dayaklar ve atılan goller: Eylül'ün aylık bulut faturası ~3.900–4.400 TL, 8 Ekim'deki aylık tahmin ~1.300 TL; veritabanı günde 6,5 CU-saatten ~2,1'e; harita API'si 1.500 TL'den 0'a; web isteklerinin %41'ini alan kazıyıcıya karşı bot kapısı ilk günde 6.654 isteği reddetti; 30 gün fark edilmeyen kredi bitişine karşı 4 dakikada alarm; en az 21 gün sessiz hata dönen webhook'a karşı her bağımlılığa sahip, eşik ve kanal; build hakkı bitince bir hafta bekleyen düzeltmeye karşı ay sonuna 3 hak; testin canlıya yazdığı 44 sahte kayda karşı canlıya dokunamayan test ortamı." width="100%"></p>

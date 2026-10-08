@@ -28,6 +28,12 @@ The guide does not write your product's code; it builds everything around it so 
 
 **Language:** the guide (PDF and Markdown) is in Turkish. AI agents read it fine and can answer you in English. The skill set comes in Turkish and English: in the English set the instructions are English, while the guide sections the skills carry stay Turkish.
 
+## Stack and flow
+
+<p align="center"><img src="assets/architecture-en.svg" alt="Architecture: visitors reach the Next.js web through Cloudflare, the web calls the Go API as a BFF, the mobile app calls the Go API directly; the API uses Neon Postgres; the change marker is in GCS, e-mail goes through Resend; Cloud Scheduler triggers Cloud Run Jobs, and the daily dump goes to the backup bucket." width="100%"></p>
+
+Green-edged boxes run on Google Cloud, dark-edged ones are outside services, grey ones are clients. The dashed arrows show the change marker refreshing the in-memory copies in the web and the API.
+
 ## Knocks taken, goals scored
 
 <p align="center"><img src="assets/scoreboard-en.svg" alt="Knocks taken and goals scored: September's monthly cloud bill about 3,900–4,400 TL, the monthly estimate as of 8 October about 1,300 TL; database from 6.5 to about 2.1 CU-hours a day; a maps API from 1,500 TL a month to 0; one scraper took 41% of web requests, then the bot door refused 6,654 requests on its first day; a depleted API credit went unnoticed for 30 days, then error to alarm took 4 minutes; a payment webhook failed silently for at least 21 days, then every dependency got an owner, a threshold and a channel; out of builds and a fix waited a week, then 3 builds are kept for month end; a test wrote 44 fake records to production, then the test setup cannot touch production." width="100%"></p>
