@@ -38,7 +38,7 @@ Bunlara gelince dur ve sor; asla kendin yapma: hesap açmak, ödeme ve kart, şa
 - En güncel kararlı sürümlerle başla; desteğinin bitmesine 6 aydan az kalmış sürümle başlama. Sürümleri resmi sayfalardan o gün yeniden oku; rehberdeki tablo Ekim 2026'nın fotoğrafıdır.
 - Fiyat ve kotaları kullanmadan önce kaynaklardaki resmi sayfadan yeniden doğrula.
 - Mobil uygulama, zorunlu güncelleme, sunucudan duyuru ve ekran içi uyarı, bayrak ve kill switch kurulmadan mağazaya çıkmaz. OTA önerilir ama bu kuralın parçası değildir.
-- Herkese açık okumalar veritabanına gitmez: bellekten ya da ISR'dan sunulur, değişiklik işaretiyle tazelenir. Botların gezdiği yollar veritabanını uyandırmaz.
+- Botların gezdiği herkese açık sayfa ve listeler (katalog, detay, site haritası) veritabanına gitmez: bellekten ya da ISR'dan sunulur, değişiklik işaretiyle tazelenir. Arama, filtre ve sık değişen içerik gibi önbelleğe sığmayan okumalar veritabanına gidebilir; o zaman bot erişimi sınırlanır ve veritabanı uyanışı ölçülür.
 - Test ortamı ve test verisi canlıya asla dokunmaz; yerel varsayılan her zaman test ortamıdır.
 - Ücretli bir dış API, alternatifleri ve en kötü günün faturası yazılmadan açılmaz.
 - Bir istek rehberle çelişiyorsa önce çelişkiyi söyle, sonra sahibin kararını uygula ve `DECISIONS.md`'ye yaz.

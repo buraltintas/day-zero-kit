@@ -41,7 +41,7 @@ Stop and ask; never do them yourself: opening accounts, payments and cards, acce
 - Start on the latest stable versions; never on a version with less than 6 months of support left. Re-read versions on the official pages that day; the guide's table is a snapshot of October 2026.
 - Re-verify prices and quotas on the official page in the guide's sources before relying on them.
 - A mobile app does not reach the stores without forced update, server-driven notices and in-place warnings, and flags with a kill switch. OTA is recommended but is not part of this rule.
-- Public reads never hit the database: they are served from memory or ISR and refreshed by a change marker. Paths that bots crawl never wake the database.
+- Public pages and lists that bots crawl (catalogue, detail pages, sitemaps) never hit the database: they are served from memory or ISR and refreshed by a change marker. Reads that do not fit a cache, such as search, filters and fast-changing content, may hit the database; then bot access to them is limited and database wake-ups are measured.
 - The test environment and test data never touch production; the local default is always the test environment.
 - A paid external API is not switched on before its alternatives and its worst-day bill are written down.
 - If a request conflicts with the guide, state the conflict first, then apply the owner's decision and record it in `DECISIONS.md`.
