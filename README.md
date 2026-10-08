@@ -22,6 +22,8 @@
 
 Bu rehber ve skill seti benim, **Burak Altıntaş**'ın çalışması. İçindeki kurallar, beş yıl boyunca ürün kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı: uyumayan veritabanları, tavansız açılan ücretli API'ler, kataloğu kazıyan botlar, kimseye haber vermeden biten krediler, eski sürümde kalıp yeni akışı göremeyen kullanıcılar. Son üç ayda bu tecrübeyi rakamlarıyla birlikte rehbere dönüştürdüm.
 
+Bunu samimi olarak paylaşıyorum. Bence bu, az dayakla bir noktaya gelebilmenin rehberi. Uzun bir yazı, evet; ama iş de kolay değil.
+
 Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu başlamasını sağlar. Ürünler rehberde Ürün A, B, C ve D diye anonim geçer; rakamlar bu ürünlerin Ağustos ile Ekim 2026 arasındaki faturalarından, loglarından ve olay kayıtlarından.
 
 ## Yenen dayaklar, atılan goller
@@ -109,6 +111,8 @@ Elle kurmak istersen `plugins/day-zero-kit-tr/skills/` altındaki klasörleri ko
 Her kural bir kanıt etiketi taşır: **kanıtlı** bizim canlıda çalışıyor, **ölçüldü** rakamı kendi ölçümümüz ya da faturamız gösteriyor, **öneri** bizde denenmedi ya da yalnız sağlayıcı belgesine dayanıyor. Öneri, isteğe bağlı demek değildir.
 
 ## Bu rehber ne değildir
+
+Her yığın için birebir tarif değildir. Rehber bu yığın için yazıldı: Neon Postgres, Cloud Run'da Go, Next.js ve Expo. Başka bir yığında ayarlar, rakamlar ve araçlar değişir; mantık aynı kalır: veritabanını gereksiz uyandırma, her harcamaya tavan ve alarm koy, sessiz hata bırakma, en az yetkiyle çalış, kullanıcıyı kırmadan değiştir, kararları ve hafızayı yaz.
 
 Çok yüksek ölçek ya da çok bölgeli kurulum rehberi değildir. Hukuki görüş değildir. Fiyatlar ve sürümler Ekim 2026'nın fotoğrafıdır (1 USD = 49 TL); kullanmadan önce kaynaklardaki resmi sayfalardan yeniden okunur.
 

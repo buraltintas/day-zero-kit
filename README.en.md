@@ -20,6 +20,8 @@
 
 This guide and skill set are my work, **Burak Altıntaş**. The rules come from five years of building products: the hard knocks I took, the bills I paid and the fixes I found. Databases that never slept, paid APIs switched on with no cap, bots scraping a catalogue, credits that ran out without telling anyone, users stuck on an old version who could not see a new flow. In the last three months I turned that experience into a guide, with the numbers.
 
+I am sharing this sincerely. To me, it is a guide to getting somewhere with fewer knocks. Yes, it is long; but the work is not easy either.
+
 The guide does not write your product's code; it builds everything around it so the work starts organised. The products appear anonymously as Product A, B, C and D (Ürün A–D); the numbers come from their bills, logs and incident records from August to October 2026.
 
 **Language:** the guide (PDF and Markdown) is in Turkish. AI agents read it fine and can answer you in English; the skill set comes in both Turkish and English.
@@ -109,6 +111,8 @@ For the first setup and for checks and decision support in the months that follo
 Every rule carries an evidence tag: **kanıtlı** (proven in our production), **ölçüldü** (our own measurement or bill shows the number), **öneri** (not tried by us, or based only on vendor docs). Öneri does not mean optional.
 
 ## What this guide is not
+
+It is not a one-to-one recipe for every stack. The guide was written for this one: Neon Postgres, Go on Cloud Run, Next.js and Expo. On another stack the settings, numbers and tools change; the logic stays the same: do not wake the database for nothing, put a cap and an alarm on every spend, leave no silent failure, run with least privilege, change without breaking users, and write down decisions and project memory.
 
 It is not a guide for very high scale or multi-region setups. It is not legal advice. Prices and versions are a snapshot of October 2026 (1 USD = 49 TL); re-read them from the official pages in the sources before you rely on them.
 

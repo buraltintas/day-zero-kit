@@ -6,7 +6,7 @@ Postgres, Go, Next.js ve Expo ile Google Cloud'da
 
 Yeni bir ürünü ilk günden ucuz, güvenli ve kullanıcıyı kırmadan kurmak için canlı ürünlerimizden çıkan kurallar.
 
-**Burak Altıntaş**. Bu rehberdeki kurallar, beş yıl boyunca ürün kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı.
+**Burak Altıntaş**. Bu rehberdeki kurallar, beş yıl boyunca ürün kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı. Samimi olarak paylaşıyorum: bence bu, az dayakla bir noktaya gelebilmenin rehberi.
 
 Veritabanı
 Neon Postgres
@@ -559,9 +559,9 @@ Servislerimiz tek bölgede (europe-west1), veritabanlarımız Frankfurt'ta; yede
 
 Fiyat, kota ve sürümler Ekim 2026'nın. Sağlayıcılar sık değiştirir; X fiyat modelini 2026'da iki kez değiştirdi.
 
-### Başka yığın için birebir
+### Başka yığın için birebir tarif
 
-Rakamlar ve ayarlar bu yığına özgü. İlkeler geçer: uyuyabilen veritabanı, sessiz hata yok, en az yetki.
+Rehber bu yığın için yazıldı: Neon Postgres, Cloud Run'da Go, Next.js ve Expo. Başka bir yığında ayarlar, rakamlar ve araçlar değişir; mantık aynı kalır: veritabanını gereksiz uyandırma, her harcamaya tavan ve alarm koy, sessiz hata bırakma, en az yetkiyle çalış, kullanıcıyı kırmadan değiştir, kararları ve hafızayı yaz.
 
 ### Hazır kod
 
