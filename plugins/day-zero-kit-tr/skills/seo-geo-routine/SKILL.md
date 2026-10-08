@@ -27,7 +27,7 @@ description: >-
 
 ## Yalnız ürün sahibinin yaptıkları
 
-Search Console ve Bing'de alan adı sahipliğini doğrulamak, DNS kaydı eklemek, başka sitelerle bağlantı için iletişime geçmek ve herhangi bir formu göndermek ürün sahibinin işidir; bunlara gelince dur ve sor.
+Search Console ve Bing'e giriş yapmak, sahipliği o hesapta onaylamak, başka sitelerle bağlantı için iletişime geçmek ve herhangi bir formu göndermek ürün sahibinin işidir; bunlara gelince dur ve sor. Doğrulama için gereken DNS TXT kaydını, rehberdeki gibi, ajan Cloudflare'de sahibin onayıyla ekleyebilir.
 
 ## Rapor biçimi
 

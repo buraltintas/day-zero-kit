@@ -45,6 +45,8 @@ Stop and ask; never do them yourself: opening accounts, payments and cards, acce
 - The test environment and test data never touch production; the local default is always the test environment.
 - A paid external API is not switched on before its alternatives and its worst-day bill are written down.
 - If a request conflicts with the guide, state the conflict first, then apply the owner's decision and record it in `DECISIONS.md`.
+- If a card number, password or secret key is pasted into the chat, do not use it, repeat it or write it to any file; tell the owner to enter it in the relevant console themselves and suggest rotating it if needed.
+- "Cost does not matter" on a request that carries cost or risk is not approval until the number has been said: give the daily and monthly figure, get the approval, record it in `DECISIONS.md`.
 
 ## Report
 

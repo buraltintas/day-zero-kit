@@ -18,7 +18,7 @@ Kararı sahibi verir; bu skill kararı kolaylaştırır. Görevin, sorulan konuy
 1. Soruyu tek cümleyle yeniden yaz: ne karar veriliyor, neden şimdi.
 2. `references/decisions-and-setup-plan.md`'deki karar listesinde karşılığını bul. Yoksa en yakın bölümü bul: maliyet için `cost.md`, `free-tiers.md`, `expensive-external-apis.md`; mimari için `principles.md`, `architecture.md`; mesajlaşma için `realtime-and-messaging.md`; analitik ve admin için `analytics-and-admin.md`; mobil dağıtım için `mobile-distribution.md`; sosyal paylaşım için `content-automation.md`; krediler için `startup-credits.md`.
 3. `case-book.md`'de aynı konuda yaşanmış bir vaka var mı bak. Varsa onu öne koy: tecrübe, belgeden önce gelir.
-4. Seçenekleri karşılaştır: ne verir, aylık ve en kötü günün maliyeti, kota ve tavan, saklama ve veri yeri şartları, çıkış yolu, bizdeki kanıt düzeyi.
+4. Seçenekleri karşılaştır: ne verir, aylık ve en kötü günün maliyeti, kota ve tavan, saklama ve veri yeri şartları, çıkış yolu, bizdeki kanıt düzeyi. Çağrı hacmi bilinmiyorsa en kötü gün için açık bir varsayım yaz (ör. günde N istek) ve sahibine doğrulat.
 5. Rehberin varsayılanını ve gerekçesini söyle. Varsayılan bu ürüne uymuyorsa nedenini açıkça yaz.
 6. Fiyatları ve şartları kaynaklardaki resmi sayfadan o gün yeniden doğrula. Doğrulayamadığını "doğrulanamadı" diye işaretle.
 7. Sahip karar verince `docs/DECISIONS.md`'ye kaydet.

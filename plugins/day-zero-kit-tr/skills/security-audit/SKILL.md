@@ -38,3 +38,5 @@ Sahibin yapması gerekenler: <IAM, hesap, ödeme gibi>
 ```
 
 Yeni bir bot kuralını doğrudan reddeden olarak açma; önce gölgede çalıştır ve en az 7 günlük logla karar ver.
+
+**Acil durum:** Bir kazıyıcı ya da saldırı servisi düşürüyorsa sahibine haber ver; onayıyla tek bir geçici engel kuralı uygula (bitiş saatiyle ve loglu). Sonra kuralı normal yoldan, gölge ve en az 7 günlük logla kalıcı yap ya da kaldır.

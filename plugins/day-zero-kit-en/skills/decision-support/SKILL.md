@@ -20,7 +20,7 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 1. Restate the question in one sentence: what is being decided and why now.
 2. Find it in the decision list in `references/decisions-and-setup-plan.md`. If it is not there, find the closest section: cost in `cost.md`, `free-tiers.md`, `expensive-external-apis.md`; architecture in `principles.md`, `architecture.md`; messaging in `realtime-and-messaging.md`; analytics and admin in `analytics-and-admin.md`; mobile distribution in `mobile-distribution.md`; social posting in `content-automation.md`; credits in `startup-credits.md`.
 3. Check `case-book.md` (the case book) for a lived case on the same topic. If there is one, put it first: experience comes before documentation.
-4. Compare the options: what each gives, monthly and worst-day cost, quotas and caps, retention and data-location terms, the exit path, and our evidence level.
+4. Compare the options: what each gives, monthly and worst-day cost, quotas and caps, retention and data-location terms, the exit path, and our evidence level. If the call volume is unknown, write an explicit worst-day assumption (for example N requests a day) and have the owner confirm it.
 5. State the guide's default and its reason. If the default does not fit this product, say why.
 6. Re-verify prices and terms on the official page that day; mark what you could not verify.
 7. When the owner decides, record it in `docs/DECISIONS.md`.

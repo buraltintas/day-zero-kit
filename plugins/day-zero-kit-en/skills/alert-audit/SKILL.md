@@ -22,10 +22,10 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Flow
 
-1. Build the inventory: every external API, payment and store webhook, scheduled job, backup, token, quota, budget, and domain or certificate expiry.
+1. Build the inventory (note any payment or store webhook without signature verification; that is security-audit's job): every external API, payment and store webhook, scheduled job, backup, token, quota, budget, and domain or certificate expiry.
 2. For each, ask: what is the failure signal, the threshold, the level, the channel, who acts, are there at least two receivers, does the alarm depend on the very system that failed.
 3. Write the gaps to a table and complete it from the guide's table.
-4. Fire every alarm once end to end with a fake failure: in the test environment or behind a test flag, without touching live data. Confirm the receiver actually got it. Alert policy or production changes go through the owner's approval and a recorded script. For absence alarms, remember that Cloud Monitoring waits at most 23.5 hours.
+4. Fire every alarm once end to end with a fake failure: in the test environment or behind a test flag, without touching live data. The test flag is the guide's recipe: add a temporary "TEST" to the policy name, make the job fail on purpose, restore the name after the alarm closes. An alarm that exists only in production is tested there the same way, without touching data or users, with the owner's approval. Confirm the receiver actually got it. Alert policy or production changes go through the owner's approval and a recorded script. For absence alarms, remember that Cloud Monitoring waits at most 23.5 hours.
 5. Check that messages speak the owner's language: what happened, the effect on users, what to do, a link. Stack traces do not go to the owner.
 
 ## Report

@@ -24,7 +24,7 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 1. Classify the change: JS only or native, does the API contract change, is there a migration, who is affected.
 2. Tick the relevant list item by item, with evidence for each: command output, log line, screenshot, test result. An item without evidence counts as not done.
-3. For a mobile release, count the remaining builds per platform with `eas account:usage`. In the last week of the month, if fewer than 3 builds remain on a platform, no new-feature build is taken; the rest is kept for bug fixes.
+3. For a mobile release, count the remaining builds per platform with `eas account:usage`. If fewer than 3 builds remain on a platform, no new-feature build is taken; the rest is kept for bug fixes. Check this again in the last week of the month, because builds only renew on the 1st.
 4. Think of users on old versions: what the new flow shows to an old build, whether a server-driven notice can explain it, and if forced update is switched on, whether the new version is live for everyone in the store.
 5. Write the rollback path: to which revision, with which command, whether data rolls back.
 
@@ -42,4 +42,4 @@ Needs owner approval: <list>
 
 - Do not propose switching on forced update before the Play rollout is at 100% and the App Store version is live.
 - Make sure the forced screen was seen on a real phone in the previous store build.
-- Propose releasing on a weekday at the start of working hours; never on Friday evening or before a holiday.
+- Submitting for store review can happen any day. Releasing the version to users, switching on forced update and deploying to production are proposed on a weekday at the start of working hours; never on Friday evening or before a holiday.

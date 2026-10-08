@@ -10,7 +10,7 @@ description: >-
 
 # Maliyet denetimi
 
-Faturayı büyüten şey çoğu zaman görünmeyen tekrardır: veritabanı uyanışı, build, bot isteği, açık kalan bağlantı. Bu skill bunları ölçer ve rehberdeki kurallarla karşılaştırır. Ayarları kendisi değiştirmez; değişiklik listesini ve etkisini çıkarır, uygulama kararını sahibine bırakır.
+Faturayı büyüten şey çoğu zaman görünmeyen tekrardır: veritabanı uyanışı, build, bot isteği, açık kalan bağlantı. Bu skill bunları ölçer ve rehberdeki kurallarla karşılaştırır. Ayarları kendiliğinden değiştirmez; değişiklik listesini ve etkisini çıkarır, kararı sahibine bırakır. Sahip "düzelt" derse her değişikliği tek tek gösterir (komut, etkisi, geri dönüşü) ve onaylananı uygular; canlıya yetki gerektiren komutu sahibine verir.
 
 ## Okunacaklar
 

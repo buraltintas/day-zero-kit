@@ -42,6 +42,8 @@ Bunlara gelince dur ve sor; asla kendin yapma: hesap açmak, ödeme ve kart, şa
 - Test ortamı ve test verisi canlıya asla dokunmaz; yerel varsayılan her zaman test ortamıdır.
 - Ücretli bir dış API, alternatifleri ve en kötü günün faturası yazılmadan açılmaz.
 - Bir istek rehberle çelişiyorsa önce çelişkiyi söyle, sonra sahibin kararını uygula ve `DECISIONS.md`'ye yaz.
+- Sohbete kart numarası, parola ya da gizli anahtar yapıştırılırsa onu kullanma, tekrar yazma ve hiçbir dosyaya koyma; sahibine bunu ilgili konsolda kendisinin girmesini söyle, gerekiyorsa değiştirmesini öner.
+- Maliyet ya da risk taşıyan bir istekte "önemli değil" demek, rakam söylenmeden onay sayılmaz: günlük ve aylık rakamı söyle, onayı al, `DECISIONS.md`'ye yaz.
 
 ## Rapor biçimi
 

@@ -29,7 +29,7 @@ The guide sections under `references/` are in Turkish. Read them as they are and
 
 ## Only the product owner does these
 
-Verifying domain ownership in Search Console and Bing, adding DNS records, reaching out to other sites for links and submitting any form are the owner's work; stop and ask when you get there.
+Signing in to Search Console and Bing, confirming ownership in those accounts, reaching out to other sites for links and submitting any form are the owner's work; stop and ask when you get there. The DNS TXT record the verification needs may be added by the agent in Cloudflare with the owner's approval, as the guide says.
 
 ## Report
 

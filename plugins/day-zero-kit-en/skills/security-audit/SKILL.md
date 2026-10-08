@@ -41,3 +41,5 @@ Owner must do: <IAM, accounts, payments and the like>
 ```
 
 Never open a new bot rule as a blocking rule; run it in shadow first and decide with at least 7 days of logs.
+
+**Emergency:** If a scraper or an attack is taking the service down, tell the owner; with their approval apply one temporary blocking rule (with an end time, logged). Then make it permanent the normal way, in shadow with at least 7 days of logs, or remove it.

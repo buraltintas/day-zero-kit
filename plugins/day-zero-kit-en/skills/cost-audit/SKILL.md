@@ -11,7 +11,7 @@ description: >-
 
 # Cost audit
 
-What inflates a bill is usually invisible repetition: database wake-ups, builds, bot requests, connections left open. This skill measures them and compares them with the guide's rules. It does not change settings itself; it lists the changes and their effect and leaves the decision to the owner.
+What inflates a bill is usually invisible repetition: database wake-ups, builds, bot requests, connections left open. This skill measures them and compares them with the guide's rules. It does not change settings on its own; it lists the changes and their effect and leaves the decision to the owner. When the owner says "fix it", it shows each change one by one (command, effect, rollback) and applies the approved ones; a command that needs production rights goes to the owner.
 
 The guide sections under `references/` are in Turkish. Read them as they are and answer in the language the user writes in.
 

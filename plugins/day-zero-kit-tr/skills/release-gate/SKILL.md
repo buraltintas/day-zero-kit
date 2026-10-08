@@ -23,7 +23,7 @@ Yayın kararı ürün sahibinindir. Bu skill kararı kanıtla besler: neyin haz�
 
 1. Değişikliği sınıflandır: yalnız JS mi, native mi, API sözleşmesi değişiyor mu, migration var mı, kim etkileniyor.
 2. İlgili listeyi madde madde işaretle. Her madde için kanıtı yaz: komut çıktısı, log satırı, ekran görüntüsü, test sonucu. Kanıtı olmayan madde yapılmamış sayılır.
-3. Mobil sürümde build hakkını say: `eas account:usage` ile platform başına kalan hak. Ayın son haftasında kalan hak 3'ün altındaysa yeni özellik build'i alınmaz; hak hata düzeltmesine saklanır.
+3. Mobil sürümde build hakkını say: `eas account:usage` ile platform başına kalan hak. Kalan hak platform başına 3'ün altındaysa yeni özellik build'i alınmaz; hak hata düzeltmesine saklanır. Ayın son haftasında buna ayrıca bakılır, çünkü hak ancak ayın 1'inde yenilenir.
 4. Eski sürümdeki kullanıcıyı düşün: yeni akış eski build'e ne gösterecek, sunucudan duyuruyla anlatılabiliyor mu, zorunlu güncelleme açılacaksa mağazada yeni sürüm herkese açık mı.
 5. Geri dönüş yolunu yaz: hangi revizyona, hangi komutla, veri geri dönüyor mu.
 
@@ -41,4 +41,4 @@ Sahibin onayı gerekenler: <liste>
 
 - Zorunlu güncellemeyi, Play'de yayın %100 olmadan ve App Store sürümü yayında değilken açmayı önerme.
 - Zorunlu ekranın önceki mağaza build'inde gerçek telefonda görüldüğünden emin ol.
-- Yayını hafta içi mesai başında öner; cuma akşamı ve tatil öncesi önerme.
+- Mağazaya incelemeye göndermek her gün olabilir. Sürümü kullanıcıya açmak, zorunlu güncellemeyi açmak ve canlıya deploy hafta içi mesai başında önerilir; cuma akşamı ve tatil öncesi önerilmez.
