@@ -1,6 +1,12 @@
 ---
 name: seo-geo-rutini
-description: Projenin SEO ve GEO (yapay zekâ cevap motorlarında görünme) işlerini Proje Kurulum Rehberi'ne göre kurar ve düzenli olarak yürütür; gün 0 teknik listesi, Search Console ölçümü, AI trafiğini doğru sayma ve hiç bitmeyen haftalık ve aylık işler. Önce SEO yüzeyinin veritabanını uyandırmadığını doğrular. SEO, GEO, Search Console, dizine eklenme, sitemap, robots.txt, canonical, yapısal veri, llms.txt, ChatGPT ya da Perplexity'de görünmek, organik trafik veya "neden tık gelmiyor" konuşulduğunda kullan.
+description: >-
+  Projenin SEO ve GEO (yapay zekâ cevap motorlarında görünme) işlerini Proje Kurulum Rehberi'ne göre
+  kurar ve düzenli olarak yürütür; gün 0 teknik listesi, Search Console ölçümü, AI trafiğini doğru
+  sayma ve hiç bitmeyen haftalık ve aylık işler. Önce SEO yüzeyinin veritabanını uyandırmadığını
+  doğrular. SEO, GEO, Search Console, dizine eklenme, sitemap, robots.txt, canonical, yapısal veri,
+  llms.txt, ChatGPT ya da Perplexity'de görünmek, organik trafik veya "neden tık gelmiyor"
+  konuşulduğunda kullan.
 ---
 
 # SEO ve GEO rutini

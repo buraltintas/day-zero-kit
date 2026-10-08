@@ -1,6 +1,12 @@
 ---
 name: karar-destegi
-description: Projede bir teknik ya da ürün kararı gündeme geldiğinde Proje Kurulum Rehberi'ndeki tecrübeye ve ölçülmüş rakamlara dayanarak seçenekleri, varsayılanı, maliyeti ve riski çıkarır, kararı DECISIONS.md'ye yazar. Ücretli API açmak (harita, model, SMS, e-posta), plan yükseltmek, analitik ya da hata takip aracı seçmek, gerçek zamanlı iletişim (WebSocket, SSE, polling, push), OTA, bölge ve veri yeri, EAS ya da kendi build hattı, içerik otomasyonu, startup kredisi gibi her "şunu mu yapalım, bunu mu" sorusunda kullan.
+description: >-
+  Projede bir teknik ya da ürün kararı gündeme geldiğinde Proje Kurulum Rehberi'ndeki tecrübeye ve
+  ölçülmüş rakamlara dayanarak seçenekleri, varsayılanı, maliyeti ve riski çıkarır, kararı
+  DECISIONS.md'ye yazar. Ücretli API açmak (harita, model, SMS, e-posta), plan yükseltmek, analitik ya
+  da hata takip aracı seçmek, gerçek zamanlı iletişim (WebSocket, SSE, polling, push), OTA, bölge ve
+  veri yeri, EAS ya da kendi build hattı, içerik otomasyonu, startup kredisi gibi her "şunu mu
+  yapalım, bunu mu" sorusunda kullan.
 ---
 
 # Karar desteği

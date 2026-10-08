@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1072" width="1280" height="1072" role="img" aria-label="Knocks taken, goals scored: ~₺4,400/mo Our cloud bill in September, then ~₺1,300/mo The same products after the fixes; 6.5 CU-hours A day; the database never slept, then ~2.1 CU-hours Reads from memory, the database sleeps; ₺1,500/mo A maps API switched on with no cap, then ₺0 Open data and our own table; 41% Of web requests went to one scraper, then 6,654 Requests the bot door refused on day one; 30 days A depleted API credit told nobody, then 4 min From error to alarm once alerting was set; 21+ days A payment webhook failed silently, then Day 0 Every dependency gets an owner and a channel; 1 week Out of builds; a fix waited for the month, then 3 builds Kept for bug fixes at month end; 44 Fake records a test wrote to production, then 0 The test setup cannot touch production">
+<rect width="1280" height="1072" fill="#FFFFFF"/>
+<rect width="1280" height="10" fill="#0B6B66"/>
+<text x="60" y="82" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="44" font-weight="800" fill="#0E1A2B" letter-spacing="-0.8">Knocks taken, goals scored</text>
+<text x="60" y="120" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="500" fill="#3A4658">August to October 2026, from our live products' bills and logs.</text>
+<rect x="60" y="148" width="540" height="34" fill="#B42318"/>
+<text x="80" y="172" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="800" fill="#FFFFFF">The knock we took</text>
+<rect x="680" y="148" width="540" height="34" fill="#0B6B66"/>
+<text x="700" y="172" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="800" fill="#FFFFFF">The goal we scored</text>
+<rect x="60" y="196" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="244" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">~₺4,400/mo</text>
+<text x="80" y="274" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Our cloud bill in September</text>
+<path d="M618 245.0 L654 245.0 M644 236.0 L655 245.0 L644 254.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="244" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">~₺1,300/mo</text>
+<text x="700" y="274" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">The same products after the fixes</text>
+<text x="80" y="342" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">6.5 CU-hours</text>
+<text x="80" y="372" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">A day; the database never slept</text>
+<path d="M618 343.0 L654 343.0 M644 334.0 L655 343.0 L644 352.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="342" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">~2.1 CU-hours</text>
+<text x="700" y="372" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Reads from memory, the database sleeps</text>
+<rect x="60" y="392" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="440" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">₺1,500/mo</text>
+<text x="80" y="470" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">A maps API switched on with no cap</text>
+<path d="M618 441.0 L654 441.0 M644 432.0 L655 441.0 L644 450.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="440" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">₺0</text>
+<text x="700" y="470" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Open data and our own table</text>
+<text x="80" y="538" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">41%</text>
+<text x="80" y="568" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Of web requests went to one scraper</text>
+<path d="M618 539.0 L654 539.0 M644 530.0 L655 539.0 L644 548.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="538" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">6,654</text>
+<text x="700" y="568" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Requests the bot door refused on day one</text>
+<rect x="60" y="588" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="636" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">30 days</text>
+<text x="80" y="666" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">A depleted API credit told nobody</text>
+<path d="M618 637.0 L654 637.0 M644 628.0 L655 637.0 L644 646.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="636" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">4 min</text>
+<text x="700" y="666" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">From error to alarm once alerting was set</text>
+<text x="80" y="734" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">21+ days</text>
+<text x="80" y="764" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">A payment webhook failed silently</text>
+<path d="M618 735.0 L654 735.0 M644 726.0 L655 735.0 L644 744.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="734" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">Day 0</text>
+<text x="700" y="764" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Every dependency gets an owner and a channel</text>
+<rect x="60" y="784" width="1160" height="98" fill="#F3F6F8"/>
+<text x="80" y="832" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">1 week</text>
+<text x="80" y="862" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Out of builds; a fix waited for the month</text>
+<path d="M618 833.0 L654 833.0 M644 824.0 L655 833.0 L644 842.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="832" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">3 builds</text>
+<text x="700" y="862" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Kept for bug fixes at month end</text>
+<text x="80" y="930" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#B42318" letter-spacing="-0.5">44</text>
+<text x="80" y="960" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">Fake records a test wrote to production</text>
+<path d="M618 931.0 L654 931.0 M644 922.0 L655 931.0 L644 940.0" stroke="#8A94A3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="700" y="930" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="800" fill="#0B6B66" letter-spacing="-0.5">0</text>
+<text x="700" y="960" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#3A4658">The test setup cannot touch production</text>
+<text x="60" y="1032" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="600" fill="#0E1A2B">The story, cost, fix and rule of each one is in the guide's case book (Vaka defteri).</text>
+</svg>

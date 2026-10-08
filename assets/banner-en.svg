@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="1280" height="420" role="img" aria-label="Project Setup Guide (Proje Kurulum Rehberi), day-zero-kit. Burak Altıntaş.">
+  <rect width="1280" height="420" fill="#0E1A2B"/>
+  <rect width="1280" height="12" fill="#0B6B66"/>
+  <rect x="80" y="74" width="64" height="7" fill="#0B6B66"/>
+  <text x="80" y="128" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#7FC8BE">day-zero-kit</text>
+  <text x="76" y="212" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="78" font-weight="800" fill="#FFFFFF" letter-spacing="-1.5">Project Setup Guide</text>
+  <text x="80" y="266" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="500" fill="#C9D3DF">Rules for building a new product cheap, safe and without breaking users from day one,</text>
+  <text x="80" y="302" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="500" fill="#C9D3DF">learned from five years of hard knocks, plus skills for AI agents.</text>
+  <line x1="80" y1="340" x2="1200" y2="340" stroke="#2A3850" stroke-width="1.5"/>
+  <text x="80" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Neon Postgres</text>
+  <text x="268" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Go API</text>
+  <text x="381" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Next.js</text>
+  <text x="497" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Expo</text>
+  <text x="590" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Cloud Run</text>
+  <text x="1200" y="378" text-anchor="end" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#FFFFFF">Burak Altıntaş</text>
+</svg>

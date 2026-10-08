@@ -5,7 +5,7 @@
   <text x="80" y="128" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#7FC8BE">day-zero-kit</text>
   <text x="76" y="212" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="78" font-weight="800" fill="#FFFFFF" letter-spacing="-1.5">Proje Kurulum Rehberi</text>
   <text x="80" y="266" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="500" fill="#C9D3DF">Yeni bir ürünü ilk günden ucuz, güvenli ve kullanıcıyı kırmadan kurmak için</text>
-  <text x="80" y="302" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="500" fill="#C9D3DF">canlı ürünlerde yenen dayaklardan çıkan kurallar ve ajan skill'leri.</text>
+  <text x="80" y="302" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="500" fill="#C9D3DF">beş yılda yenen dayaklardan çıkan kurallar ve ajan skill'leri.</text>
   <line x1="80" y1="340" x2="1200" y2="340" stroke="#2A3850" stroke-width="1.5"/>
   <text x="80" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Neon Postgres</text>
   <text x="268" y="378" font-family="Manrope, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#7FC8BE">Go API</text>

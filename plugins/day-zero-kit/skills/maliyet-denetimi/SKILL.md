@@ -1,6 +1,11 @@
 ---
 name: maliyet-denetimi
-description: Projenin bulut, veritabanı ve dış API maliyetini Proje Kurulum Rehberi'ndeki ölçülmüş kurallara göre denetler; uyanmayan veritabanı, instance tavanları, harcama freni, bütçe alarmları, ücretsiz kotalar, build dakikaları, log ve imaj depolama için somut düzeltme listesi çıkarır. Fatura yükseldiğinde, aylık kontrolde, "maliyetimiz ne", "neden bu kadar tuttu", Neon CU-saat, Cloud Run faturası, bütçe, kota ya da "ücretsiz katmanda kalabilir miyiz" sorulduğunda kullan.
+description: >-
+  Projenin bulut, veritabanı ve dış API maliyetini Proje Kurulum Rehberi'ndeki ölçülmüş kurallara göre
+  denetler; uyanmayan veritabanı, instance tavanları, harcama freni, bütçe alarmları, ücretsiz
+  kotalar, build dakikaları, log ve imaj depolama için somut düzeltme listesi çıkarır. Fatura
+  yükseldiğinde, aylık kontrolde, "maliyetimiz ne", "neden bu kadar tuttu", Neon CU-saat, Cloud Run
+  faturası, bütçe, kota ya da "ücretsiz katmanda kalabilir miyiz" sorulduğunda kullan.
 ---
 
 # Maliyet denetimi

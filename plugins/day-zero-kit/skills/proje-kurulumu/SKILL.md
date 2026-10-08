@@ -1,6 +1,11 @@
 ---
 name: proje-kurulumu
-description: Yeni bir ürünün altyapısını gün 0'dan Proje Kurulum Rehberi'ne göre baştan sona kurar; önce sahibine verilmesi gereken kararları sorar, sonra kurulum planını aşama aşama uygular ve her aşamayı doğrular. Yeni proje, yeni ürün, sıfırdan kurulum, "altyapıyı hazırla", "projeye başlıyoruz", Neon + Go + Next.js + Expo yığını, Cloud Run, ilk commit, gün 0 ya da "nereden başlayalım" geçtiğinde, kullanıcı rehberin adını söylemese bile bu skill'i kullan.
+description: >-
+  Yeni bir ürünün altyapısını gün 0'dan Proje Kurulum Rehberi'ne göre baştan sona kurar; önce sahibine
+  verilmesi gereken kararları sorar, sonra kurulum planını aşama aşama uygular ve her aşamayı
+  doğrular. Yeni proje, yeni ürün, sıfırdan kurulum, "altyapıyı hazırla", "projeye başlıyoruz", Neon +
+  Go + Next.js + Expo yığını, Cloud Run, ilk commit, gün 0 ya da "nereden başlayalım" geçtiğinde,
+  kullanıcı rehberin adını söylemese bile bu skill'i kullan.
 ---
 
 # Proje kurulumu (gün 0)

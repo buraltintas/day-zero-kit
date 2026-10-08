@@ -1,6 +1,12 @@
 ---
 name: proje-hafizasi
-description: Projenin hafıza dosyalarını (AGENTS.md, CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/DECISIONS.md, DESIGN.md, devir notu) Proje Kurulum Rehberi'ndeki şablonlara göre açar, günceller ve tazelik kontrolünü yapar; yeni gelen geliştirici ya da yapay zekâ ajanı projeye hızla alışıp devam edebilsin. Oturum ya da iş bitince, "ne oldu ne bitti", "sırada ne var", changelog yaz, devir notu hazırla, yeni geliştirici başlıyor, tasarım kararı kaydet ya da dokümanlar eskidi dendiğinde kullan.
+description: >-
+  Projenin hafıza dosyalarını (AGENTS.md, CHANGELOG.md, docs/STATUS.md, docs/TODO.md,
+  docs/DECISIONS.md, DESIGN.md, devir notu) Proje Kurulum Rehberi'ndeki şablonlara göre açar,
+  günceller ve tazelik kontrolünü yapar; yeni gelen geliştirici ya da yapay zekâ ajanı projeye hızla
+  alışıp devam edebilsin. Oturum ya da iş bitince, "ne oldu ne bitti", "sırada ne var", changelog yaz,
+  devir notu hazırla, yeni geliştirici başlıyor, tasarım kararı kaydet ya da dokümanlar eskidi
+  dendiğinde kullan.
 ---
 
 # Proje hafızası

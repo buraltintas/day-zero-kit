@@ -1,6 +1,11 @@
 ---
 name: yayin-kapisi
-description: Mobil mağaza sürümünden, prod deploy'dan ya da kullanıcıyı etkileyen bir değişiklikten önce Proje Kurulum Rehberi'nin yayın kapısını çalıştırır ve "çıkar / çıkmaz" kararı için kanıtlı bir liste verir. Sürüm çıkacağımız, build alacağımız, mağazaya göndereceğimiz, main'e alacağımız, migration yapacağımız, zorunlu güncellemeyi açacağımız ya da "bu değişiklik kullanıcıyı bozar mı" diye sorulduğu her durumda kullan.
+description: >-
+  Mobil mağaza sürümünden, prod deploy'dan ya da kullanıcıyı etkileyen bir değişiklikten önce Proje
+  Kurulum Rehberi'nin yayın kapısını çalıştırır ve "çıkar / çıkmaz" kararı için kanıtlı bir liste
+  verir. Sürüm çıkacağımız, build alacağımız, mağazaya göndereceğimiz, main'e alacağımız, migration
+  yapacağımız, zorunlu güncellemeyi açacağımız ya da "bu değişiklik kullanıcıyı bozar mı" diye
+  sorulduğu her durumda kullan.
 ---
 
 # Yayın kapısı

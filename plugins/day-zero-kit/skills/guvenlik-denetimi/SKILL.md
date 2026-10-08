@@ -1,6 +1,12 @@
 ---
 name: guvenlik-denetimi
-description: Projenin güvenlik ve bot korumasını Proje Kurulum Rehberi'ne göre denetler; en az yetki ve servis hesapları, sırlar, bağımlılık ve tedarik zinciri, yetki kontrolleri (başkasının kaydını okuma), bot kapısı ve tarayıcı listeleri, KVKK ve gün 0 önlemleri için bulgu ve düzeltme listesi çıkarır. Güvenlik incelemesi, yetki, IAM, secret, "biri verimizi kazıyor", bot, kazıyıcı, Alibaba, AI tarayıcıları, robots.txt, KVKK, veri ihlali ya da yayından önce güvenlik kontrolü istendiğinde kullan.
+description: >-
+  Projenin güvenlik ve bot korumasını Proje Kurulum Rehberi'ne göre denetler; en az yetki ve servis
+  hesapları, sırlar, bağımlılık ve tedarik zinciri, yetki kontrolleri (başkasının kaydını okuma), bot
+  kapısı ve tarayıcı listeleri, KVKK ve gün 0 önlemleri için bulgu ve düzeltme listesi çıkarır.
+  Güvenlik incelemesi, yetki, IAM, secret, "biri verimizi kazıyor", bot, kazıyıcı, Alibaba, AI
+  tarayıcıları, robots.txt, KVKK, veri ihlali ya da yayından önce güvenlik kontrolü istendiğinde
+  kullan.
 ---
 
 # Güvenlik denetimi

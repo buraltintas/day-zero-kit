@@ -1,5 +1,7 @@
 <p align="center"><img src="assets/banner.svg" alt="Proje Kurulum Rehberi, day-zero-kit. Burak Altıntaş." width="100%"></p>
 
+<p align="center"><b>Türkçe</b> &nbsp;|&nbsp; <a href="README.en.md">English</a></p>
+
 <h3 align="center">Yeni bir ürünün kodunu yazmadan önce etrafını kur.</h3>
 
 <p align="center">Hesaplar, ortamlar, maliyet tavanları, bot kapısı, uyarılar, yedek, mobil kit ve proje hafızası ilk günden hazır olsun;<br>ekip yalnız ürün akışına baksın, altyapıyı yapay zekâ ajanı rehberle kursun.</p>
@@ -18,7 +20,7 @@
 
 ## Bu nedir, kimin
 
-Bu rehber ve skill seti benim, **Burak Altıntaş**'ın çalışması. İçindeki kurallar, ürünlerimi kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı: uyumayan veritabanları, tavansız açılan ücretli API'ler, kataloğu kazıyan botlar, kimseye haber vermeden biten krediler, eski sürümde kalıp yeni akışı göremeyen kullanıcılar.
+Bu rehber ve skill seti benim, **Burak Altıntaş**'ın çalışması. İçindeki kurallar, beş yıl boyunca ürün kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı: uyumayan veritabanları, tavansız açılan ücretli API'ler, kataloğu kazıyan botlar, kimseye haber vermeden biten krediler, eski sürümde kalıp yeni akışı göremeyen kullanıcılar. Son üç ayda bu tecrübeyi rakamlarıyla birlikte rehbere dönüştürdüm.
 
 Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu başlamasını sağlar. Ürünler rehberde Ürün A, B, C ve D diye anonim geçer; rakamlar bu ürünlerin Ağustos ile Ekim 2026 arasındaki faturalarından, loglarından ve olay kayıtlarından.
 
@@ -68,7 +70,7 @@ Claude Code içinde:
 /plugin install day-zero-kit@day-zero-kit
 ```
 
-Skill'ler `/day-zero-kit:proje-kurulumu` gibi çağrılır; konusu açılınca ajan kendisi de kullanır.
+Skill'ler `/day-zero-kit:proje-kurulumu` gibi çağrılır; konusu açılınca ajan kendisi de kullanır. İngilizce sürüm için `day-zero-kit-en@day-zero-kit` kurulur.
 
 Elle kurmak istersen `plugins/day-zero-kit/skills/` altındaki klasörleri kopyala:
 

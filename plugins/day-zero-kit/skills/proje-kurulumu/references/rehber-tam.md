@@ -6,7 +6,7 @@ Postgres, Go, Next.js ve Expo ile Google Cloud'da
 
 Yeni bir ürünü ilk günden ucuz, güvenli ve kullanıcıyı kırmadan kurmak için canlı ürünlerimizden çıkan kurallar.
 
-**Burak Altıntaş**. Bu rehberdeki kurallar, ürünlerimi kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı.
+**Burak Altıntaş**. Bu rehberdeki kurallar, beş yıl boyunca ürün kurarken yediğim dayaklardan, ödediğim faturalardan ve bulduğum çözümlerden çıktı.
 
 Veritabanı
 Neon Postgres
@@ -449,7 +449,7 @@ Bu rehber ürünün kodunu yazmaz; kodun etrafını toplar ve işin derli toplu 
 
 ## Bu rehber nedir
 
-Rehber tek bir yığını anlatır: Neon Postgres, Cloud Run'da Go API, Next.js ve Expo; DNS Cloudflare'de. Kurallar ürünlerimizin faturalarından, loglarından ve yaşadığımız olaylardan çıktı (Ağustos–Ekim 2026); fiyatlar Ekim 2026'nın, dolar 49 TL ile çevrildi. Her maddenin başındaki etiket o maddenin kanıt düzeyidir.
+Rehber tek bir yığını anlatır: Neon Postgres, Cloud Run'da Go API, Next.js ve Expo; DNS Cloudflare'de. Kurallar beş yıllık ürün geliştirme tecrübesinden çıktı; rakamlar dört canlı ürünümüzün Ağustos–Ekim 2026 faturalarından, loglarından ve olay kayıtlarından. Fiyatlar Ekim 2026'nın, dolar 49 TL ile çevrildi. Her maddenin başındaki etiket o maddenin kanıt düzeyidir.
 
 [kanıtlı] bizim prod'da çalışıyor; [ölçüldü] rakamı kendi ölçümümüz ya da faturamız gösteriyor; [öneri] bizde denenmedi ya da yalnız sağlayıcı belgesine dayanıyor. **Etiket maddenin isteğe bağlı olduğunu söylemez; bir öneriyi atlamak da ürün sahibinin kararıdır ve docs/DECISIONS.md'ye yazılır.**
 
@@ -11116,4 +11116,4 @@ Botların kimliğini doğrulamak için yayıncıların yayımladığı adres lis
 **DuckDuckBot aralıkları**https://duckduckgo.com/duckduckbot.json
 **DuckAssistBot aralıkları**https://duckduckgo.com/duckassistbot.json
 **RIPEstat duyurulan prefix'ler**https://stat.ripe.net/data/announced-prefixes
-Rehber Burak Altıntaş'ın çalışmasıdır; kurallar onun ürünlerinde yaşanan olaylardan, faturalardan ve bulunan çözümlerden çıktı. © 2026 Burak Altıntaş. Bu rehber canlı ürünlerimizin Ağustos–Ekim 2026 fatura, Neon tüketimi ve log ölçümlerine, 1–7 Ekim 2026'da 11 servisten çekilen yaklaşık 517.000 isteklik bot analizine ve sağlayıcıların yayımladığı belgelere dayanır. Kullanıcıyı kırmadan değiştirme kuralları Ağustos–Ekim 2026 olay kayıtlarından ve sürüm notlarından çıktı. Depo boyutları ve Artifact Registry denetimi 8 Ekim 2026'da salt okunur ölçüldü. Startup kredi bilgileri 8 Ekim 2026'da resmi program sayfalarından doğrulandı. Mobil kit, mobil dağıtım, yedek, ücretsiz katman, performans ve ücretli API bölümleri 8 Ekim 2026'da resmi sayfalardan ve salt okunur ölçümlerden doğrulandı. Maliyetlere alan adı ve mağaza ücretleri katılmadı. Fiyatlar Ekim 2026, 1 USD = 49 TL.
+Rehber Burak Altıntaş'ın çalışmasıdır; kurallar onun beş yıllık ürün geliştirme tecrübesinden, yaşadığı olaylardan, ödediği faturalardan ve bulduğu çözümlerden çıktı; son üç ayda, Ağustos–Ekim 2026 ölçümleriyle rehbere dönüştü. © 2026 Burak Altıntaş. Bu rehber canlı ürünlerimizin Ağustos–Ekim 2026 fatura, Neon tüketimi ve log ölçümlerine, 1–7 Ekim 2026'da 11 servisten çekilen yaklaşık 517.000 isteklik bot analizine ve sağlayıcıların yayımladığı belgelere dayanır. Kullanıcıyı kırmadan değiştirme kuralları Ağustos–Ekim 2026 olay kayıtlarından ve sürüm notlarından çıktı. Depo boyutları ve Artifact Registry denetimi 8 Ekim 2026'da salt okunur ölçüldü. Startup kredi bilgileri 8 Ekim 2026'da resmi program sayfalarından doğrulandı. Mobil kit, mobil dağıtım, yedek, ücretsiz katman, performans ve ücretli API bölümleri 8 Ekim 2026'da resmi sayfalardan ve salt okunur ölçümlerden doğrulandı. Maliyetlere alan adı ve mağaza ücretleri katılmadı. Fiyatlar Ekim 2026, 1 USD = 49 TL.

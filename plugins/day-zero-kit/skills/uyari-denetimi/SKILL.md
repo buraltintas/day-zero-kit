@@ -1,6 +1,12 @@
 ---
 name: uyari-denetimi
-description: Projede her dış bağımlılığın ve bütçenin hata sinyalinin doğru kişiye, doğru kanaldan, zamanında ulaşıp ulaşmadığını Proje Kurulum Rehberi'ne göre denetler; eksik alarmları, sahipsiz sinyalleri ve denenmemiş uyarıları çıkarır, notify() yönlendirmesini ve uçtan uca alarm testini kurdurur. Dış API hatası (401, 402, 429, 5xx), kredi ya da bakiye bitmesi, token süresi, kota, zamanlanmış işin çalışmaması, yedek doğrulaması, webhook hatası, "neden kimse fark etmedi", alarm, gözlem, Sentry ya da hata takibi konuşulduğunda kullan.
+description: >-
+  Projede her dış bağımlılığın ve bütçenin hata sinyalinin doğru kişiye, doğru kanaldan, zamanında
+  ulaşıp ulaşmadığını Proje Kurulum Rehberi'ne göre denetler; eksik alarmları, sahipsiz sinyalleri ve
+  denenmemiş uyarıları çıkarır, notify() yönlendirmesini ve uçtan uca alarm testini kurdurur. Dış API
+  hatası (401, 402, 429, 5xx), kredi ya da bakiye bitmesi, token süresi, kota, zamanlanmış işin
+  çalışmaması, yedek doğrulaması, webhook hatası, "neden kimse fark etmedi", alarm, gözlem, Sentry ya
+  da hata takibi konuşulduğunda kullan.
 ---
 
 # Uyarı denetimi
