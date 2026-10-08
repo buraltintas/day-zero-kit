@@ -4,7 +4,7 @@
 
 <h3 align="center">Yeni bir ürünün kodunu yazmadan önce etrafını kur.</h3>
 
-<p align="center">Hesaplar, ortamlar, maliyet tavanları, bot kapısı, uyarılar, yedek, mobil kit ve proje hafızası ilk günden hazır olsun;<br>ekip yalnız ürün akışına baksın, altyapıyı yapay zekâ ajanı rehberle kursun.</p>
+<p align="center">Hesaplar, ortamlar, bütçe alarmları ve harcama sınırları, bot kapısı, uyarılar, yedek, mobil kit ve proje hafızası ilk günden hazır olsun;<br>ekip yalnız ürün akışına baksın, altyapıyı yapay zekâ ajanı rehberle kursun.</p>
 
 <p align="center">
   <a href="guide/project-setup-guide.pdf"><b>Rehberi oku (PDF)</b></a>
@@ -37,7 +37,10 @@ Rehber ürünün kodunu yazmaz; kodun etrafını kurar ve işin derli toplu baş
 | **Kim ne yapar** | Ekip ürün akışına bakar, ajanın önerdiği her şeyi onaylar. | Ekip kararları verir, ajan altyapıyı rehberdeki sırayla kurar. |
 | **Varsayılanlar** | Hazır servis hesabı, kotasız API anahtarı, canlıya bağlı yerel ayar, alarmsız servis. | Ayrı faturalama ve bütçe alarmı, uyuyabilen veritabanı, bot kapısı, denenmiş alarmlar, doğrulanan yedek. |
 | **Sorunu kim haber verir** | Fatura ya da tesadüf. | Alarm; ilk gün denenmiş olarak. |
+| **Harcama** | Fatura gelince görülür. | Bütçe alarmı haber verir; durduran sınır servis başına ayrıdır. |
 | **Bizim faturamız** | Eylül'de ayda **~₺3.900–4.400** | Düzeltmelerden sonra ayda **~₺1.300** |
+
+Bütçe alarmı harcamayı durdurmaz, yalnız haber verir. Durduran sınır her serviste ayrıdır ve her serviste yoktur: Cloud Run'ın harcama tavanı, Neon Free'nin kotası, ücretli API'de sağlayıcının kotası gibi. Rehber her servis için hangisinin olduğunu ve kesin durdurmanın olmadığı yerleri ayrı ayrı yazar.
 
 ## Hızlı başlangıç
 

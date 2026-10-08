@@ -4,7 +4,9 @@
 
 <h3 align="center">Build everything around a new product before you write its code.</h3>
 
-<p align="center">Accounts, environments, cost caps, the bot door, alerts, backups, the mobile kit and project memory ready from day one;<br>the team looks only at product flows while an AI agent builds the infrastructure from the guide.</p>
+<p align="center">Accounts, environments, budget alarms and spend limits, the bot door, alerts, backups, the mobile kit and project memory ready from day one;<br>the team looks only at product flows while an AI agent builds the infrastructure from the guide.</p>
+
+<p align="center"><b>English agent instructions, Turkish source guide.</b></p>
 
 <p align="center">
   <a href="guide/project-setup-guide.pdf"><b>Read the guide (PDF, Turkish)</b></a>
@@ -37,7 +39,10 @@ The guide does not write your product's code; it builds everything around it so 
 | **Who does what** | The team looks at product flows and approves whatever the agent proposes. | The team makes the decisions; the agent builds the infrastructure in the guide's order. |
 | **Defaults** | Stock service account, uncapped API key, local settings pointing at production, services with no alarms. | Separate billing and budget alarms, a database that can sleep, a bot door, tested alarms, verified backups. |
 | **Who tells you about a problem** | The bill, or luck. | An alarm, tested on day one. |
+| **Spending** | You see it when the bill arrives. | A budget alarm tells you; what actually stops spending is separate for each service. |
 | **Our bill** | **~₺3,900–4,400** a month in September | **~₺1,300** a month after the fixes |
+
+A budget alarm does not stop spending; it only tells you. What stops it is different for each service, and some services have nothing that stops it: the Cloud Run spend cap, the Neon Free quota, a paid API provider's quota. The guide says which one each service has, and where there is no hard stop.
 
 ## Quick start
 
