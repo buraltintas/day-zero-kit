@@ -68,7 +68,7 @@ Markdown kopyası depoya ya da sohbete eklenir, bu metin ilk mesaj olarak yapı�
 Yeni bir ürün kuruyoruz: <ürün tek cümleyle; kim kullanır>.
 Ekteki project-setup-guide.md bu işin rehberi.
 
-1. Rehberi baştan sona oku; şablonlar, kurallar ve tablolar dahil. Dosya uzun; bölüm bölüm oku, kurarken o katmanın bölümünü yeniden aç.
+1. Önce "Bu rehber nasıl kullanılır" ve "Verilecek kararlar ve kurulum planı" bölümlerini oku. Rehberin tamamını bir seferde okuma; her aşamaya geçerken o aşamanın ve katmanın bölümünü aç, şablon ve tablolarıyla.
 2. "Verilecek kararlar" bölümündeki soruları bana tek tek sor. Bir tercihim yoksa rehberin varsayılanını öner ve nedenini bir cümleyle söyle.
 3. Cevapları docs/DECISIONS.md'ye K-001'den başlayarak yaz, ürün özetini AGENTS.md'ye. Cevabı gelmeyen satır "KARAR BEKLİYOR" diye kalır.
 4. Altyapıdan önce "Proje hafızası ve devir" bölümündeki gün 0 dosyalarını aç: AGENTS.md, CLAUDE.md (yalnız @AGENTS.md), CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/DECISIONS.md, docs/runbooks/ ve docs/handoff/.

@@ -54,7 +54,7 @@ Pick one: install the plugin (below; the `project-setup` skill carries the full 
 We are building a new product: <the product in one sentence; who uses it>.
 The attached project-setup-guide.md is the guide for this work. It is written in Turkish; read it as it is and talk to me in English.
 
-1. Read the guide end to end, including templates, rules and tables. It is long; read it section by section and reopen a layer's section while you build it.
+1. First read the "Bu rehber nasıl kullanılır" (how to use) and "Verilecek kararlar ve kurulum planı" (decisions and setup plan) sections. Do not read the whole guide at once; when you move to a phase, open that phase's and that layer's section, with its templates and tables.
 2. Ask me the questions in the "Verilecek kararlar" (decisions) section one by one. If I have no preference, propose the guide's default and give the reason in one sentence.
 3. Write the answers to docs/DECISIONS.md starting at K-001, and the product summary to AGENTS.md. A question without an answer stays as "DECISION PENDING".
 4. Before any infrastructure, open the day-0 files from the "Proje hafızası ve devir" (project memory) section: AGENTS.md, CLAUDE.md (only @AGENTS.md), CHANGELOG.md, docs/STATUS.md, docs/TODO.md, docs/DECISIONS.md, docs/runbooks/ and docs/handoff/.
