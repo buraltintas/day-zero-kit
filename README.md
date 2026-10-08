@@ -133,4 +133,4 @@ Her yığın için birebir tarif değildir. Rehber bu yığın için yazıldı: 
 
 ## Lisans
 
-Rehber metni (`guide/` ve skill'lerin `references/` klasörlerindeki bölümler) [CC BY 4.0](guide/LICENSE) ile paylaşılır: kaynak gösterilerek kullanılabilir, uyarlanabilir ve dağıtılabilir. Skill'ler ve depodaki diğer her şey [MIT](LICENSE) lisanslıdır.
+Rehber metni (`guide/` ve skill'lerin `references/` klasörlerindeki bölümler) [CC BY 4.0](guide/LICENSE) ile paylaşılır: kaynak gösterilerek kullanılabilir, uyarlanabilir ve dağıtılabilir. Skill'ler, `scripts/` altındaki kontrol betiği ve depodaki diğer her şey [MIT](LICENSE) lisanslıdır. Her push'ta `scripts/check_repo.py` manifestleri, skill'leri, başvuru dosyalarının rehberle birebir eşleşmesini ve bağlantıları denetler.

@@ -135,4 +135,4 @@ It is not a guide for very high scale or multi-region setups. It is not legal ad
 
 ## License
 
-The guide text (`guide/` and the guide sections in the skills' `references/` folders) is shared under [CC BY 4.0](guide/LICENSE): you may use, adapt and share it with attribution. The skills and everything else in the repository are under the [MIT](LICENSE) license.
+The guide text (`guide/` and the guide sections in the skills' `references/` folders) is shared under [CC BY 4.0](guide/LICENSE): you may use, adapt and share it with attribution. The skills, the check script under `scripts/` and everything else in the repository are under the [MIT](LICENSE) license. On every push, `scripts/check_repo.py` checks the manifests, the skills, that every reference file is an exact excerpt of the guide, and the links.
