@@ -36,7 +36,7 @@ Green-edged boxes run on Google Cloud, dark-edged ones are outside services, gre
 
 ## Knocks taken, goals scored
 
-<p align="center"><img src="assets/scoreboard-en.svg" alt="Knocks taken and goals scored: September's monthly cloud bill about 3,900–4,400 TL, the monthly estimate as of 8 October about 1,300 TL; database from 6.5 to about 2.1 CU-hours a day; a maps API from 1,500 TL a month to 0; one scraper took 41% of web requests, then the bot door refused 6,654 requests on its first day; a depleted API credit went unnoticed for 30 days, then error to alarm took 4 minutes; a payment webhook failed silently for at least 21 days, then every dependency got an owner, a threshold and a channel; out of builds and a fix waited a week, then 3 builds are kept for month end; a test wrote 44 fake records to production, then the test setup cannot touch production." width="100%"></p>
+<p align="center"><img src="assets/scoreboard-en.svg" alt="Knocks taken and goals scored: September's monthly cloud bill about $80–90, the monthly estimate as of 8 October about $27; database from 6.5 to about 2.1 CU-hours a day; a maps API from about $31 a month to $0; one scraper took 41% of web requests, then the bot door refused 6,654 requests on its first day; a depleted API credit went unnoticed for 30 days, then error to alarm took 4 minutes; a payment webhook failed silently for at least 21 days, then every dependency got an owner, a threshold and a channel; out of builds and a fix waited a week, then 3 builds are kept for month end; a test wrote 44 fake records to production, then the test setup cannot touch production." width="100%"></p>
 
 ## Two roads
 
@@ -46,7 +46,7 @@ Green-edged boxes run on Google Cloud, dark-edged ones are outside services, gre
 | **Defaults** | Stock service account, uncapped API key, local settings pointing at production, services with no alarms. | Separate billing and budget alarms, a database that can sleep, a bot door, tested alarms, verified backups. |
 | **Who tells you about a problem** | The bill, or luck. | An alarm, tested on day one. |
 | **Spending** | You see it when the bill arrives. | A budget alarm tells you; what actually stops spending is separate for each service. |
-| **Our bill** | **~₺3,900–4,400** a month in September | **~₺1,300** a month after the fixes (estimate as of 8 October) |
+| **Our bill** | **~$80–90** a month in September | **~$27** a month after the fixes (estimate as of 8 October; 49 TL per dollar) |
 
 A budget alarm does not stop spending; it only tells you. What stops it is different for each service, and some services have nothing that stops it: the Cloud Run spend cap, the Neon Free quota, a paid API provider's quota. The guide says which one each service has, and where there is no hard stop.
 
