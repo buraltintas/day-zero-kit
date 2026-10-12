@@ -46,7 +46,7 @@ Green-edged boxes run on Google Cloud, dark-edged ones are outside services, gre
 | **Defaults** | Stock service account, uncapped API key, local settings pointing at production, services with no alarms. | Separate billing and budget alarms, a database that can sleep, a bot door, tested alarms, verified backups. |
 | **Who tells you about a problem** | The bill, or luck. | An alarm, tested on day one. |
 | **Spending** | You see it when the bill arrives. | A budget alarm tells you; what actually stops spending is separate for each service. |
-| **Our bill** | **~$80–90** a month in September | **~$27** a month after the fixes (estimate as of 8 October; 49 TL per dollar) |
+| **Our bill** | **~$80–90** a month in September | **~$27** a month after the fixes (estimate as of 8 October) |
 
 A budget alarm does not stop spending; it only tells you. What stops it is different for each service, and some services have nothing that stops it: the Cloud Run spend cap, the Neon Free quota, a paid API provider's quota. The guide says which one each service has, and where there is no hard stop.
 
@@ -129,7 +129,7 @@ Every rule carries an evidence tag: **kanıtlı** (proven in our production), **
 
 It is not a one-to-one recipe for every stack. The guide was written for this one: Neon Postgres, Go on Cloud Run, Next.js and Expo. On another stack the settings, numbers and tools change; the logic stays the same: do not wake the database for nothing, put a cap and an alarm on every spend, leave no silent failure, run with least privilege, change without breaking users, and write down decisions and project memory.
 
-It is not a guide for very high scale or multi-region setups. It is not legal advice. Prices and versions are a snapshot of October 2026 (1 USD = 49 TL); re-read them from the official pages in the sources before you rely on them.
+It is not a guide for very high scale or multi-region setups. It is not legal advice. Prices and versions are a snapshot of October 2026; re-read them from the official pages in the sources before you rely on them.
 
 ## Author
 
