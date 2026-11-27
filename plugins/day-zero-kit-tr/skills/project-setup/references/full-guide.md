@@ -11374,6 +11374,8 @@ CDN'de s-maxage yalnız yazma anında değişen URL'ler purge ediliyorsa kullan�
 
 **Rakam** İsabet ~%7, p50 155 ms, p90 2,08 sn. Önceden üretilen sayfa p50 17 ms.
 
+**Ders (Kasım 2026)** Web servisinin istek başı CPU'su bir ayda %60 arttı (₺681). İlk tahmin "önde CDN yok, her istek SSR" oldu; ölçüm başka çıktı. Sayfalar zaten ISR önbelleğinden geliyordu (`x-nextjs-cache: HIT`). Bir günlük kayıtta (59.691 istek) isteklerin %72'si Next'in RSC ön çekimleriydi (`?_rsc=`). Sayfayı JS ile çizen botlar (OAI-SearchBot, meta-webindexer) Next istemcisini çalıştırıyor, istemci de görünen her bağlantıyı önceden çekiyor; gizlilik sayfası günde ~650 kez geliyordu. Botlar isteklerin %67'sini, sunucu süresinin %63'ünü tuttu. `_rsc` değeri her istekte değiştiği için CDN bunları önbelleğe alamaz; Cloudflare benzetiminde kazanç yalnız %5–9 çıktı. Üstelik alan adını CDN'e taşımak DNS'teki e-posta kayıtlarını riske atar ve CDN arkasında istemci IP'si başlıktan okunur; servisin kendi adresi açıksa o başlık sahtelenebilir. Kural: önbellek ya da CDN kararından önce istekleri yol, sorgu parametresi ve kullanıcı ajanına göre ayır. Önerilen düzeltme (ölçülmedi): adı bilinen botların RSC ön çekim isteğine `204` ve `no-store` dönmek, Googlebot ve bingbot hariç; bot sayfanın HTML'ini almaya devam eder.
+
 7. İmaj küçük: Go tek ikili, Next Docker ile standalone, statik SPA nginx'te; buildpack yok.
 
 Büyük imajlı servislerde soğuk ilk istek daha uzun sürdü; bu bir ilişki, Google imaj boyutunun açılışı etkilemediğini yazıyor ve büyük imaj çoğu zaman daha ağır uygulama demek. Kesin kazanç fatura: her build'de kıtalar arası çekilen büyük imaj çıkış ücreti olarak yazıldı.
@@ -12458,21 +12460,21 @@ Admin oturumu çalınır ya da yetki hatası başkasının kaydını gösterir; 
 
 <a id="onlem-10"></a>
 
-### 10. Destek dışı kalan sürüm, yetişmeyen yama
+### 10. Açık alarmı gelir, kimse bakmaz; destek dışı sürüm yama alamaz
 
-Sürüm güvenlik desteğinden çıkar; sonraki açığın yaması yalnız yeni ana sürüme gelir, geçiş acile döner.
+Bağımlılıkta ya da çalışma ortamında (Go, Node, taban imaj, projeye girmiş bir PHP sitesi) kritik bir açık duyurulur. Uyarı bir e-posta kutusunda kalır ya da hiç kurulmamıştır; kod değişmediği için CI de yeniden taramaz. Sürüm güvenlik desteğinden çıkmışsa yama yalnız yeni ana sürüme gelir, geçiş acile döner.
 
-**Olasılık ve etki:** yüksek; Next her ana sürümü çıkışından 2 yıl, Go her sürümü iki yeni sürüm çıkana kadar (yaklaşık 1 yıl), Node her LTS'i 30 ay destekler. **Etki:** Aralık 2025'teki React2Shell (CVSS 10) App Router kullanan Next 15 ve 16'da kimlik doğrulamasız kod çalıştırıyordu.
+**Olasılık ve etki:** yüksek; Next her ana sürümü çıkışından 2 yıl, Go her sürümü iki yeni sürüm çıkana kadar (yaklaşık 1 yıl), Node her LTS'i 30 ay destekler. **Etki:** Aralık 2025'teki React2Shell (CVSS 10) App Router kullanan Next 15 ve 16'da kimlik doğrulamasız kod çalıştırıyordu. 21 Ekim 2026'da PHP'nin iki kritik açığı (CVE-2026-109618 ve CVE-2026-109619, CVSS 9.2) web isteği alan her PHP kurulumunu etkiliyordu; yama yalnız 8.2 ve üstüne geldi, 8.1 ve öncesi projeden yama almıyor, duyurudan sonra saldırı denemeleri görüldü. Nisan 2026'da Packagist'teki intercom/intercom-php 5.0.2, kurulurken çalışıp sır toplayan bir sürümle değiştirildi.
 
-**Erken işaret:** yamanın yalnız yeni ana sürüme gelmesi.
+**Erken işaret:** Dependabot ya da GitHub güvenlik uyarısı, govulncheck veya npm audit bulgusu, yamanın yalnız yeni ana sürüme gelmesi.
 
-**Gün 0 önlemi:** Taban sürüm dosyasında her satırın destek bitiş tarihi, CI 60 gün kala uyarır. Kritik yamanın aynı gün prod'a çıkışı bir kez prova edilir.
+**Gün 0 önlemi:** Her depoda Dependabot uyarıları ve güvenlik güncellemeleri açık; ücretsizdir. CI her push'ta tarar: Go için govulncheck, Node için `npm audit --audit-level=high` ya da osv-scanner, imaj için Trivy. Kritik ve yüksek bulgu build'i durdurur. Kod değişmese de yeni açık çıkar; haftada bir zamanlanmış iş canlıdaki digest'leri ve kilit dosyalarını yeniden tarar. Uyarı e-posta kutusunda kalmaz, [Uyarılar kime, nasıl ulaşır](#uyarilar)'daki gibi sahibi belli kanala düşer. Tepki süresi önerisi: istismar edilen ya da CISA KEV listesindeki açık aynı gün, kritik 48 saat, yüksek 7 gün, gerisi aylık güncellemeyle. Bilerek ertelenen bulgu DECISIONS'a gerekçe ve bitiş tarihiyle yazılır. Taban sürüm dosyasında Go, Node, taban imaj ve projeye girmiş her çalışma ortamı (yan alan adındaki bir PHP sitesi ya da panel dahil) destek bitiş tarihiyle durur; CI 60 gün kala uyarır. Yeni paket eklenirken içeriğine bakılır: kurulum betiği, sahip değişikliği, birkaç günlük sürüm ([2. madde](#onlem-2)). Kritik yamanın aynı gün prod'a çıkışı bir kez prova edilir.
 
-**Önlemin bedeli:** yarım gün.
+**Önlemin bedeli:** ücretsiz; tarama yalnız build dakikası, kurulum yarım gün.
 
-**Rehberde:** kısmen; [Yeni depo için kurallar](#depo-kurallari) 8 (taban dosyası ve Renovate); bitiş tarihi ve CI uyarısı yok.
+**Rehberde:** kısmen; [Yeni depo için kurallar](#depo-kurallari) 8 (taban dosyası ve Renovate), test hattında govulncheck. npm ve imaj taraması, haftalık yeniden tarama, uyarının sahibi ve tepki süresi yok.
 
-**Kaynak:** https://nextjs.org/support-policy, https://go.dev/doc/devel/release, https://github.com/nodejs/Release, https://nextjs.org/blog/CVE-2025-66478, https://nvd.nist.gov/vuln/detail/CVE-2025-55182
+**Kaynak:** https://nextjs.org/support-policy, https://go.dev/doc/devel/release, https://github.com/nodejs/Release, https://nextjs.org/blog/CVE-2025-66478, https://nvd.nist.gov/vuln/detail/CVE-2025-55182, https://patchstack.com/articles/php-major-vulnerability-alert-10-2026/, https://semgrep.dev/blog/2026/malicious-intercom-php-package-spreads-mini-shai-hulud-attack-to-packagist-via-composer-plugin/, https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts, https://www.cisa.gov/known-exploited-vulnerabilities-catalog, https://go.dev/doc/tutorial/govulncheck
 
 <a id="onlem-11"></a>
 

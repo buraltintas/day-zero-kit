@@ -26,6 +26,7 @@ Yayın kararı ürün sahibinindir. Bu skill kararı kanıtla besler: neyin haz�
 3. Mobil sürümde build hakkını say: `eas account:usage` ile platform başına kalan hak. Kalan hak platform başına 3'ün altındaysa yeni özellik build'i alınmaz; hak hata düzeltmesine saklanır. Ayın son haftasında buna ayrıca bakılır, çünkü hak ancak ayın 1'inde yenilenir.
 4. Eski sürümdeki kullanıcıyı düşün: yeni akış eski build'e ne gösterecek, sunucudan duyuruyla anlatılabiliyor mu, zorunlu güncelleme açılacaksa mağazada yeni sürüm herkese açık mı.
 5. Geri dönüş yolunu yaz: hangi revizyona, hangi komutla, veri geri dönüyor mu.
+6. Çıkacak şeyde açık taramasını çalıştır (govulncheck, `npm audit --audit-level=high` ya da osv-scanner, imajda Trivy). Açık kritik ya da istismar edilen bulgu varsa ve DECISIONS'ta tarihli, ürün sahibinin onayladığı bir erteleme yoksa sonuç ÇIKMAZ.
 
 ## Sonuç biçimi
 

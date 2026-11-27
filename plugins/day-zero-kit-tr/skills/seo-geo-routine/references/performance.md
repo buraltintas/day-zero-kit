@@ -100,6 +100,8 @@ CDN'de s-maxage yalnız yazma anında değişen URL'ler purge ediliyorsa kullan�
 
 **Rakam** İsabet ~%7, p50 155 ms, p90 2,08 sn. Önceden üretilen sayfa p50 17 ms.
 
+**Ders (Kasım 2026)** Web servisinin istek başı CPU'su bir ayda %60 arttı (₺681). İlk tahmin "önde CDN yok, her istek SSR" oldu; ölçüm başka çıktı. Sayfalar zaten ISR önbelleğinden geliyordu (`x-nextjs-cache: HIT`). Bir günlük kayıtta (59.691 istek) isteklerin %72'si Next'in RSC ön çekimleriydi (`?_rsc=`). Sayfayı JS ile çizen botlar (OAI-SearchBot, meta-webindexer) Next istemcisini çalıştırıyor, istemci de görünen her bağlantıyı önceden çekiyor; gizlilik sayfası günde ~650 kez geliyordu. Botlar isteklerin %67'sini, sunucu süresinin %63'ünü tuttu. `_rsc` değeri her istekte değiştiği için CDN bunları önbelleğe alamaz; Cloudflare benzetiminde kazanç yalnız %5–9 çıktı. Üstelik alan adını CDN'e taşımak DNS'teki e-posta kayıtlarını riske atar ve CDN arkasında istemci IP'si başlıktan okunur; servisin kendi adresi açıksa o başlık sahtelenebilir. Kural: önbellek ya da CDN kararından önce istekleri yol, sorgu parametresi ve kullanıcı ajanına göre ayır. Önerilen düzeltme (ölçülmedi): adı bilinen botların RSC ön çekim isteğine `204` ve `no-store` dönmek, Googlebot ve bingbot hariç; bot sayfanın HTML'ini almaya devam eder.
+
 7. İmaj küçük: Go tek ikili, Next Docker ile standalone, statik SPA nginx'te; buildpack yok.
 
 Büyük imajlı servislerde soğuk ilk istek daha uzun sürdü; bu bir ilişki, Google imaj boyutunun açılışı etkilemediğini yazıyor ve büyük imaj çoğu zaman daha ağır uygulama demek. Kesin kazanç fatura: her build'de kıtalar arası çekilen büyük imaj çıkış ücreti olarak yazıldı.

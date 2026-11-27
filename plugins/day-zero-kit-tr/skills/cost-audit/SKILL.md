@@ -23,7 +23,7 @@ Faturayı büyüten şey çoğu zaman görünmeyen tekrardır: veritabanı uyan�
 ## Akış
 
 1. Rakamları oku (salt okunur; her komutta proje açıkça verilir): son 30 günün fatura kırılımı, Neon günlük CU-saat ve uyanma sayısı, Cloud Run instance zirvesi ve max-instances değeri, build dakikası, log hacmi, imaj deposu boyutu, dış API çağrı sayısı.
-2. Her kalemi rehberdeki hedefle karşılaştır. Örnekler: veritabanı günde birkaç uyanışın üstündeyse uyandıranı bul (zamanlayıcı, bot yolu, herkese açık okuma); max-instances 30 günlük zirvenin çok üstündeyse tavanı indir; harcama freni ve üç eşikli bütçe alarmı yoksa ekle.
+2. Her kalemi rehberdeki hedefle karşılaştır. Örnekler: veritabanı günde birkaç uyanışın üstündeyse uyandıranı bul (zamanlayıcı, bot yolu, herkese açık okuma); max-instances 30 günlük zirvenin çok üstündeyse tavanı indir; harcama freni ve üç eşikli bütçe alarmı yoksa ekle. İstek başı CPU üst sıradaysa önbellek ya da CDN önermeden önce istekleri yol, sorgu parametresi ve kullanıcı ajanına göre ayır. Next'in RSC ön çekimleri (`?_rsc=`) her istekte farklıdır, hiçbir CDN onları önbelleğe almaz; bizde sunucu süresinin çoğu botların ön çekimleriydi.
 3. Her düzeltme için aylık etkisini hesapla ve kanıtını yaz. Varsayılan kur: rehberdeki gibi, ama o günün kurunu yeniden oku.
 4. Bir düzeltme kullanıcıyı etkileyebilecekse (tavanı çok indirmek, ücretsiz katmanda kota dolunca durma) riskini açıkça yaz.
 
